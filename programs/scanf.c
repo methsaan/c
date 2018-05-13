@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+/* test comment */
+
 int main(int argc, char* argv)
 {
 	char name[20];
