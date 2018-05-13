@@ -3,11 +3,10 @@
 
 int main(int argc, char* argv)
 {
-	char operator[20];
+	char operator[3];
 	double a;
 	double b;
 	double c;
-	printf("%d\n", c);
 	printf("Welcome to calculator. Options: add, sub, mul, div\n");
 	printf("Enter operator: ");
 	scanf("%s", operator);
@@ -15,14 +14,20 @@ int main(int argc, char* argv)
 	scanf("%lf", &a);
 	printf("Enter second number: ");
 	scanf("%lf", &b);
-	//if (operator == "add"){
-	c = a + b;
-	//}else if (operator == "sub"){
-	//	c = a - b;
-	//}else if (operator == "mul"){
-	//	c = a * b;
-	//}else if (operator == "div"){
-	//	c = a / b;
-	//}
-	printf("%lf x %lf = %lf\n", a, b, c);
+	if (operator == "add"){
+		c = a + b;
+		printf("%lf + %lf = %lf\n", a, b, c);
+	}else if (operator == "sub"){
+		c = a - b;
+		printf("%lf - %lf = %lf\n", a, b, c);
+	}else if (operator == "mul"){
+		c = a * b;
+		printf("%lf x %lf = %lf\n", a, b, c);
+	}else if (operator == "div"){
+		c = a / b;
+		printf("%lf / %lf = %lf\n", a, b, c);
+	}else{
+		printf("Invalid operator\n");
+	}
+	return(0);
 }
