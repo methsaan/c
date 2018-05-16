@@ -3,7 +3,7 @@
 
 int main(int argc, char* argv)
 {
-	char operator[3];
+	char operator[20];
 	double a;
 	double b;
 	double c;
@@ -11,22 +11,26 @@ int main(int argc, char* argv)
 	printf("Enter operator: ");
 	scanf("%s", operator);
 	printf("Enter first number: ");
-	scanf("%lf", &a);
+	scanf("%f", &a);
 	printf("Enter second number: ");
-	scanf("%lf", &b);
+	scanf("%f", &b);
 	if (operator == "add"){
 		c = a + b;
-		printf("%lf + %lf = %lf\n", a, b, c);
-	}else if (operator == "sub"){
+		printf("%f + %f = %f\n", a, b, c);
+	}
+	if (operator == "sub"){
 		c = a - b;
-		printf("%lf - %lf = %lf\n", a, b, c);
-	}else if (operator == "mul"){
+		printf("%f - %f = %f\n", a, b, c);
+	}
+	if (operator == "mul"){
 		c = a * b;
-		printf("%lf x %lf = %lf\n", a, b, c);
-	}else if (operator == "div"){
+		printf("%f x %f = %f\n", a, b, c);
+	}
+	if (operator == "div"){
 		c = a / b;
-		printf("%lf / %lf = %lf\n", a, b, c);
-	}else{
+		printf("%f / %f = %f\n", a, b, c);
+	}
+	if (operator != "add") && (operator != "sub") && (operator != "mul") && (operator != "div"){
 		printf("Invalid operator\n");
 	}
 	return(0);
