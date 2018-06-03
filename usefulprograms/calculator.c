@@ -1,27 +1,28 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 int main(int argc, char* argv)
 {
 	int x;
 	int y;
-	char op[1];
-	printf("Enter operator:(++, --, xx, //) ");
+	char op[3];
+	printf("Enter operator:(add, sub, mul, div) ");
 	scanf("%s", op);
 	printf("Enter x: ");
 	scanf("%d", &x);
 	printf("Enter y: ");
 	scanf("%d", &y);
-	if (op == "++"){
+	if (strcmp(op, "add") == 0){
 		printf("%d\n", x+y);
 	}
-	if (op == "--"){
+	if (strcmp(op, "sub") == 0){
 		printf("%d\n", x-y);
 	}
-	if (op == "xx"){
+	if (strcmp(op, "mul") == 0){
 		printf("%d\n", x*y);
 	}
-	if (op == "//"){
+	if (strcmp(op, "div") == 0){
 		printf("%d\n", x/y);
 	}
 }
