@@ -3,25 +3,25 @@
 
 int main(int argc, char* argv)
 {
-	double x;
-	double y;
+	int x;
+	int y;
 	char op[1];
-	printf("Enter operator:(+, -, x, /) ");
+	printf("Enter operator:(++, --, xx, //) ");
 	scanf("%s", op);
 	printf("Enter x: ");
-	scanf("%f", &x);
+	scanf("%d", &x);
 	printf("Enter y: ");
-	scanf("%f", &y);
-	if (op == "+"){
-		printf("%f + %f = %f\n", x, y, x+y);
+	scanf("%d", &y);
+	if (op == "++"){
+		printf("%d\n", x+y);
 	}
-	if (op == "-"){
-		printf("%f - %f = %f\n", x, y, x-y);
+	if (op == "--"){
+		printf("%d\n", x-y);
 	}
-	if (op == "x"){
-		printf("%f x %f = %f\n", x, y, x*y);
+	if (op == "xx"){
+		printf("%d\n", x*y);
 	}
-	if (op == "/"){
-		printf("%f / %f = %f\n", x, y, x/y);
+	if (op == "//"){
+		printf("%d\n", x/y);
 	}
 }
