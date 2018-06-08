@@ -1,4 +1,4 @@
-#include <stdio.h> /* defines printf */
+#include <stdio.h> /* defines i/o */
 
 void hello(void) {
     printf("Hello !\n");
