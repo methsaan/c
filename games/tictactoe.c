@@ -11,6 +11,7 @@ int main() {
 	scanf("%s", rps);
 	printf("%s\n", rps);
 	srand(time(NULL));
-	randmax = (100*rand())/RAND_MAX;
-	printf("%d %d\n", randmax, rand());
+	char rps[3] = ["r", "p", "s"];
+	randnum = [rand()%3];
+	printf("%c\n", rps[randnum]);
 }
