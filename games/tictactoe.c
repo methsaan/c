@@ -12,7 +12,13 @@ int main() {
 	strcpy(rps[0], "rock");
 	strcpy(rps[1], "paper");
 	strcpy(rps[2], "scissor");
-	char randw[20] = rps[rand()%3];
-	printf("%s", usrrps);
-	printf("%s", randw);
+	char randw[20];
+	strcpy(rps[rand()%3], randw);
+	printf("%s\n", randw);
+	/*
+	if (strcmp(usrrps, randw) == 0){
+		printf("Tie\n");
+	}else{
+		printf("Coming soon ...\n");
+	}*/
 }
