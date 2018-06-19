@@ -19,13 +19,13 @@ int main(int argc, char *argv) {
 	if (strcmp(usrrps, randw) == 0){
 		printf("Tie\n");
 	}else{
-		bool Rtop = ((strcmp(usrrps, "rock")) && (strcmp(randw, "paper")));
-		bool Ptos = ((strcmp(usrrps, "paper")) && (strcmp(randw, "scissor")));
-		bool Stor = ((strcmp(usrrps, "scissor")) && (strcmp(randw, "rock")));
-		if ((Rtop) || (Ptos) || (Stor)){
-			printf("I win.");
+		bool Rtop = (strcmp(usrrps, "rock")) && (strcmp(randw, "paper"));
+		bool Ptos = (strcmp(usrrps, "paper")) && (strcmp(randw, "scissor"));
+		bool Stor = (strcmp(usrrps, "scissor")) && (strcmp(randw, "rock"));
+		if (((strcmp(usrrps, "rock")) && (strcmp(randw, "paper"))) || ((strcmp(usrrps, "rock")) && (strcmp(randw, "paper"))) ||  ((strcmp(usrrps, "rock")) && (strcmp(randw, "paper")))) {
+			printf("I win.\n");
 		}else{
-			printf("You win.");
+			printf("You win.\n");
 		}
 	}
 }
