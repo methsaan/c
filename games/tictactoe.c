@@ -11,10 +11,10 @@ int main(int argc, char *argv) {
 	srand(time(NULL));
 	int twelveRand = (rand()%12)+1;
 	char rps[3][20];
-	if (twelveRand <= 4) {
+	if ((twelveRand == 1) || (twelveRand == 4) || (twelveRand == 7) || (twelveRand == 10)) {
 		strcpy(rps[0], "rock");
 	}
-	else if ((twelveRand <= 8) && (twelveRand >= 5)){
+	else if ((twelveRand == 2) || (twelveRand == 5) || (twelveRand == 8) || (twelveRand == 11)){
 		strcpy(rps[1], "paper");
 	}
 	else {
