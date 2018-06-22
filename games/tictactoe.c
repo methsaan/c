@@ -9,10 +9,17 @@ int main(int argc, char *argv) {
 	printf("Type rock, paper, or scissor: ");
 	scanf("%s", usrrps);
 	srand(time(NULL));
+	int twelveRand (rand()%12)+1;
 	char rps[3][20];
-	strcpy(rps[0], "rock");
-	strcpy(rps[1], "paper");
-	strcpy(rps[2], "scissor");
+	if (twelveRand <= 4) {
+		strcpy(rps[0], "rock");
+	}
+	else if ((twelveRand <= 8) && (twelveRand >= 5)){
+		strcpy(rps[1], "paper");
+	}
+	else {
+		strcpy(rps[2], "scissor");
+	}
 	char randw[20];
 	strcpy(randw, rps[(rand()%3)+1]);
 	printf("What computer chose: %s what you chose: %s\n", randw, usrrps);
