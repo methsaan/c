@@ -9,7 +9,7 @@ int main(int argc, char *argv) {
 	printf("Type rock, paper, or scissor: ");
 	scanf("%s", usrrps);
 	srand(time(NULL));
-	int twelveRand (rand()%12)+1;
+	int twelveRand = (rand()%12)+1;
 	char rps[3][20];
 	if (twelveRand <= 4) {
 		strcpy(rps[0], "rock");
@@ -24,14 +24,16 @@ int main(int argc, char *argv) {
 	strcpy(randw, rps[(rand()%3)+1]);
 	printf("What computer chose: %s what you chose: %s\n", randw, usrrps);
 	if (strcmp(usrrps, randw) == 0){
-		printf("Tie\n");
+		printf("TIE\n");
 	}else{
 		bool Rtop = (strcmp(usrrps, "rock")) && (strcmp(randw, "paper"));
 		bool Ptos = (strcmp(usrrps, "paper")) && (strcmp(randw, "scissor"));
 		bool Stor = (strcmp(usrrps, "scissor")) && (strcmp(randw, "rock"));
 		if (((strcmp(usrrps, "rock")) && (strcmp(randw, "paper"))) || ((strcmp(usrrps, "rock")) && (strcmp(randw, "paper"))) ||  ((strcmp(usrrps, "rock")) && (strcmp(randw, "paper")))) {
 			printf("I win.\n");
-		}else{
+		}else if ((strcmp(usrrps, "rock") != 0) || (strcmp(usrrps, "scissor") != 0) || (strcmp(usrrps, "paper") != 0) || (strcmp(randw, "rock") != 0) || (strcmp(randw, "scissor") != 0) || (strcmp(randw, "scissor") != 0)) {
+			printw("DRAW");
+		else{
 			printf("You win.\n");
 		}
 	}
