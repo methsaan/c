@@ -21,8 +21,8 @@ int main(int argc, char *argv) {
 		strcpy(rps[2], "scissor");
 	}
 	char randw[20];
-	strcpy(randw, rps[(rand()%3)+1]);
-	printf("What computer chose: %s what you chose: %s\n", randw, usrrps);
+	strcpy(randw, rps[rand()%3]);
+	printf("Computer choice: %s. Your choice: %s", randw, usrrps);
 	if (strcmp(usrrps, randw) == 0){
 		printf("TIE\n");
 	}else{
