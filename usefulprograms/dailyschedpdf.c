@@ -25,8 +25,8 @@ int main(int argv, char *argc){
 	printf("                        FT = free time                       |____________|___________|_________________|\n");
 	printf("                        PBT = Programming Blog tutorial                                                  \n");
 	printf("                        Monday: wake up 5:30 sleep 9:15                                                  \n");
-	printf("                        Tuesday: wake up 5:30 sleep 9:15                                                 \n");
-	printf("                        Wednesday: wake up 5:30 sleep 9:15                                               \n");
-	printf("                        Thursday: wake up 5:30 sleep 9:15                                                \n");
-	printf("                        Friday: wake up 5:30 sleep 9:15                                                  \n");
+	printf("                        Tuesday: wake up 5:30 sleep 9:15        Saturday: wake up 5:30 sleep 9:15        \n");
+	printf("                        Wednesday: wake up 5:30 sleep 9:15      Sunday: wake up 5:30 sleep 9:15          \n");
+	printf("                        Thursday: wake up 5:30 sleep 9:15       PD day: wake up 5:30 sleep 9:00          \n");
+	printf("                        Friday: wake up 5:30 sleep 9:45                                                  \n");
 }
