@@ -21,8 +21,7 @@ int main(int argc, char *argv) {
 		strcpy(rps[2], "scissor");
 	}
 	char randw[20];
-	printf("%s\n", rps[rand()%3]);
-	randw = rps[rand()%3];
+	strcpy(randw, rps[rand()%3]);
 	printf("%s\n", randw);
 	printf("Computer choice: %s.  Your choice: %s\n", randw, usrrps);
 	if (strcmp(usrrps, randw) == 0){
