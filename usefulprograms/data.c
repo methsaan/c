@@ -27,12 +27,13 @@ int main(int argv, char *argc){
 		}else {
 			for (int x = 0; x < numOfData-1; x++){
 				if (data[x] > data[x+1]){
+					int temp = data[x]
 					data[x] = data[x+1];
-					data[x+1] = data[x];
+					data[x+1] = temp;
 				}
 			}
 			for (int x = 0; x < numOfData;x++){
-				printf("%d ", data[0]);
+				printf("%d ", data[x]);
 			}
 			printf("\n");
 			double middle = (numOfData/2)+0.5;
