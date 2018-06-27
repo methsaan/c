@@ -1,9 +1,12 @@
 #include<stdio.h>
 #include<string.h>
 
+<<<<<<< HEAD
 int ArraySize(int * Array){
 	return (sizeof(Array)/sizeof(int));
 }
+=======
+>>>>>>> eeb880085287bee45094b4c4811b66e568aae323
 int main(int argv, char *argc){
 	char type[20];
 	int numOfData;
@@ -28,9 +31,13 @@ int main(int argv, char *argc){
 		if (numOfData%2 == 0){
 			double middle = ((numOfData/2)+((numOfData/2)+1))/2;
 		}else {
+<<<<<<< HEAD
 			for (int x = 0; x < ArraySize(data); x++){
 				printf("%d      \n", data[x]);
 			}
+=======
+			for (int x = 0; x < 
+>>>>>>> eeb880085287bee45094b4c4811b66e568aae323
 			double middle = (numOfData/2)+0.5;
 		}
 
