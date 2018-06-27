@@ -1,9 +1,6 @@
 #include<stdio.h>
 #include<string.h>
 
-static int cmp(const void *p1, const void *p2){
-	return *(int*)p1 > *(int*)p2;
-}
 int main(int argv, char *argc){
 	char type[20];
 	int numOfData;
@@ -28,7 +25,7 @@ int main(int argv, char *argc){
 		if (numOfData%2 == 0){
 			double middle = ((numOfData/2)+((numOfData/2)+1))/2;
 		}else {
-			qsort(data, sizeof(data)/sizeof(int), cmp);
+			for (int x = 0; x < 
 			double middle = (numOfData/2)+0.5;
 		}
 
