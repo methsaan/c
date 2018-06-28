@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
 #include<string.h>
 
 int main(int argv, char *argc){
@@ -20,24 +22,33 @@ int main(int argv, char *argc){
 		for (int x = 0; x < numOfData; x++){
 			sum += data[x];
 		}
-		printf("%.2f\n", sum/numOfData);
+		printf("%f\n", sum/numOfData);
 	}else if (strcmp(type, "median") == 0){
-		if (numOfData%2 == 0){
-			double middle = ((numOfData/2)+((numOfData/2)+1))/2;
-		}else {
+		while (1){
+			int swapped = 0;
 			for (int x = 0; x < numOfData-1; x++){
 				if (data[x] > data[x+1]){
 					int temp = data[x];
 					data[x] = data[x+1];
 					data[x+1] = temp;
+					swapped = 1;
 				}
 			}
-			for (int x = 0; x < numOfData;x++){
-				printf("%d ", data[x]);
+			if (swapped == 0){
+				break;
 			}
-			printf("\n");
-			double middle = (numOfData/2)+0.5;
 		}
-
+		for (int x = 0; x < numOfData;x++){
+			printf("%d ", data[x]);
+		}
+		if (numOfData%2 == 0){
+			printf("%.1f\n", (data[numOfData/2]+data[numOfData/2])/2);
+		}else {
+			printf("%d\n", data[floor((numOfData/2)+0.5)]);
+		}
+	}else if (strcmp(type, "mode") == 0){
+		for (int x = 0; x < numOfData;x++){
+			printf("MODE%d\n", x);
+		}
 	}
 }
