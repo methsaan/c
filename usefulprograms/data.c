@@ -39,14 +39,25 @@ int main(int argv, char *argc){
 			}
 		}
 		if (numOfData%2 == 0){
-			printf("%.1f\n", (data[numOfData/2]+data[numOfData/2])/2);
+			int midsum = data[(numOfData/2)-1]+data[numOfData/2];
+			double mid = midsum/2.00;
+			printf("%g\n", mid);
 		}else {
-			int a = (int)(numOfData/2)+0.5;
+			int a = (numOfData/2)+0.5;
 			printf("%d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		for (int x = 0; x < numOfData;x++){
-			printf("MODE%d\n", x);
+		int count = 0;
+		for (int x = 0; x < numOfData; x++){
+			for (int y = 0; y < numOfData; y++){
+				if (data[x] == data[y]){
+					count++;
+				}
+			}
+			if (count > 1){
+				printf("Element %d occured %d times\n", data[x], count);
+				count = 0;
+			}
 		}
 	}
 }
