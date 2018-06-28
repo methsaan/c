@@ -41,7 +41,8 @@ int main(int argv, char *argc){
 		if (numOfData%2 == 0){
 			printf("%.1f\n", (data[numOfData/2]+data[numOfData/2])/2);
 		}else {
-			printf("%d\n", data[(int)(numOfData/2)+0.5]);
+			int a = (int)(numOfData/2)+0.5;
+			printf("%d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
 		for (int x = 0; x < numOfData;x++){
