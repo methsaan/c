@@ -5,13 +5,13 @@
 int main(int argv, char *argc){
 	printf("_________________________________________________________________________________________________________\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS |\n");
-	printf("|          |            |            |            |          |            |           |                 |\n");
-	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |       PP        |\n");
-	printf("|          |            |            |            |          |            |           |       D         |\n");
+	printf("|          |            |            |            |          |            |           |       PP        |\n");
+	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |       Maths     |\n");
+	printf("|          |            |            |            |          |            |           | D/Read/C++/Java |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON     |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|_________________|\n");
-	printf("|     D    |JavaScript/C|    FT      |     PT     |    D     |  Read      |  EQAO     |        PT       |\n");
-	printf("|     PP   |  PT        |    EQAO    |     D      |    PP    |  CPP       |  D        |        EQAO     |\n");
+	printf("|     D    |JavaScript/C|Smart books |     PT     |    D     |  Read      |  ft       |        PT       |\n");
+	printf("|     PP   |  PT        |    ft      |     D      |    PP    |  CPP       |  D        |        ft       |\n");
 	printf("|Python/Java| PP        |    PP      |     PP     |    C/Java|  PP        |  PP       | Python/Java/C++/|\n");
 	printf("|  PT      |  PA        |    PT      | JavaScript |    PT    |  program   |HTML/JS/C++|    C/JS/HTML 1  |\n");
 	printf("|  PA      |  FT        | HTML/C++   |     PA     |    PA    |  FT        | PT        |Smart books/Read |\n");
