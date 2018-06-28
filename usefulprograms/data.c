@@ -38,13 +38,10 @@ int main(int argv, char *argc){
 				break;
 			}
 		}
-		for (int x = 0; x < numOfData;x++){
-			printf("%d ", data[x]);
-		}
 		if (numOfData%2 == 0){
 			printf("%.1f\n", (data[numOfData/2]+data[numOfData/2])/2);
 		}else {
-			printf("%d\n", data[floor((numOfData/2)+0.5)]);
+			printf("%d\n", data[(int)(numOfData/2)+0.5]);
 		}
 	}else if (strcmp(type, "mode") == 0){
 		for (int x = 0; x < numOfData;x++){
