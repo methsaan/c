@@ -26,7 +26,7 @@ int main(int argc, char *argv){
 	}
 	for (int x = 0; x<5; x++) {
 		double rad = (rand()%1000)/100.00;
-		printf("Radius of circle is  %f", rad);
+		printf("Radius of circle is  %f\n", rad);
 		printf("Enter circumference: ");
 		scanf("%f", &ans);
 		if (2*rad*3.14 == ans){
@@ -41,7 +41,7 @@ int main(int argc, char *argv){
 	for (int x = 0; x<4; x++){
 		double rad = (rand()%1000)/100.00;
 		double h = (rand()%10000)/100.00;
-		printf("Radius of cylinder is %f Height is %f.", rad, h);
+		printf("Radius of cylinder is %f Height is %f.\n", rad, h);
 		printf("Enter surface area: ");
 		scanf("%f", &ans);
 		if (((2*rad*3.14)*h)+((3.14*rad*rad)*2) == ans){
@@ -53,5 +53,5 @@ int main(int argc, char *argv){
 			score++;
 		}
 	}
-	printf("%d", score);
+	printf("%d\n", score);
 }
