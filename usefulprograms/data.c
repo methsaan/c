@@ -2,10 +2,33 @@
 #include<stdlib.h>
 #include<math.h>
 #include<string.h>
+#include<stdbool.h>
 
+int numOfData;
+int data[];
+bool in(int val, int *arr, int size){
+	int i;
+	for (i = 0; i < size; i++){
+		if (arr[i] == val)
+			return true;
+	}
+	return false;
+}
+void findMode() {
+	int count = 0;
+	int ret;
+	for (int x = 0; x < numOfData; x++){
+		for (int y = 0; y < numOfData; y++){
+			if (data[x] == data[y]){
+				count++;
+			}
+		}
+		printf("Element %d occured %d times\n", data[x], count);
+		count = 0;
+	}
+}
 int main(int argv, char *argc){
 	char type[20];
-	int numOfData;
 	printf("Enter mean, median, mode or range: ");
 	scanf("%s", type);
 	printf("Enter number of data: ");
@@ -54,10 +77,8 @@ int main(int argv, char *argc){
 					count++;
 				}
 			}
-			if (count > 1){
-				printf("Element %d occured %d times\n", data[x], count);
-				count = 0;
-			}
+			//printf("Element %d occured %d times\n", data[x], count);
+			count = 0;
 		}
 	}
 }
