@@ -10,9 +10,9 @@ int main(int argc, char *argv){
 		printf("%d \\ %d\n", (rand()%10000)+1, (rand()%1000)+1);
 	}
 	for (int x = 0; x<7; x++) {
-		printf("Radius of circle is  %f. Find area and perimeter\n", (rand()%1000)/100);
+		printf("Radius of circle is  %f. Find area and perimeter\n", (rand()%1000)/100.00);
 	}
 	for (int x = 0; x<5; x++){
-		printf("Radius of cylinder is %f Height is %f. Find surface area and volume\n", (rand()%1000)/100, (rand()%10000/100));
+		printf("Radius of cylinder is %f Height is %f. Find surface area and volume\n", (rand()%1000)/100.00, (rand()%10000/100.00));
 	}
 }
