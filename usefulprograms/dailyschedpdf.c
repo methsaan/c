@@ -7,7 +7,7 @@ int main(int argv, char *argc){
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS |\n");
 	printf("|          |            |            |            |          |            |           |       PP        |\n");
 	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |       Maths     |\n");
-	printf("|          |            |            |            |          |            |           | D/Read/C++/Java |\n");
+	printf("|          |            |            |            |          |            |           |  D/Read/program |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON     |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|_________________|\n");
 	printf("|     D    |JavaScript/C|Smart books |     PT     |    D     |  Read      |  ft       |        PT       |\n");
