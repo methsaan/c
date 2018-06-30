@@ -16,8 +16,8 @@ int main(int argc, char *argv){
 		if (xmul*ymul == ans2){
 			score++;
 		}
-		double xdiv = (rand()%10000)+1;
-		double ydiv = (rand()%1000)+1;
+		int xdiv = (rand()%10000)+1;
+		int ydiv = (rand()%1000)+1;
 		printf("%f / %f ", xdiv, ydiv);
 		scanf("%f", &ans);
 		if (xdiv/ydiv == ans){
