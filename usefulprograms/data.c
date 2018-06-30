@@ -4,7 +4,7 @@
 #include<string.h>
 #include<stdbool.h>
 
-int numOfData;
+int numOfData = 0;
 int data[];
 bool in(int val, int *arr, int size){
 	int i;
@@ -14,18 +14,28 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-void findMode() {
+int findMode() {
 	int count = 0;
-	int ret;
-	for (int x = 0; x < numOfData; x++){
-		for (int y = 0; y < numOfData; y++){
-			if (data[x] == data[y]){
-				count++;
+	int temp[];
+	int largest;
+	for (int a = 0; a < numOfData; a++){
+		for (int x = 0; x < numOfData; x++){
+			for (int y = 0; y < numOfData; y++){
+				if (data[x] == data[y]){
+					count++;
+				}
+			}
+			temp[a] = count;
+			count = 0;
+		}
+
+		for (int i = 0; i < /*Fix this later*/; i++){
+			if (largest < temp[i]){
+				largest = temp[i];
 			}
 		}
-		printf("Element %d occured %d times\n", data[x], count);
-		count = 0;
 	}
+	return largest;
 }
 int main(int argv, char *argc){
 	char type[20];
