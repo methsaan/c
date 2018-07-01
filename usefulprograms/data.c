@@ -16,7 +16,7 @@ bool in(int val, int *arr, int size){
 }
 int findMode() {
 	int count = 0;
-	int temp[];
+	int temp[/*size of data[] after duplicates are removed*/];
 	int largest;
 	for (int a = 0; a < numOfData; a++){
 		for (int x = 0; x < numOfData; x++){
@@ -29,7 +29,7 @@ int findMode() {
 			count = 0;
 		}
 
-		for (int i = 0; i < /*Fix this later*/; i++){
+		for (int i = 0; i < /*size of temp array*/; i++){
 			if (largest < temp[i]){
 				largest = temp[i];
 			}
