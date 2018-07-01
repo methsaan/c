@@ -4,8 +4,7 @@
 #include<string.h>
 #include<stdbool.h>
 
-int numOfData = 0;
-int data[];
+int numOfData = 45;
 bool in(int val, int *arr, int size){
 	int i;
 	for (i = 0; i < size; i++){
@@ -14,29 +13,30 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-int findMode() {
-	int count = 0;
-	int temp[/*size of data[] after duplicates are removed*/];
-	int largest;
-	for (int a = 0; a < numOfData; a++){
-		for (int x = 0; x < numOfData; x++){
-			for (int y = 0; y < numOfData; y++){
-				if (data[x] == data[y]){
-					count++;
-				}
-			}
-			temp[a] = count;
-			count = 0;
-		}
 
-		for (int i = 0; i < /*size of temp array*/; i++){
-			if (largest < temp[i]){
-				largest = temp[i];
-			}
-		}
-	}
-	return largest;
-}
+//int findMode() {
+//	int count = 0;
+//	int temp[/*size of data[] after duplicates are removed*/];
+//	int largest;
+//	for (int a = 0; a < numOfData; a++){
+//		for (int x = 0; x < numOfData; x++){
+//			for (int y = 0; y < numOfData; y++){
+//				if (data[x] == data[y]){
+//					count++;
+//				}
+//			}
+//			temp[a] = count;
+//			count = 0;
+//		}
+//
+//		for (int i = 0; i < /*size of temp array*/; i++){
+//			if (largest < temp[i]){
+//				largest = temp[i];
+//			}
+//		}
+//	}
+//	return largest;
+//}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
