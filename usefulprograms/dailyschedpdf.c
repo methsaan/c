@@ -3,8 +3,10 @@
 #include<string.h>
 
 int main(int argv, char *argc){
+	system("clear");
 	printf("_________________________________________________________________________________________________________\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS |\n");
+	printf("|__________|____________|____________|____________|__________|____________|___________|_________________|\n");
 	printf("|          |            |            |            |          |            |           |  D/Read/program |\n");
 	printf("|          |            |            |            |          |            |           |        PP       |\n");
 	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |       B/PA      |\n");
