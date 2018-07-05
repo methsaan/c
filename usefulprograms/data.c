@@ -3,6 +3,7 @@
 #include<math.h>
 #include<string.h>
 #include<stdbool.h>
+#define NELEMS(x) (int)(sizeof(x)/sizeof(x[0]))
 
 int numOfData = 45;
 bool in(int val, int *arr, int size){
@@ -14,29 +15,13 @@ bool in(int val, int *arr, int size){
 	return false;
 }
 
-//int findMode() {
-//	int count = 0;
-//	int temp[/*size of data[] after duplicates are removed*/];
-//	int largest;
-//	for (int a = 0; a < numOfData; a++){
-//		for (int x = 0; x < numOfData; x++){
-//			for (int y = 0; y < numOfData; y++){
-//				if (data[x] == data[y]){
-//					count++;
-//				}
-//			}
-//			temp[a] = count;
-//			count = 0;
-//		}
-//
-//		for (int i = 0; i < /*size of temp array*/; i++){
-//			if (largest < temp[i]){
-//				largest = temp[i];
-//			}
-//		}
-//	}
-//	return largest;
-//}
+int findMode(int arr[]) {
+	printf("%d\n", (int)(sizeof(arr)/sizeof(arr[0])));
+	for (int x = 0; x < 5; x++){
+		printf("%d ", arr[x]);
+	}
+	printf("\n");
+}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -55,7 +40,7 @@ int main(int argv, char *argc){
 		for (int x = 0; x < numOfData; x++){
 			sum += data[x];
 		}
-		printf("%f\n", sum/numOfData);
+		printf("Mean: %g\n", sum/numOfData);
 	}else if (strcmp(type, "median") == 0){
 		while (1){
 			int swapped = 0;
@@ -74,21 +59,28 @@ int main(int argv, char *argc){
 		if (numOfData%2 == 0){
 			int midsum = data[(numOfData/2)-1]+data[numOfData/2];
 			double mid = midsum/2.00;
-			printf("%g\n", mid);
+			printf("Median: %g\n", mid);
 		}else {
 			int a = (numOfData/2)+0.5;
-			printf("%d\n", data[a]);
+			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		int count = 0;
-		for (int x = 0; x < numOfData; x++){
-			for (int y = 0; y < numOfData; y++){
-				if (data[x] == data[y]){
-					count++;
+		findMode(data);
+	}else if (strcmp(type, "range") == 0){
+		while (1) {
+			int swapped = 0;
+			for (int x = 0; x < numOfData-1; x++){
+				if (data[x] > data[x+1]){
+					int temp = data[x];
+					data[x] = data[x+1];
+					data[x+1] = temp;
+					swapped = 1;
 				}
 			}
-			//printf("Element %d occured %d times\n", data[x], count);
-			count = 0;
+			if (swapped == 0){
+				break;
+			}
 		}
+		printf("Range: %d\n", data[numOfData-1], data[0]);
 	}
 }
