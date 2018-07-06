@@ -3,8 +3,10 @@
 #include<math.h>
 #include<string.h>
 #include<stdbool.h>
-/*#define NELEMS(x) (int)(sizeof(x)/sizeof(x[0]))*/
 
+int nelems(int * x){
+	return (int)(sizeof(x)/sizeof(x[0]));
+}
 int numOfData = 45;
 bool in(int val, int *arr, int size){
 	int i;
@@ -14,14 +16,13 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-/*
-int findMode(int arr[]) {
-	printf("%d\n", (int)(sizeof(arr)/sizeof(arr[0])));
+int findMode(int * arr) {
+	printf("%d\n", nelems(arr));
 	for (int x = 0; x < 5; x++){
 		printf("%d ", arr[x]);
 	}
 	printf("\n");
-}*/
+}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -66,6 +67,7 @@ int main(int argv, char *argc){
 		}
 	}else if (strcmp(type, "mode") == 0){
 		//findMode(data);
+		printf("%d\n", (int)(sizeof(data)/sizeof(data[0])));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
