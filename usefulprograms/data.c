@@ -4,9 +4,6 @@
 #include<string.h>
 #include<stdbool.h>
 
-int nelems(int * x){
-	return (int)(sizeof(x)/sizeof(x[0]));
-}
 int numOfData = 45;
 bool in(int val, int *arr, int size){
 	int i;
@@ -17,7 +14,7 @@ bool in(int val, int *arr, int size){
 	return false;
 }
 int findMode(int * arr) {
-	printf("%d\n", nelems(arr));
+	printf("%d\n", (int)(sizeof(arr)/sizeof(arr[0])));
 	for (int x = 0; x < 5; x++){
 		printf("%d ", arr[x]);
 	}
@@ -66,8 +63,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		//findMode(data);
-		printf("%d\n", (int)(sizeof(data)/sizeof(data[0])));
+		findMode(data);
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
