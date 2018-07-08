@@ -14,9 +14,7 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-int findMode(int * arr) {
-	return sizeof(arr)/sizeof(int);
-}
+
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -60,7 +58,12 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		printf("%d\n", findMode(data));
+		double t[3] = {124.12, 7563.34, 236.086};
+		double f[5] = {23.8, 2323.6, 236.3, 32655.235, 57895.734};
+		double o[1] = {124.888};
+		printf("%d\n", findMode(t));
+		printf("%d\n", findMode(f));
+		printf("%d\n", findMode(o));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
