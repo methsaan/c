@@ -14,6 +14,9 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
+int arrsize(double * arr){
+	return sizeof(arr)/sizeof(*arr);
+}
 
 int main(int argv, char *argc){
 	char type[20];
@@ -61,9 +64,9 @@ int main(int argv, char *argc){
 		double t[3] = {124.12, 7563.34, 236.086};
 		double f[5] = {23.8, 2323.6, 236.3, 32655.235, 57895.734};
 		double o[1] = {124.888};
-		printf("%d\n", findMode(t));
-		printf("%d\n", findMode(f));
-		printf("%d\n", findMode(o));
+		printf("%d\n", arrsize(t));
+		printf("%d\n", arrsize(f));
+		printf("%d\n", arrsize(o));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
