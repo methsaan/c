@@ -15,7 +15,7 @@ bool in(int val, int *arr, int size){
 	return false;
 }
 int findMode(int * arr) {
-	return sizeof(arr)/sizeof(*arr);
+	return /*sizeof(arr)*//*/*/sizeof(*arr);
 }
 int main(int argv, char *argc){
 	char type[20];
