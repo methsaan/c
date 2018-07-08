@@ -14,8 +14,8 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-int arrsize(double * arr){
-	return sizeof(arr)/sizeof(*arr);
+int arrsize(int * arr){
+	return numOfData;
 }
 
 int main(int argv, char *argc){
@@ -61,12 +61,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		double t[3] = {124.12, 7563.34, 236.086};
-		double f[5] = {23.8, 2323.6, 236.3, 32655.235, 57895.734};
-		double o[1] = {124.888};
-		printf("%d\n", arrsize(t));
-		printf("%d\n", arrsize(f));
-		printf("%d\n", arrsize(o));
+		printf("%d\n", arrsize(data));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
