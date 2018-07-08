@@ -3,6 +3,7 @@
 #include<math.h>
 #include<string.h>
 #include<stdbool.h>
+#include<unistd.h>
 
 int numOfData = 45;
 bool in(int val, int *arr, int size){
