@@ -15,9 +15,8 @@ bool in(int val, int *arr, int size){
 	return false;
 }
 int arrsize(int * arr){
-	return numOfData;
+	return (int*)(sizeof(arr))/(int*)(arr+1) - (int*)(arr);
 }
-
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -61,7 +60,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		printf("%d\n", arrsize(data));
+		printf("%zu\n", arrsize(data));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
