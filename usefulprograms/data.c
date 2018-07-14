@@ -14,8 +14,42 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-int arrsize(int * arr){
-	return (int*)(sizeof(arr))/(int*)(arr+1) - (int*)(arr);
+int mode(int * arr, int size){
+	int mode = 0;
+	int temp[size];
+	int x;
+	int y;
+	int a;
+	int b;
+	for (a = 0; a < size; a++){
+		for (x = 0; x < size; x++){
+			for (y = 0; y < size; y++){
+				if (x == y){
+					mode++;
+				}
+			}
+		}
+		temp[a] = mode;
+	}
+	while (1){
+        	int swapped2 = 0;
+        	for (int x2 = 0; x2 < size-1; x2++){
+        		if (temp[x2] == temp[x2+1]){
+        			int temp2 = temp[x2];
+        			temp[x2] = temp[x2+1];
+        			temp[x2+1] = temp;
+        			swapped2 = 1;
+        		}
+        	}
+        	if (swapped2 == 0){
+        		break;
+        	}
+        }
+	for (int g = 0; g < size; g++){
+		printf("%d ", temp[g]);
+	}
+	printf("\n");
+	return temp[size-1];
 }
 int main(int argv, char *argc){
 	char type[20];
@@ -60,7 +94,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		printf("%zu\n", arrsize(data));
+		printf("%d\n", mode(data, numOfData));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
