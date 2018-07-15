@@ -11,8 +11,6 @@ int main(int argc, char *argv){
 	int score;
 	int xmul;
 	int ymul;
-	float dec;
-	float dec2;
 	double xdiv;
 	double ydiv;
 	for (int x = 0; x<1; x++) {
@@ -23,16 +21,16 @@ int main(int argc, char *argv){
 		if (xmul*ymul == ans2){
 			score++;
 		}
-		float dec = (rand()%99)/100.00;
-		float dec2 = (rand()%99)/100.00;
+		double dec = (rand()%99)/100.00;
+		double dec2 = (rand()%99)/100.00;
 		double xdiv = (double)(rand()%10000)+1+dec;
 		double ydiv = (double)(rand()%1000)+1+dec2;
-		printf("%f / %f (2 decimals only): ", xdiv, ydiv);
+		printf("%f / %f (2 decimals only): ", xdiv, ydiv); 
 		scanf("%.2f", ans);
 		if (xdiv/ydiv == ans){
 			score++;
 		}
 	}
 	printf("score: %d\n", score);
-	printf("%d x %d = %d         %f x %f = %.2f", xmul, ymul, xmul*ymul, xdiv, ydiv, xdiv/ydiv);
+	printf("%d x %d = %d\n%4.2f / %3.2f = %2.2f", xmul, ymul, xmul*ymul, xdiv, ydiv, xdiv/ydiv);
 }
