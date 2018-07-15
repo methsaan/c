@@ -5,7 +5,7 @@
 int main(int argv, char *argc){
 	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
-	printf("|________________DAILY SCHEDULE__________wake up 5:20-5:40 sleep 8:15-8:35________________________________|\n");
+	printf("|_________________________DAILY SCHEDULE__________wake up 5:20-5:40 sleep 8:15-8:35_______________________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
@@ -29,7 +29,7 @@ int main(int argv, char *argc){
 	printf("                        D = duolingo                         |            |           |                   |\n");
 	printf("                        FT = free time ft = family time      |____________|___________|___________________|\n");
 	printf("                        PBT = Programming Blog tutorial                                                    \n");
-	printf("*1: Saturday afternoon: PT, ft, D, Smart books, FT, PP, program           Sunday afternoon: ft, Smart books, FT, PP, C, D, JavaScript, T\n");
+	printf("*1: Saturday afternoon: PT, ft, D, Smart books, FT, PP, program      Sunday afternoon: ft, Smart books, FT, PP, C, D, JavaScript, T\n");
 	printf("*2: Choose at least 2\n");
 	printf("*3: Namothassa, five precepts, ethipisso, meditation 1 minute\n");
 }
