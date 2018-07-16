@@ -14,8 +14,8 @@ int main(int argc, char *argv){
 	double xdiv;
 	double ydiv;
 	for (int x = 0; x<1; x++) {
-		int xmul = (rand()%10000)+1;
-		int ymul = (rand()%10000)+1;
+		int xmul = (rand()%1000)+1;
+		int ymul = (rand()%1000)+1;
 		printf("%d x %d: ", xmul, ymul);
 		scanf("%d", &ans2);
 		if (xmul*ymul == ans2){
@@ -31,6 +31,8 @@ int main(int argc, char *argv){
 			score++;
 		}
 	}
-	printf("score: %d\n", score);
-	printf("%d x %d = %d\n%4.2f / %3.2f = %2.2f", xmul, ymul, xmul*ymul, xdiv, ydiv, xdiv/ydiv);
+	printf("score: %d\n", &score);
+	int answermul = xmul * ymul;
+	int answerdiv = xdiv * ydiv;
+	printf("%d x %d = %d\n%.2f / %.2f = %.2f", &xmul, &ymul, &answermul, xdiv, ydiv, answerdiv);
 }
