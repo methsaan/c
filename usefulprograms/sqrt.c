@@ -1,20 +1,18 @@
 #include<stdio.h>
-#include<math.h>
 
 int main(int argc, char *argv){
-	double c;
-	double a;
-	double b;
-	double bsqrt;
+	int c;
+	int a;
+	int b;
+        int bsqrt;
 	printf("Enter C: ");
-	scanf("%f", &c);
+	scanf("%d", &c);
 	printf("Enter closest square num before C (stored as B): ");
-	scanf("%f", &b);
+	scanf("%d", &b);
 	printf("Enter closest square num after C: (stored as A): ");
-	scanf("%f", &a);
+	scanf("%d", &a);
 	printf("Enter square root of B: ");
-	scanf("%f", &bsqrt);
-	double sqrt = (1 / (a - b)) * (c - b) + bsqrt;
+	scanf("%d", &bsqrt);
+	double sqrt = (1.00 / (a - b)) * (c - b) + bsqrt;
 	printf("Square root of C is aproximately %f\n", sqrt);
-	printf("Thr square root if B is%f\n", pow(b, 0.5));
 }
