@@ -16,4 +16,5 @@ int main(int argc, char *argv){
 	scanf("%f", &bsqrt);
 	double sqrt = (1 / (a - b)) * (c - b) + bsqrt;
 	printf("Square root of C is aproximately %f\n", sqrt);
+	printf("Thr square root if B is%f\n", pow(b, 0.5));
 }
