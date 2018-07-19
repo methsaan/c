@@ -31,8 +31,8 @@ int main(int argc, char *argv){
 	char *strf = toArray(f);
 	int prod1 = strtoi(strf[0])*f;
 	int prod2 = strtoi(strf[1])*f;
-	printf("   %d\n", prod1);
-	printf("  %d\n", prod2);
+	printf("   %c\n", prod1);
+	printf("  %c\n", prod2);
 	printf("_________\n");
 	printf("%d", prod1+prod2);
 }
