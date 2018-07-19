@@ -2,22 +2,6 @@
 #include<stdlib.h>
 #include<math.h>
 
-char * toArray(int number){
-	int n = log10(number) + 1;
-	int i;
-	char *numberArray = calloc(n, sizeof(char));
-	for (i = 0; i < n; ++i, number /= 10){
-		numberArray[i] = number % 10;
-	}
-	return numberArray;
-}
-int strtoi(char * str){
-	int num[sizeof(str)/sizeof(*str)];
-	int num2;
-	for (int x = 0; x < sizeof(str)/sizeof(*str); x++){
-		num[x] = str[x] - '0';
-	}
-}
 int main(int argc, char *argv){
 	int f;
 	int s;
@@ -28,11 +12,14 @@ int main(int argc, char *argv){
 	printf("    %d\n", f);
 	printf("    %d\n", s);
 	printf("   ______\n");
-	char *strf = toArray(f);
-	int prod1 = strtoi(strf[0])*f;
-	int prod2 = strtoi(strf[1])*f;
+	char strf[2];
+	strcpy(strf[1], f);
+	int a = (int)strf[1];
+	int b = (int)strf[0];
+	int prod1 = (int)(a)*f;
+	int prod2 = (int)(b)*f;
 	printf("   %c\n", prod1);
 	printf("  %c\n", prod2);
 	printf("_________\n");
-	printf("%d", prod1+prod2);
-}
+	printf("%d\n", prod1+prod2);
+}       
