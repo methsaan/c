@@ -7,19 +7,21 @@
 
 int main(int argc, char *argv){
 	srand(time(NULL));
-	int score = 0;
-	for (int a = 0; a < 10; a++){
+	int score = 1;
+	int * pScore = &score;
+	for(int a = 0; a < 5; a++){
 		int x = (rand()%100)+1;
 		int y = (rand()%100)+1;
 		int inp = x+y;
 		printf("What is %d x %d? ", x, y);
 		scanf("%d", &inp);
-		if (inp == x*y){
+		if (inp == x*y) {
 			score++;
+			pScore = &score;
 		}else{
-			score++;
-			score--;
+			pScore = &score;
 		}
-	{
+	}
+	printf("%d\n", *pScore);
 	return 0;
 }
