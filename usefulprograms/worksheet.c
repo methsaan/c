@@ -25,12 +25,13 @@ int main(int argc, char *argv){
 		}else{
 			pScore = &score;
 		}
-		int x2 = (rand()%1000)+1;
-		int y2 = (rand()%100)+1;
+		double x2 = (rand()%1000)+1.0;
+		double y2 = (rand()%100)+1.0;
 		double inp2;
-		printf("What is %d / %d? (2 decimal places) ", x2, y2);
-		scanf("%.2f", inp2);
-		if (inp2 == Round(x2/y2)){
+		printf("What is %f / %f? (2 decimal places) ", x2, y2);
+		scanf("%f", inp2);
+		printf("%f    %f", inp2, x2*y2);
+		if (inp2 == x2/y2){
 			score++;
 			pScore = &score;
 		}else {
