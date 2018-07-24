@@ -1,5 +1,8 @@
 #include<stdio.h>
 
+double Sqrt(int A, int B, int C, int Bsqrt){
+	return (1.00 / (A - B)) * (C - B) + Bsqrt;
+}
 int main(int argc, char *argv){
 	int c;
 	int a;
@@ -13,6 +16,5 @@ int main(int argc, char *argv){
 	scanf("%d", &a);
 	printf("Enter square root of B: ");
 	scanf("%d", &bsqrt);
-	double sqrt = (1.00 / (a - b)) * (c - b) + bsqrt;
-	printf("Square root of C is aproximately %f\n", sqrt);
+	printf("Square root of C is aproximately %f\n", Sqrt(a, b, c, bsqrt));
 }
