@@ -27,17 +27,13 @@ int main(int argc, char *argv){
 			pScore = &score;
 		}
 		system("clear");
-		double xd = (rand()%1000)+1.0;
-		double yd = (rand()%10)+1.0;
+		float xd = (rand()%1000)+1.0;
+		float yd = (rand()%10)+1.0;
 		float inp2;
 		printf("What is %f / %f? (2 decimals) ", xd, yd);
 		scanf("%f", inp2);
-		if (inp2 == Round(xd/yd)){
-			score++;
-			pScore = &score;
-		}else {
-			pScore = &score;
-		}
+		printf("%f\n", Round(xd/yd));
+		printf("%
 	}
 	printf("%d\n", *pScore);
 	return 0;
