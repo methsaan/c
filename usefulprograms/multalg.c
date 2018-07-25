@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
+#include<string.h>
 
 int main(int argc, char *argv){
 	int f;
@@ -12,14 +13,10 @@ int main(int argc, char *argv){
 	printf("    %d\n", f);
 	printf("    %d\n", s);
 	printf("   ______\n");
-	char strf[2];
-	strcpy(strf[1], f);
-	int a = (int)strf[1];
-	int b = (int)strf[0];
-	int prod1 = (int)(a)*f;
-	int prod2 = (int)(b)*f;
+	char ss[2];
+	//converting integer "s" to string "ss"
 	printf("   %c\n", prod1);
 	printf("  %c\n", prod2);
 	printf("_________\n");
-	printf("%d\n", prod1+prod2);
-}       
+	printf("%d\n", f*s);
+}

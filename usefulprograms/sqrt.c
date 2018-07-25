@@ -19,4 +19,7 @@ int main(int argc, char *argv){
 	scanf("%d", &bsqrt);
 	printf("Square root according to formula: %f\n", formulaSqrt(a, b, c, bsqrt));
 	printf("Square root according to sqrt(): %f\n", sqrt(c));
+	printf("                                     ___   \n");
+	printf("Formula:  (1 / (A - B)) * (C - B) + / B    \n");
+	printf("                                  \\/       \n");
 }
