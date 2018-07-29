@@ -26,14 +26,13 @@ int main(int argc, char *argv){
 		}else{
 			pScore = &score;
 		}
-		system("clear");
-		float xd = (rand()%1000)+1.0;
-		float yd = (rand()%10)+1.0;
-		float inp2;
-		printf("What is %f / %f? (2 decimals) ", xd, yd);
-		scanf("%f", inp2);
-		printf("%f\n", Round(xd/yd));
-		printf("%
+		//system("clear");
+		//float xd = (rand()%1000)+1.0;
+		//float yd = (rand()%10)+1.0;
+		//float inp2;
+		//printf("What is %f / %f? (2 decimals) ", xd, yd);
+		//scanf("%f", inp2);
+		//printf("%f\n", Round(xd/yd));
 	}
 	printf("%d\n", *pScore);
 	return 0;
