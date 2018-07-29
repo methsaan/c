@@ -5,12 +5,12 @@
 int main(int argv, char *argc){
 	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
-	printf("|_________________________DAILY SCHEDULE__________wake up 5:20-5:50 sleep 8:15-9:15_______________________|\n");
+	printf("|_________________________DAILY SCHEDULE__________wake up 5:20-5:50 sleep 8:15-9:05_______________________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
 	printf("|          |            |            |            |          |            |           |     D/B/program   |\n");
-	printf("|          |            |            |            |          |            |           |        PA         |\n");
+	printf("|    Read  |Smart books |    SQL     |     C      |  C++/SQL |     PT     |  Java     |        PA         |\n");
 	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |        PP         |\n");
 	printf("|          |            |            |            |          |            |           |       Maths       |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON       |\n");
@@ -29,7 +29,7 @@ int main(int argv, char *argc){
 	printf("                        D = duolingo                         |            |           |                   |\n");
 	printf("                        FT = free time ft = family time      |____________|___________|___________________|\n");
 	printf("                        PBT = Programming Blog tutorial                                                    \n");
-	printf("*1: Saturday afternoon: PT, ft, D, Smart books, FT, PP, program      Sunday afternoon: ft, Smart books, FT, PP, C, D, JavaScript, T\n");
+	printf("*1: Days with lessons in the morning: PT, ft, D, Smart books, FT, PP, program | days with lessons in the afternoon: ft, Smart books, FT, PP, C, D, JavaScript, T\n");
 	printf("*2: Choose at least 2\n");
 	printf("*3: Namothassa, five precepts, ethipisso, meditation 1 minute\n");
 }
