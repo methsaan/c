@@ -15,16 +15,17 @@ int main(int argc, char *argv){
 	int * pScore = &score;
 	for(int a = 0; a < 6; a++){
 		system("clear");
-		int x = (rand()%1000000)+1;
-		int y = (rand()%1000000)+1;
-		long int inp;
+		int x = (rand()%10000)+1;
+		int y = (rand()%10000)+1;
+		int inp;
 		printf("What is %d x %d? ", x, y);
-		scanf("%ld", &inp);
+		scanf("%d", &inp);
 		if (inp == x*y) {
 			score++;
 			pScore = &score;
+			printf("Your answer: %d\ncorrect answer: %d\n", inp, x*y);
 		}else{
-			printf("Your answer: %ld\ncorrect answer: %ld\n", inp, x*y);
+			printf("Your answer: %d\ncorrect answer: %d\n", inp, x*y);
 			pScore = &score;
 		}
 		//system("clear");
