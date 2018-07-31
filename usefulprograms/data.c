@@ -37,7 +37,7 @@ int mode(int *arr, int *size){
         		if (temp[x2] == temp[x2+1]){
         			int temp2 = temp[x2];
         			temp[x2] = temp[x2+1];
-        			temp[x2+1] = temp;
+        			temp[x2+1] = temp2;
         			swapped2 = 1;
         		}
         	}
