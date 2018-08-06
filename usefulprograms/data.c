@@ -14,38 +14,25 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-int mode(int *arr, int *size){
-	int mode = 0;
-	int temp[*size];
-	int x;
-	int y;
-	int a;
-	int b;
-	for (a = 0; a < *size; a++){
-		for (x = 0; x < *size; x++){
-			for (y = 0; y < *size; y++){
-				if (x == y){
-					mode++;
-				}
+void rmdup(int *array, int length){
+	int *current, *end = array + length - 1;
+	for (current = array + 1; array < end; array++, current = array + 1){
+		while (current <= end){
+			if (*current == *array){
+				*current = *end--;
+			}
+			else {
+				current++;
 			}
 		}
-		temp[a] = mode;
 	}
-	while (1){
-        	int swapped2 = 0;
-        	for (int x2 = 0; x2 < *size-1; x2++){
-        		if (temp[x2] == temp[x2+1]){
-        			int temp2 = temp[x2];
-        			temp[x2] = temp[x2+1];
-        			temp[x2+1] = temp2;
-        			swapped2 = 1;
-        		}
-        	}
-        	if (swapped2 == 0){
-        		break;
-        	}
-        }
-	return temp[*size-1];
+}
+int mode(int *arr){
+	rmdup(arr, sizeof(arr)/sizeof(*arr));
+	int numOfEachNumInArr[sizeof(arr)/sizeof(*arr)];
+	for (int x = 0; x < sizeof(arr)/sizeof(*arr); x++){
+		numOfEachNumInArr[x] /*to be continued*/;
+	}
 }
 int main(int argv, char *argc){
 	char type[20];
@@ -90,7 +77,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		printf("%d\n", mode(data, &numOfData));
+		//printf("%d\n", mode(data, &numOfData));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
