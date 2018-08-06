@@ -27,12 +27,17 @@ void rmdup(int *array, int length){
 		}
 	}
 }
+void frequencies(){
+	//return frequencies of array elements
+}
+void arrMax(){
+	//biggest int in int array
+}
 int mode(int *arr){
-	rmdup(arr, sizeof(arr)/sizeof(*arr));
+	int newArr = arr;
+	rmdup(newArr)
 	int numOfEachNumInArr[sizeof(arr)/sizeof(*arr)];
-	for (int x = 0; x < sizeof(arr)/sizeof(*arr); x++){
-		numOfEachNumInArr[x] /*to be continued*/;
-	}
+
 }
 int main(int argv, char *argc){
 	char type[20];
@@ -77,7 +82,11 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		//printf("%d\n", mode(data, &numOfData));
+		rmdup(data, numOfData);
+		for (int x = 0; x < numOfData; x++){
+			printf("%d ", data[x]);
+		}
+		printf("\n");
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
