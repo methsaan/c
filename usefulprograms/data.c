@@ -28,16 +28,20 @@ void rmdup(int *array, int length){
 	}
 }
 void frequencies(){
-	//return frequencies of array elements
+	//return frequency of array element
 }
 void arrMax(){
 	//biggest int in int array
 }
 int mode(int *arr){
+	//red = pseudo-code
 	int newArr = arr;
 	rmdup(newArr)
 	int numOfEachNumInArr[sizeof(arr)/sizeof(*arr)];
-
+	for (int x = 0; x < sizeof(arr)/sizeof(*arr); x++){
+		"numOfEachNumInArr[x] = frequencies(newArr[x]);"
+	}
+	"return arrMax(numOfEachNumInArr)"
 }
 int main(int argv, char *argc){
 	char type[20];
