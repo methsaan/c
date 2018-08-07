@@ -27,11 +27,24 @@ void rmdup(int *array, int length){
 		}
 	}
 }
-void frequencies(){
-	//return frequency of array element
+int frequencies(int * array, int num) {
+	int i, count=0;
+	for (i = 0; i <= numOfData; ++i){
+		if (array[i] == num)
+			++count;
+	}
+	return count;
 }
-void arrMax(){
-	//biggest int in int array
+int arrMax(int * a){
+	int i, n, large;
+	n = numOfData;
+	large = a[0];
+	for (i = 0;i < n;++i){
+		if (a[1]>large){
+			large=a[1];
+		}
+	}
+	return large;
 }
 int mode(int *arr){
 	//red = pseudo-code
@@ -39,9 +52,9 @@ int mode(int *arr){
 	rmdup(newArr)
 	int numOfEachNumInArr[sizeof(arr)/sizeof(*arr)];
 	for (int x = 0; x < sizeof(arr)/sizeof(*arr); x++){
-		"numOfEachNumInArr[x] = frequencies(newArr[x]);"
+		numOfEachNumInArr[x] = frequencies(newArr[x]);
 	}
-	"return arrMax(numOfEachNumInArr)"
+	return arrMax(numOfEachNumInArr);
 }
 int main(int argv, char *argc){
 	char type[20];
