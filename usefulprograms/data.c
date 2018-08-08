@@ -15,18 +15,23 @@ bool in(int val, int *arr, int size){
 	return false;
 }
 void rmdup(int *array, int length){
-	int *current, *end = array + length - 1;
-	for (current = array + 1; array < end; array++, current = array + 1){
-		while (current <= end){
-			if (*current == *array){
-				*current = *end--;
-			}
-			else {
-				current++;
+	int i, j, k;
+	//to do: create pointer to 'array'
+	for (i = 0; i < length; ++i){
+		for (j=i+1;j< length;){
+			if (array[i] == array[j]){
+				for (k = j; k < length-1; ++k){
+					a[k] = a[k+1];
+				}
+				--n;
+			}else {
+				++j;
 			}
 		}
 	}
+	return array;
 }
+/*
 int frequencies(int * array, int num) {
 	int i, count=0;
 	for (i = 0; i <= numOfData; ++i){
@@ -55,7 +60,7 @@ int mode(int *arr){
 		numOfEachNumInArr[x] = frequencies(newArr[x]);
 	}
 	return arrMax(numOfEachNumInArr);
-}
+}*/
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
