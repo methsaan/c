@@ -14,23 +14,6 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-void rmdup(int *array, int length){
-	int i, j, k;
-	//to do: create pointer to 'array'
-	for (i = 0; i < length; ++i){
-		for (j=i+1;j< length;){
-			if (array[i] == array[j]){
-				for (k = j; k < length-1; ++k){
-					a[k] = a[k+1];
-				}
-				--n;
-			}else {
-				++j;
-			}
-		}
-	}
-	return array;
-}
 /*
 int frequencies(int * array, int num) {
 	int i, count=0;
@@ -39,18 +22,17 @@ int frequencies(int * array, int num) {
 			++count;
 	}
 	return count;
-}
-int arrMax(int * a){
-	int i, n, large;
-	n = numOfData;
-	large = a[0];
-	for (i = 0;i < n;++i){
-		if (a[1]>large){
-			large=a[1];
-		}
+}*/
+int arrMax(int arr1[], int size1){
+	int temp_larg, i;
+	temp_larg = arr1[0];
+	for (i=1;i<size1;i++){
+		if (arr1[i]>temp_larg)
+			temp_larg=arr1[i];
 	}
-	return large;
+	return temp_larg;
 }
+/*
 int mode(int *arr){
 	//red = pseudo-code
 	int newArr = arr;
@@ -104,7 +86,20 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		rmdup(data, numOfData);
+		int i, j, k;
+                for (i = 0; i < numOfData; ++i){
+                	for (j=i+1;j< numOfData;){
+                		if (data[i] == data[j]){
+                			for (k = j; k < numOfData-1; ++k){
+                				data[k] = data[k+1];
+                			}
+                			numOfData--;
+                		}else {
+                			++j;
+                		}
+                	}
+                }
+		printf("%d\n", arrMax(data, numOfData));
 		for (int x = 0; x < numOfData; x++){
 			printf("%d ", data[x]);
 		}
