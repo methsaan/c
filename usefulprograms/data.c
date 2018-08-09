@@ -14,15 +14,29 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-/*
-int frequencies(int * array, int num) {
+void rmdup(int array[]) {
+	int i, j, k;
+	for (i = 0; i < numOfData; ++i){
+		for (j=i+1;j< numOfData;){
+			if (array[i] == array[j]){
+				for (k = j; k < numOfData-1; ++k){
+					array[k] = array[k+1];
+				}
+				numOfData--;
+			}else {
+				++j;
+			}
+		}
+	}
+}
+int frequencies(int array[], int num) {
 	int i, count=0;
 	for (i = 0; i <= numOfData; ++i){
 		if (array[i] == num)
 			++count;
 	}
 	return count;
-}*/
+}
 int arrMax(int arr1[], int size1){
 	int temp_larg, i;
 	temp_larg = arr1[0];
@@ -32,17 +46,21 @@ int arrMax(int arr1[], int size1){
 	}
 	return temp_larg;
 }
-/*
-int mode(int *arr){
+
+int mode(int arr[]){
 	//red = pseudo-code
-	int newArr = arr;
-	rmdup(newArr)
-	int numOfEachNumInArr[sizeof(arr)/sizeof(*arr)];
-	for (int x = 0; x < sizeof(arr)/sizeof(*arr); x++){
-		numOfEachNumInArr[x] = frequencies(newArr[x]);
+	int newArr[numOfData];
+	for (int x = 0; x < numOfData; x++){
+		newArr[x] = arr[x];
 	}
-	return arrMax(numOfEachNumInArr);
-}*/
+	rmdup(newArr);
+	int numOfEachNumInArr[numOfData];
+	for (int x = 0; x < numOfData; x++){
+		numOfEachNumInArr[x] = frequencies(arr, x);
+	}
+	//to do: find out bug (always returning 'one')
+	return arrMax(numOfEachNumInArr, numOfData);
+}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -86,24 +104,7 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		int i, j, k;
-                for (i = 0; i < numOfData; ++i){
-                	for (j=i+1;j< numOfData;){
-                		if (data[i] == data[j]){
-                			for (k = j; k < numOfData-1; ++k){
-                				data[k] = data[k+1];
-                			}
-                			numOfData--;
-                		}else {
-                			++j;
-                		}
-                	}
-                }
-		printf("%d\n", arrMax(data, numOfData));
-		for (int x = 0; x < numOfData; x++){
-			printf("%d ", data[x]);
-		}
-		printf("\n");
+		printf("Mode: %d\n", mode(data));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
