@@ -29,7 +29,7 @@ void rmdup(int array[]) {
 		}
 	}
 }
-int frequencies(int array[], int num) {
+int frequency(int array[], int num) {
 	int i, count=0;
 	for (i = 0; i <= numOfData; ++i){
 		if (array[i] == num)
@@ -47,18 +47,11 @@ int arrMax(int arr1[], int size1){
 	return temp_larg;
 }
 
-int mode(int arr[]){
-	//red = pseudo-code
-	int newArr[numOfData];
-	for (int x = 0; x < numOfData; x++){
-		newArr[x] = arr[x];
+int mode(int arr[], int *new){
+	int numOfEachNumInArr[sizeof(new)/sizeof(*new)];
+	for (int x = 0; x < sizeof(new)/sizeof(*new); x++){
+		numOfEachNumInArr[x] = frequency(arr, x);
 	}
-	rmdup(newArr);
-	int numOfEachNumInArr[numOfData];
-	for (int x = 0; x < numOfData; x++){
-		numOfEachNumInArr[x] = frequencies(arr, x);
-	}
-	//to do: find out bug (always returning 'one')
 	return arrMax(numOfEachNumInArr, numOfData);
 }
 int main(int argv, char *argc){
@@ -104,7 +97,13 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		printf("Mode: %d\n", mode(data));
+		int newArr[numOfData];
+		for (int x = 0; x < numOfData; x++){
+			newArr[x] = data[x];
+		}
+		rmdup(newArr);
+		printf("Number of 2s: %d\n", frequency(data, 2));
+		printf("Mode: %d\n", mode(data, &newArr));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
