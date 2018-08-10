@@ -4,6 +4,7 @@
 #include<string.h>
 #include<stdbool.h>
 #include<unistd.h>
+//#define lenof(a) (sizeof(a)/sizeof((a)[0]))
 
 int numOfData = 45;
 bool in(int val, int *arr, int size){
@@ -14,24 +15,26 @@ bool in(int val, int *arr, int size){
 	}
 	return false;
 }
-void rmdup(int array[]) {
+void rmdup(int array[], int size) {
 	int i, j, k;
-	for (i = 0; i < numOfData; ++i){
-		for (j=i+1;j< numOfData;){
+	int * pSize = &size;
+	for (i = 0; i < *pSize; ++i){
+		for (j=i+1;j< *pSize;){
 			if (array[i] == array[j]){
-				for (k = j; k < numOfData-1; ++k){
+				for (k = j; k < pSize-1; ++k){
 					array[k] = array[k+1];
 				}
-				numOfData--;
+				size--;
+				pSize = &size;
 			}else {
 				++j;
 			}
 		}
 	}
 }
-int frequency(int array[], int num) {
+int frequency(int array[], int num, int size) {
 	int i, count=0;
-	for (i = 0; i <= numOfData; ++i){
+	for (i = 0; i <= size; ++i){
 		if (array[i] == num)
 			++count;
 	}
@@ -47,13 +50,13 @@ int arrMax(int arr1[], int size1){
 	return temp_larg;
 }
 
-int mode(int arr[], int *new){
-	int numOfEachNumInArr[sizeof(new)/sizeof(*new)];
-	for (int x = 0; x < sizeof(new)/sizeof(*new); x++){
-		numOfEachNumInArr[x] = frequency(arr, x);
-	}
-	return arrMax(numOfEachNumInArr, numOfData);
-}
+//int mode(int arr[], int new[]){
+//	int numOfEachNumInArr[lenof(new)];
+//	for (int x = 0; x < lenof(new); x++){
+//		numOfEachNumInArr[x] = frequency(arr, x);
+//	}
+//	return arrMax(numOfEachNumInArr, numOfData);
+//}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -103,7 +106,7 @@ int main(int argv, char *argc){
 		}
 		rmdup(newArr);
 		printf("Number of 2s: %d\n", frequency(data, 2));
-		printf("Mode: %d\n", mode(data, &newArr));
+		//printf("Mode: %d\n", mode(data, newArr));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
