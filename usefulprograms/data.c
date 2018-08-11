@@ -21,7 +21,7 @@ void rmdup(int array[], int size) {
 	for (i = 0; i < *pSize; ++i){
 		for (j=i+1;j< *pSize;){
 			if (array[i] == array[j]){
-				for (k = j; k < pSize-1; ++k){
+				for (k = j; k < *pSize-1; ++k){
 					array[k] = array[k+1];
 				}
 				size--;
@@ -100,12 +100,20 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
+		for (int x = 0; x < numOfData; x++){
+			printf("%d ", data[x]);
+		}
+		printf("\n");
 		int newArr[numOfData];
 		for (int x = 0; x < numOfData; x++){
 			newArr[x] = data[x];
 		}
-		rmdup(newArr);
-		printf("Number of 2s: %d\n", frequency(data, 2));
+		rmdup(newArr, numOfData);
+		for (int x = 0; x < numOfData; x++){
+			printf("%d ", newArr[x]);
+		}
+		printf("\n");
+		printf("Number of 2s: %d\n", frequency(data, 2, numOfData));
 		//printf("Mode: %d\n", mode(data, newArr));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
