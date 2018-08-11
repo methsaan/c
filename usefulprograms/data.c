@@ -4,58 +4,27 @@
 #include<string.h>
 #include<stdbool.h>
 #include<unistd.h>
-//#define lenof(a) (sizeof(a)/sizeof((a)[0]))
 
 int numOfData = 45;
-bool in(int val, int *arr, int size){
-	int i;
-	for (i = 0; i < size; i++){
-		if (arr[i] == val)
-			return true;
-	}
-	return false;
-}
-void rmdup(int array[], int size) {
-	int i, j, k;
-	int * pSize = &size;
-	for (i = 0; i < *pSize; ++i){
-		for (j=i+1;j< *pSize;){
-			if (array[i] == array[j]){
-				for (k = j; k < *pSize-1; ++k){
-					array[k] = array[k+1];
-				}
-				size--;
-				pSize = &size;
-			}else {
-				++j;
-			}
-		}
-	}
-}
-int frequency(int array[], int num, int size) {
-	int i, count=0;
-	for (i = 0; i <= size; ++i){
-		if (array[i] == num)
-			++count;
-	}
-	return count;
-}
-int arrMax(int arr1[], int size1){
-	int temp_larg, i;
-	temp_larg = arr1[0];
-	for (i=1;i<size1;i++){
-		if (arr1[i]>temp_larg)
-			temp_larg=arr1[i];
-	}
-	return temp_larg;
-}
 
+int *rmdup(int * arr, int size){
+	return 0;
+	//return new array without duplicates
+}
+int arrMax(int * arr, int size){
+	return 0;
+	//return largest number in array
+}
+int frequency(int * arr, int num){
+	return 0;
+	//return frequncy of number in array
+}
 //int mode(int arr[], int new[]){
-//	int numOfEachNumInArr[lenof(new)];
-//	for (int x = 0; x < lenof(new); x++){
-//		numOfEachNumInArr[x] = frequency(arr, x);
-//	}
-//	return arrMax(numOfEachNumInArr, numOfData);
+	//int numOfEachNumInArr[lenof(new)];
+	//for (int x = 0; x < lenof(new); x++){
+		//numOfEachNumInArr[x] = frequency(arr, x);
+	//}
+	//return arrMax(numOfEachNumInArr, numOfData);
 //}
 int main(int argv, char *argc){
 	char type[20];
@@ -105,11 +74,12 @@ int main(int argv, char *argc){
 		}
 		printf("\n");
 		int newArr[numOfData];
+		int NOD2 = numOfData;
 		for (int x = 0; x < numOfData; x++){
 			newArr[x] = data[x];
 		}
-		rmdup(newArr, numOfData);
-		for (int x = 0; x < numOfData; x++){
+		rmdup(newArr, NOD2);
+		for (int x = 0; x < NOD2; x++){
 			printf("%d ", newArr[x]);
 		}
 		printf("\n");
