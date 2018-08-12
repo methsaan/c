@@ -4,12 +4,24 @@
 #include<string.h>
 #include<stdbool.h>
 #include<unistd.h>
+#define NELEMS(x) (sizeof(x) / sizeof((x)[0]))
 
 int numOfData = 45;
 
-int *rmdup(int * arr, int size){
-	return 0;
-	//return new array without duplicates
+int rmdup(int * arr, int size){
+	int **newArr = &arr;
+	int *current, *end = array + length - 1;
+
+	for (current = array + 1; array < end; array++, current = array + 1){
+		while (current <= end){
+			if (*current == *array){
+				*current == *end--;
+			}else{
+				current++;
+			}
+		}
+	}
+	return **newArr;
 }
 int arrMax(int * arr, int size){
 	return 0;
@@ -17,15 +29,15 @@ int arrMax(int * arr, int size){
 }
 int frequency(int * arr, int num){
 	return 0;
-	//return frequncy of number in array
+	//return frequency of number in array
 }
-//int mode(int arr[], int new[]){
-	//int numOfEachNumInArr[lenof(new)];
-	//for (int x = 0; x < lenof(new); x++){
-		//numOfEachNumInArr[x] = frequency(arr, x);
-	//}
-	//return arrMax(numOfEachNumInArr, numOfData);
-//}
+int mode(int arr[], int new[]){
+	int numOfEachNumInArr[NELEMS(new)];
+	for (int x = 0; x < NELEMS(new); x++){
+		numOfEachNumInArr[x] = frequency(arr, x);
+	}
+	return arrMax(numOfEachNumInArr, numOfData);
+}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
