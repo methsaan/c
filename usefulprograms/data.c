@@ -4,12 +4,16 @@
 #include<string.h>
 #include<stdbool.h>
 #include<unistd.h>
-#define NELEMS(x) (sizeof(x) / sizeof((x)[0]))
+#define SIZEOF(var) ((char*)(&var + 1) - (char*)&var)
 
 int numOfData = 45;
-
-int rmdup(int * arr, int size){
-	int **newArr = &arr;
+int arrLen(int *aiData){
+	int tot = 0;
+	tot = *(&aiData + 1) - aiData;
+	return tot;
+}
+int *rmdup(int * array, int length){
+	int **newArr = &array;
 	int *current, *end = array + length - 1;
 
 	for (current = array + 1; array < end; array++, current = array + 1){
@@ -21,23 +25,23 @@ int rmdup(int * arr, int size){
 			}
 		}
 	}
-	return **newArr;
+	return *newArr;
 }
-int arrMax(int * arr, int size){
-	return 0;
-	//return largest number in array
-}
-int frequency(int * arr, int num){
-	return 0;
-	//return frequency of number in array
-}
-int mode(int arr[], int new[]){
-	int numOfEachNumInArr[NELEMS(new)];
-	for (int x = 0; x < NELEMS(new); x++){
-		numOfEachNumInArr[x] = frequency(arr, x);
-	}
-	return arrMax(numOfEachNumInArr, numOfData);
-}
+//int arrMax(int * arr, int size){
+//	return 0;
+//	//return largest number in array
+//}
+//int frequency(int * arr, int num){
+//	return 0;
+//	//return frequency of number in array
+//}
+//int mode(int arr[], int new[]){
+//	int numOfEachNumInArr[NELEMS(new)];
+//	for (int x = 0; x < NELEMS(new); x++){
+//		numOfEachNumInArr[x] = frequency(arr, x);
+//	}
+//	return arrMax(numOfEachNumInArr, numOfData);
+//}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -81,21 +85,11 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		for (int x = 0; x < numOfData; x++){
-			printf("%d ", data[x]);
+		int *newArr = rmdup(data, numOfData);
+		printf("Length of new array: %d", arrLen(newArr));
+		for (int x = 0; x < 10; x++){
+			printf("%d ", &newArr[x]);
 		}
-		printf("\n");
-		int newArr[numOfData];
-		int NOD2 = numOfData;
-		for (int x = 0; x < numOfData; x++){
-			newArr[x] = data[x];
-		}
-		rmdup(newArr, NOD2);
-		for (int x = 0; x < NOD2; x++){
-			printf("%d ", newArr[x]);
-		}
-		printf("\n");
-		printf("Number of 2s: %d\n", frequency(data, 2, numOfData));
 		//printf("Mode: %d\n", mode(data, newArr));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
