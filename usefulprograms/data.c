@@ -7,16 +7,16 @@
 #define SIZEOF(var) ((char*)(&var + 1) - (char*)&var)
 
 int numOfData = 45;
-int arrLen(int *aiData){
-	int tot = 0;
-	tot = *(&aiData + 1) - aiData;
-	return tot;
-}
-int *rmdup(int * array, int length){
-	int **newArr = &array;
-
-	return *newArr;
-}
+//int arrLen(int *aiData){
+//	int tot = 0;
+//	tot = *(&aiData + 1) - aiData;
+//	return tot;
+//}
+//int *rmdup(int * array, int length){
+//	int **newArr = &array;
+//
+//	return *newArr;
+//}
 //int arrMax(int * arr, int size){
 //	return 0;
 //	//return largest number in array
@@ -75,13 +75,40 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		int *newArray = rmdup(data, numOfData);
-		printf("Length of new array: %d\n", arrLen(newArray));
-		for (int x = 0; x < 10; x++){
-			printf("%d ", newArray[x]);
+		int i, j, count, freq[numOfData];
+		for (i = 0; i < numOfData; i++){
+			freq[i] = -1;
+		}
+		for (i = 0; i < numOfData; i++){
+			count = 1;
+			for (j=i+1; j<numOfData; j++){
+				if (data[i] == data[j]){
+					count++;
+					freq[j] = 0;
+				}
+			}
+			if (freq[i] != 0){
+				freq[i] = count;
+			}
+		}
+		for (i = 0; i<numOfData; i++){
+			if (freq[i] != 0){
+				printf("%d occurs %d times\n", data[i], freq[i]);
+			}
+		}
+		printf("freq: ");
+		for (int x = 0; x < numOfData; x++){
+			printf("%d ", freq[x]);
 		}
 		printf("\n");
-		//printf("Mode: %d\n", mode(data, newArray));
+		int c, largest;
+		largest = freq[0];
+		for (c = 1; c < numOfData; c++){
+			if (largest < freq[c]){
+				largest = freq[c];
+			}
+		}
+		printf("Mode: %d", largest);
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
