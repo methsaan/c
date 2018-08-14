@@ -14,17 +14,7 @@ int arrLen(int *aiData){
 }
 int *rmdup(int * array, int length){
 	int **newArr = &array;
-	int *current, *end = array + length - 1;
 
-	for (current = array + 1; array < end; array++, current = array + 1){
-		while (current <= end){
-			if (*current == *array){
-				*current == *end--;
-			}else{
-				current++;
-			}
-		}
-	}
 	return *newArr;
 }
 //int arrMax(int * arr, int size){
@@ -85,12 +75,13 @@ int main(int argv, char *argc){
 			printf("Median: %d\n", data[a]);
 		}
 	}else if (strcmp(type, "mode") == 0){
-		int *newArr = rmdup(data, numOfData);
-		printf("Length of new array: %d", arrLen(newArr));
+		int *newArray = rmdup(data, numOfData);
+		printf("Length of new array: %d\n", arrLen(newArray));
 		for (int x = 0; x < 10; x++){
-			printf("%d ", &newArr[x]);
+			printf("%d ", newArray[x]);
 		}
-		//printf("Mode: %d\n", mode(data, newArr));
+		printf("\n");
+		//printf("Mode: %d\n", mode(data, newArray));
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
