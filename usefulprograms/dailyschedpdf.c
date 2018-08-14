@@ -10,7 +10,7 @@ int main(int argv, char *argc){
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
 	printf("|          |            |            |            |          |            |           |     D/B/program   |\n");
-	printf("|    Read  |Smart books |    SQL     |     C      |  C++/SQL |     PT     |  Java     |        PA         |\n");
+	printf("|    Read  |Smart books |    SQL     |     C      |  C++/SQL |  Tennis    |  Java     |        PA         |\n");
 	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |        PP         |\n");
 	printf("|          |            |            |            |          |            |           |       Maths       |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON       |\n");
@@ -33,8 +33,3 @@ int main(int argv, char *argc){
 	printf("*2: Choose at least 2\n");
 	printf("*3: Namothassa, five precepts, ethipisso, meditation 1 minute\n");
 }
-
-
-
-
-
