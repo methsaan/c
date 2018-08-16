@@ -22,15 +22,25 @@ int main(int argc, char *argv){
 	ss = s % 10;
 	int prod1 = f * ss;
 	int prod2 = f * sf;
-	if (prod1 > 99){
+	if (((prod1>99)&&(prod1<1000)) && ((prod2>99)&&(prod2<1000))){
 		printf("   %d\n", prod1);
 		printf("  %d\n", prod2);
 		printf("_________\n");
-		printf("  %d\n", f*s);
-	}else {
+		printf("  %d\n", prod1+prod2*10);
+	}else if (((prod1>9)&&(prod1<100)) && ((prod2>9)&&(prod2<100))){
 		printf("    %d\n", prod1);
 		printf("   %d\n", prod2);
 		printf("_________\n");
-		printf("   %d\n", f*s);
+		printf("   %d\n", prod1+prod2*10);
+	}else if (((prod1>99)&&(prod1<1000)) && ((prod2>9)&&(prod2<100))){
+		printf("    %d\n", prod1);
+		printf("    %d\n", prod2);
+		printf("_________\n");
+		printf("    %d\n", prod1+prod2*10);
+	}else if (((prod1>9)&&(prod1<100)) && ((prod2>99)&&(prod2<1000))){
+		printf("     %d\n", prod1);
+		printf("   %d\n", prod2);
+		printf("_________\n");
+		printf("   %d\n", prod1+prod2*10);
 	}
 }
