@@ -12,7 +12,7 @@ int main(int argc, char *argv){
 	scanf("%d", &s);
 	printf("    %d\n", f);
 	printf("    %d\n", s);
-	printf("   ______\n");
+	printf("   x_____\n");
 	int sf;
 	int ss;
 	sf = s;
@@ -25,22 +25,22 @@ int main(int argc, char *argv){
 	if (((prod1>99)&&(prod1<1000)) && ((prod2>99)&&(prod2<1000))){
 		printf("   %d\n", prod1);
 		printf("  %d\n", prod2);
-		printf("_________\n");
+		printf("+________\n");
 		printf("  %d\n", prod1+prod2*10);
 	}else if (((prod1>9)&&(prod1<100)) && ((prod2>9)&&(prod2<100))){
 		printf("    %d\n", prod1);
 		printf("   %d\n", prod2);
-		printf("_________\n");
+		printf("+________\n");
 		printf("   %d\n", prod1+prod2*10);
 	}else if (((prod1>99)&&(prod1<1000)) && ((prod2>9)&&(prod2<100))){
 		printf("    %d\n", prod1);
 		printf("    %d\n", prod2);
-		printf("_________\n");
+		printf("+________\n");
 		printf("    %d\n", prod1+prod2*10);
 	}else if (((prod1>9)&&(prod1<100)) && ((prod2>99)&&(prod2<1000))){
 		printf("     %d\n", prod1);
 		printf("   %d\n", prod2);
-		printf("_________\n");
+		printf("+________\n");
 		printf("   %d\n", prod1+prod2*10);
 	}
 }

@@ -2,7 +2,7 @@
 #include<math.h>
 
 double formulaSqrt(int A, int B, int C, int Bsqrt){
-	return (1.00 / (A - B)) * (C - B) + Bsqrt;
+	return (1.000000 / (A - B)) * (C - B) + Bsqrt;
 }
 int main(int argc, char *argv){
 	int c;
