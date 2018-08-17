@@ -24,8 +24,8 @@ int main(int argc, char* argv)
 	}
 	if (strcmp(op, "div") == 0){
 		printf("%d\n", x/y);
-	}
-	if (strcmp(op, "sqrt") == 0){
+	}else {
+		double xFlt = x + 0.000000;
 		printf("%f\n", sqrt(x));
 	}
 }
