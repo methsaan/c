@@ -7,7 +7,7 @@ int main(int argc, char* argv)
 	int x;
 	int y;
 	char op[3];
-	printf("Enter operator:(add, sub, mul, div) ");
+	printf("Enter operator:(add, sub, mul, div, sqrt) ");
 	scanf("%s", op);
 	printf("Enter x: ");
 	scanf("%d", &x);
