@@ -14,16 +14,16 @@ int main(int argc, char* argv)
 	printf("Enter y: ");
 	scanf("%d", &y);
 	if (strcmp(op, "add") == 0){
-		printf("%d\n", x+y);
+		printf("%d + %d = %d\n", x, y, x+y);
 	}
-	if (strcmp(op, "sub") == 0){
-		printf("%d\n", x-y);
+	else if (strcmp(op, "sub") == 0){
+		printf("%d - %d = %d\n", x, y, x-y);
 	}
-	if (strcmp(op, "mul") == 0){
-		printf("%d\n", x*y);
+	else if (strcmp(op, "mul") == 0){
+		printf("%d \u00D7 %d = %d\n", x, y, x*y);
 	}
-	if (strcmp(op, "div") == 0){
-		printf("%d\n", x/y);
+	else if (strcmp(op, "div") == 0){
+		printf("%d \u00F7 %d = %d\n", x, y, x/y);
 	}else {
 		double xFlt = x + 0.000000;
 		printf("%f\n", sqrt(x));
