@@ -5,11 +5,25 @@
 #include<stdbool.h>
 
 int main(int argc, char *argv) {
-	int x = (rand()%3)+1;
-	char *arr1 = "sc";
-	char *arr2 = "pa";
-	char *arr3 = "ro";
-	char arr[20] = {&arr1, &pa, &ro};
-	char *CMPchoice = arr[x];
-	puts(CMPchoice);
+	srand(time(NULL));
+	int x = (rand()%15)+1;
+	char arr[3][20] = {"ROCK", "PAPER", "SCISSORS"};
+	char *CMPchoice = arr[x%3];
+	char USRchoice;
+	printf("Enter R, P, or S: ");
+	scanf("%c", &USRchoice);
+	char s = 'S';
+	char p = 'P';
+	char r = 'R';
+	if (USRchoice == *CMPchoice){
+		printf("TIE\n");
+	}else if (((USRchoice == s) && (*CMPchoice == r)) || ((USRchoice == r) && (*CMPchoice == p)) || ((USRchoice == p) && (*CMPchoice == s))){
+		printf("YOUR CHOICE: %c\n", USRchoice);
+		printf("MY CHOICE: %c\n", *CMPchoice);
+		printf("I WIN\n");
+	}else {
+		printf("YOUR CHOICE: %c\n", USRchoice);
+		printf("MY CHOICE: %c\n", *CMPchoice);
+		printf("YOU WIN\n");
+	}
 }
