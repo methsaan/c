@@ -33,7 +33,7 @@ int numOfData = 45;
 //	return arrMax(numOfEachNumInArr, numOfData);
 //}
 int main(int argv, char *argc){
-	char type[20];
+	/*char type[20];
 	printf("Enter mean, median, mode or range: ");
 	scanf("%s", type);
 	printf("Enter number of data: ");
@@ -134,3 +134,5 @@ int main(int argv, char *argc){
 //																																																																																																																																																																																																																																																																																						}
 //																																																																																																																																																																																																																																																																																						}
 //
+*/
+}
