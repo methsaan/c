@@ -14,7 +14,6 @@ int main(int argc, char *argv){
 	int score = 0;
 	int * pScore = &score;
 	for(int a = 0; a < 6; a++){
-		system("clear");
 		int x = (rand()%10000)+1;
 		int y = (rand()%10000)+1;
 		int inp;
@@ -28,13 +27,14 @@ int main(int argc, char *argv){
 			printf("Your answer: %d\ncorrect answer: %d\n", inp, x*y);
 			pScore = &score;
 		}
-		//system("clear");
-		//float xd = (rand()%1000)+1.0;
-		//float yd = (rand()%10)+1.0;
-		//float inp2;
-		//printf("What is %g / %g? (2 decimals) ", xd, yd);
-		//scanf("%f", inp2);
-		//printf("%f\n", Round(xd/yd));
+		double a = (rand()%100)+1.00;
+		double b = (rand()%100)+1.00;
+		double ans = a/b;
+		double USRans;
+		printf("What is %f / %f? ", a, b);
+		scanf("%f", &USRans);
+		printf("Correct answer: %f\n", ans);
+		printf("Your answer: %f\n", USRans);
 	}
 	printf("%d\n", *pScore);
 	return 0;
