@@ -10,6 +10,7 @@ int main(int argc, char *argv){
 	scanf("%d", &f);
 	printf("Enter second num (2 digits): ");
 	scanf("%d", &s);
+	printf("Multiplication algorithm: \n");
 	printf("    %d\n", f);
 	printf("    %d\n", s);
 	printf("   x_____\n");

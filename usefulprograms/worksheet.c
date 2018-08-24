@@ -30,11 +30,11 @@ int main(int argc, char *argv){
 		double a = (rand()%100)+1.00;
 		double b = (rand()%100)+1.00;
 		double ans = a/b;
-		double USRans;
+		double usrans;
 		printf("What is %f / %f? ", a, b);
-		scanf("%f", &USRans);
+		scanf("%f", &usrans);
 		printf("Correct answer: %f\n", ans);
-		printf("Your answer: %f\n", USRans);
+		printf("Your answer: %f\n", usrans);
 	}
 	printf("%d\n", *pScore);
 	return 0;

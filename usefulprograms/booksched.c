@@ -10,15 +10,16 @@ int main(int argv, char *argc){
 	printf("|       |       |       |       |       |\n");
 	printf("|_______|_______|_______|_______|_______|\n");
 	printf("|       |       |       |       |       |\n");
-	printf("|       |       |       |       |       |\n");
-	printf("|  Math |English|Science|   SS  | French|\n");
+	printf("|English|French |Sinhala|French |Sinhala|\n");
+	printf("|  Math |Science|Science|   SS  | Math  |\n");
 	printf("|       |       |       |       |       |\n");
 	printf("|_______|_______|_______|_______|_______|\n");
 	printf("|       |       |       |       |       |\n");
-	printf("|La lege|Le secr|Joyeux |Fantast|Harry P|\n");
-	printf("|nd D'An|et des |Anniver|ique ma|otter a|\n");
-	printf("|gelino |Patins |saire C|itre re|nd the |\n");
-	printf("|Brown  |D'argen|atastro|nard   |Chamber|\n");
-	printf("|_______|t______|phe!___|_______|of secrets|\n");
-	printf("|_______________________________________|\n");
+	printf("|(Curren|Harry P|(Curren|Classic|Program|\n");
+	printf("|t frenc|otter  |t frenc|Book   |ming   |\n");
+	printf("|h book)|       |h book)|       |       |\n");
+	printf("|       |       |       |       |       |\n");
+	printf("|_______|_______|_______|_______|_______|\n");
+	printf("|___C___|__C++__|_Java__|_Python|___JS__|\n");
+	printf("|_______|_______|_______|_______|_______|\n");
 }
