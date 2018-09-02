@@ -33,7 +33,7 @@ int numOfData = 45;
 //	return arrMax(numOfEachNumInArr, numOfData);
 //}
 int main(int argv, char *argc){
-	/*char type[20];
+	char type[20];
 	printf("Enter mean, median, mode or range: ");
 	scanf("%s", type);
 	printf("Enter number of data: ");
@@ -52,12 +52,14 @@ int main(int argv, char *argc){
 		}
 		printf("Mean: %g\n", sum/numOfData);
 	}else if(strcmp(type, "median") == 0){
-		while (1){																			int swapped = 0;
+		while (1){
+			int swapped = 0;
 			for (int x = 0; x < numOfData-1; x++){
 				if (data[x] > data[x+1]){
 					int temp = data[x];
 					data[x] = data[x+1];
-					data[x+1] = temp;																	swapped = 1;
+					data[x+1] = temp;
+					swapped = 1;
 				}
 				if (swapped == 0){
 					break;
@@ -65,29 +67,29 @@ int main(int argv, char *argc){
 			}
 			if (numOfData%2 == 0){
 				int midsum = data[(numOfData/2)-1]+data[numOfData/2];
-				double mid = midsum/2.00;
-//																																																																																										printf("Median: %g\n", mid);
-//																																																																																												}else {
-//																																																																																															int a = (numOfData/2)+0.5;
-//																																																																																																		printf("Median: %d\n", data[a]);
-//																																																																																																				}
-//																																																																																																					}else if (strcmp(type, "mode") == 0){
-//																																																																																																							int freqPairs[numOfData*2];
-//																																																																																																									int i, j, count, freq[numOfData];
-//																																																																																																											for (i = 0; i < numOfData; i++){
-//																																																																																																														freq[i] = -1;
-//																																																																																																																}
-//																																																																																																																		for (i = 0; i < numOfData; i++){
-//																																																																																																																					count = 1;
-//																																																																																																																								for (j=i+1; j<numOfData; j++){
-//																																																																																																																												if (data[i] == data[j]){
-//																																																																																																																																	count++;
-//																																																																																																																																						freq[j] = 0;
-//																																																																																																																																										}
-//																																																																																																																																													}
-//																																																																																																																																																if (freq[i] != 0){
-//																																																																																																																																																				freq[i] = count;
-//																																																																																																																																																							}
+				double mid = midsum/2.0;
+				printf("Median: %g\n", mid);
+			}else {
+				int a = (numOfData/2)+0.5;
+				printf("Median: %d\n", data[a]);
+			}
+	}else if (strcmp(type, "mode") == 0){
+		int freqPairs[numOfData*2];
+		int i, j, count, freq[numOfData];
+		for (i = 0; i < numOfData; i++){
+			freq[i] = -1;
+		}
+		for (i = 0; i < numOfData; i++){
+			count = 1;
+			for (j=i+1; j<numOfData; j++){
+				if (data[i] == data[j]){
+					count++;
+					freq[j] = 0;
+				}
+			}
+			if (freq[i] != 0){
+				freq[i] = count;
+			}
 //																																																																																																																																																									}
 //																																																																																																																																																											for (i = 0; i<numOfData; i++){
 //																																																																																																																																																														if (freq[i] != 0){
