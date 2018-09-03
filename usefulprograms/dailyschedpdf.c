@@ -5,11 +5,11 @@
 int main(int argv, char *argc){
 	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
-	printf("|________\u00Bf\u00Bf____________DAILY_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20___________\u00Bf\u00Bf____________|\n");
+	printf("|________?\u00Bf____________DAILY_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20___________\u00Bf?____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
-	printf("|    Math  |    C++     |  Python    |     D      |Read(sched)|    C      |    D      |     D/B/program   |\n");
+	printf("|    Math  |    D       |  Python    |Program(sched)   D     |Read(sched) |    C      |      D/B/program  |\n");
 	printf("|    Read  | SB (sched) |    SQL     |     JS     |  C++/SQL |     D      |  Java     |        PA         |\n");
 	printf("|  Program |    Read    |     PA     |C/Smart books| Program |     PP     |    PA     |        PP         |\n");
 	printf("|          |            |            |            |          |            |           |       Maths       |\n");
@@ -29,7 +29,8 @@ int main(int argv, char *argc){
 	printf("                        D = duolingo                         |            |           |                   |\n");
 	printf("                        FT = free time ft = family time      |____________|___________|___________________|\n");
 	printf("                        PBT = Programming Blog tutorial                                                    \n");
-	printf("*1: Days with lessons in the morning: PT, ft, D, Smart books, FT, PP, program | days with lessons in the afternoon: ft, Smart books, FT, PP, C, D, JavaScript, T\n");
+	printf("*1: Days with lessons in the morning                                 Days with lessons in the afternoon\n");
+	printf("    Morning: D/Java/C++ | Afternoon: PT, ft, D, SB, FT, PP           Morning: C/D/JavaScript | Afternoon: ft, SB, FT, PP, Python, T\n");
 	printf("*2: Choose at least 2\n");
 	printf("*3: Namothassa, five precepts, ethipisso, meditation 1 minute\n");
 }
