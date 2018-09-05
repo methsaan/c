@@ -109,6 +109,7 @@ int main(int argv, char *argc){
 				cnt++;
 			}
 		}
+		printf("cnt: %d\n", cnt);
 		int freqPairs[cnt];
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
