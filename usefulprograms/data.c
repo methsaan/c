@@ -114,8 +114,10 @@ int main(int argv, char *argc){
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
-				freqPairs[i] = data[i];
+				freqPairs[++i] = data[i];
 				freqPairs[i+1] = freq[i];
+				printf("freqPairs[%d] = %d\n", i, data[i]);
+				printf("freqPairs[%d] = %d\n", i+1, freq[i]);
 			}
 		}
 		printf("freq: ");
