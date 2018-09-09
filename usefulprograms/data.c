@@ -32,6 +32,17 @@ int numOfData = 45;
 //	}
 //	return arrMax(numOfEachNumInArr, numOfData);
 //}
+void pushZerosToEnd(int arr[], int n){
+	int count = 0;
+	for (int i = 0; i < n; i++){
+		if (arr[i] != 0){
+			arr[count++] = arr[i];
+		}
+	}
+	while (count < n){
+		arr[count++] = 0;
+	}
+}
 int main(int argv, char *argc){
 	char type[20];
 	printf("Enter mean, median, mode or range: ");
@@ -76,7 +87,6 @@ int main(int argv, char *argc){
 		}
 	}else if (strcmp(type, "mode") == 0){
 		int i, j, count, freq[numOfData];
-		int freqPairs[sizeof(freq)/sizeof(*freq)];
 		for (i = 0; i < numOfData; i++){
 			freq[i] = -1;
 		}
@@ -92,14 +102,40 @@ int main(int argv, char *argc){
 				freq[i] = count;
 			}
 		}
+		printf("freq: ");
+                for (int x = 0; x < numOfData; x++){
+                	printf("%d ", freq[x]);
+               	}
+               	printf("\n");
+                int cnt = 0;
+                for (int x = 0; x < numOfData; x++){
+                	if (freq[x] != 0){
+               			cnt++;
+               		}
+               	}
+               	int freqPairs[cnt*2];
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
 			}
 		}
+		pushZerosToEnd(freq, sizeof(freq)/sizeof(*freq));
+		int p = 0;
+		int q = 0;
+		while (p < cnt*2) {
+			freqPairs[p] = data[q];
+			freqPairs[p+1] = freq[q];
+			p+=2;
+			q++;
+		}
 		printf("freq: ");
 		for (int x = 0; x < numOfData; x++){
 			printf("%d ", freq[x]);
+		}
+		printf("\n");
+		printf("freqPairs: ");
+		for (int x = 0; x < cnt*2; x++){
+			printf("%d ", freqPairs[x]);
 		}
 		printf("\n");
 		int c, largest;
@@ -109,7 +145,8 @@ int main(int argv, char *argc){
 				largest = freq[c];
 			}
 		}
-		printf("Mode: %d\n", freqPairs[largest+1]);
+		printf("largest: %d\n", largest);
+		printf("Mode: %s\n", "<NotFound>");
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
