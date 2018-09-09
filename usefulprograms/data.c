@@ -102,6 +102,7 @@ int main(int argv, char *argc){
 				freq[i] = count;
 			}
 		}
+<<<<<<< HEAD
 		printf("freq: ");
                 for (int x = 0; x < numOfData; x++){
                 	printf("%d ", freq[x]);
@@ -114,9 +115,24 @@ int main(int argv, char *argc){
                		}
                	}
                	int freqPairs[cnt*2];
+=======
+		pushZerosToEnd(freq, numOfData);
+		int cnt = 0;
+		for (int x = 0; x < numOfData; x++){
+			if (freq[x] != 0){
+				cnt++;
+			}
+		}
+		printf("cnt: %d\n", cnt);
+		int freqPairs[cnt];
+>>>>>>> 77fcce72dde8075365e3e2c35bbc6f9bf730720a
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
+				freqPairs[++i] = data[i];
+				freqPairs[i+1] = freq[i];
+				printf("freqPairs[%d] = %d\n", i, data[i]);
+				printf("freqPairs[%d] = %d\n", i+1, freq[i]);
 			}
 		}
 		pushZerosToEnd(freq, sizeof(freq)/sizeof(*freq));
@@ -134,8 +150,13 @@ int main(int argv, char *argc){
 		}
 		printf("\n");
 		printf("freqPairs: ");
+<<<<<<< HEAD
 		for (int x = 0; x < cnt*2; x++){
 			printf("%d ", freqPairs[x]);
+=======
+		for (int x = 0; x < numOfData; x++){
+			printf("%d ", freq[x]);
+>>>>>>> 77fcce72dde8075365e3e2c35bbc6f9bf730720a
 		}
 		printf("\n");
 		int c, largest;
