@@ -102,20 +102,6 @@ int main(int argv, char *argc){
 				freq[i] = count;
 			}
 		}
-<<<<<<< HEAD
-		printf("freq: ");
-                for (int x = 0; x < numOfData; x++){
-                	printf("%d ", freq[x]);
-               	}
-               	printf("\n");
-                int cnt = 0;
-                for (int x = 0; x < numOfData; x++){
-                	if (freq[x] != 0){
-               			cnt++;
-               		}
-               	}
-               	int freqPairs[cnt*2];
-=======
 		pushZerosToEnd(freq, numOfData);
 		int cnt = 0;
 		for (int x = 0; x < numOfData; x++){
@@ -123,26 +109,21 @@ int main(int argv, char *argc){
 				cnt++;
 			}
 		}
-		printf("cnt: %d\n", cnt);
-		int freqPairs[cnt];
->>>>>>> 77fcce72dde8075365e3e2c35bbc6f9bf730720a
+               	int freqPairs[cnt*2];
+		int q = 0;
+		for (int p = 0; p < sizeof(freqPairs)/sizeof(*freqPairs); p+=2){
+			freqPairs[p] = data[q];
+			q++;
+		}
+		int s = 0;
+		for (int r = 1; r < sizeof(freqPairs)/sizeof(*freqPairs); r+=2){
+			freqPairs[r] = freq[s];
+			s++;
+		}
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
-				freqPairs[++i] = data[i];
-				freqPairs[i+1] = freq[i];
-				printf("freqPairs[%d] = %d\n", i, data[i]);
-				printf("freqPairs[%d] = %d\n", i+1, freq[i]);
 			}
-		}
-		pushZerosToEnd(freq, sizeof(freq)/sizeof(*freq));
-		int p = 0;
-		int q = 0;
-		while (p < cnt*2) {
-			freqPairs[p] = data[q];
-			freqPairs[p+1] = freq[q];
-			p+=2;
-			q++;
 		}
 		printf("freq: ");
 		for (int x = 0; x < numOfData; x++){
@@ -150,13 +131,8 @@ int main(int argv, char *argc){
 		}
 		printf("\n");
 		printf("freqPairs: ");
-<<<<<<< HEAD
 		for (int x = 0; x < cnt*2; x++){
 			printf("%d ", freqPairs[x]);
-=======
-		for (int x = 0; x < numOfData; x++){
-			printf("%d ", freq[x]);
->>>>>>> 77fcce72dde8075365e3e2c35bbc6f9bf730720a
 		}
 		printf("\n");
 		int c, largest;
@@ -167,7 +143,7 @@ int main(int argv, char *argc){
 			}
 		}
 		printf("largest: %d\n", largest);
-		printf("Mode: %s\n", "<NotFound>");
+		printf("Mode: %s\n", freqPairs[largest]);
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
