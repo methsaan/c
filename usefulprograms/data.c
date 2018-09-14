@@ -143,7 +143,11 @@ int main(int argv, char *argc){
 			}
 		}
 		printf("largest: %d\n", largest);
+<<<<<<< HEAD
 		printf("Mode: %d\n", freqPairs[largest-1]);
+=======
+		printf("Mode: %s\n", freq[largest]);
+>>>>>>> 2bdeed8d1c898c2b5ae74a6e1d682d6d9dcca5aa
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
