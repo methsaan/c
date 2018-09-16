@@ -120,6 +120,21 @@ int main(int argv, char *argc){
 			freqPairs[r] = freq[s];
 			s++;
 		}
+		int ii;
+		int jj;
+		int kk;
+		for (ii = 0; ii < numOfData; ii++){
+			for (jj = ii + 1; jj < numOfData;){
+				if (data[jj] == data[ii]){
+					for (kk = jj; kk < numOfData; kk++){
+						data[kk] = data[kk + 1];
+					}
+					numOfData--;
+				}else {
+					jj++;
+				}
+			}
+		}
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
@@ -143,11 +158,7 @@ int main(int argv, char *argc){
 			}
 		}
 		printf("largest: %d\n", largest);
-<<<<<<< HEAD
 		printf("Mode: %d\n", freqPairs[largest-1]);
-=======
-		printf("Mode: %s\n", freq[largest]);
->>>>>>> 2bdeed8d1c898c2b5ae74a6e1d682d6d9dcca5aa
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
 			int swapped = 0;
