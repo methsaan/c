@@ -102,6 +102,21 @@ int main(int argv, char *argc){
 				freq[i] = count;
 			}
 		}
+		int ii;
+		int jj;
+		int kk;
+		for (ii = 0; ii < numOfData; ii++){
+                	for (jj = ii + 1; jj < numOfData;){
+                		if (data[jj] == data[ii]){
+                			for (kk = jj; kk < numOfData; kk++){
+                				data[kk] = data[kk + 1];
+                			}
+                			numOfData--;
+                		}else {
+                			jj++;
+                		}
+                	}
+                }
 		pushZerosToEnd(freq, numOfData);
 		int cnt = 0;
 		for (int x = 0; x < numOfData; x++){
@@ -119,21 +134,6 @@ int main(int argv, char *argc){
 		for (int r = 1; r < sizeof(freqPairs)/sizeof(*freqPairs); r+=2){
 			freqPairs[r] = freq[s];
 			s++;
-		}
-		int ii;
-		int jj;
-		int kk;
-		for (ii = 0; ii < numOfData; ii++){
-			for (jj = ii + 1; jj < numOfData;){
-				if (data[jj] == data[ii]){
-					for (kk = jj; kk < numOfData; kk++){
-						data[kk] = data[kk + 1];
-					}
-					numOfData--;
-				}else {
-					jj++;
-				}
-			}
 		}
 		for (i = 0; i<numOfData; i++){
 			if (freq[i] != 0){
