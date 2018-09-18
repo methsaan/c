@@ -86,6 +86,7 @@ int main(int argv, char *argc){
 			}
 		}
 	}else if (strcmp(type, "mode") == 0){
+		int n2 = numOfData;
 		int i, j, count, freq[numOfData];
 		for (i = 0; i < numOfData; i++){
 			freq[i] = -1;
@@ -117,9 +118,9 @@ int main(int argv, char *argc){
                 		}
                 	}
                 }
-		pushZerosToEnd(freq, numOfData);
+		pushZerosToEnd(freq, n2);
 		int cnt = 0;
-		for (int x = 0; x < numOfData; x++){
+		for (int x = 0; x < n2; x++){
 			if (freq[x] != 0){
 				cnt++;
 			}
@@ -135,7 +136,7 @@ int main(int argv, char *argc){
 			freqPairs[r] = freq[s];
 			s++;
 		}
-		for (i = 0; i<numOfData; i++){
+		for (i = 0; i<n2; i++){
 			if (freq[i] != 0){
 				printf("%d occurs %d times\n", data[i], freq[i]);
 			}
@@ -158,6 +159,7 @@ int main(int argv, char *argc){
 			}
 		}
 		printf("largest: %d\n", largest);
+		//Everything works except for the mode result
 		printf("Mode: %d\n", freqPairs[largest-1]);
 	}else if (strcmp(type, "range") == 0){
 		while (1) {
