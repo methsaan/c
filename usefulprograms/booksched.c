@@ -17,8 +17,8 @@ int main(int argv, char *argc){
 	printf("|       |       |       |       |       |\n");
 	printf("|Program|Harry P|[Curren|Classic|[Curren|\n");
 	printf("|ming   |otter  |t frenc|al Book|t frenc|\n");
-	printf("|       |       |h book]|       |h book]|\n");
-	printf("|       |       |       |       |       |\n");
+	printf("|_______|_______|h book]|_______|h book]|\n");
+	printf("|       |       |_______|       |_______|\n");
 	printf("|_______|_______|_______|_______|_______|\n");
 	printf("|___C___|__C++__|_Java__|_Python|___JS__|\n");
 	printf("|_______|_______|_______|_______|_______|\n");

@@ -17,24 +17,30 @@ int main(int argc, char *argv){
 		int x = (rand()%10000)+1;
 		int y = (rand()%10000)+1;
 		int inp;
-		printf("What is %d x %d? ", x, y);
+		printf("%d\n", x*y);
+		printf("What is %d \u00D7 %d? ", x, y);
 		scanf("%d", &inp);
 		if (inp == x*y) {
 			score++;
 			pScore = &score;
-			printf("Your answer: %d\ncorrect answer: %d\n", inp, x*y);
 		}else{
-			printf("Your answer: %d\ncorrect answer: %d\n", inp, x*y);
 			pScore = &score;
 		}
-		double a = (rand()%100)+1.00;
-		double b = (rand()%100)+1.00;
-		double ans = a/b;
 		double usrans;
-		printf("What is %f / %f? ", a, b);
-		scanf("%f", &usrans);
-		printf("Correct answer: %f\n", ans);
-		printf("Your answer: %f\n", usrans);
+		int randNumA = (rand()%100)+1;
+		int randNumB = (rand()%100)+1;
+		double doubleNumA = randNumA;
+		double doubleNumB = randNumB;
+		double ans = doubleNumA / doubleNumB;
+		printf("%f\n", ans);
+		printf("What is %f \u00F7 %f? ", doubleNumA, doubleNumB);
+		scanf("%lf", &usrans);
+		if (fabs(usrans-ans) < 0.000001){
+			score++;
+			pScore = &score;
+		}else{
+			pScore = &score;
+		}
 	}
 	printf("%d\n", *pScore);
 	return 0;
