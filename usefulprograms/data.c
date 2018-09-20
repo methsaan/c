@@ -38,16 +38,28 @@ int main(int argv, char *argc){
 		printf("Average: %g\n", sum/numOfData);
 	}else if(strcmp(type, "median") == 0){
 		int swapped = 0;
-		for (int x = 0; x < numOfData-1; x++){
-			if (data[x] > data[x+1]){
-				int temp = data[x];
-				data[x] = data[x+1];
-				data[x+1] = temp;
-				swapped = 1;
+		//for (int x = 0; x < numOfData-1; x++){
+		//	if (data[x] > data[x+1]){
+		//		int temp = data[x];
+		///		data[x] = data[x+1];
+		//		data[x+1] = temp;
+		//		swapped = 1;
+		//	}
+		//	if (swapped == 0){
+		//		break;
+		//	}
+		//}
+		for (int x = 0; x < numOfData;x++){
+			for (int y = 0; y < numOfData; y++){
+				if (data[x] > data[x+1]){
+					int temp = data[x];
+					data[x] = data[x+1];
+					data[x+1] = temp;
+				}
 			}
-			if (swapped == 0){
-				break;
-			}
+		}
+		for (int x = 0; x < numOfData; x++){
+			printf("%d\n", data[x]);
 		}
 		if (numOfData%2 == 0){
 			int midsum = data[(numOfData/2)-1]+data[numOfData/2];
