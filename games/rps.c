@@ -6,9 +6,9 @@
 
 int main(int argc, char *argv) {
 	srand(time(NULL));
-	int x = (rand()%15)+1;
+	int x = (rand()%90)+1;
 	char arr[3][20] = {"ROCK", "PAPER", "SCISSORS"};
-	char *CMPchoice = arr[x%3];
+	char *CMPchoice = arr[(x/6)%3];
 	char USRchoice;
 	printf("Enter R, P, or S: ");
 	scanf("%c", &USRchoice);
