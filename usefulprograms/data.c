@@ -30,6 +30,11 @@ int main(int argv, char *argc){
 		scanf("%d", &y);
 		data[x] = y;
 	}
+	printf("Your data: ");
+	for (int x = 0; x < numOfData;x++){
+		printf("%d ", data[x]);
+	}
+	printf("\n");
 	if (strcmp(type, "average") == 0){
 		double sum = 0.00;
 		for (int x = 0; x < numOfData; x++){
@@ -38,36 +43,16 @@ int main(int argv, char *argc){
 		printf("Average: %g\n", sum/numOfData);
 	}else if(strcmp(type, "median") == 0){
 		int swapped = 0;
-		//for (int x = 0; x < numOfData-1; x++){
-		//	if (data[x] > data[x+1]){
-		//		int temp = data[x];
-		///		data[x] = data[x+1];
-		//		data[x+1] = temp;
-		//		swapped = 1;
-		//	}
-		//	if (swapped == 0){
-		//		break;
-		//	}
-		//}
-		int i, temp, swapped2;
-		while (1){
-			swapped2 = 0;
-			for (i=0; i < numOfData-1; i++){
-				if (data[i]>=data[i+1]){
-					int temp = data[i];
-					data[i] = data[i+1];
-					data[i+1] = temp;
+		int temps;
+		for (int x = 0;x < numOfData; x++){
+			for (int y = 0; y < numOfData; y++){
+				if (data[x] < data[y]){
+					temps = data[x];
+					data[x] = data[y];
+					data[y] = temps;
 				}
 			}
-			if (swapped2 == 0){
-				break;
-			}
 		}
-
-		for (int x = 0; x < numOfData; x++){
-			printf("%d ", data[x]);
-		}
-		printf("\n");
 		if (numOfData%2 == 0){
 			int midsum = data[(numOfData/2)-1]+data[numOfData/2];
 			double mid = midsum/2.0;
