@@ -49,18 +49,25 @@ int main(int argv, char *argc){
 		//		break;
 		//	}
 		//}
-		for (int x = 0; x < numOfData;x++){
-			for (int y = 0; y < numOfData; y++){
-				if (data[x] > data[x+1]){
-					int temp = data[x];
-					data[x] = data[x+1];
-					data[x+1] = temp;
+		int i, temp, swapped2;
+		while (1){
+			swapped2 = 0;
+			for (i=0; i < numOfData-1; i++){
+				if (data[i]>=data[i+1]){
+					int temp = data[i];
+					data[i] = data[i+1];
+					data[i+1] = temp;
 				}
 			}
+			if (swapped2 == 0){
+				break;
+			}
 		}
+
 		for (int x = 0; x < numOfData; x++){
-			printf("%d\n", data[x]);
+			printf("%d ", data[x]);
 		}
+		printf("\n");
 		if (numOfData%2 == 0){
 			int midsum = data[(numOfData/2)-1]+data[numOfData/2];
 			double mid = midsum/2.0;
