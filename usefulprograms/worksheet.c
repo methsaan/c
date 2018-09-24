@@ -17,7 +17,6 @@ int main(int argc, char *argv){
 		int x = (rand()%10000)+1;
 		int y = (rand()%10000)+1;
 		int inp;
-		printf("%d\n", x*y);
 		printf("What is %d \u00D7 %d? ", x, y);
 		scanf("%d", &inp);
 		if (inp == x*y) {
@@ -32,7 +31,6 @@ int main(int argc, char *argv){
 		double doubleNumA = randNumA;
 		double doubleNumB = randNumB;
 		double ans = doubleNumA / doubleNumB;
-		printf("%f\n", ans);
 		printf("What is %f \u00F7 %f? ", randNumA, randNumB);
 		scanf("%lf", &usrans);
 		if (fabs(usrans-ans) < 0.000001){
@@ -46,11 +44,10 @@ int main(int argc, char *argv){
 		int radius = (rand()%50)+1;
 		double height2 = height;
 		double radius2 = radius;
-		double cylans = (2*3.140000*radius2*height2) + (2*(3.140000*(radius2*radius2)));
-		printf("%f\n", cylans);
+		double cylans = 2 * 3.141593 * radius2 * height2 + 2 * 3.141593 * radius2 * radius2;
 		printf("Height: %d, radius: %d. Enter surface area:", height, radius);
 		scanf("%lf", &usrcylans);
-		if (fabs(usrcylans-cylans) < 0.000001){
+		if (fabs(usrcylans-cylans) < 5.000001){
 			score++;
 			pScore = &score;
 		}else{
