@@ -17,12 +17,8 @@ signed long long int Pow(signed long long int num, signed long long int raised){
 }
 
 int main(int argc, char *argv){
-	long long int a;
-	long long int b;
-	printf("Enter first number: ");
-	scanf("%lld", &a);
-	printf("Enter second number: ");
-	scanf("%lld", &b);
-	printf("%lld\n", Pow(a, b));
+	for (signed long long int x = 0; x < 32; x++){
+		printf("2 to the power of %d is %lld\n", x, Pow(2, x));
+	}
 	return 0;
 }
