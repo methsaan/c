@@ -128,20 +128,18 @@ int main(int argv, char *argc){
 		}
 		printf("Mode: %d\n", freqPairs[FoundIndex-1]);
 	}else if (strcmp(type, "range") == 0){
-		while (1) {
-			int swapped = 0;
-			for (int x = 0; x < numOfData-1; x++){
-				if (data[x] > data[x+1]){
-					int temp = data[x];
-					data[x] = temp;
-					data[x+1] = temp;
-					swapped = 1;
-				}
-			}
-			if (swapped == 0){
-				break;
-			}
-		}
+		int swapped = 0;
+                int temps;
+                for (int x = 0;x < numOfData; x++){
+                	for (int y = 0; y < numOfData; y++){
+                		if (data[x] < data[y]){
+                			temps = data[x];
+                			data[x] = data[y];
+                			data[y] = temps;
+                		}
+                	}
+                }
 		printf("Range: %d\n", data[numOfData-1]-data[0]);
 	}
+
 }
