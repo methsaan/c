@@ -1,22 +1,28 @@
 #include <math.h>
 #include <stdio.h>
 
-int Pow(int num, int raised){
-	int temp = num;
-	// zero and negative numbers; to be continued
-	for (int x = 0; x < raised-1; x++){
-		num *= temp;
+signed long long int Pow(signed long long int num, signed long long int raised){
+	if ((num > 0) && (raised > 0)){
+		signed long long int temp = num;
+		for (signed long long int x = 0; x < raised-1; x++){
+			num *= temp;
+		}
+		return num;
+	}else if ((raised == 0) && (num > 0)){
+		return -1;
+	}else {
+		printf("ERROR: Invalid numbers\n");
+		return 0;
 	}
-	return num;
 }
 
 int main(int argc, char *argv){
-	int a;
-	int b;
+	long long int a;
+	long long int b;
 	printf("Enter first number: ");
-	scanf("%d", &a);
+	scanf("%lld", &a);
 	printf("Enter second number: ");
-	scanf("%d", &b);
-	printf("%d\n", Pow(a, b));
+	scanf("%lld", &b);
+	printf("%lld\n", Pow(a, b));
 	return 0;
 }
