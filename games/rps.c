@@ -10,20 +10,22 @@ int main(int argc, char *argv) {
 	char arr[3][20] = {"ROCK", "PAPER", "SCISSORS"};
 	char *CMPchoice = arr[(x/6)%3];
 	char USRchoice;
-	printf("Enter R, P, or S: ");
+	printf("R, P, or S: ");
 	scanf("%c", &USRchoice);
 	char s = 'S';
 	char p = 'P';
 	char r = 'R';
-	if (USRchoice == *CMPchoice){
+	if ((USRchoice != s) && (USRchoice != r) && (USRchoice != p)){
+		printf("You lose\n");
+	}else if (USRchoice == *CMPchoice){
 		printf("TIE\n");
 	}else if (((USRchoice == s) && (*CMPchoice == r)) || ((USRchoice == r) && (*CMPchoice == p)) || ((USRchoice == p) && (*CMPchoice == s))){
-		printf("YOUR CHOICE: %c\n", USRchoice);
-		printf("MY CHOICE: %c\n", *CMPchoice);
-		printf("I WIN\n");
+		printf("Your choice: %c\n", USRchoice);
+		printf("My choice: %c\n", *CMPchoice);
+		printf("I win\n");
 	}else {
-		printf("YOUR CHOICE: %c\n", USRchoice);
-		printf("MY CHOICE: %c\n", *CMPchoice);
-		printf("YOU WIN\n");
+		printf("Your choice: %c\n", USRchoice);
+		printf("My choice: %c\n", *CMPchoice);
+		printf("You win\n");
 	}
 }
