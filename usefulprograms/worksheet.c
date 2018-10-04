@@ -47,7 +47,7 @@ int main(int argc, char *argv){
 		double cylans = 2 * 3.141593 * radius2 * height2 + 2 * 3.141593 * radius2 * radius2;
 		printf("Height: %d, radius: %d. Enter surface area:", height, radius);
 		scanf("%lf", &usrcylans);
-		if (fabs(usrcylans-cylans) < 10.000001){
+		if (fabs(usrcylans-cylans) < 10.500001){
 			score++;
 			pScore = &score;
 		}else{
