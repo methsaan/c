@@ -5,7 +5,7 @@
 int main(int argv, char *argc){
 	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
-	printf("|________?\u00Bf____________DAILY_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20___________\u00Bf?____________|\n");
+	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
@@ -33,4 +33,11 @@ int main(int argv, char *argc){
 	printf("    Morning: D/Java/C++ | Afternoon: PT, ft, D, SB, FT, PP           Morning: C/D/JavaScript | Afternoon: ft, SB, FT, PP, Python, T\n");
 	printf("*2: Choose at least 2\n");
 	printf("*3: Namothassa, five precepts, ethipisso, meditation 1 minute\n");
+	printf("|______________________________________________________________________________________________________________|\n");
+	printf("|_______|___\u00Bf\u00Bf________TIMED_SCHEDULE____wake_up_5:20-5:40___________________________________\u00Bf\u00Bf_________________|\n");
+	printf("|_______|  MON   |______| TUE   |   WED    |    THU   |   FRI    |   SAT    |    SUN   |  PD/BR   | FAILED DAYS  |\n");
+	printf("|_5:50__| Program|_5:50_|  D    |    PA    |    PA    |   Read   |  Program |   Java   |    C     |     D        |\n");
+	printf("|_6:30__|  Read  |_6:05_| PA    |   Read   |     D    |   C++    |    PA    |    PA    |    D     |     PP       |\n");
+	printf("|_6:50__|  PA    |_6:30_| Read  |  Program |    SB    |  Python  |     D    |     C    |    FT    |     FT       |\n");
+	printf("|_______|        |_6:50_|Program|
 }
