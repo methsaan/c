@@ -18,7 +18,7 @@ int main(int argc, char *argv){
 	}
 	system("clear");
 	if ((flag != 0) || (b == 1)) {
-		printf("Today is %s. %d is a coposite number. You are following the regular schedule\n", __DATE__, b);
+		printf("Today is %s. %d is a composite number. You are following the regular schedule\n", __DATE__, b);
 	}else {
 		printf("Today is %s. %d is a prime number. You are following the timed schedule\n", __DATE__, b);
 	}
