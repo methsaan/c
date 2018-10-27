@@ -7,9 +7,9 @@ int main(int argc, char *argv){
 	printf("Enter two numbers separated by a comma: ");
 	scanf("%d, %d", &num1, &num2);
 	int lcm;
-	int multiples1[30];
-	int multiples2[30];
-	for (int x = 1; x < 31; x++){
+	int multiples1[45];
+	int multiples2[45];
+	for (int x = 1; x < 46; x++){
 		multiples1[x-1] = num1*x;
 		multiples2[x-1] = num2*x;
 	}
@@ -23,8 +23,8 @@ int main(int argc, char *argv){
 	}
 	printf("\n");
 	int status;
-	for (int x = 0; x < 30; x++){
-		for (int y = 0; y < 30; y++){
+	for (int x = 0; x < 45; x++){
+		for (int y = 0; y < 45; y++){
 			if (multiples1[x] == multiples2[y]){
 				lcm = multiples1[x];
 				status = 1;
