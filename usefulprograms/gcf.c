@@ -28,15 +28,15 @@ int main(int argc, char *argv){
 	if (factors2[len2-1] != 1){
 		factors2[len2++] = 1;
 	}
-	//printf("Factors of %d: ", num1);
-	//for (int x = 0; x < len1; x++){
-		//printf("%d ", factors1[x]);
-	//}
-	//printf("\nFactors of %d: ", num2);
-	//for (int x = 0; x < len2; x++){
-		//printf("%d ", factors2[x]);
-	//}
-	//printf("\n");
+	printf("Factors of %d: ", num1);
+	for (int x = len1-1; x >= 0; x--){
+		printf("%d ", factors1[x]);
+	}
+	printf("\nFactors of %d: ", num2);
+	for (int x = len2-1; x >= 0; x--){
+		printf("%d ", factors2[x]);
+	}
+	printf("\n");
 	int stat;
 	for (int x = 0; x < len1; x++){
 		for (int y = 0; y < len2; y++){
