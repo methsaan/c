@@ -23,7 +23,7 @@ int main(int argc, char* argv)
 		printf("%d \u00D7 %d = %d\n", x, y, x*y);
 	}
 	else if (strcmp(op, "div") == 0){
-		printf("%d \u00F7 %d = %d\n", x, y, x/y);
+		printf("%d \u00F7 %d = %f\n", x, y, (double)x/(double)y);
 	}else {
 		double xFlt = x + 0.000000;
 		printf("%f\n", sqrt(x));
