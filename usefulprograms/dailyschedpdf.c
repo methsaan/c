@@ -42,10 +42,10 @@ int main(int argc, char *argv){
 	printf("|______|____\u00Bf\u00Bf________TIMED_SCHEDULE____wake_up_5:20-5:40____________________________________\u00Bf\u00Bf______________________________________________________|\n");
 	printf("|______|   MON   |______| TUE   |______| WED    |______| THU   |______| FRI  |______|  SAT   |______|  SUN   |______|  PD/BR   |______| FAILED DAYS  |\n");
 	printf("|_6:00_|  Program|_5:50_|  D    |_5:50_|  PA    |_5:50_|  PA   |_5:50_| Read |_5:50_| Program|_5:50_| Java   |_5:50_|    C     |_5:50_|     D        |\n");
-	printf("|_6:30_|   Read  |_6:05_| PA    |_6:00_| Read   |_6:00_|   C   |_6:10_| C++  |_6:30_|  PA    |_6:20_|  PA    |_6:20_|    D     |_6:10_|     PP       |\n");
-	printf("|_6:50_|   PA    |_6:20_| Read  |_6:20_|Program |_6:20_|  SB   |_6:30_|Python|_6:50_|   D    |_6:35_|   B    |_6:40_|    FT    |_6:45_|     FT       |\n");
-	printf("|_7:00_|Breakfast|_6:40_|Program|_6:40_|Python  |_6:40_|  JS   |_6:50_|  PA  |_7:15_|  PP    |_7:25_|Breakfa.|_7:00_|French st.|_7:05_|     PT       |\n");
-	printf("|_7:12_|Pack Bag |_6:50_|Breakf.|_7:00_|Breakf. |_7:00_| pack  |_7:00_|break.|_7:45_| program|_7:40_|    C   |______|__________|______|______________|\n");
+	printf("|_6:30_|   Read  |_6:05_| PA    |_6:00_| Read   |_6:00_|   C   |_6:10_| C++  |_6:30_|  PA    |_6:20_|  PA    |_6:20_|Science s.|_6:10_|     PP       |\n");
+	printf("|_6:50_|   PA    |_6:20_| Read  |_6:20_|Program |_6:20_|  SB   |_6:30_|Python|_6:50_|   D    |_6:35_|   B    |_7:00_|    FT    |_6:45_|     FT       |\n");
+	printf("|_7:00_|Breakfast|_6:40_|Program|_6:40_|Python  |_6:40_|  JS   |_6:50_|  PA  |_7:15_|  PP    |_7:25_|Breakfa.|_7:15_|Sinhala s.|_7:05_|     PT       |\n");
+	printf("|_7:12_|Pack Bag |_6:50_|Breakf.|_7:00_|Breakf. |_7:00_| pack  |_7:00_|break.|_7:45_| program|_7:40_|    C   |_7:40_|__________|______|______________|\n");
 	printf("|_7:18_|  school |_7:05_|Pack b.|_7:12_| Pack.  |_7:06_| brea. |_7:12_|pack. |_9:00_| French |_8:15_|Swimming|______|__________|______|______________|\n");
 	printf("|_3:50_|  shower |_7:18_|school |_7:18_|school  |_7:18_|school |_7:18_|school|_9:40_|   C++  |11:25_|   PP   |______|__________|______|______________|\n");
 	printf("|_4:15_|  lunch  |_3:50_|shower |_3:50_| shower |_3:50_|shower |_3:50_|shower|10:20_|   FT   |12:00_| Lunch  |______|__________|______|______________|\n");
