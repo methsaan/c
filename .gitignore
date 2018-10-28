@@ -1,7 +1,0 @@
-*.*
-!*.c
-!tests
-!userfulprograms
-!graphics
-!programs
-!.gitignore
