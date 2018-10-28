@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int main(int argc, char *argv){
-	char command[200];
+	wchar_t command[200];
 	system("echo \"welcome to bash.c\"");
 	while (1){
 		printf("Enter a bash command: ");

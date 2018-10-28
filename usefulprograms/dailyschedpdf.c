@@ -6,15 +6,30 @@
 int main(int argc, char *argv){
 	srand(time(NULL));
 	system("clear");
-	if ((rand()%100)<60){
-		printf("You are following the regular schedule\n");
+	//char fulldate[] = __DATE__;
+	//char date1[] = {fulldate[4], '\0'};
+	//char date2[] = {fulldate[5], '\0'};
+	//char datestr[] = "";
+	//strcat(datestr, date1);
+	//strcat(datestr, date2);
+	//int date = atoi(datestr);
+	//printf("%d\n", date);
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	int day = 3;
+	if (day == 0){
+		printf("Today you are following schedule %s", (rand()%2)==0 ? "SUN1" : "SUN2");
+	}else if (day == 7){
+		printf("Today you are following schedule %s", (rand()%2)==0 ? "SAT1" : "SAT2");
+	}else if (day == 4){
+		printf("Today you are following schedule %d", (rand()%2)+7);
 	}else {
-		printf("You are following the timed schedule\n");
+		printf("Today you are following schedule %d", day==1 ? (rand()%2)+1 : day*2-(rand()%2));
 	}
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
-	printf("|  MONDAY  |  TUESDAY   |  WEDNESDAY |  THURSDAY  |  FRIDAY  |  SATURDAY  |  SUNDAY   |  PDs AND BREAKS   |\n");
+	printf("|     1    |      3     |      5     |     7      |     9    |     SAT1   |    SUN1   |       PD/BR1      |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
 	printf("|    Math  |    D       |  Python    |Program(sched)   D     |Read(sched) |    C      |      D/B/program  |\n");
 	printf("|    Read  | SB (sched) |    SQL     |     JS     |  C++/SQL |     D      |  Java     |        PA         |\n");
@@ -36,7 +51,7 @@ int main(int argc, char *argv){
 	printf("  ft = family time      D = duolingo                         |____________|___________|___________________|\n");
 	printf("_______________________________________________________________________________________________________________________________________________\n");
 	printf("|______|____\u00Bf\u00Bf________TIMED_SCHEDULE____wake_up_5:20-5:40____________________________________\u00Bf\u00Bf_______________________________________________|\n");
-	printf("|______|   MON   |______| TUE   |______| WED    |______| THU   |______| FRI  |______|  SAT   |______|  SUN   |______|  PD/BR   | FAILED DAYS  |\n");
+	printf("|______|    2    |______|   4   |______|    6   |______|   8   |______|   10 |______|  SAT2  |______|  SUN2  |______|  PD/BR2  | FAILED DAYS  |\n");
 	printf("|_6:00_|  Program|_5:50_|  D    |_5:50_|  PA    |_5:50_|  PA   |_5:50_| Read |_5:50_| Program|_5:50_| Java   |_5:50_|    C     |     D        |\n");
 	printf("|_6:30_|   Read  |_6:05_| PA    |_6:00_| Read   |_6:00_|   C   |_6:10_| C++  |_6:30_|  PA    |_6:20_|  PA    |_6:20_|Science s.|     PP       |\n");
 	printf("|_6:50_|   PA    |_6:20_| Read  |_6:20_|Program |_6:20_|  SB   |_6:30_|Python|_6:50_|   D    |_6:35_|   B    |_7:00_|Sinhala s.|     MT       |\n");
