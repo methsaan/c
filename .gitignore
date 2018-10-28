@@ -1,7 +1,2 @@
-*.*
-!*.c
-!tests
-!userfulprograms
-!graphics
-!programs
-!.gitignore
+**/a.out
+**/*.swp
