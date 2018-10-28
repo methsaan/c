@@ -4,8 +4,9 @@
 int main(int argc, char *argv){
 	int num1;
 	int num2;
-	printf("Enter two numbers separated by a comma: ");
-	scanf("%d, %d", &num1, &num2);
+	char arr[100];
+	printf("Enter two numbers: ");
+	scanf("%d%s%d", &num1, arr, &num2);
 	int lcm;
 	int multiples1[45];
 	int multiples2[45];
