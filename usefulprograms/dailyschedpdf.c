@@ -16,15 +16,15 @@ int main(int argc, char *argv){
 	//printf("%d\n", date);
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
-	int day = 3;
+	int day = tm.tm_wday;
 	if (day == 0){
-		printf("Today you are following schedule %s", (rand()%2)==0 ? "SUN1" : "SUN2");
+		printf("Today you are following schedule %s\n", (rand()%2)==0 ? "SUN1" : "SUN2");
 	}else if (day == 7){
-		printf("Today you are following schedule %s", (rand()%2)==0 ? "SAT1" : "SAT2");
+		printf("Today you are following schedule %s\n", (rand()%2)==0 ? "SAT1" : "SAT2");
 	}else if (day == 4){
-		printf("Today you are following schedule %d", (rand()%2)+7);
+		printf("Today you are following schedule %d\n", (rand()%2)+7);
 	}else {
-		printf("Today you are following schedule %d", day==1 ? (rand()%2)+1 : day*2-(rand()%2));
+		printf("Today you are following schedule %d\n", day==1 ? (rand()%2)+1 : day*2-(rand()%2));
 	}
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20_________??____________|\n");
