@@ -32,7 +32,7 @@ int main(int argc, char *argv){
 		printf("Answer: %f\n", ans);
 		printf("What is %d \u00F7 %d? ", randNumA, randNumB);
 		scanf("%lf", &usrans);
-		if (fabs(usrans-ans) < 0.000001){
+		if (fabs(usrans-ans) < 0.01){
 			score++;
 			pScore = &score;
 		}else{
@@ -47,7 +47,7 @@ int main(int argc, char *argv){
 		printf("Answer: %f\n", cylans);
 		printf("Height: %d, radius: %d. Enter surface area:", height, radius);
 		scanf("%lf", &usrcylans);
-		if (fabs(usrcylans-cylans) < 10.000000){
+		if (fabs(usrcylans-cylans) < 0.01){
 			score++;
 			pScore = &score;
 		}else{
