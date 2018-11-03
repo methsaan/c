@@ -25,13 +25,13 @@ int main(int argc, char *argv){
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|     1    |      3     |      5     |     7      |     9    |     SAT1   |    SUN1   |       PDBR1       |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
-	printf("|     D    | SB [sched] |   Python   |     PA     |     D    |Read(sched) |    C      |      D/B/program  |\n");
+	printf("|     D    | SB [sched] |   Python   |     PA     |     D    |Read[sched] |    C      |      D/B/program  |\n");
 	printf("|   Math   |      C     |    Read    |      C     |    C++   |     D      |  Java     |        PA         |\n");
 	printf("|  Program |     PA     |     PA     |     SB     |  Program |     PP     |    PA     |        PP         |\n");
 	printf("|          |            |            |            |          |            |           |       Maths       |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON       |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
-	printf("|    PP    |JavaScript/C| SB (sched) |     MT     |    D     |    Bash    |    ft     |        MT         |\n");
+	printf("|    PP    |JavaScript/C| SB [sched] |     MT     |    D     |    Bash    |    ft     |        MT         |\n");
 	printf("|    PA    |     MT     |    ft      |     D      |    PP    |     C++    |     D     |        ft         |\n");
 	printf("|  C/Java  |     PP     |    PP      |     PP     | C/Python |     PP     |    PP     |     French study  |\n");
 	printf("|    MT    |     D      |    MT      | JavaScript |    MT    |   Python   |HTML/JS/C++|         ft        |\n");
