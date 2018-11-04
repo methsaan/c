@@ -8,8 +8,8 @@ int main(int argc, char *argv){
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	int day = tm.tm_wday;
-	char *days_of_week[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-	printf("Today is %s\n", days_of_week[day-1]);
+	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+	printf("Today is %s\n", days_of_week[day]);
 	if (day == 0){
 		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
 	}else if (day == 6){
