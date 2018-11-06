@@ -31,13 +31,13 @@ int main(int argc, char *argv){
 	printf("|          |            |            |            |          |            |           |       Maths       |\n");
 	printf("| AFTERNOON| AFTERNOON  | AFTERNOON  | AFTERNOON  | AFTERNOON|  AFTERNOON | AFTERNOON |   AFTERNOON       |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
-	printf("|    PP    |JavaScript/C| SB [sched] |     MT     |    D     |    Bash    |    ft     |        MT         |\n");
+	printf("|    PP    |JavaScript/C| SB [sched] |    Sinh.   |    D     |    Bash    |    ft     |        MT         |\n");
 	printf("|    PA    |     MT     |    ft      |     D      |    PP    |     C++    |     D     |        ft         |\n");
 	printf("|  C/Java  |     PP     |    PP      |     PP     | C/Python |     PP     |    PP     |     French study  |\n");
-	printf("|    MT    |     D      |    MT      | JavaScript |    MT    |   Python   |HTML/JS/C++|         ft        |\n");
+	printf("|   Math   |     D      |    MT      | JavaScript |    MT    |    Sin.    |HTML/JS/C++|         ft        |\n");
 	printf("|    FT    |   Program  | HTML/C++   |     PA     |    PA    |     FT     |    MT     |      Smart books  |\n");
 	printf("|__________|____________|____________|____________|__________|    Java    |    FT     |         FT        |\n");
-	printf("                                                             |     PP     |    PP     |         PP        |\n");
+	printf("                                                             |     PP     |    Sci.   |         PP        |\n");
 	printf("                 Sinhala dictation/Triolingo 5:30pm          |     SB     |     D     |         D         |\n");
 	printf("  B = Buddhism *1       PA = physical activity               |     FT     |    FT     |   Python/Java/C++/|\n");
 	printf("  SB = smart books      MT = music theory                    |     ft     |    PP     |    C/JS/HTML *2   |\n");
@@ -56,8 +56,8 @@ int main(int argc, char *argv){
 	printf("|_4:15_|  lunch  |_3:50_|shower |_3:50_| shower |_3:50_|shower |_3:50_|shower|10:20_|   FT   |12:00_| Lunch  |10:00_|   Bash   |______________|\n");
 	printf("|_4:40_|  piano  |_4:15_| lunch |_4:15_| lunch*3|_4:15_| lunch |_4:20_|lunch |10:30_|Pack up |12:35_|   ft   |10:40_|   Java   |______________|\n");
 	printf("|_5:10_|    D    |_4:40_|  FT   |_4:40_|C/Python|_4:40_|   D   |_5:00_|  PP  |10:40_| Tennis |_1:00_|   MT   |11:30_|    PA    |______________|\n");
-	printf("|_5:35_|   Java  |_5:20_|  PP   |_5:10_|   FT   |_5:10_|  PP   |_5:40_|   D  |12:20_| Lunch  |_1:30_| Program|12:00_|  Lunch   |______________|\n");
-	printf("|_6:00_|   ft    |_5:50_|MT/FRE.|_5:30_|Homework|_5:40_|  MT   |_6:20_|Homew.|_1:45_|   FT   |_3:00_|Fren. s.|12:40_|    SB    |______________|\n");
+	printf("|_5:35_|  Sinh.  |_5:20_|  PP   |_5:10_|   FT   |_5:10_|  PP   |_5:40_|   D  |12:20_| Lunch  |_1:30_| Program|12:00_|  Lunch   |______________|\n");
+	printf("|_6:00_|   ft    |_5:50_|MT/FRE.|_5:30_|Homework|_5:40_|  Sci. |_6:20_|Homew.|_1:45_|   FT   |_3:00_|Fren. s.|12:40_|    SB    |______________|\n");
 	printf("|_6:30_|Homework |_6:10_|Homewo.|_6:00_|  Java  |_6:00_|Homewo.|_6:40_|Progr.|_2:20_|C/Python|_3:30_|    D   |_1:10_|  Python  |______________|\n");
 	printf("|_7:10_|Fren. st.|_6:50_|Dinner |_6:25_| Dinner |_6:35_|Pack up|_7:20_|Sinha.|_2:50_|   SB   |_4:00_|   FT   |_2:00_|    JS    |______________|\n");
 	printf("|_7:50_|  Dinner |_7:20_|   D   |_6:50_|   ft   |_6:45_| Music |_7:40_|Dinner|_3:30_|   MT   |_4:30_|   PA   |_2:30_|    MT    |______________|\n");
