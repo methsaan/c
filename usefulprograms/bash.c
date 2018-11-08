@@ -3,19 +3,13 @@
 #include<string.h>
 
 int main(int argc, char *argv){
-	char *command;
-	char *command2;
-	char *fullcommand;
+	char command[100];
 	system("echo \"welcome to bash.c\"");
 	while (1){
-		fullcommand = "";
 		printf("Enter a bash command: ");
-		scanf("%s%s", command, command2);
-		strcat(fullcommand, command);
-		strcat(fullcommand, " ");
-		strcat(fullcommand, command2);
-		printf("%p\n", fullcommand);
-		system(fullcommand);
+		fgets(command, 100, stdin);
+		fputs(command, stdout);
+		system(command);
 	}
 	return 0;
 }
