@@ -9,19 +9,27 @@ int main(int argc, char *argv){
 	struct tm tm = *localtime(&t);
 	int day = tm.tm_wday;
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-	printf("Today is %s\n", days_of_week[day]);
-	if (day == 0){
-		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-	}else if (day == 6){
-		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-	}else if (day == 4){
-		printf("Today you are following schedule %d or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
-	}else {
-		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
-		printf("Today you are following schedule %d or %s\n", day_array[rand()%12], rand()%3==0 ? "PDBR1" : "PDBR2");
-	}
+	printf("Today is %s %s\n", days_of_week[day], __TIME__);
+	//if ((__TIME__[0] == '1') && (__TIME__[1] == '7')) {
+	//	FILE *fp = fopen("schedfile.c", "w");
+	//	fprintf(fp, "#include <stdio.h>\n\n");
+	//	fprintf(fp, "int main(int argc, char *argv) {\n");
+	//	fprintf(fp, "\tint timeofday = %s\n", __TIME__);
+	//	fprintf(fp, "\tif (day == 0){\n");
+	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SUN1\" : \"SUN2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+	//	fprintf(fp, "\t}else if (day == 6){\n");
+	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SAT1\" : \"SAT2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+	//	fprintf(fp, "\t}else if (day == 4){\n");
+	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+	//	fprintf(fp, "\t}else {\n");
+	//	fprintf(fp, "\t\tint day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};\n");
+	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", day_array[rand()%12], rand()%3==0 ? \"PDBR1\" : \"PDBR2\");\n");
+	//	fprintf(fp, "\t}\n");
+	//	fprintf(fp, "}");
+	//	fclose(fp);
+	//}
 	printf("___________________________________________________________________________________________________________\n");
-	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-9:20_________??____________|\n");
+	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
 	printf("|     1    |      3     |      5     |     7      |     9    |     SAT1   |    SUN1   |       PDBR1       |\n");
 	printf("|__________|____________|____________|____________|__________|____________|___________|___________________|\n");
