@@ -12,30 +12,20 @@ int main(int argc, char *argv){
 	printf("Today is %s %s\n", days_of_week[dayx], __TIME__);
 	char *timea = __TIME__;
 	if ((timea[0] == '0') && ((timea[1] == '5') || (timea[1] == '6'))) {
-		FILE *fp = fopen("schedfile.c", "w");
-		fprintf(fp, "#include <stdio.h>\n\n");
-		fprintf(fp, "int main(int argc, char *argv) {\n");
-		fprintf(fp, "\ttime_t t = time(NULL);\n");
-		fprintf(fp, "\tstruct tm tm = *localtime(&t);\n");
-		fprintf(fp, "\tint day = tm.tm_wday\n");
-		fprintf(fp, "\tif (day == 0){\n");
-		fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SUN1\" : \"SUN2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-		fprintf(fp, "\t}else if (day == 6){\n");
-		fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SAT1\" : \"SAT2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-		fprintf(fp, "\t}else if (day == 4){\n");
-		fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-		fprintf(fp, "\t}else {\n");
-		fprintf(fp, "\t\tint day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};\n");
-		fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", day_array[rand()%12], rand()%3==0 ? \"PDBR1\" : \"PDBR2\");\n");
-		fprintf(fp, "\t}\n");
-		fprintf(fp, "}");
+		printf("LOADING DATA\n");
+		FILE *fp = fopen("schedfile.py", "w");
+		fprintf(fp, "%d\n", dayx);
 		fclose(fp);
 	}else {
-		if (dayx == 0) {
+		FILE *fp = fopen("schedfile.c", "r");
+		char buff[200];
+		fscanf(fp, "%s", buff);
+		int dayy = atoi(buff);
+		if (dayy == 0) {
 			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-		}else if (dayx == 6) {
+		}else if (dayy == 6) {
 			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-		}else if (dayx == 4) {
+		}else if (dayy == 4) {
 			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
 		}else {
 			int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
