@@ -11,27 +11,34 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	printf("Today is %s %s\n", days_of_week[dayx], __TIME__);
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && ((timea[1] == '5') || (timea[1] == '6'))) {
-		printf("LOADING DATA\n");
-		FILE *fp = fopen("schedfile.py", "w");
-		fprintf(fp, "%d\n", dayx);
-		fclose(fp);
-	}else {
-		FILE *fp = fopen("schedfile.c", "r");
-		char buff[200];
-		fscanf(fp, "%s", buff);
-		int dayy = atoi(buff);
-		if (dayy == 0) {
-			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-		}else if (dayy == 6) {
-			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-		}else if (dayy == 4) {
-			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
-		}else {
-			int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
-			printf("Today you are following schedule %d or %s\n", day_array[rand()%12], rand()%3==0 ? "PDBR1" : "PDBR2");
-		}
+	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6') || (timea[1] == '7'))) {
+		FILE *fpw = fopen("schedfile", "w");
+		fprintf(fpw, "%d\n", dayx);
+		fprintf(fpw, "%d\n", rand()%3);
+		fprintf(fpw, "%d\n", rand()%12);
+		fclose(fpw);
 	}
+	FILE *fp = fopen("schedfile", "r");
+	char line1[200];
+	char line2[200];
+	char line3[200];
+	fscanf(fp, "%s", line1);
+	fscanf(fp, "%s", line2);
+	fscanf(fp, "%s", line3);
+	int dayy = atoi(line1);
+	int randnum = atoi(line2);
+	int randday = atoi(line3);
+	if (dayy == 0) {
+		printf("Today you are following schedule %s or %s\n", randnum==0 ? "SUN1" : "SUN2", randnum==0 ? "PDBR1" : "PDBR2");
+	}else if (dayy == 6) {
+		printf("Today you are following schedule %s or %s\n", randnum==0 ? "SAT1" : "SAT2", randnum==0 ? "PDBR1" : "PDBR2");
+	}else if (dayy == 4) {
+		printf("Today you are following schedule %s or %s\n", randnum==0 ? 7 : 8, randnum==0 ? "PDBR1" : "PDBR2");
+	}else {
+		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
+		printf("Today you are following schedule %d or %s\n", day_array[randday], randnum==0 ? "PDBR1" : "PDBR2");
+	}
+	fclose(fp);
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
