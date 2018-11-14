@@ -28,6 +28,17 @@ int main(int argc, char *argv){
 	//	fprintf(fp, "}");
 	//	fclose(fp);
 	//}
+
+	if (day == 0){
+		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
+	}else if (day == 6){
+		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
+	}else if (day == 4){
+		printf("Today you are following schedule %d or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
+	}else {
+		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
+		printf("Today you are following schedule %d or %s\n", day_array[rand()%12], rand()%3==0 ? "PDBR1" : "PDBR2");
+	}
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
