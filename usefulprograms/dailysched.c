@@ -7,37 +7,40 @@ int main(int argc, char *argv){
 	system("clear");
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
-	int day = tm.tm_wday;
+	int dayx = tm.tm_wday;
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-	printf("Today is %s %s\n", days_of_week[day], __TIME__);
-	//if ((__TIME__[0] == '1') && (__TIME__[1] == '7')) {
-	//	FILE *fp = fopen("schedfile.c", "w");
-	//	fprintf(fp, "#include <stdio.h>\n\n");
-	//	fprintf(fp, "int main(int argc, char *argv) {\n");
-	//	fprintf(fp, "\tint timeofday = %s\n", __TIME__);
-	//	fprintf(fp, "\tif (day == 0){\n");
-	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SUN1\" : \"SUN2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-	//	fprintf(fp, "\t}else if (day == 6){\n");
-	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SAT1\" : \"SAT2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-	//	fprintf(fp, "\t}else if (day == 4){\n");
-	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
-	//	fprintf(fp, "\t}else {\n");
-	//	fprintf(fp, "\t\tint day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};\n");
-	//	fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", day_array[rand()%12], rand()%3==0 ? \"PDBR1\" : \"PDBR2\");\n");
-	//	fprintf(fp, "\t}\n");
-	//	fprintf(fp, "}");
-	//	fclose(fp);
-	//}
-
-	if (day == 0){
-		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-	}else if (day == 6){
-		printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
-	}else if (day == 4){
-		printf("Today you are following schedule %d or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
+	printf("Today is %s %s\n", days_of_week[dayx], __TIME__);
+	char *timea = __TIME__;
+	if ((timea[0] == '0') && ((timea[1] == '5') || (timea[1] == '6'))) {
+		FILE *fp = fopen("schedfile.c", "w");
+		fprintf(fp, "#include <stdio.h>\n\n");
+		fprintf(fp, "int main(int argc, char *argv) {\n");
+		fprintf(fp, "\ttime_t t = time(NULL);\n");
+		fprintf(fp, "\tstruct tm tm = *localtime(&t);\n");
+		fprintf(fp, "\tint day = tm.tm_wday\n");
+		fprintf(fp, "\tif (day == 0){\n");
+		fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SUN1\" : \"SUN2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+		fprintf(fp, "\t}else if (day == 6){\n");
+		fprintf(fp, "\t\tprintf(\"Today you are following schedule %s or %s\\n\", (rand()%3)==0 ? \"SAT1\" : \"SAT2\", (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+		fprintf(fp, "\t}else if (day == 4){\n");
+		fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? \"PDBR1\" : \"PDBR2\");\n");
+		fprintf(fp, "\t}else {\n");
+		fprintf(fp, "\t\tint day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};\n");
+		fprintf(fp, "\t\tprintf(\"Today you are following schedule %d or %s\\n\", day_array[rand()%12], rand()%3==0 ? \"PDBR1\" : \"PDBR2\");\n");
+		fprintf(fp, "\t}\n");
+		fprintf(fp, "}");
+		fclose(fp);
 	}else {
-		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
-		printf("Today you are following schedule %d or %s\n", day_array[rand()%12], rand()%3==0 ? "PDBR1" : "PDBR2");
+		if (dayx == 0) {
+			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SUN1" : "SUN2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
+		}else if (dayx == 6) {
+			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? "SAT1" : "SAT2", (rand()%3)==0 ? "PDBR1" : "PDBR2");
+		}else if (dayx == 4) {
+			printf("Today you are following schedule %s or %s\n", (rand()%3)==0 ? 7 : 8, (rand()%3)==0 ? "PDBR1" : "PDBR2");
+		}else {
+			int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
+			printf("Today you are following schedule %d or %s\n", day_array[rand()%12], rand()%3==0 ? "PDBR1" : "PDBR2");
+		}
 	}
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
@@ -81,7 +84,7 @@ int main(int argc, char *argv){
 	printf("|_7:10_|Fren. st.|_6:50_|Dinner |_6:25_| Dinner |_6:35_|Pack up|_7:20_|Sinha.|_2:50_|   SB   |_4:00_|   FT   |_2:00_|    JS    |______________|\n");
 	printf("|_7:50_|  Dinner |_7:20_|   D   |_6:50_|   ft   |_6:45_| Music |_7:40_|Dinner|_3:30_|   MT   |_4:30_|   PA   |_2:30_|    MT    |______________|\n");
 	printf("|_8:15_|   FT    |_7:50_|  ft   |_7:00_| Hom/FT |_7:50_| Dinner|_8:05_|  FT  |_4:00_| Program|_5:00_|  Bash  |_4:00_|     D    |______________|\n");
-	printf("|_8:25_|  Sleep  |_8:15_| sleep |_7:30_| sleep  |_8:15_| sleep |_8:15_|Sleep |_5:00_|   FT   |_5:30_|   C++  |_5:00_|    FT    |______________|\n");
+	printf("|_8:25_|  Sleep  |_8:15_| sleep |_7:45_| sleep  |_8:15_| sleep |_8:15_|Sleep |_5:00_|   FT   |_5:30_|   C++  |_5:00_|    FT    |______________|\n");
 	printf("|______|_________|______|_______|______|________|______|_______|______|______|_6:00_|  Java  |_6:00_|   PP   |_6:00_|ft/Homewo.|______________|\n");
 	printf("|______|_________|______|_______|______|________|______|_______|______|______|_7:00_| Dinner |_6:30_| Dinner |_7:00_|    B     |______________|\n");
 	printf("|______|_________|______|_______|______|________|______|_______|______|______|_7:40_|   FT   |_7:00_| sleep  |_7:40_|  Program |______________|\n");
