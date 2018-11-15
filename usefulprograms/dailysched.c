@@ -17,26 +17,26 @@ int main(int argc, char *argv){
 		fprintf(fpw, "%d\n", rand()%3);
 		fprintf(fpw, "%d\n", rand()%12);
 		fclose(fpw);
-	}
+	}	
 	FILE *fp = fopen("schedfile", "r");
-	char line1[200];
-	char line2[200];
-	char line3[200];
-	fscanf(fp, "%s", line1);
-	fscanf(fp, "%s", line2);
-	fscanf(fp, "%s", line3);
-	int dayy = atoi(line1);
-	int randnum = atoi(line2);
-	int randday = atoi(line3);
+	char one[200];
+	char two[200];
+	char three[200];
+	fscanf(fp, "%s", one);
+	fscanf(fp, "%s", two);
+	fscanf(fp, "%s", three);
+	int dayy = atoi(one);
+	int randnum = atoi(two);
+	int randday = atoi(three);
 	if (dayy == 0) {
-		printf("Today you are following schedule %s or %s\n", randnum==0 ? "SUN1" : "SUN2", randnum==0 ? "PDBR1" : "PDBR2");
+		printf("Today you are following schedule %s or %s\n", (randnum==0 ? "SUN1" : "SUN2"), (randnum==0 ? "PDBR1" : "PDBR2"));
 	}else if (dayy == 6) {
-		printf("Today you are following schedule %s or %s\n", randnum==0 ? "SAT1" : "SAT2", randnum==0 ? "PDBR1" : "PDBR2");
+		printf("Today you are following schedule %s or %s\n", (randnum==0 ? "SAT1" : "SAT2"), (randnum==0 ? "PDBR1" : "PDBR2"));
 	}else if (dayy == 4) {
-		printf("Today you are following schedule %s or %s\n", randnum==0 ? 7 : 8, randnum==0 ? "PDBR1" : "PDBR2");
+		printf("Today you are following schedule %d or %s\n", (randnum==0 ? 7 : 8), (randnum==0 ? "PDBR1" : "PDBR2"));
 	}else {
 		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
-		printf("Today you are following schedule %d or %s\n", day_array[randday], randnum==0 ? "PDBR1" : "PDBR2");
+		printf("Today you are following schedule %d or %s\n", day_array[randday], (randnum==0 ? "PDBR1" : "PDBR2"));
 	}
 	fclose(fp);
 	printf("___________________________________________________________________________________________________________\n");
