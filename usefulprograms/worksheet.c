@@ -29,7 +29,6 @@ int main(int argc, char *argv){
 		int randNumA = (rand()%100)+1;
 		int randNumB = (rand()%100)+1;
 		double ans = (double)randNumA / (double)randNumB;
-		printf("Answer: %f\n", ans);
 		printf("What is %d \u00F7 %d? ", randNumA, randNumB);
 		scanf("%lf", &usrans);
 		if (fabs(usrans-ans) < 0.01){
@@ -44,7 +43,6 @@ int main(int argc, char *argv){
 		double height2 = height;
 		double radius2 = radius;
 		double cylans = 2 * 3.141593 * radius2 * height2 + 2 * 3.141593 * radius2 * radius2;
-		printf("Answer: %f\n", cylans);
 		printf("Height: %d, radius: %d. Enter surface area:", height, radius);
 		scanf("%lf", &usrcylans);
 		if (fabs(usrcylans-cylans) < 0.01){
