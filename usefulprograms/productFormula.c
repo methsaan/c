@@ -35,7 +35,7 @@ int main(int argc, char *argv) {
 	printf("\t%d + %d = %d\n", smaller(num1, num2), quotient, midnum);
 	printf("Step 4:\n");
 	int square = midnum*midnum;
-	printf("\t%d \u00D7 %d = %d\n", midnum, midnum, square);
+	printf("\t%d\u00B2 = %d\n", midnum, square);
 	printf("Step 5:\n");
 	int quotsquare = quotient*quotient;
 	printf("\t%d \u00F7 2 = %d\n", difference, quotient);
