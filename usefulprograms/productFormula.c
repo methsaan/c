@@ -49,6 +49,17 @@ int main(int argc, char *argv) {
 	printf("Step 6:\n");
 	int answer = square-quotsquare;
 	printf("\t%d - %d = %d\n\n", square, quotsquare, answer);
-	printf("Answer: %d", answer);
-	getchar();
+	printf("Answer: %d\n", answer);
+	printf("Press s and Enter see the steps. Press q to quit\n");
+	char x = getchar();
+	if (x == 'q'){
+	}else if (x == 's'){
+		printf("Step 1: find the difference of the two numbers.\n");
+		printf("Step 2: divide that result by 2.\n");
+		printf("Step 3: add that result to the smaller number out of the two beginning numbers.\n");
+		printf("Step 4: multiply that result by itself.\n");
+		printf("Step 5: multiply the result in step 2 by itself.\n");
+		printf("Step 6: subtract the result in step 4 by the result in step 5.\n");
+	}else {
+	}
 }
