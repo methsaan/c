@@ -5,7 +5,7 @@ int main(int argc, char *argv){
 	char string[100];
 	int len = 0;
 	printf("Enter a string: ");
-	scanf("%s", string);
+	fgets(string, 100, stdin);
 	for (int x = 0; x < 100; x++){
 		len++;
 		if ((!isdigit(string[x])) && (!isalpha(string[x])) && (string[x] != 32)){
@@ -13,7 +13,7 @@ int main(int argc, char *argv){
 		}
 	}
 	len--;
-	printf("Your string: %s\n", string);
+	printf("Your string: %s", string);
 	char backward[len];
 	int y = 0;
 	for (int x = len-1; x > -1; x--){
