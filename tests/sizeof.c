@@ -1,11 +1,13 @@
-#include<stdio.h>
-#include<unistd.h>
+#include <stdio.h>
 
-int arrsize(double * arr){
-	return sizeof(arr)/sizeof(*arr);
-}
-
-int main(int argc, char * argv){
-	double x[] = {12.13, 2356.125, 123.21512, 2133.2512, 1234.5, 264.12, 1242.5};
-	printf("%d\n", arrsize(x));
+int main(int argc, char *argv){
+	printf("sizeof(FILE): %d\n", sizeof(FILE));
+	printf("sizeof(*stdin): %d\n", sizeof(*stdin));
+	printf("sizeof(int): %d\n", sizeof(int));
+	printf("sizeof(char): %d\n", sizeof(char));
+	printf("sizeof(double): %d\n", sizeof(double));
+	printf("sizeof(fopen(\"booltest.c\", \"w\")): %d\n", sizeof(fopen("booltest", "w")));
+	printf("sizeof(long long int): %d\n", sizeof(long long int));
+	printf("sizeof(float): %d\n", sizeof(float));
+	printf("sizeof(short): %d\n", sizeof(short));
 }
