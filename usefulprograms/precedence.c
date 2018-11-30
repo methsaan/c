@@ -29,11 +29,11 @@ int main(int argc, char *argv) {
 	cnt2 = 0;
 	printf("%d ", num[cnt1]);
 	cnt1++;
-	for (int x = 0; x < sizeof(num)/sizeof(*num) + sizeof(op)/sizeof(*op)-2; x++){
+	for (int x = 0; x < numOfOp; x++){
 		printf("%c ", op[cnt2]);
 		printf("%d ", num[cnt1]);
 		cnt2++;
 		cnt1++;
 	}
-	printf("%d\n", num[cnt1-1]);
+	printf("\n");
 }
