@@ -14,4 +14,10 @@ int main(int argc, char *argv){
 	char b[10];
 	snprintf(b, 10, "%d", y);
 	printf("itoa(%d) = \"%s\"\n", y, b);
+	double z;
+	printf("Enter an float: ");
+	scanf("%lf", &z);
+	char c[10];
+	snprintf(b, 10, "%f", z);
+	printf("ftoi(%f) = \"%s\"\n", z, c);
 }
