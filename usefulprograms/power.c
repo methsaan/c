@@ -7,8 +7,10 @@ long long int Pow(long long int num, long long int raised){
 			num *= temp;
 		}
 		return num;
-	}else if ((raised == 0) && (num > 0)){
-		return 5;
+	}else if ((raised == 0) && (num >= 0)){
+		return 1;
+	}else if ((raised == 0) && (num < 0)){
+		return -1;
 	}else {
 		printf("Invalid numbers\n");
 		return 0;
@@ -19,8 +21,8 @@ int main(int argc, char *argv){
 	long long int a;
 	long long int b;
 	printf("Enter first num: ");
-	scanf("%llu", &a);
+	scanf("%lld", &a);
 	printf("Enter second num: ");
-	scanf("%llu", &b);
-	printf("%llu to the power of %llu is %llu\n", a, b, Pow(a, b));
+	scanf("%lld", &b);
+	printf("%lld to the power of %lld is %lld\n", a, b, Pow(a, b));
 }
