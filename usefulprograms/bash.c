@@ -5,10 +5,12 @@
 int main(int argc, char *argv){
 	char command[100];
 	system("echo \"welcome to bash.c\"");
-	while (1){
+	while (1) {
 		printf("Enter a bash command: ");
 		fgets(command, 100, stdin);
-		fputs(command, stdout);
+		if (strcmp(command, "quit\n") == 0) {
+			break;
+		}
 		system(command);
 	}
 	return 0;
