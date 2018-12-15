@@ -20,9 +20,9 @@ int main(int argc, char* argv){
 	int* Area = &square.area;
 	int* Per = &square.per;
 	double* Hyp = &square.hyp;
-	printf("square.x: %d        |        \t&square.x (X): %p        \n", square.x, X);
-	printf("square.y: %d        |        \t&square.y (Y): %p        \n", square.y, Y);
-	printf("square.area: %d       |       \t&square.area (Area): %p     \n", square.area, Area);
-	printf("square.per: %d         |        \t&square.per (Per): %p      \n", square.per, Per);
-	printf("square.hyp: %f  |    \t&square.hyp (Hyp): %p        \n", square.hyp, Hyp);
+	printf("square.x: %d\t\t|\t&square.x (X): %p        \n", square.x, X);
+	printf("square.y: %d\t\t|\t&square.y (Y): %p        \n", square.y, Y);
+	printf("square.area: %d\t\t|\t&square.area (Area): %p     \n", square.area, Area);
+	printf("square.per: %d\t\t|\t&square.per (Per): %p      \n", square.per, Per);
+	printf("square.hyp: %f\t\t|\t&square.hyp (Hyp): %p        \n", square.hyp, Hyp);
 }
