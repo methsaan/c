@@ -9,9 +9,10 @@ int main(int argc, char *argv){
 	struct tm tm = *localtime(&t);
 	int dayx = tm.tm_wday;
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-	printf("Today is %s %s\n", days_of_week[dayx], __TIME__);
+	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6') || (timea[1] == '7'))) {
+	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6'))) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%3);
