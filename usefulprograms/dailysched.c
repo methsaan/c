@@ -12,7 +12,7 @@ int main(int argc, char *argv){
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6'))) {
+	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6') || (timea[1] == '7'))) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%3);
@@ -39,6 +39,8 @@ int main(int argc, char *argv){
 		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], (randnum==0 ? "PDBR1" : "PDBR2"));
 	}
+	system("chmod +x dayTracker.py");
+	system("./dayTracker.py");
 	fclose(fp);
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
