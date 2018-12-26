@@ -3,8 +3,9 @@
 #include<time.h>
 
 int main(int argc, char *argv){
-	srand(time(NULL));
 	system("clear");
+	system("./dayTracker.py");
+	srand(time(NULL));
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
 	int dayx = tm.tm_wday;
@@ -39,8 +40,6 @@ int main(int argc, char *argv){
 		int day_array[] = {1, 2, 3, 4, 5, 6, 9, 10, 2, 4, 6, 10};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], (randnum==0 ? "PDBR1" : "PDBR2"));
 	}
-	system("chmod +x dayTracker.py");
-	system("./dayTracker.py");
 	fclose(fp);
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
