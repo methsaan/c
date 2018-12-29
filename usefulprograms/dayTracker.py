@@ -9,7 +9,7 @@ duolingo = []
 piano = []
 mt = []
 
-month.append(input("Enter month: "))
+month.append(input("Enter month: (press ^C to show schedule) "))
 day.append(input("Enter date: "))
 pa.append(input("Enter whether you did physical activity (y/n): "))
 duolingo.append(input("Enter whether you did duolingo (y/n): "))
