@@ -19,7 +19,7 @@ int main(int argc, char *argv){
 			break;
 		}
 		numberOfGuesses++;
-		printf("%d \t %f\n", numberOfGuesses, cuberoot);
+		printf("%d \t %.15f\n", numberOfGuesses, cuberoot);
 		getchar();
 		getchar();
 	}
