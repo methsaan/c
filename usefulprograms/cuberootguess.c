@@ -23,5 +23,5 @@ int main(int argc, char *argv){
 		getchar();
 		getchar();
 	}
-	printf("%f\n", cuberoot);
+	printf("%d \t %f\n", ++numberOfGuesses,  cuberoot);
 }
