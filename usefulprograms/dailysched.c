@@ -41,6 +41,9 @@ int main(int argc, char *argv){
 		printf("Today you are following schedule %d or %s\n", day_array[randday], (randnum==0 ? "PDBR1" : "PDBR2"));
 	}
 	fclose(fp);
+	system("git commit -a -m 're-running'");
+	system("git push");
+	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
