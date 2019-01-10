@@ -30,6 +30,9 @@ int main(int argc, char *argv){
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
+	system("git commit -a -m 're-running'");
+	system("git push");
+	system("clear");
 	if (dayy == 0) {
 		printf("Today you are following schedule %s or %s\n", (randnum==0 ? "SUN1" : "SUN2"), (randnum==0 ? "PDBR1" : "PDBR2"));
 	}else if (dayy == 6) {
@@ -41,9 +44,6 @@ int main(int argc, char *argv){
 		printf("Today you are following schedule %d or %s\n", day_array[randday], (randnum==0 ? "PDBR1" : "PDBR2"));
 	}
 	fclose(fp);
-	system("git commit -a -m 're-running'");
-	system("git push");
-	system("clear");
 	printf("___________________________________________________________________________________________________________\n");
 	printf("|________??____________REGULAR_SCHEDULE___________wake_up_5:20-6:00_sleep_8:10-8:40_________??____________|\n");
 	printf("|_________________________________________________________________________________________________________|\n");
