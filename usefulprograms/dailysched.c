@@ -11,7 +11,6 @@ int main(int argc, char *argv){
 	int dayx = tm.tm_wday;
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *timea = __TIME__;
 	if ((timea[0] == '0') && ((timea[1] == '4') || (timea[1] == '5') || (timea[1] == '6') || (timea[1] == '7'))) {
 		FILE *fpw = fopen("schedfile", "w");
@@ -30,9 +29,10 @@ int main(int argc, char *argv){
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
-	system("git commit -a -m 're-running'");
+	system("git commit -a -m 'changing schedule information'");
 	system("git push");
 	system("clear");
+	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	if (dayy == 0) {
 		printf("Today you are following schedule %s or %s\n", (randnum==0 ? "SUN1" : "SUN2"), (randnum==0 ? "PDBR1" : "PDBR2"));
 	}else if (dayy == 6) {
