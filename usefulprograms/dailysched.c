@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<string.h>
 
 int main(int argc, char *argv){
 	system("clear");
@@ -20,6 +21,22 @@ int main(int argc, char *argv){
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
+	if (strcmp(days_of_week[dayx], "Saturday") == 0) {
+		system("./weekTracker.py");
+		char x;
+		printf("Hit 'w' and Enter to see your progress: ");
+		scanf("%c", &x);
+		if (x == 'w') {
+			system("cat weekTracker");
+		}
+		printf("Hit 's' and Enter to stop showing:\n");
+		while (1) {
+			x = getchar();
+			if (x == 's'){
+				break;
+			}
+		}
+	}
 	char one[200];
 	char two[200];
 	char three[200];
