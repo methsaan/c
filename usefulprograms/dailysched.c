@@ -83,7 +83,7 @@ int main(int argc, char *argv){
 	printf("  B=Buddhism *1   | PA=physical activity| R1=read programming  |     FT     |    FT     |   Python/Java/C++/|\n");
 	printf("  SB=smart books*2| MT=music theory     | R2=read classic      |     ft     |    PP     |    C/JS/HTML *3   |\n");
 	printf("  FT=free time    | PP=piano practical  | R3=read sci./hist.   |            |     C     |          FT       |\n");
-	printf("  ft=family time  | D=duolingo          | R4=read fre./sinh.   |____________|___________|___________________|\n\");
+	printf("  ft=family time  | D=duolingo          | R4=read fre./sinh.   |____________|___________|___________________|\n");
 	printf("________________________________________________________________________________________________________________________________\n");
 	printf("|______|____\u00Bf\u00Bf________TIMED_SCHEDULE____wake_up_5:20-5:40____________________________________\u00Bf\u00Bf________________________________|\n");
 	printf("|______|    2    |______|   4   |______|    6   |______|   8   |______|   10 |______|  SAT2  |______|  SUN2  |______|  PD/BR2  |\n");
