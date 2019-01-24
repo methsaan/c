@@ -6,7 +6,6 @@ int main(int argc, char *argv){
 	double radius;
 	const double PI = 3.14159265358972;
 	double height;
-	double deg;
 	printf("Options: circle_area, circle_circ, cylinder_area, cylinder_volume, cone_area, cone_vol, sphere_area, sphere_vol\nEnter your option: ");
 	fgets(option, 100, stdin);
 	if (strcmp(option, "circle_area\n") == 0){
