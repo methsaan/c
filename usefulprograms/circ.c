@@ -11,17 +11,17 @@ int main(int argc, char *argv){
 	if (strcmp(option, "circle_area\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
-		printf("Area: %.50f\n", PI*radius*radius);
+		printf("Area: %.50fu\u00B2\n", PI*radius*radius);
 	}else if (strcmp(option, "circle_circ\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
-		printf("Circumference: %.50f\n", 2*PI*radius);
+		printf("Circumference: %.50fu\n", 2*PI*radius);
 	}else if (strcmp(option, "cylinder_area\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		printf("Surface area: %.50f\n", (PI*radius*radius)*2+(2*PI*radius)*height);
+		printf("Surface area: %.50fu\u00B2\n", (PI*radius*radius)*2+(2*PI*radius)*height);
 	}else if (strcmp(option, "cylinder_volume\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
@@ -33,13 +33,13 @@ int main(int argc, char *argv){
 		scanf("%lf", &radius);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		printf("Surface area: %f", PI*radius*(height+radius));
+		printf("Surface area: %.50f\n", PI*radius*(height+radius));
 	}else if (strcmp(option, "cone_vol\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		printf("Surface area: %f", (PI*radius*radius*height)/3);
+		printf("Surface area: %.50fu\n", (PI*radius*radius*height)/3);
 	}else if (strcmp(option, "sphere_area\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
