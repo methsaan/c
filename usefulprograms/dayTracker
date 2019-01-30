@@ -22,3 +22,5 @@
 ['January']		['25th']	['n']		['n']		['n']		['n']		['n']			['n']				['n']
 ['January']		['26th']	['y']		['n']		['y']		['n']		['n']			['n']				['n']
 ['January']		['27th']	['y']		['n']		['y']		['n']		['n']			['n']				['n']
+['January']		['28th']	['y']		['n']		['n']		['n']		['y']			['Bus cancelation']				['1']
+['January']		['29th']	['n']		['n']		['n']		['n']		['y']			['Snow day']				['1']
