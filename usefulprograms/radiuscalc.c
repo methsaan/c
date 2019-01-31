@@ -10,7 +10,7 @@ int main(int argc, char *argv){
  	const double PI = 3.14159265358972;
  	double height;
 	double radius;
- 	printf("Options: circle_circ, circle_area, cylinder_area, cylinder_volume, cone_area, cone_vol, sphere_area, sphere_vol\nEnter your option: ");
+ 	printf("Options: circle_circ, circle_area, cylinder_volume, cone_area, cone_vol, sphere_area, sphere_vol\nEnter your option: ");
 	scanf("%s", option);
 	if (strcmp(option, "circle_circ") == 0) {
 		printf("Enter circumference: ");
@@ -21,8 +21,14 @@ int main(int argc, char *argv){
 		printf("Enter area: ");
 		scanf("%lf", &area);
 		radius = sqrt(area/PI);
-		printf("radius: %f", radius);
-		 _________
-		V area/PI  = r
+		printf("radius: %.20g\n", radius);
+	}else if (strcmp(option, "cylinder_area")) {
+		printf("Enter volume: ");
+		scanf("%lf", &volume);
+		printf("Enter height: ");
+		scanf("%lf", &height);
+		area = volume/height;
+		radius = sqrt(area/PI);
+		printf("radius: %.20g\n", radius);
 	}
 }
