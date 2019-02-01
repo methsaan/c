@@ -8,6 +8,7 @@ pa = []
 duolingo = []
 piano = []
 mt = []
+schedule = []
 unfairday = []
 reason = []
 FOR = []
@@ -18,7 +19,8 @@ pa.append(input("Enter whether you did physical activity (y/n): "))
 duolingo.append(input("Enter whether you did duolingo (y/n): "))
 piano.append(input("Enter whether you did piano (y/n): "))
 mt.append(input("Enter whether you did theory (y/n): "))
-unfairday.append(input("Was there anything unfair that affected whether you achieved the six requirements? (y/n): "))
+schedule.append(input("Enter whether you followed the schedule perfectly with timing (F/PERFECT): "))
+unfairday.append(input("Unfair day? (y/n): "))
 reason.append(input("Reason: ('n' if nothing unfair happened): "))
 FOR.append(input("What is the frequency of the reason? "))
 open("dayTracker", "a").write(str(month));
@@ -32,6 +34,8 @@ open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(piano));
 open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(mt));
+open("dayTracker", "a").write("\t\t");
+open("dayTracker", "a").write(str(schedule));
 open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(unfairday));
 open("dayTracker", "a").write("\t\t\t");
