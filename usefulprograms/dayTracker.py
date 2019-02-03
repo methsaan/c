@@ -26,9 +26,9 @@ FOR.append(input("What is the frequency of the reason? "))
 open("dayTracker", "a").write(str(month));
 open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(day));
-open("dayTracker", "a").write("\t");
+open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(pa));
-open("dayTracker", "a").write("\t\t\t");
+open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(duolingo));
 open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(piano));
