@@ -7,30 +7,41 @@ int main(int argc, char *argv){
  	double circumference;
  	double area;
  	double volume;
- 	const double PI = 3.14159265358972;
+ 	const double PI = 3.141592653589793;
  	double height;
 	double radius;
- 	printf("Options: circle_circ, circle_area, cylinder_volume, cylinder_area\nEnter your option: ");
-	scanf("%s", option);
-	if (strcmp(option, "circle_circ") == 0) {
+ 	printf("Options: circle circ, circle area, cylinder volume, cylinder area\nEnter your option: ");
+	fgets(option, 100, stdin);
+	if (strcmp(option, "circle circ\n") == 0) {
 		printf("Enter circumference: ");
 		scanf("%lf", &circumference);
 		radius = circumference/PI/2.0;
 		printf("Radius: %.20g\n", radius);
-	}else if (strcmp(option, "circle_area") == 0) {
+	}else if (strcmp(option, "circle area\n") == 0) {
 		printf("Enter area: ");
 		scanf("%lf", &area);
 		radius = sqrt(area/PI);
 		printf("radius: %.20g\n", radius);
-	}else if (strcmp(option, "cylinder_area")) {
-		printf("Enter volume: ");
+	}else if (strcmp(option, "cylinder area\n") == 0) {
+		printf("Enter surface area: ");
 		scanf("%lf", &area);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		radius = (sqrt(area/PI/2/2/PI/height * 4) / 2) - 0.45;
+		double high = area, low = 0.0;
+		while (1) {
+			radius = low + ((high - low) / 2);
+			if ((PI*radius*radius)*2+(2*PI*radius)*height < area) {
+				low = radius;
+			}else {
+				high = radius;
+			}
+			if (fabs((PI*radius*radius)*2+(2*PI*radius)*height-area) < 0.000001) {
+				break;
+			}
+		}
 		printf("Radius: %.20g\n", radius);
-	}else if (strcmp(option, "cylinder_volume")) {
-		printf("Enter surface area: ");
+	}else if (strcmp(option, "cylinder volume\n") == 0) {
+		printf("Enter volume: ");
 		scanf("%lf", &volume);
 		printf("Enter height: ");
 		scanf("%lf", &height);
