@@ -19,7 +19,7 @@ pa.append(input("Enter whether you did physical activity (y/n): "))
 duolingo.append(input("Enter whether you did duolingo (y/n): "))
 piano.append(input("Enter whether you did piano (y/n): "))
 mt.append(input("Enter whether you did theory (y/n): "))
-schedule.append(input("Enter whether you followed the schedule perfectly with timing (F/PERFECT): "))
+schedule.append(input("Enter whether you followed the schedule perfectly with timing or without timing (F/PERFECT/perfect) : "))
 unfairday.append(input("Unfair day? (y/n): "))
 reason.append(input("Reason: ('n' if nothing unfair happened): "))
 FOR.append(input("What is the frequency of the reason? "))
@@ -28,7 +28,7 @@ open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(day));
 open("dayTracker", "a").write("\t");
 open("dayTracker", "a").write(str(pa));
-open("dayTracker", "a").write("\t\t");
+open("dayTracker", "a").write("\t\t\t");
 open("dayTracker", "a").write(str(duolingo));
 open("dayTracker", "a").write("\t\t");
 open("dayTracker", "a").write(str(piano));
