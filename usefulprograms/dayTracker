@@ -28,6 +28,5 @@
 ['January']		['31st']	['y']		['y']		['y']		['y']		F		['y']			['Late sleep']			['5']
 ['February']		['1st']		['y']		['y']		['y']		['y']		['perfect']	['n']			['n']				['n']
 ['February']		['2nd']		['y']		['y']		['y']		['n']		['F']		['y']			['Late sleep']			['6']
-['February']		['5th']		['n']		['n']		['n']		['n']		['F']		['n']			['n']				['n']
-['February']		['3rd']		['y']		['y']		['n']		['n']		['F']		['y']			['Could not wake up']				['1']
-['February']		['5th']		['y']		['y']		['y']		['n']		['F']		['y']			['Homework']				['1']
+['February']		['3th']		['n']		['n']		['n']		['n']		['F']		['n']			['n']				['n']
+['February']		['4th']		['y']		['y']		['y']		['n']		['F']		['y']			['Homework']			['1']
