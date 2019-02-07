@@ -8,5 +8,5 @@ int main(int argc, char *argv) {
 	scanf("%lf", &num);
 	printf("Enter a root: ");
 	scanf("%lf", &root);
-	printf("%f\n", (double)pow(num, 1/root));
+	printf("%.20f\n", (double)pow(num, 1/root));
 }
