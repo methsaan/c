@@ -6,13 +6,13 @@ int main(int argc, char *argv) {
 	double b2;
 	double b;
 	double c;
-	printf("Enter width of rectagular prism: ");
+	printf("Enter a: ");
 	scanf("%lf", &a);
-	printf("Enter length of rectagular prism: ");
+	printf("Enter b: ");
 	scanf("%lf", &b);
-	printf("Enter height of rectagular prism: ");
+	printf("Enter b: ");
 	scanf("%lf", &b2);
 	c = sqrt(pow(a, 2) + pow(b, 2));
 	c = sqrt(pow(c, 2) + pow(b2, 2));
-	printf("Length across rectangular prism: %.15f\n", c);
+	printf("3D hypotenuse %.15f\n", c);
 } 
