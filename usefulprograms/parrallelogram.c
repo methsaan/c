@@ -10,6 +10,6 @@ int main(int argc, char *argv) {
 	scanf("%lf", &base);
 	printf("Enter adjacent side of parrallelogram: ");
 	scanf("%lf", &adjacentSide);
-	height = ;
+	height = 
 	printf("%lf\n", height);
 }
