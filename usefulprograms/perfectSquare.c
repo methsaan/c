@@ -1,6 +1,9 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
 int main(int argc, char *argv){
+	srand(time(0));
 	int num;
 	printf("Enter a number: ");
 	scanf("%d", &num);
@@ -25,6 +28,7 @@ int main(int argc, char *argv){
 	for (int x = 0; x < numOfFactors; x++) {
 		printf("%d ", factors[x]);
 	}
-	printf("\n");
+	int randfactor = factors[rand()%numOfFactors];
+	printf("\n%d / %d = %d\n", num, randfactor, num/randfactor);
 	return 0;
 }
