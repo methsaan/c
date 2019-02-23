@@ -9,10 +9,15 @@ int main(int argc, char *argv) {
 	scanf("%lf", &x);
 	printf("Enter the part of the number that repeats: ");
 	scanf("%lf", &repeating);
-	sprintf(repeatingstr, "%d", repeating);
-	double x_X_100 = (int)(x*100);
-	for (int i = sizeof(repeatingstr); i < 7; i += sizeof(repeatingstr)) {
-		x_X_100 += repeating * (pow(10, -(i+1)));
+	snprintf(repeatingstr, 5, "%d", repeating);
+	int repeatingstrlen = printf("%s", repeatingstr);
+	printf("\n");
+	double x_X_100 = (x*100);
+	printf("%d\n\n", repeatingstrlen);
+	printf("%f     <><><><>\n\n\n", x_X_100);
+	for (int i = sizeof(repeatingstr); i < 6; i += sizeof(repeatingstr)) {
+		x_X_100 += repeating * (pow(10, -i));
+		printf("%f     <><><><>\n\n\n", x_X_100);
 	}
 	printf("%f", x_X_100);
 	printf(" - %f", x);
