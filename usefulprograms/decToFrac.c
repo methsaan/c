@@ -1,25 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 int main(int argc, char *argv) {
 	double x;
-	double repeating;
-	char repeatingstr[5];
+	int repeating;
+	int repeatingLength = 0;
+	int temp = repeating;
 	printf("Enter a number with repeating digits: ");
 	scanf("%lf", &x);
 	printf("Enter the part of the number that repeats: ");
 	scanf("%lf", &repeating);
-	snprintf(repeatingstr, 5, "%d", repeating);
-	int repeatingstrlen = printf("%s", repeatingstr);
-	printf("\n");
-	double x_X_100 = (x*100);
-	printf("%d\n\n", repeatingstrlen);
-	printf("%f     <><><><>\n\n\n", x_X_100);
-	for (int i = sizeof(repeatingstr); i < 6; i += sizeof(repeatingstr)) {
-		x_X_100 += repeating * (pow(10, -i));
-		printf("%f     <><><><>\n\n\n", x_X_100);
+	while(temp != 0) {
+	    temp /= 10;
+	    repeatingLength++;
 	}
-	printf("%f", x_X_100);
+	printf("%d\n\n\n", repeatingLength);
+	double x_X_10 = (x*10);
+	for (int a = 4; a < 7; a++) {
+		x_X_10 += (double)repeating/pow(10, -(4*a+repeatingLength));
+	}
+	printf("%f", x_X_10);
 	printf(" - %f", x);
-	printf(" = %f\n", x_X_100-x);
+	printf(" = %f\n", x_X_10-x);
 }
