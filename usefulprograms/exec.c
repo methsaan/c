@@ -1,11 +1,29 @@
 #include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
 
 int main(int argc, char *argv) {
 	FILE *fp;
+	FILE *fp2;
 	char code[500];
-	scanf("%s", code);
-	fp = fopen("execfile.c" , "w");
-	fseek(fp, 6, SEEK_SET);
-	fprintf(fp, "EEEEE\n");
-	fclose(fp);
+	char origCode[500];
+	fp2 = fopen("execfile.c" , "r");
+	int c,nl=0,nc=0;
+	c=getc(fp2);
+	origCode[0] = c;
+	int idx = 1;
+	while(c!=EOF){
+		if(c=='\n')
+		nl++;
+		nc++;
+		c=getc(fp2);
+		origCode[idx] = c;
+		idx++;
+	}
+	fp = fopen("execfile.c", "w+");
+	while (strcmp(code, "return 0;\n") != 0) {
+		printf("Enter code: ");
+		fgets(code, 500, stdin);
+		
+	}
 }
