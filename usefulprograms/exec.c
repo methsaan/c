@@ -30,12 +30,15 @@ int main(int argc, char *argv) {
 	int idx2 = 0;
 	for (int x = 0; origCode[x] != '}'; x++) {
 		newCode[x] = origCode[x];
+		idx2++;
 	}
 	while (strcmp(code, "return 0;\n") != 0) {
 		printf("Enter code: ");
 		fgets(code, 500, stdin);
 		for (int x = 0; x < sizeof(code)/sizeof(*code); x++) {
-			newCode
+			newCode[idx2] = code[x];
+			idx2++;
 		}
+		printf("%s", newCode);
 	}
 }
