@@ -31,6 +31,13 @@ int main(int argc, char *argv) {
 		fp = fopen("execfile.c", "w+");
 		printf("Enter code: ");
 		fgets(code, 500, stdin);
+		int hasDeclaration = 0;
+		for (int x = 0; x < sizeof(code)/sizeof(*code); x++) {
+			if (code[x] == '=') {
+				hasDeclaration++;
+				break;
+			}
+		}
 		for (int x = 0; code[x] != '\0'; x++) {
 			mainCode[mainCodeIdx] = code[x];
 			mainCodeIdx++;
