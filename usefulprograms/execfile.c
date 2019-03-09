@@ -1,3 +1,4 @@
-printf("DOIJDSOA");
-printf("oaifn");
-return 0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
