@@ -27,9 +27,8 @@ int main(int argc, char *argv) {
 	}
 	fp = fopen("execfile.c", "w+");
 	while (strcmp(code, "return 0;\n") != 0) {
-		newCode[idx2] = '\0';
 		printf("Enter code: ");
 		fgets(code, 500, stdin);
-		fprintf(fp, 
+		fprintf(fp, code);
 	}
 }
