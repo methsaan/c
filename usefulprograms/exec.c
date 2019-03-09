@@ -7,6 +7,7 @@ int main(int argc, char *argv) {
 	FILE *fp2;
 	char code[500];
 	char origCode[500];
+	char mainCode[1000];
 	fp2 = fopen("execfile.c" , "r");
 	int c,nl=0,nc=0;
 	c=getc(fp2);
@@ -25,10 +26,25 @@ int main(int argc, char *argv) {
 		}
 		
 	}
+	int mainCodeIdx = 0;
 	while (strcmp(code, "return 0;\n") != 0) {
 		fp = fopen("execfile.c", "w+");
 		printf("Enter code: ");
 		fgets(code, 500, stdin);
-		fprintf(fp, code);
+		for (int x = 0; code[x] != '\0'; x++) {
+			mainCode[mainCodeIdx] = code[x];
+			mainCodeIdx++;
+		}
+		fprintf(fp, "#include <stdio.h>\n");
+		fprintf(fp, "#include <stdlib.h>\n");
+		fprintf(fp, "#include <math.h>\n");
+		fprintf(fp, "#include <string.h>\n\n");
+		fprintf(fp, "int main(int argc, char *argv) {\n");
+		for (int x = 0; x < mainCodeIdx; x++) {
+			fprintf(fp, "%c", mainCode[x]);
+		}
+		fprintf(fp, "}\n");
+		fclose(fp);
+		system("vi execfile.c");
 	}
 }
