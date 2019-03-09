@@ -40,11 +40,13 @@ int main(int argc, char *argv) {
 		fprintf(fp, "#include <math.h>\n");
 		fprintf(fp, "#include <string.h>\n\n");
 		fprintf(fp, "int main(int argc, char *argv) {\n");
-		for (int x = 0; x < mainCodeIdx; x++) {
-			fprintf(fp, "%c", mainCode[x]);
-		}
+		//for (int x = 0; x < mainCodeIdx; x++) {
+		//	fprintf(fp, "%c", mainCode[x]);
+		//}
+		fprintf(fp, code);
 		fprintf(fp, "}\n");
 		fclose(fp);
-		system("vi execfile.c");
+		system("gcc execfile.c -lm -o a.out");
+		system("./a.out");
 	}
 }
