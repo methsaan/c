@@ -4,9 +4,13 @@
 #include <string.h>
 
 int main(int argc, char *argv) {
-printf("Hello man");
-int x = 0;
-scanf("%d", &x);
-printf("%d\n", x);
+printf("cd");
+printf("safsfafsa");
+printf("\n\n\n\n");
+system("cat execfile.c");
+system("\n\n\n");
+system("printf \"araera\"");
+system("clear");
+system("ls");
 return 0;
 }
