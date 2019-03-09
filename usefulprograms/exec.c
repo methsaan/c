@@ -39,6 +39,7 @@ int main(int argc, char *argv) {
 			newCode[idx2] = code[x];
 			idx2++;
 		}
+		newCode[idx2] = '}';
 		printf("%s", newCode);
 	}
 }
