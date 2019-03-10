@@ -7,9 +7,7 @@ int main(int argc, char *argv) {
 	FILE *fp2;
 	char code[500];
 	char origCode[500];
-	char declareCode[50];
-	char command[500];
-	char mainCode[1000];
+	char declareCode[1000];
 	fp2 = fopen("execfile.c" , "r");
 	int c,nl=0,nc=0;
 	c=getc(fp2);
@@ -28,54 +26,45 @@ int main(int argc, char *argv) {
 		}
 		
 	}
-	int mainCodeIdx = 0;
 	int declareCodeIdx = 0;
-	int commandIdx = 0;
 	while (strcmp(code, "return 0;\n") != 0) {
 		fp = fopen("execfile.c", "w+");
 		printf("Enter code: ");
 		fgets(code, 500, stdin);
+		int codeLen = 0;
+		for (int x = 0; code[x] != '\0'; x++) {
+			codeLen++;
+		}
 		int hasDeclaration = 0;
-		//for (int x = 0; x < sizeof(code)/sizeof(*code); x++) {
-		//	if (code[x] == '=') {
-		//		hasDeclaration++;
-		//		break;
-		//	}
-		//}
-		//if (hasDeclaration) {
-		//	for (int x = 0; code[x] != '\0'; x++) {
-		//		declareCode[declareCodeIdx] = code[x];
-		//		declareCodeIdx++;
-		//	}
-		//}else {
-		//	for (int x = 0; code[x] != '\0'; x++) {
-		//		command[commandIdx] = code[x];
-		//		commandIdx++;
-		//	}
-		//}
-		//for (int x = 0; declareCode[x] != '\0'; x++){
-		//	mainCode[mainCodeIdx] = declareCode[x];
-		//	mainCodeIdx++;
-		//}
-		//for (int x = 0; command[x] != '\0'; x++){
-		//	mainCode[mainCodeIdx] = command[x];
-		//	mainCodeIdx++;
-		//}
-		for (int x = 0; code[x] != '\0'; x++){
-			mainCode[mainCodeIdx] = code[x];
-			mainCodeIdx++;
+		for (int x = 0; x < codeLen; x++) {
+			if (code[x] == '=') {
+				hasDeclaration++;
+				break;
+			}
+		}
+		if (hasDeclaration == 1) {
+			for (int x = 0; code[x] != '\0'; x++){
+				declareCode[declareCodeIdx] = code[x];
+				declareCodeIdx++;
+			}
+			for (int x = 0; x < 500; x++) {
+				code[x] = '\0';
+			}
 		}
 		fprintf(fp, "#include <stdio.h>\n");
 		fprintf(fp, "#include <stdlib.h>\n");
 		fprintf(fp, "#include <math.h>\n");
-		fprintf(fp, "#include <string.h>\n\n");
+		fprintf(fp, "#include <string.h>\n");
+		fprintf(fp, "#include <stdbool.h>\n\n");
 		fprintf(fp, "int main(int argc, char *argv) {\n");
-		for (int x = 0; x < mainCodeIdx; x++) {
-			fprintf(fp, "%c", mainCode[x]);
+		for (int x = 0; x < declareCodeIdx; x++) {
+			fprintf(fp, "%c", declareCode[x]);
 		}
+		fprintf(fp, "%s", code);
 		fprintf(fp, "}\n");
 		fclose(fp);
 		system("gcc execfile.c -lm -o a.out");
 		system("./a.out");
 	}
+	system("gcc exec.c");
 }
