@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 
 int main(int argc, char *argv) {
-printf("Hello");
-printf("\n");
-system("clear");
+int x = 0;
+char a[100] = "sdgshaehgaehaeha";
 return 0;
 }
