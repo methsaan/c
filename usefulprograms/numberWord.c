@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
-#include <stdbool.h>
+
+char *intToStr(int num) {
+}
 
 int main(int argc, char *argv) {
-int x = 0;
-return 0;
 }

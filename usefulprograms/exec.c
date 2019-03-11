@@ -63,10 +63,8 @@ int main(int argc, char *argv) {
 		fprintf(fp, "%s", code);
 		fprintf(fp, "}\n");
 		fclose(fp);
-		system("clear");
 		system("gcc execfile.c -lm -o a.out");
 		system("./a.out");
-		system("cat execfile.c");
 	}
 	system("gcc exec.c");
 }
