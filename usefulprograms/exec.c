@@ -37,7 +37,7 @@ int main(int argc, char *argv) {
 		}
 		int hasDeclaration = 0;
 		for (int x = 0; x < codeLen; x++) {
-			if (code[x] == '=') {
+			if (code[x] == '=' ) {
 				hasDeclaration++;
 				break;
 			}
