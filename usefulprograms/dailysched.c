@@ -39,7 +39,7 @@ int main(int argc, char *argv){
 	system("clear");
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *pdbr[4] = {"PDBR1", "PDBR2", "PDBR3", "PDBR4"};
-	if (dayy == 0) {
+	if (dayy == 2) {
 		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SUN1" : "SUN2"), pdbr[randnum]);
 	}else if (dayy == 6) {
 		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SAT1" : "SAT2"), pdbr[randnum]);
