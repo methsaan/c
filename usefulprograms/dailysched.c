@@ -17,7 +17,7 @@ int main(int argc, char *argv){
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
-		fprintf(fpw, "%d\n", rand()%12);
+		fprintf(fpw, "%d\n", rand()%24);
 		fprintf(fpw, "%d\n", rand()%2);
 		fclose(fpw);
 	}	
@@ -46,7 +46,7 @@ int main(int argc, char *argv){
 	}else if (dayy == 4) {
 		printf("Today you are following schedule %d or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), pdbr[randnum]);
 	}else {
-		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
+		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
 	}
 	fclose(fp);
