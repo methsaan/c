@@ -13,7 +13,7 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '1') && (timea[1] == '0')) {
+	if ((timea[0] == '1') && (timea[1] == '2')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
@@ -39,18 +39,13 @@ int main(int argc, char *argv){
 	system("clear");
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *pdbr[4] = {"PDBR1", "PDBR2", "PDBR3", "PDBR4"};
-	int daynum = 6;
-	if (daynum == 0) /*(dayy == 0)*/ {
-		printf("Sunday\n");
+	if (dayy == 0) {
 		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SUN1" : "SUN2"), pdbr[randnum]);
-	}else if (daynum == 6) /*(dayy == 6)*/ {
-		printf("Saturday\n");
+	}else if (dayy == 6) {
 		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SAT1" : "SAT2"), pdbr[randnum]);
-	}else if (daynum == 4) /*(dayy == 4)*/ {
-		printf("Thusday\n");
+	}else if (dayy == 4) {
 		printf("Today you are following schedule %d or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), pdbr[randnum]);
 	}else {
-		printf("Normal\n");
 		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
 	}
