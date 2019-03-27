@@ -13,7 +13,7 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '1') && (timea[1] == '2')) {
+	if ((timea[0] == '1') && (timea[1] == '3')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
@@ -44,7 +44,7 @@ int main(int argc, char *argv){
 	}else if (dayy == 6) {
 		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SAT1" : "SAT2"), pdbr[randnum]);
 	}else if (dayy == 4) {
-		printf("Today you are following schedule %d or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), pdbr[randnum]);
+		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), pdbr[randnum]);
 	}else {
 		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
