@@ -48,6 +48,7 @@ int main(int argc, char *argv){
 	}else {
 		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
+		printf("Today you are following schedule %s or %s\n", day_array[randday], pdbr[randnum]);
 	}
 	fclose(fp);
 	printf("_________________________________________________________________________________________________________________________________________________________\n");
