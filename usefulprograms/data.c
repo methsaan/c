@@ -40,7 +40,7 @@ int main(int argv, char *argc){
 		for (int x = 0; x < numOfData; x++){
 			sum += data[x];
 		}
-		printf("Average: %g\n", sum/numOfData);
+		printf("Average: %.15f\n", sum/numOfData);
 	}else if(strcmp(type, "median") == 0){
 		int swapped = 0;
 		int temps;
