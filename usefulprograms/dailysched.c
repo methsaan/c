@@ -20,7 +20,6 @@ int main(int argc, char *argv){
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
 		fclose(fpw);
-		printf("aqwf\nqwffiqowimfo\noaweifoqwifqmo\nwoeigfnpqeingpq\nwoeignmwoeignwo\nowirngoweingow\nweogftiwneotiwotewnotiwenotiqnoweitqnwoiqtowitnqowinqotwin\nweiogtnoitnwoeitn\n");
 	}	
 	FILE *fp = fopen("schedfile", "r");
 	char one[200];
