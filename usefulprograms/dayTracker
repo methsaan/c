@@ -66,3 +66,4 @@
 	MONTH		DAY		PA		D		PP		MT		SCHEDULE	UNFAIR_DAY		REASON				FREQ_OF_REASON
 ['April']		['2nd']	['n']		['n']		['n']		['n']		['F']		['n']			['n']				['n']
 ['April']		['4th']	['y']		['y']		['y']		['y']		['perfect']		['n']			['n']				['n']
+['April']		['8th']	['n']		['n']		['n']		['n']		['F']		['y']			['X-ray']				['1']
