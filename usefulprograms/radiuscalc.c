@@ -25,21 +25,7 @@ int main(int argc, char *argv){
 	}else if (strcmp(option, "cylinder area\n") == 0) {
 		printf("Enter surface area: ");
 		scanf("%lf", &area);
-		printf("Enter height: ");
-		scanf("%lf", &height);
-		double high = area, low = 0.0;
-		while (1) {
-			radius = low + ((high - low) / 2);
-			if ((PI*radius*radius)*2+(2*PI*radius)*height < area) {
-				low = radius;
-			}else {
-				high = radius;
-			}
-			if (fabs((PI*radius*radius)*2+(2*PI*radius)*height-area) < 0.000001) {
-				break;
-			}
-		}
-		printf("Radius: %.20g\n", radius);
+		printf("Enter height: ")
 	}else if (strcmp(option, "cylinder volume\n") == 0) {
 		printf("Enter volume: ");
 		scanf("%lf", &volume);
