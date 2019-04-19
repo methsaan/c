@@ -13,14 +13,14 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1] == '5')) {
+	if ((timea[0] == '1') && (timea[1] == '2')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
 		char *studytypes[10] = {"Encyclopedia", "Math", "Science", "History", "Geography", "Geography", "French", "History", "English", "Sinhala"};
-		fprintf(fpw, "%s\n", rand()%10);
+		fprintf(fpw, "%s\n", studytypes[rand()%10]);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
