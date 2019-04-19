@@ -52,7 +52,7 @@ int main(int argc, char *argv){
 		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
 		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
 	}
-	printf("Study subject: %s", studytype);
+	printf("Study subject: %s\n", studytype);
 	fclose(fp);
 	printf("_________________________________________________________________________________________________________________________________________________________\n");
 	printf("|                            REGULAR SCHEDULE    Wake up 5:20 AM       Sleep 8:40 PM      Workout: Push up: 3 sets of 8, Squats: 2 sets of 20           |\n");
