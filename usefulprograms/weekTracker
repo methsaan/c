@@ -1,7 +1,0 @@
-> 18 BANANAS		> 5 PERFECT SCHEDULE DAYS WITH TIME		> 6 PERFECT SCHEDULE DAYS WITHOUT TIME			UNFAIR DAY Y/N			REASON
-['No']					['n']						['n']						['y']			['Change of schedules']
-['n']					['n']						['n']						['n']			['n']
-['No']					['n']						['n']						['y']			['Less bananas']
-['n']					['n']						['n']						['y']			['picking up/shopping/late sleep']
-['n']					['n']						['n']						['n']			['n']
-['No']					['n']						['n']						['n']			['n']
