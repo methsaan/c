@@ -25,7 +25,7 @@ int main(int argc, char *argv){
 	}else if (strcmp(option, "cylinder area\n") == 0) {
 		printf("Enter surface area: ");
 		scanf("%lf", &area);
-		printf("Enter height: ")
+		printf("Enter height: ");
 	}else if (strcmp(option, "cylinder volume\n") == 0) {
 		printf("Enter volume: ");
 		scanf("%lf", &volume);
