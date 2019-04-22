@@ -19,9 +19,7 @@ int main(int argc, char *argv){
 		fprintf(fpw, "%d\n", rand()%4);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		char *s;
-		sprintf(s, "encyclopedia-pg.%d", (rand()%506)+1);
-		char *studytypes[12] = {s, "Math", "Science", "History", "Geography", "Geography", "French", "History", "English", "Sinhala", "Programming", "Buddhism"};
+		char *studytypes[12] = {"Encyclopedia", "Math", "Science", "History", "Geography", "Geography", "French", "History", "English", "Sinhala", "Programming", "Buddhism"};
 		fprintf(fpw, "%s\n", studytypes[rand()%12]);
 		fclose(fpw);
 	}	
