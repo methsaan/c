@@ -15,12 +15,6 @@ int main(int argc, char *argv) {
 	scanf("%d-%d-%d", &birth.year, &birth.month, &birth.date);
 	printf("What is the current date (yyyy-mm-dd): ");
 	scanf("%d-%d-%d", &current.year, &current.month, &current.date);
-	printf("%d\n", current.year);
-	printf("%d\n", current.month);
-	printf("%d\n", current.date);
-	printf("%d\n", birth.year);
-	printf("%d\n", birth.month);
-	printf("%d\n", birth.date);
 	int days;
 	int dayCarryover = 0;
 	int months;
