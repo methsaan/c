@@ -32,7 +32,7 @@ int main(int argc, char *argv) {
 			printf(" ");
 		}
 		printf("(%d, %d)\n", coords[i].x/2-30, -(coords[i].y-30));
-		for (long int j = 0; j < 6000000; j++) {
+		for (long int j = 0; j < 16000000; j++) {
 			;
 		}
 	}

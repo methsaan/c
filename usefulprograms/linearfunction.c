@@ -45,7 +45,7 @@ int main(int argc, char *argv) {
 	fprintf(fp, "\t\t\tprintf(\" \");\n");
 	fprintf(fp, "\t\t}\n");
 	fprintf(fp, "\t\tprintf(\"(%%d, %%d)\\n\", coords[i].x/2-30, -(coords[i].y-30));\n");
-	fprintf(fp, "\t\tfor (long int j = 0; j < 6000000; j++) {\n");
+	fprintf(fp, "\t\tfor (long int j = 0; j < 16000000; j++) {\n");
 	fprintf(fp, "\t\t\t;\n");
 	fprintf(fp, "\t\t}\n");
 	fprintf(fp, "\t}\n");
