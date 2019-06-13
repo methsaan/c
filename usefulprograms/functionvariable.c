@@ -17,7 +17,7 @@ void convertToComputer(int *x, int *y) {
 int main(int argc, char *argv) {
 	struct coord coords[30];
 	for (int x = -15; x < 15; x++) {
-		int y = x+(x*x/10);
+		int y = pow(x, 2);
 		coords[x+15].x = x;
 		coords[x+15].y = y;
 		convertToComputer(&coords[x+15].x, &coords[x+15].y);
@@ -32,7 +32,7 @@ int main(int argc, char *argv) {
 			printf(" ");
 		}
 		printf("X\n");
-		for (long int j = 0; j < 300000; j++) {
+		for (long int j = 0; j < 900000; j++) {
 			;
 		}
 	}

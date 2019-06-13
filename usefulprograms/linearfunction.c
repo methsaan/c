@@ -45,7 +45,7 @@ int main(int argc, char *argv) {
 	fprintf(fp, "\t\t\tprintf(\" \");\n");
 	fprintf(fp, "\t\t}\n");
 	fprintf(fp, "\t\tprintf(\"X\\n\");\n");
-	fprintf(fp, "\t\tfor (long int j = 0; j < 300000; j++) {\n");
+	fprintf(fp, "\t\tfor (long int j = 0; j < 900000; j++) {\n");
 	fprintf(fp, "\t\t\t;\n");
 	fprintf(fp, "\t\t}\n");
 	fprintf(fp, "\t}\n");
