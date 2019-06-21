@@ -17,7 +17,7 @@ void convertToComputer(int *x, int *y) {
 int main(int argc, char *argv) {
 	struct coord coords[30];
 	for (int x = -15; x < 15; x++) {
-		int y = pow(x, 2);
+		int y = pow(x, 2)/14+10;
 		coords[x+15].x = x;
 		coords[x+15].y = y;
 		convertToComputer(&coords[x+15].x, &coords[x+15].y);
