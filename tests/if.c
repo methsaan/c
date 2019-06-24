@@ -2,8 +2,8 @@
 #include<string.h>
 
 int main(int argc, char* argv) {
-	char x[] = "sasasasasasasasasasa";
-	char y[] = "sasasasasasasasasasa";
+	char x[] = "s";
+	char y[] = "a";
 	if (strcmp(x, y) != 0) {
 		printf("!\n");
 	}
