@@ -13,13 +13,13 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1] == '5')) {
+	if ((timea[0] == '1') && (timea[1] == '9')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		char *studytypes[12] = {"Encyclopedia", "Math", "Science", "History", "Geography", "Geography", "French", "History", "English", "Sinhala", "Programming", "Buddhism"};
+		char *studytypes[12] = {"General", "Algebra/Graphing", "Chemistry", "History", "Geography", "Geography", "French tenses", "History", "English paragraphs", "Sinhala grammar", "Unix Programming", "Buddhism Dhamma"};
 		fprintf(fpw, "%s\n", studytypes[rand()%12]);
 		fclose(fpw);
 	}	
@@ -57,7 +57,7 @@ int main(int argc, char *argv){
 	printf("Study subject: %s\n", studytype);
 	fclose(fp);
 	printf("_________________________________________________________________________________________________________________________________________________________\n");
-	printf("|                            REGULAR SCHEDULE    Wake up 5:20 AM       Sleep 8:50 PM      Workout: Push up: 3 sets of 10, Squats: 3 sets of 20           |\n");
+	printf("|                            REGULAR SCHEDULE    Wake up 5:20 AM       Sleep 8:50 PM      Workout: Push up: 3 sets of 10, Squats: 3 sets of 20          |\n");
 	printf("|_______________________________________________________________________________________________________________________________________________________|\n");
 	printf("|        1        |       2       |        3        |       MUS1       |        SAT1       |        SUN1        |       PDBR1       |       PDBR3       |\n");
 	printf("|_________________|_______________|_________________|__________________|___________________|____________________|___________________|___________________|\n");
