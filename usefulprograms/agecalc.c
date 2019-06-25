@@ -47,5 +47,5 @@ int main(int argc, char *argv) {
 		years = current.year - birth.year;
 	}
 	age = years + ((1.0/12.0)*months) + ((1.0/365.0)*days);
-	printf("%d years, %d months, %d days\nAproximate age: %.10f\n", years, months, days, age);
+	printf("%d years, %d months, %d days (approximate)\nAge: %.10f\n", years, months, days, age);
 }
