@@ -13,7 +13,7 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '1') && (timea[1] == '9')) {
+	if ((timea[0] == '1') && (timea[1] == '1')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%4);
