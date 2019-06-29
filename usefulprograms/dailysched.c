@@ -21,6 +21,7 @@ int main(int argc, char *argv){
 		fprintf(fpw, "%d\n", rand()%2);
 		char *studytypes[12] = {"General", "Algebra/Graphing", "Chemistry", "History", "Geography", "Geography", "French tenses", "History", "English paragraphs", "Sinhala grammar", "Unix Programming", "Buddhism"};
 		fprintf(fpw, "%s\n", studytypes[rand()%12]);
+		printf("%s\n", studytypes[rand()%12]);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
