@@ -39,7 +39,7 @@ int main(int argc, char *argv){
 	int randday = atoi(three);
 	int randnum2 = atoi(four);
 	char *studytype = five;
-	system("git commit -a -m 'changing schedule information'");
+	system("git commit -a -m 'day tracker'");
 	system("git push");
 	system("clear");
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
