@@ -16,24 +16,26 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 	if (op[0] == '+') {
-		printf("%f + %f = %f\n", x, y, x+y);
+		printf("%g + %g = %g\n", x, y, x+y);
 	}
 	if (op[0] == '-') {
-		printf("%f - %f = %f\n", x, y, x-y);
+		printf("%g - %g = %g\n", x, y, x-y);
 	}
 	if (op[0] == 'x') {
-		printf("%f x %f = %f\n", x, y, x*y);
+		printf("%g x %g = %g\n", x, y, x*y);
 	}
 	if (op[0] == '/') {
-		printf("%f / %f = %f\n", x, y, x/y);
+		printf("%g / %g = %g\n", x, y, x/y);
 	}
 	if (op[0] == '^') {
-		printf("%f ^ %f = %f\n", x, y, pow(x, y));
+		printf("%g ^ %g = %g\n", x, y, pow(x, y));
 	}
 	if (op[0] == 'r') {
-		printf("          _____\n");
-		printf("%f /    \n", y);
-		printf("        V %f \t= \t%f\n", x, pow(x, 1/y));
+		//printf("          _____\n");
+		char buffer[20];
+		sprintf(buffer, "%g", y);
+		printf("%s\n", buffer);
+		//printf("        V %g \t= \t%g\n", x, pow(x, 1/y));
 	}
 	if (strcmp(op, "hyp") == 0) {
 		printf("c = %f\n", sqrt(pow(x, 2)+pow(y, 2)));
