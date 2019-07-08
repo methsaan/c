@@ -19,4 +19,5 @@ int main(int argc, char *argv[]) {
 	hypotenuse = sqrt(pow(abs(x3-x1), 2)+pow(abs(y3-y1), 2));
 	hypotenuse2 = sqrt(pow(abs(x3-x2), 2)+pow(abs(y3-y2), 2));
 
+
 }
