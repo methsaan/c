@@ -9,15 +9,13 @@ int main(int argc, char *argv[]) {
 	double y2 = atof(argv[4]);
 	double x3 = atof(argv[5]);
 	double y3 = atof(argv[6]);
-	double base;
+	double side1;
 	double height;
-	double hypotenuse;
-	double hypotenuse2;
-	double leg1;
-	double leg2;
-	base = sqrt(pow(abs(x2-x1), 2)+pow(abs(y2-y1), 2));
-	hypotenuse = sqrt(pow(abs(x3-x1), 2)+pow(abs(y3-y1), 2));
-	hypotenuse2 = sqrt(pow(abs(x3-x2), 2)+pow(abs(y3-y2), 2));
-
-
+	double side2;
+	double side3;
+	double d;
+	side1 = sqrt(pow(abs(x2-x1), 2)+pow(abs(y2-y1), 2));
+	side2 = sqrt(pow(abs(x3-x1), 2)+pow(abs(y3-y1), 2));
+	side3 = sqrt(pow(abs(x3-x2), 2)+pow(abs(y3-y2), 2));
+	printf("%f, %f\n", y1, x2);
 }
