@@ -22,10 +22,10 @@ int main(int argc, char* argv[])
 		printf("%g - %g = %g\n", x, y, x-y);
 	}
 	if (op[0] == 'x') {
-		printf("%g x %g = %g\n", x, y, x*y);
+		printf("%g \u00D7 %g = %g\n", x, y, x*y);
 	}
 	if (op[0] == '/') {
-		printf("%g / %g = %g\n", x, y, x/y);
+		printf("%g \u00F7 %g = %g\n", x, y, x/y);
 	}
 	if (op[0] == '^') {
 		printf("%g ^ %g = %g\n", x, y, pow(x, y));
