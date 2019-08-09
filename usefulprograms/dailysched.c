@@ -1,9 +1,11 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
-int main(int argc, char *argv){
+int main(int argc, char *argv[]) {
+	char breaktype[80] = {0x0};
+	strcpy(breaktype, argv[1]);
 	system("clear");
 	system("./dayTracker.py");
 	srand(time(NULL));
@@ -13,22 +15,23 @@ int main(int argc, char *argv){
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1] == '5')) {
+	if ((timea[0] == '0') && (timea[1] == '5' && timea[3] == '1')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
-		fprintf(fpw, "%d\n", rand()%4);
+		fprintf(fpw, "%d\n", rand()%2);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		char *studytypes[12] = {"General", "Algebra/Graphing", "Chemistry", "History", "Geography", "Geography", "French tenses", "History", "English paragraphs", "Sinhala grammar", "Unix Programming", "Buddhism"};
-		fprintf(fpw, "%s\n", studytypes[rand()%12]);
+		char *studytypes[19] = {"Trignometry", "Algebra", "Computer hacking", "Astronomy", "Mixtures", "Human Body", "Structures", "Country, City, Province/State Facts", "Ancient Civilizations", "English writing", "English reading", "French writing", "French reading", "Sinhala reading", "Sinhala writing", "Buddha's teachings", "Life of the Buddha", "Government", "Economics terms"};
+		fprintf(fpw, "%s\n", studytypes[rand()%19]);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
-	char one[200];
-	char two[200];
-	char three[200];
-	char four[200];
-	char five[200];
+	char one[1];
+	char two[1];
+	char three[2];
+	char four[1];
+	char five[11];
+	char six[1];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
@@ -41,59 +44,84 @@ int main(int argc, char *argv){
 	char *studytype = five;
 	system("git commit -a -m 'day tracker'");
 	system("git push");
+	int idx = 0;
+	if (strcmp(breaktype, "free") == 0) {
+		idx = 0;
+	}else if (strcmp(breaktype, "tennis") == 0) {
+		idx = 1;
+	}else if (strcmp(breaktype, "music") == 0) {
+		idx = 2;
+	}else if (strcmp(breaktype, "swimming") == 0) {
+		idx = 3;
+	}
 	system("clear");
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
-	char *pdbr[4] = {"PDBR1", "PDBR2", "PDBR3", "PDBR4"};
+	char *pdbr[4][2] = {{"PDBR1", "PDBR2"}, {"PDBR3", "PDBR4"}, {"PDBR5", "PDBR6"}, {"PDBR7", "PDBR8"}};
 	if (dayy == 0) {
-		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SUN1" : "SUN2"), pdbr[randnum]);
+		printf("Today you are following schedule %s, FAIL%d or %s\n", (randnum2==0 ? "SUN1" : "SUN2"), randnum2+1, pdbr[idx][randnum]);
 	}else if (dayy == 4) {
-		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), pdbr[randnum]);
+		printf("Today you are following schedule %s, FAIL%d or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), randnum2+1, pdbr[idx][randnum]);
 	}else if (dayy == 6) {
-		printf("Today you are following schedule %s or %s\n", (randnum2==0 ? "SAT1" : "SAT2"), pdbr[randnum]);
+		printf("Today you are following schedule %s, FAIL%d or %s\n", (randnum2==0 ? "SAT1" : "SAT2"), randnum2+1, pdbr[idx][randnum]);
 	}else {
-		int day_array[] = {1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6};
-		printf("Today you are following schedule %d or %s\n", day_array[randday], pdbr[randnum]);
+		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
+		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[idx][randnum]);
 	}
 	printf("Study subject: %s\n", studytype);
 	fclose(fp);
-	printf("_________________________________________________________________________________________________________________________________________________________\n");
-	printf("|                            REGULAR SCHEDULE    Wake up 5:20 AM       Sleep 8:50 PM      Workout: Push up: 3 sets of 10, Squats: 3 sets of 20          |\n");
-	printf("|_______________________________________________________________________________________________________________________________________________________|\n");
-	printf("|        1        |       2       |        3        |       MUS1       |        SAT1       |        SUN1        |       PDBR1       |       PDBR2       |\n");
-	printf("|_________________|_______________|_________________|__________________|___________________|____________________|___________________|___________________|\n");
-	printf("|____BREAKFAST____|__BREAKFAST____|_______PA________|_______PA_________|________PA_________|_________C__________|_________C_________|______Go/Python____|\n");
-	printf("|______C++________|_______C_______|____BREAKFAST____|BREAKFAST_+_BANANA|_____BREAKFAST_____|________C++_________|______Breakfast____|______Breakfast____|\n");
-	printf("|_______PA________|____Study______|_____JAVA/GO_____|_______PP_________|_____C++/Java/c____|_____SWIMMING_______|______Tennis/MT____|______Tennis/ft____|\n");
-	printf("|________D________|__SCHOOL/LUNCH_|_______R1________|_____SCHOOL_______|________PP_________|____Laundry/MT______|________Java_______|_________C++_______|\n");
-	printf("|__SCHOOL/LUNCH___|____JS/GO______|_____SCHOOL______|______PYTHON______|_____FT_+_BANANA___|_____LUNCH/Java_____|_________C++_______|________JS/C_______|\n");
-	printf("|_______Study_____|____R2/HW______|_______R2________|_______R2_________|_______HW/FT_______|_______TENNIS_______|_________PA________|__________PA_______|\n");
-	printf("|______Banana_____|_____R1________|______Bash_______|____HW_+_PA_______|_________D_________|_________Go_________|_________PP________|_______Lunch_______|\n");
-	printf("|______R1/R2______|__FT_+_BANANA__|______Study______|____MUSIC_CLASS___|________MT_________|_________PP_________|________Lunch______|__________D________|\n");
-	printf("|_______HW________|______D________|_______MT________|_____DINNER_______|_________R1________|_________PA_________|_______D/Python____|_________MT________|\n");
-	printf("|_______PP________|_____PP________|_______PP________|________D_________|________R2_________|_______DINNER_______|_________C++_______|_________PP________|\n");
-	printf("|____PA/DINNER____|______PA_______|_______FT________|______SLEEP_______|________R3_________|_______SLEEP________|__________Go_______|_________S_________|\n");
-	printf("|_____SLEEP_______|______MT_______|_______D_________|__________________|________R4_________|____________________|___________B_______|_______R3/R2_______|\n");
-	printf("|_________________|___DINNER______|_____DINNER______|__________________|________PA_________|____________________|________DINNER_____|______Bash/C_______|\n");
-	printf("|_________________|____SLEEP______|_____SLEEP_______|__________________|_______DINNER______|____________________|________SLEEP______|___________________|\n");
-	printf("|_________________|_______________|_________________|__________________|_______SLEEP_______|____________________|___________________|___________________|\n");
-	printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-	printf("_________________________________________________________________________________________________________________________________________________________\n");
-	printf("|                                                            TIMED SCHEDULE                 Wake up 5:20 AM                                             |\n"); 
-	printf("|_______________________________________________________________________________________________________________________________________________________|\n");
-	printf("|________4________|________5________|________6________|_______MUS2_______|_______SAT2_______|_______SUN2_______|_______PDBR3_______|_______PDBR4________|\n");
-	printf("|5:50____PA_______|5:50____PA_______|5:50_C/Python/Go_|5:50_____PA_______|5:50___PA_________|5:50____Pack______|5:50_C/C++/Go/Java_|5:50__Python/JS_____|\n");
-	printf("|6:10__Breakfast__|6:10__3_Bananas__|6:40__Breakfast__|6:10__2_Bananas___|6:10_Program______|6:10_____PA_______|6:30_Outd. Acti./FT|6:20__Outd._Ac./MT__|\n");
-	printf("|6:30____Java_____|6:25__Breakfast__|7:00____Pack_____|6:20__Breakfast___|6:40_Breakfast____|6:30_____FT_______|9:30__Shower/FT____|9:30_____FT_________|\n");
-	printf("|6:50___Banana____|6:45_____FT______|7:12___School____|6:40____Java______|7:05_2_Bananas____|6:40___Breakfast__|10:00_Python/JS/FT_|10:30__C/Go/C++/Java|\n");
-	printf("|6:55___Pack______|7:05____Pack_____|3:55___Shower____|7:10___School_____|7:25____FT________|7:05____Study_____|11:00_____ft_______|11:15_____PP________|\n");
-	printf("|7:00_____D_______|7:10___SCHOOL____|4:15_____PA______|4:15___Lunch______|8:00__R1/R2/HW____|7:45___Program____|12:00____Lunch_____|12:00___Lunch_______|\n");
-	printf("|7:12___SCHOOL____|3:55___Shower____|4:35____Lunch____|4:45____PP________|8:40__PP/MT/D/Go__|8:50___Swimming___|1:00______PP_______|1:00______MT________|\n");
-	printf("|4:45_____Go______|4:15___LUNCH_____|5:00__4_bananas__|5:30_____D________|12:00__Lunch______|11:00__Laundry/FT_|2:00______PA_______|2:00____3_Bananas___|\n");
-	printf("|5:10_____PA______|4:50___JS/C++____|5:30_____PP______|6:00_____HW_______|1:00____PP________|12:00___Lunch_____|2:20____Program____|2:30_______FT_______|\n");
-	printf("|5:30____Egg______|5:20___French____|6:15_____D_______|6:30___MUSIC______|2:00____Study_____|1:00_____PP_______|2:50_____Study_____|3:50_______PP_______|\n");
-	printf("|5:50____Java_____|5:40____Go_______|6:45_____B_______|8:15___DINNER_____|3:00____FT________|2:00____Pack/FT___|3:30______HW/FT____|4:35_____Study______|\n");
-	printf("|6:15_____PP______|6:20____PP_______|7:15__C++/Java___|8:45___Sleep______|3:45_______D______|2:30____Tennis____|4:00_____Egg/FT____|5:35_______D________|\n");
-	printf("|7:00___Dinner____|6:55____MT_______|8:00__Dinner/FT__|__________________|5:45_____PP_______|6:45____Dinner____|5:00______FT_+_D___|6:00_______PA_______|\n");
-	printf("|7:45___Sleep_____|7:25___DINNER____|8:45___Sleep_____|__________________|7:45___Dinner_____|7:45____Sleep_____|7:00___Dinner______|6:20____Dinner______|\n");
-	printf("|_________________|8:10___Sleep_____|_________________|__________________|8:30____Sleep_____|__________________|8:00____Sleep______|7:50____Sleep_______|\n");
+	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
+	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1         |\n");
+	printf("|____________________________________________________________________________________________________________________________________________________________________|___________________|\n");
+	printf("|_________1_________|_________3_________|_______MUS1_______|_______SAT1_______|______SUN1______|______PDBR1______|_____PDBR3_______|_____PDBR5_____|______PDBR7______|5-12:00AM __1___   |\n");
+	printf("|    Python/JS      |      Go/Java      |    Study + D    |(PA+Breakfast+OA)/PA|      PA       |       PA        |       PA        |      PA       |       PA        |           PA      |\n");
+	printf("|        PA         |        MT         |        PA        |   C / Breakfast |(Breakfast+OA)/FT|    Breakfast    |    Breakfast    |   Breakfast   |    Breakfast    |           PP      |\n");
+	printf("|        MT         |        PA         |        MT        |       C++        |  Java/Python   |     OA/C++      |    OA/Swimming  |       C       |   Swimming/OA   |2-4:00PM  __2___   |\n");
+	printf("|       Bash        |       Java        |         C        |       Go         |    JS + MT     |      Study      |    Java/JS      |    MT + OA    |     C/JS        |           ST      |\n");
+	printf("|    Breakfast      |     Breakfast     |    Breakfast     |      Study       |       D        |       Java      |     FT / D      |       FT      |       D         |           MT      |\n");
+	printf("|     School        |      School       |      School      |      Lunch       |    Lunch       |        PA       |       PA        |       ST      |      PP         |4-5:00PM  __3___   |\n");
+	printf("|      Lunch        |       Lunch       |      Lunch       |        D         |     Study      |        PP       |       PP        |       MT      |      Lunch      |            D      |\n");
+	printf("|       PP          |        PP         |        HW        |        FT        |      FT        |      Lunch      |     Lunch       |     Lunch     |    Tennis       |           PA      |\n");
+	printf("|       HW          |   Study + HW      |        PA        | (HW/MT) / (HW+MT)|    HW/PP       |        MT       |     Tennis      |      Bash     |      FT         |5-6:00PM  __4___   |\n");
+	printf("|     Study + D     |        JS         |        PP        |        PA        |     PP/FT      |         D       |       ST        |       D       |      PA         |           Java    |\n");
+	printf("|       PA          |        PA         |     Music Class  |        PP        |      PA        |      Python     |       MT        |      PA       |      ST         |           Study   |\n");
+	printf("|       FT          |      FT + D       |        FT        |        FT        |      Java      |        FT       |      Bash       |      PP       |      C++        |6-7:00PM  __5___   |\n");
+	printf("|     Dinner        |      Dinner       |      Dinner      |      Dinner      |   Dinner       |      Dinner     |     Dinner      |  Music Class  |      MT         |           C++     |\n");
+	printf("|     Sleep         |      Sleep        |      Sleep       |      Sleep       |   Sleep        |      Sleep      |      Sleep      |    Dinner     |    Dinner       |           Bash    |\n");
+	printf("|                   |                   |                  |                  |                |                 |                 |      Go       |    Sleep        |7-11:00PM __6___   |\n");
+	printf("|                   |                   |                  |                  |                |                 |                 |    Sleep      |                 |     Dinner + Sleep|\n");
+	printf("|___________________|___________________|__________________|__________________|________________|_________________|_________________|_______________|_________________|___________________|_\n");
+	printf("|                                                             TIMED SCHEDULE            Wake up 4:40 AM                                                               |      FAIL2         |\n");
+	printf("|_____________________________________________________________________________________________________________________________________________________________________|____________________|\n");
+	printf("|         2         |         4         |       MUS2       |       SAT2       |      SUN2      |      PDBR2      |      PDBR4      |     PDBR6      |    PDBR8        |5-12:00AM  __1___   |\n");
+	printf("|___________________|___________________|__________________|__________________|________________|_________________|_________________|________________|_________________|            Study   |\n");
+	printf("|5:10|   C/C++      |5:10|   C/Java     |5:10|   Python    |5:10|    PA       |5:10|   PA      |5:10|    PA      |5:10|    PA      |5:10|   PA      |5:10|    PA      |            PP      |\n");
+	printf("|5:50|    PA        |6:00|    Study     |5:50|    Study    |5:40|  Breakfast  |5:40| Breakfast |5:40| Breakfast  |5:40| Breakfast  |5:40| Breakfast |5:40| Breakfast  |2-4:00PM   __2___   |\n");
+	printf("|6:20|  Study       |6:40|     D        |6:10|    PA       |6:05|OA+Program+ST|6:05|OA+ST/Swim |6:05| OA/PP/PR   |6:05|  OA/C/C++  |6:05|  OA/Java  |6:05|  OA/Python |             D      |\n");
+	printf("|6:50|   FT         |7:00|  Breakfast   |6:40|    MT       |9:20|    FT       |9:00|  Swim/C++ |9:00|    MT      |9:00|OA/Swim/Bash|9:30|    MT     |9:00|OA/Swim/Bash|            MT      |\n");
+	printf("|7:00|  Breakfast   |7:17|   School     |7:00|  Breakfast  |9:50|    C        |11:00|   PA     |10:00|  Python   |11:00|   PA      |10:00|   PP     |11:00|   ST      |4-5:00PM   __3___   |\n");
+	printf("|7:17|   School     |4:20|     PA       |7:17|   School    |10:30|   C++      |11:40|  Lunch   |10:45|   PA      |11:40|  Lunch    |11:00|   C      |11:40|  Lunch    |            PR      |\n");
+	printf("|4:20|   Lunch      |4:50|   Lunch      |4:20|   Lunch     |11:10|   PA       |1:00|    MT     |11:15|  JS/C++   |12:40|    D      |11:40| Lunch    |12:40|    D      |            PA      |\n");
+	printf("|4:50|     D        |5:25|     PP       |4:50|    PP       |11:40| Lunch      |1:40|  Java/C++ |11:40|  Lunch    |1:45|  Tennis    |12:40|   ST     |1:45|  Tennis    |5-6:00PM   __4___   |\n");
+	printf("|5:20|     PP       |6:15|     FT       |5:25|    PA       |1:00|    FT       |3:00|Py./Bash/Go|12:30|   PP      |2:40| JS/Python  |1:40|  Python   |2:40|    JS      |            Java    |\n");
+	printf("|6:00|     PA       |6:45|     PA       |5:55|     D       |1:40|   Java      |6:00|   D       |1:20|     D      |3:40|  Bash      |2:40|    PA     |3:40|    FT      |             PA     |\n");
+	printf("|6:30|     MT       |7:30|     MT       |6:10| Music Class |2:40|   C/C++     |6:40|   PP      |1:50|    FT      |4:40| Go/Java    |3:10|    C      |4:40|  Program   |6-7:00PM   __5___   |\n");
+	printf("|7:20|   Python     |8:00|   Dinner     |8:15|  Dinner     |3:40|    PP       |7:20|Study+Java |2:50|    JS      |5:40|   PP       |4:10|    D      |5:40|    PP      |            C++     |\n");
+	printf("|8:00|   Dinner     |8:40|   Sleep      |8:50|   Sleep     |4:40|   Python    |8:00| Dinner    |3:50|  Program   |6:40|   MT       |4:40|   C++     |6:40|    MT      |            Bash    |\n");
+	printf("|8:40|   Sleep      |____|______________|____|_____________|5:40|    MT       |8:40|  Sleep    |4:50|    FT      |7:10|   ST       |6:10|Music Class|7:10|    PA      |7-11:00PM  __6___   |\n");
+	printf("|____|______________|                                      |6:20|     D       |____|___________|5:50|     C      |7:50|   Dinner   |8:15|  Dinner   |7:50|  Dinner    |    Dinner + Sleep  |\n");
+	printf("Codes:                                                     |7:10|    ST       |                |6:50|   Study    |8:40|  Sleep     |8:50|  Sleep    |8:40|   Sleep    |____________________|\n");
+	printf("                                                           |7:50|  Dinner     |                |7:50| FT+Dinner  |____|____________|____|___________|____|____________|                     \n");
+	printf("PA = Physical activity          B = Breakfast              |8:40|   Sleep     |                |8:40|  Sleep     |                                                                          \n");
+	printf("OA = Outdoor activity           PP = Piano practical       |____|_____________|                |____|____________|                                                                          \n");
+	printf("PR = program\t\t\tST = Study\n");
+	printf("MT = Music theory\t\t");
+	printf("HW = Homework\n");
+	printf("FT = Free time\t\t\t");
+	printf("/ = do either one\n");
+	printf("+ = do both in any order\n\n");
+	printf("Schedules:\n\n");
+	printf("PDBR1/2: Free\t\t\t");
+	printf("PDBR3/4: Tennis\t\t\t");
+	printf("PDBR5/6: Music\t\t\t");
+	printf("PDBR7/8: Swimming\n");
 }

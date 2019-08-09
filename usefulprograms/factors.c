@@ -2,7 +2,7 @@
 #include<math.h>
 
 int main(int argc, char *argv){
-	for (unsigned int i = 1; i < pow(2, 63)-1; i*=6) {
+	for (unsigned int i = 1; i < pow(2, 11)-1; i++) {
 		unsigned int num = i;
 		unsigned int factors[num];
 		unsigned int numOfFactors = 0;

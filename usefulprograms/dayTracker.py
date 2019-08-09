@@ -11,8 +11,8 @@ reason = []
 month.append(input("Month: (press ^C to show schedule) "))
 day.append(input("Date: "))
 schedule.append(input("Fwor/Fwr/perfect/PERFECT: "))
-print("Requirements: PA, PP, D, MT")
-numOfReq.append(input("Number of requirements met /4: ") + "/4")
+print("Requirements: PA, PP, D, MT, ST")
+numOfReq.append(input("Number of requirements met /5: ") + "/5")
 reason.append(input("Reason / N/A: "))
 open("dayTracker", "a").write(str(month));
 open("dayTracker", "a").write("\t\t");
