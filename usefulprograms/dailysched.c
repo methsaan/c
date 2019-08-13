@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
 		fprintf(fpw, "%d\n", rand()%2);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		char *studytypes[19] = {"Trignometry", "Algebra", "Computer hacking", "Astronomy", "Mixtures", "Human Body", "Structures", "Country, City, Province/State Facts", "Ancient Civilizations", "English writing", "English reading", "French writing", "French reading", "Sinhala reading", "Sinhala writing", "Buddha's teachings", "Life of the Buddha", "Government", "Economics terms"};
-		fprintf(fpw, "%s\n", studytypes[rand()%19]);
+		const char *studytypes[19] = {"Trignometry\n", "Algebra\n", "Computer hacking\n", "Astronomy\n", "Mixtures\n", "Human Body\n", "Structures\n", "Country, City, Province/State Facts\n", "Ancient Civilizations\n", "English writing\n", "English reading\n", "French writing\n", "French reading\n", "Sinhala reading\n", "Sinhala writing\n", "Buddha's teachings\n", "Life of the Buddha\n", "Government\n", "Economics terms\n"};
+		fputs(studytypes[rand()%19], fpw);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
