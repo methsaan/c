@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
 	char three[2];
 	char four[1];
 	char five[11];
-	char six[1];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
