@@ -4,8 +4,6 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-	char breaktype[80] = {0x0};
-	strcpy(breaktype, argv[1]);
 	system("clear");
 	system("./dayTracker.py");
 	srand(time(NULL));
@@ -15,7 +13,9 @@ int main(int argc, char *argv[]) {
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
+	char breaktype[80] = {0x0};
 	if ((timea[0] == '0') && (timea[1] == '5' && timea[3] == '1')) {
+		strcpy(breaktype, argv[1]);
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%2);
@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 		fprintf(fpw, "%d\n", rand()%2);
 		const char *studytypes[19] = {"Trignometry\n", "Algebra\n", "Computer hacking\n", "Astronomy\n", "Mixtures\n", "Human Body\n", "Structures\n", "Country, City, Province/State Facts\n", "Ancient Civilizations\n", "English writing\n", "English reading\n", "French writing\n", "French reading\n", "Sinhala reading\n", "Sinhala writing\n", "Buddha's teachings\n", "Life of the Buddha\n", "Government\n", "Economics terms\n"};
 		fputs(studytypes[rand()%19], fpw);
+		fprintf(fpw, "%s\n", breaktype);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
@@ -30,19 +31,22 @@ int main(int argc, char *argv[]) {
 	char two[1];
 	char three[2];
 	char four[1];
-	char five1[20];
-	char five2[20];
-	char five3[20];
-	char five4[20];
+	char study1[20];
+	char study2[20];
+	char study3[20];
+	char study4[20];
+	char six[8];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
 	fscanf(fp, "%s", four);
-	fscanf(fp, "%s %s %s %s", five1, five2, five3, five4);
+	fscanf(fp, "%s %s %s %s", study1, study2, study3, study4);
+	fscanf(fp, "%s", six);
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
 	int randnum2 = atoi(four);
+	strcpy(breaktype, six);
 	system("git commit -a -m 'day tracker'");
 	system("git push");
 	int idx = 0;
@@ -68,7 +72,7 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[idx][randnum]);
 	}
-	printf("Study subject: %s %s %s %s\n", five1, five2, five3, five4);
+	printf("Study subject: %s %s %s %s\n", study1, study2, study3, study4);
 	fclose(fp);
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1         |\n");
