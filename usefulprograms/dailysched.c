@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
 	fscanf(fp, "%s", four);
-	fscanf(fp, "%s %s %s", five1, five2, five3);
+	fscanf(fp, "%s %s %s", five1, five2, five3, five4);
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[idx][randnum]);
 	}
-	printf("Study subject: %s %s %s\n", five1, five2, five3);
+	printf("Study subject: %s %s %s %s\n", five1, five2, five3, five4);
 	fclose(fp);
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1         |\n");
