@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 	string wantedsubject;
 	string wanteddate;
 	string wantedschedtype;
-	cout << "Enter PD/break schedule: ";
+	cout << "Enter PD/break schedule (timed=1, regular=0): ";
 	getline(cin, wantedpdbr);
 	cout << "Enter schedule number: ";
 	getline(cin, wantedsched);
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	file.close();
 	file2.open("schedfile");
 	file2 << wanteddate << endl;
-	file2 << stoi(wantedpdbr.substr(wantedpdbr.length()-1, 1))-1 << endl;
+	file2 << stoi(wantedpdbr) << endl;
 	file2 << stoi(wantedsched.substr(wantedsched.length()-1, 1))-1 << endl;
 	file2 << wantedschedtype << endl;
 	file2 << wantedsubject << endl;
