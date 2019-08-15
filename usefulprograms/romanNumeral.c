@@ -7,19 +7,25 @@ int main(int argc, char *argv[]) {
 	printf("Enter number from 1-1000: ");
 	scanf("%s", num);
 	int decDigits[4] = {num[3]-'0', num[2]-'0', num[1]-'0', num[0]-'0'};
-	char romanNumeral[36];
+	char romanNumeral[36] = {0x0};
 	int cnt = 0;
-	for (; cnt < decDigits[0]; cnt++) {
-		romanNumeral[cnt] = 'I';
+	for (int cnt2 = 0; cnt2 < decDigits[3]; cnt2++) {
+		romanNumeral[cnt++] = 'M';
 	}
-	for (; cnt < decDigits[1]; cnt++) {
-		romanNumeral[cnt] = 'X';
+	printf("%d\n", cnt);
+	for (int cnt2 = 0; cnt2 < decDigits[2]; cnt2++) {
+		romanNumeral[cnt++] = 'C';
 	}
-	for (; cnt < decDigits[2]; cnt++) {
-		romanNumeral[cnt] = 'C';
+	printf("%d\n", cnt);
+	for (int cnt2 = 0; cnt2 < decDigits[1]; cnt2++) {
+		romanNumeral[cnt++] = 'X';
 	}
-	for (; cnt < decDigits[3]; cnt++) {
-		romanNumeral[cnt] = 'M';
+	printf("%d\n", cnt);
+	for (int cnt2 = 0; cnt2 < decDigits[0]; cnt2++) {
+		romanNumeral[cnt++] = 'I';
 	}
+	printf("%d\n", cnt);
 	printf("%s\n", romanNumeral);
+	//3835
+	//MMMDCCCXXXV
 }
