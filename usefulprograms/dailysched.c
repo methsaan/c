@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
 	fscanf(fp, "%s", four);
-	fscanf(fp, "%s %s %s", five1, five2, five3, five4);
+	fscanf(fp, "%s %s %s %s", five1, five2, five3, five4);
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
