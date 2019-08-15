@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 	file2.open("schedfile");
 	file2 << wanteddate << endl;
 	file2 << stoi(wantedpdbr.substr(wantedpdbr.length()-1, 1))-1 << endl;
-	file2 << stoi(wantedsched)-1 << endl;
+	file2 << stoi(wantedsched.substr(wantedsched.length()-1, 1))-1 << endl;
 	file2 << wantedschedtype << endl;
 	file2 << wantedsubject << endl;
 	file2.close();
