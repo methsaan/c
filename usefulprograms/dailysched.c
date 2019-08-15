@@ -30,17 +30,19 @@ int main(int argc, char *argv[]) {
 	char two[1];
 	char three[2];
 	char four[1];
-	char five[11];
+	char five1[10];
+	char five2[10];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
 	fscanf(fp, "%s", four);
-	fgets(five, 11, fp);
+	fscanf(fp, "%s %s", five1, five2);
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
 	int randnum2 = atoi(four);
-	char *studytype = five;
+	char *studytype = five1;
+	strcat(studytype, five2);
 	system("git commit -a -m 'day tracker'");
 	system("git push");
 	int idx = 0;
@@ -66,7 +68,7 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[idx][randnum]);
 	}
-	printf("Study subject: %s\n", five);
+	printf("Study subject: %s\n", studytype);
 	fclose(fp);
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1         |\n");
