@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	cout << "Timed or regular (timed=1, regular=0): ";
 	getline(cin, wantedschedtype);
 	file.open("schedfile", ios::in);
-	string filelines[] = {"", "", "", ""};
+	string filelines[] = {"", "", "", "", ""};
 	char ch;
 	string s;
 	for (int x = 0; !file.eof();) {
