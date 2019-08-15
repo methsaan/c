@@ -6,19 +6,20 @@ int main(int argc, char *argv[]) {
 	char num[4];
 	printf("Enter number from 1-1000: ");
 	scanf("%s", num);
-	int decDigits[4] = {num[0]-'0', num[1]-'0', num[2]-'0', num[3]-'0'};
+	int decDigits[4] = {num[3]-'0', num[2]-'0', num[1]-'0', num[0]-'0'};
 	char romanNumeral[36];
-	for (int x = 0; x < digits[0]; x++) {
-		romanNumeral[x] = 'M';
+	int cnt = 0;
+	for (; cnt < decDigits[0]; cnt++) {
+		romanNumeral[cnt] = 'I';
 	}
-	for (int x = digits[0]; x < digits[1]; x++) {
-		romanNumeral[x] = 'C';
+	for (; cnt < decDigits[1]; cnt++) {
+		romanNumeral[cnt] = 'X';
 	}
-	for (int x = digits[0]+digits[1]; x < digits[2]; x++) {
-		romanNumeral[x] = 'X';
+	for (; cnt < decDigits[2]; cnt++) {
+		romanNumeral[cnt] = 'C';
 	}
-	for (int x = digits[0]+digits[1]+digits[2]; x < digits[3]; x++) {
-		romanNumeral[x] = 'I';
+	for (; cnt < decDigits[3]; cnt++) {
+		romanNumeral[cnt] = 'M';
 	}
 	printf("%s\n", romanNumeral);
 }
