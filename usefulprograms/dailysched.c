@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
 	char five1[20];
 	char five2[20];
 	char five3[20];
+	char five4[20];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
