@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
 	strcpy(breaktype, argv[1]);
 	system("clear");
 	system("./dayTracker.py");
+	system("./requirementAvg.py");
 	srand(time(NULL));
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
