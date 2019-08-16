@@ -1,21 +1,13 @@
-January-June 2019
-	PERFECT: 9/123
-	perfect: 17/123
-	F: 	 97/123
-July 2nd-August 5th 2019
-	PERFECT: 4/30
-	perfect: 1/30
-	Fwor:    8/30
-	Fwr:     17/30
-
-Month			Date	Fwr/Fwor/perfect/PERFECT	Requirements		Reason
-['August']		['7th']	['Fwr']				['0/5']			['Prepare schedule']
-['August']		['8th']	['Fwor']			['1/5']			['N/A']
-['August']		['8th']	['Fwor']			['1/5']			['N/A']
-['August']		['9th']	['Fwor']			['0/5']			['Late lunch']
-['August']		['10th']['Fwor']			['0/5']			['N/A']
-['August']		['11th']['Fwr']				['0/5']			['Tennis']
-['August']		['12th']['perfect']			['5/5']			['Late dinner']
-['August']		['13th']['Fwr']				['4/5']			['Unexpected Music Class']
-['August']		['13th']	['Fwor']				['1/5']			['N/A']
-['August']		['15th']	['PERFECT']				['5/5']			['N/A']
+Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
+['August']		['7th']		['Fwr']				['0/5']			['Prepare schedule']
+['August']		['8th']		['Fwor']			['1/5']			['N/A']
+['August']		['8th']		['Fwor']			['1/5']			['N/A']
+['August']		['9th']		['Fwor']			['0/5']			['Late lunch']
+['August']		['10th']	['Fwor']			['0/5']			['N/A']
+['August']		['11th']	['Fwr']				['0/5']			['Tennis']
+['August']		['12th']	['perfect']			['5/5']			['Late dinner']
+['August']		['13th']	['Fwr']				['4/5']			['Unexpected Music Class']
+['August']		['13th']	['Fwor']			['1/5']			['N/A']
+['August']		['14th']	['Fwor']			['0/5']			['N/A']
+['August']		['15th']	['PERFECT']			['5/5']			['N/A']
+['August']		['16th']	['Fwor']				['0/5']			['N/A']
