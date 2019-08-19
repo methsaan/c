@@ -13,9 +13,11 @@ int main(int argc, char *argv[]) {
 	for (int x = 0; isdigit(num[x]); x++) {
 		length++;
 	}
+	length++;
 	int armstrongTest = 0;
 	for (int x = 0; x < length; x++) {
 		armstrongTest += pow(charToInt(num[x]), length);
+		printf("%d\n", armstrongTest);
 	}
 	if (atoi(num) == armstrongTest) {
 		printf("Armstrong number\n");
