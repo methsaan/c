@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1] == '5' && timea[3] == '1')) {
+	if ((timea[0] == '2') && (timea[1] == '1' && timea[3] == '3')) {
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%2);
@@ -83,8 +83,8 @@ int main(int argc, char *argv[]) {
 	printf("|    Breakfast      |     Breakfast     |    Breakfast     |      Study       |       D        |       Java      |     FT / D      |       FT      |       D         |            JS     |\n");
 	printf("|     School        |      School       |      School      |      Lunch       |    Lunch       |        PA       |       PA        |       ST      |      PP         |3-4:00PM  __3___   |\n");
 	printf("|      Lunch        |       Lunch       |      Lunch       |        D         |     Study      |        PP       |       PP        |       MT      |      Lunch      |          Python   |\n");
-	printf("|       PP          |        PP         |        HW        |        FT        |      FT        |      Lunch      |     Lunch       |     Lunch     |    Tennis       |           C++     |\n");
-	printf("|       HW          |   Study + HW      |        PA        | (HW/MT) / (HW+MT)|    HW/PP       |        MT       |     Tennis      |      Bash     |      FT         |4-6:00PM  __4___   |\n");
+	printf("|       HW          |   Study + HW      |        HW        |        FT        |      FT        |      Lunch      |     Lunch       |     Lunch     |    Tennis       |           C++     |\n");
+	printf("|       PP          |        PP         |        PA        | (HW/MT) / (HW+MT)|    HW/PP       |        MT       |     Tennis      |      Bash     |      FT         |4-6:00PM  __4___   |\n");
 	printf("|     Study + D     |        JS         |        PP        |        PA        |     PP/FT      |         D       |       ST        |       D       |      PA         |     PA+PP+D+ST+MT |\n");
 	printf("|       PA          |        PA         |     Music Class  |        PP        |      PA        |      Python     |       MT        |      PA       |      ST         |           C++     |\n");
 	printf("|       FT          |      FT + D       |        FT        |        FT        |      Java      |        FT       |      Bash       |      PP       |      C++        |6-8:00PM  __5___   |\n");
@@ -99,16 +99,16 @@ int main(int argc, char *argv[]) {
 	printf("|___________________|___________________|__________________|__________________|________________|_________________|_________________|________________|_________________|        Bash/Go/ST  |\n");
 	printf("|5:10|   C/C++      |5:10|   C/Java     |5:10|   Python    |5:10|    PA       |5:10|   PA      |5:10|    PA      |5:10|    PA      |5:10|   PA      |5:10|    PA      |             C      |\n");
 	printf("|5:50|    PA        |6:00|    Study     |5:50|    Study    |5:40|  Breakfast  |5:40| Breakfast |5:40| Breakfast  |5:40| Breakfast  |5:40| Breakfast |5:40| Breakfast  |2-3:00PM   __2___   |\n");
-	printf("|6:20|  Study       |6:40|     D        |6:10|    PA       |6:05|OA+Program+ST|6:05|OA+ST/Swim |6:05| OA/PP/PR   |6:05|  OA/C/C++  |6:05|  OA/Java  |6:05|  OA/Python |            C++     |\n");
-	printf("|6:50|   FT         |7:00|  Breakfast   |6:40|    MT       |9:20|    FT       |9:00|  Swim/C++ |9:00|    MT      |9:00|OA/Swim/Bash|9:30|    MT     |9:00|OA/Swim/Bash|            Java    |\n");
-	printf("|7:00|  Breakfast   |7:17|   School     |7:00|  Breakfast  |9:50|    C        |11:00|   PA     |10:00|  Python   |11:00|   PA      |10:00|   PP     |11:00|   ST      |3-4:00PM   __3___   |\n");
-	printf("|7:17|   School     |4:20|     PA       |7:17|   School    |10:30|   C++      |11:40|  Lunch   |10:45|   PA      |11:40|  Lunch    |11:00|   C      |11:40|  Lunch    |            JS      |\n");
-	printf("|4:20|   Lunch      |4:50|   Lunch      |4:20|   Lunch     |11:10|   PA       |1:00|    MT     |11:15|  JS/C++   |12:40|    D      |11:40| Lunch    |12:40|    D      |             C      |\n");
-	printf("|4:50|     D        |5:25|     PP       |4:50|    PP       |11:40| Lunch      |1:40|  Java/C++ |11:40|  Lunch    |1:45|  Tennis    |12:40|   ST     |1:45|  Tennis    |4-6:00PM   __4___   |\n");
-	printf("|5:20|     PP       |6:15|     FT       |5:25|    PA       |1:00|    FT       |3:00|Py./Bash/Go|12:30|   PP      |2:40| JS/Python  |1:40|  Python   |2:40|    JS      |      PA+PP+D+ST+MT |\n");
-	printf("|6:00|     PA       |6:45|     PA       |5:55|     D       |1:40|   Java      |6:00|   D       |1:20|     D      |3:40|  Bash      |2:40|    PA     |3:40|    FT      |             PA     |\n");
-	printf("|6:30|     MT       |7:30|     MT       |6:10| Music Class |2:40|   C/C++     |6:40|   PP      |1:50|    FT      |4:40| Go/Java    |3:10|    C      |4:40|  Program   |6-8:00PM   __5___   |\n");
-	printf("|7:20|   Python     |8:00|   Dinner     |8:15|  Dinner     |3:40|    PP       |7:20|Study+Java |2:50|    JS      |5:40|   PP       |4:10|    D      |5:40|    PP      |      PA+PP+D+ST+MT |\n");
+	printf("|6:20|  Study       |6:30|     D        |6:05|    PA       |6:05|OA+Program+ST|6:05|OA+ST/Swim |6:05| OA/PP/PR   |6:05|  OA/C/C++  |6:05|  OA/Java  |6:05|  OA/Python |            C++     |\n");
+	printf("|6:50| Breakfast    |6:50|  Breakfast   |6:35|    MT       |9:20|    FT       |9:00|  Swim/C++ |9:00|    MT      |9:00|OA/Swim/Bash|9:30|    MT     |9:00|OA/Swim/Bash|            Java    |\n");
+	printf("|7:10|   School     |7:12|   School     |6:50|  Breakfast  |9:50|    C        |11:00|   PA     |10:00|  Python   |11:00|   PA      |10:00|   PP     |11:00|   ST      |3-4:00PM   __3___   |\n");
+	printf("|4:00|   Lunch      |4:20|     PA       |7:12|   School    |10:30|   C++      |11:40|  Lunch   |10:45|   PA      |11:40|  Lunch    |11:00|   C      |11:40|  Lunch    |            JS      |\n");
+	printf("|4:30|     HW       |4:50|   Lunch      |4:20|  HW+Lunch   |11:10|   PA       |1:00|    MT     |11:15|  JS/C++   |12:40|    D      |11:40| Lunch    |12:40|    D      |             C      |\n");
+	printf("|5:00|     PP       |5:25|     HW       |4:50|    PP       |11:40| Lunch      |1:40|  Java/C++ |11:40|  Lunch    |1:45|  Tennis    |12:40|   ST     |1:45|  Tennis    |4-6:00PM   __4___   |\n");
+	printf("|6:00|     PA       |6:15|     PP       |5:25|    PA       |1:00|    FT       |3:00|Py./Bash/Go|12:30|   PP      |2:40| JS/Python  |1:40|  Python   |2:40|    JS      |      PA+PP+D+ST+MT |\n");
+	printf("|6:40|     MT       |7:15|     PA       |5:55|     D       |1:40|   Java      |6:00|   D       |1:20|     D      |3:40|  Bash      |2:40|    PA     |3:40|    FT      |             PA     |\n");
+	printf("|7:20|   Python     |7:45|     MT       |6:10| Music Class |2:40|   C/C++     |6:40|   PP      |1:50|    FT      |4:40| Go/Java    |3:10|    C      |4:40|  Program   |6-8:00PM   __5___   |\n");
+	printf("|7:40|     D        |8:30|   Dinner     |8:15|  Dinner     |3:40|    PP       |7:20|Study+Java |2:50|    JS      |5:40|   PP       |4:10|    D      |5:40|    PP      |      PA+PP+D+ST+MT |\n");
 	printf("|8:00|   Dinner     |8:40|   Sleep      |8:50|   Sleep     |4:40|   Python    |8:00| Dinner    |3:50|  Program   |6:40|   MT       |4:40|   C++     |6:40|    MT      |            Bash    |\n");
 	printf("|8:40|   Sleep      |____|______________|____|_____________|5:40|    MT       |8:40|  Sleep    |4:50|    FT      |7:10|   ST       |6:10|Music Class|7:10|    PA      |8-11:00PM  __6___   |\n");
 	printf("|____|______________|                                      |6:20|     D       |____|___________|5:50|     C      |7:50|   Dinner   |8:15|  Dinner   |7:50|  Dinner    |    Dinner + Sleep  |\n");
