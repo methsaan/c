@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[idx][randnum]);
 	}
-	printf("moneyCoins.java dollar coin update: Study subject: %s %s %s %s\n", study1, study2, study3, study4);
+	printf("Study subject: %s %s %s %s\n", study1, study2, study3, study4);
 	fclose(fp);
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1         |\n");
