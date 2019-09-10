@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 	fprintf(fp, "\tfor (int x = 0; x < 40; x++) {\n");
 	fprintf(fp, "\t\tint %s;\n", function);
 	fprintf(fp, "\t\tif (y < 46 && y > 0 && x < 46) {\n");
-	fprintf(fp, "\t\t\tprintf(\"\\033[%%d;%%dHx\", y, 46-x);\n");
+	fprintf(fp, "\t\t\tprintf(\"\\033[%%d;%%dHx\", y+23, (46-x)+23);\n");
 	fprintf(fp, "\t\t}\n");
 	fprintf(fp, "\t}\n");
 	fprintf(fp, "}");
