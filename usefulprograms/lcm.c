@@ -6,7 +6,7 @@ int main(int argc, char *argv){
 	int num2;
 	char arr[100];
 	printf("Enter two numbers: ");
-	scanf("%d%s%d", &num1, arr, &num2);
+	scanf("%d %d", &num1, &num2);
 	int lcm;
 	int multiples1[55];
 	int multiples2[55];
