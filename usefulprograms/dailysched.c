@@ -79,6 +79,7 @@ int main(int argc, char *argv[]) {
 		int randNum = rand()%6;
 		if (!isUsed[randNum]) {
 			fail2list[x] = essentActivity[randNum];
+			printf("%d\n", essentActivity[randNum]);
 		}
 		isUsed[randNum] = 1;
 		int exitCondition = 1;
@@ -89,9 +90,6 @@ int main(int argc, char *argv[]) {
 		}
 		if (exitCondition) {
 			break;
-		}
-		for (int x = 0; x < 6; x++) {
-			printf("%d ", isUsed[x]);
 		}
 		printf("\n");
 	}
