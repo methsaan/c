@@ -72,8 +72,8 @@ int main(int argc, char *argv[]) {
 	}
 	printf("Study subject: %s %s %s %s\n", study1, study2, study3, study4);
 	fclose(fp);
-	char *essentActivity[] = {"PA", "PP", "D ", "MT", "PA", "ST"};
-	char *fail2list[6];
+	int essentActivity[] = {41, 35, 24, 63, 74, 24};
+	int fail2list[6];
 	int isUsed[] = {0, 0, 0, 0, 0, 0};
 	for (int x = 0;; x++) {
 		int randNum = rand()%6;
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	for (int x = 0; x < 6; x++) {
-		printf("%s\n", fail2list[x]);
+		printf("%d\n", fail2list[x]);
 	}
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1  (timed)|\n");
