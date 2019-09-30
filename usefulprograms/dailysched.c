@@ -93,6 +93,7 @@ int main(int argc, char *argv[]) {
 		for (int x = 0; x < 6; x++) {
 			printf("%d ", isUsed[x]);
 		}
+		printf("\n");
 	}
 	printf("__________________________________________________________________________________________________________________________________________________________________________________________\n");
 	printf("| REGULAR SCHEDULE     Wake up 4:40 AM      Sleep 8:40 PM         Workout:      Push ups:   3 sets of 10    Squats:   3 sets of 20    Plank: 1 min                   |     FAIL1  (timed)|\n");
