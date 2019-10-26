@@ -24,8 +24,15 @@ int main(int argc, char *argv[]) {
 	printf("%d\n", cnt);
 	for (int x = 0; x < (int)(sizeof(operands)/sizeof(*operands))/2+1; x++) {
 		int range = rand()%(number/numOfOperands-1)+1;
-		operands[rand()%cnt+1] += range;
-		operands[rand()%cnt+1] -= range;
+		while (1) {
+			int rand1 = rand()%cnt+1;
+			int rand2 = rand()%cnt+1;
+			if (operands[rand1] > range && operands[rand2] > range) {
+				operands[rand1] += range;
+				operands[rand2] -= range;
+				break;
+			}
+		}
 		printf("%d\n\n", range);
 		for (int x = 0; x < sizeof(operands)/sizeof(*operands); x++) {
 			printf("%d ", operands[x]);
