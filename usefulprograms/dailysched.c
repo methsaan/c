@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
 	printf("|       HW          |   Study + HW      |        HW        |        PA        |      D         |      Lunch      |     Lunch       |     Lunch     |    Swimming     |7:30-8:00|    MT   |\n");
 	printf("|       PP          |        PP         |        PA        |      Guitar      |    Dinner      |        MT       |     Tennis      |      Bash     |      FT         |8-10:00|PA/D,Dinner|\n");
 	printf("|     Study + D     |        JS         |        PP        |      Dinner      |      MT        |         D       |       ST        |       D       |      PA         |10-0:00|MT,ST,Sleep|\n");
-	printf("|       PA          |        PA         |     Music Class  |   Sleep (9:30)   | Sleep (<10:00) |      Python     |       MT        |      PA       |      ST         |_______|___________|\n");
+	printf("|       PA          |        PA         |     Music Class  |   Sleep (9:30)   | Sleep (<10:30) |      Python     |       MT        |      PA       |      ST         |_______|___________|\n");
 	printf("|       FT          |      FT + D       |        FT        |                  |                |        FT       |      Bash       |      PP       |       PA        |                   |\n");
 	printf("|     Dinner        |      Dinner       |      Dinner      |                  |                |      Dinner     |     Dinner      |  Music Class  |      MT         |                   |\n");
 	printf("|     Sleep         |      Sleep        |      Sleep       |                  |                |      Sleep      |      Sleep      |    Dinner     |    Dinner       |                   |\n");
