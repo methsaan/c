@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '1' || timea[3] == '0'))) {
+	if ((timea[0] == '0') && (timea[1]-'0' <= '5'-'0' && (timea[3] == '1' || timea[3] == '0'))) {
 		FILE *fpointer = fopen("schedfile", "r");
 		char a[1];
 		char b[1];
