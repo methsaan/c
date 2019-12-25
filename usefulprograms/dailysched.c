@@ -114,6 +114,7 @@ int main(int argc, char *argv[]) {
 	}
 	FILE *fp2 = fopen("schedfile2", "r");
 	char *fail2list[6];
+	printf("fdfdefds\n\n");
 	fscanf(fp2, "%s", fail2list[0]);
 	fscanf(fp2, "%s", fail2list[1]);
 	fscanf(fp2, "%s", fail2list[2]);
