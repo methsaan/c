@@ -12,4 +12,4 @@ req = []
 for line in list(f)[1:]:
     words = line.split()
     req.append(words[3][2])
-print(str(int(eval("sum2(" + ", ".join(req) + ")"))/(5*len(req))*100)[0:3] + "% of requirements are met on average.")
+print(str(int(eval("sum2(" + ", ".join(req) + ")"))/(5*len(req))*100)[0:4] + "% of requirements are met on average.")
