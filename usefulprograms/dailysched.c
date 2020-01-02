@@ -82,7 +82,8 @@ int main(int argc, char *argv[]) {
 	}
 	printf("Study subject: %s %s %s %s\n", study1, study2, study3, study4);
 	fclose(fp);
-	if ((timea[0] == '1') && (timea[1]-'0' == '8' && (timea[3] == '1' || timea[3] == '2'))) {
+	if ((timea[0] == '1') && (timea[1] == '8' && (timea[3] == '1' || timea[3] == '2'))) {
+		printf("HOOs");
 		char* essentActivity[] = {"PP", "PA", "D ", "MT", "ST", "PA"};
 		char* fail2list[6];
 		int isUsed[] = {0, 0, 0, 0, 0, 0};
