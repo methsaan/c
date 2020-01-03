@@ -36,9 +36,9 @@ int main(int argc, char *argv[]) {
 		fprintf(fpw, "%d\n", rand()%2);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		const char *studytypes[9] = {"Math\n", "Programming\n", "Geography\n", "History\n", "English\n", "Sinhala\n", "Buddhism\n", "Government\n", "Economics\n"};
+		const char *studytypes[11] = {"Math\n", "French\n", "Programming\n", "Science\n", "Geography\n", "History\n", "English\n", "Sinhala\n", "Buddhism\n", "Government\n", "Economics\n"};
 		if (tm.tm_mday%4 == 0) {
-			fprintf(fpw, "%s\n", studytypes[rand()%9]);
+			fprintf(fpw, "%s\n", studytypes[rand()%11]);
 		}else {
 			fprintf(fpw, "%s %s %s %s\n", s1, s2, s3, s4);
 		}
