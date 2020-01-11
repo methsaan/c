@@ -15,8 +15,7 @@ int main(int argc, char *argv[]) {
 	char *days_of_week[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
-	if ((timea[0] == '0') && (timea[1]-'0' == '5' && (timea[3] == '4' || timea[3] == '3'))) {
-		printf("hhjnhjhjnhj\n");
+	if ((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '4' || timea[3] == '3'))) {
 		FILE *fpointer = fopen("schedfile", "r");
 		char a[1];
 		char b[1];
@@ -67,7 +66,6 @@ int main(int argc, char *argv[]) {
 	system("git push");
 	int idx = 0;
 	system("clear");
-	printf("%d\n", dayy);
 	printf("Today is %s, %s %d, %d, %s.\n", days_of_week[dayx], months[tm.tm_mon], tm.tm_mday, tm.tm_year+1900, __TIME__);
 	char *pdbr[2] = {"PDBR1", "PDBR2"};
 	if (dayy == 0) {
