@@ -16,32 +16,13 @@ int main(int argc, char *argv[]) {
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
 	if ((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '4' || timea[3] == '3'))) {
-		FILE *fpointer = fopen("schedfile", "r");
-		char a[1];
-		char b[1];
-		char c[2];
-		char d[1];
-		char s1[20];
-		char s2[20];
-		char s3[20];
-		char s4[20];
-		fscanf(fpointer, "%s", a);
-		fscanf(fpointer, "%s", b);
-		fscanf(fpointer, "%s", c);
-		fscanf(fpointer, "%s", d);
-		fscanf(fpointer, "%s %s %s %s", s1, s2, s3, s4);
-		fclose(fpointer);
 		FILE *fpw = fopen("schedfile", "w");
 		fprintf(fpw, "%d\n", dayx);
 		fprintf(fpw, "%d\n", rand()%2);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
 		const char *studytypes[11] = {"Math\n", "French\n", "Programming\n", "Science\n", "Geography\n", "History\n", "English\n", "Sinhala\n", "Buddhism\n", "Government\n", "Economics\n"};
-		if (tm.tm_mday%4 == 0) {
-			fprintf(fpw, "%s\n", studytypes[rand()%11]);
-		}else {
-			fprintf(fpw, "%s %s %s %s\n", s1, s2, s3, s4);
-		}
+		fprintf(fpw, "%s\n", studytypes[rand()%11]);
 		fclose(fpw);
 	}	
 	FILE *fp = fopen("schedfile", "r");
@@ -49,15 +30,12 @@ int main(int argc, char *argv[]) {
 	char two[1];
 	char three[2];
 	char four[1];
-	char study1[20];
-	char study2[20];
-	char study3[20];
-	char study4[20];
+	char study[13];
 	fscanf(fp, "%s", one);
 	fscanf(fp, "%s", two);
 	fscanf(fp, "%s", three);
 	fscanf(fp, "%s", four);
-	fscanf(fp, "%s %s %s %s", study1, study2, study3, study4);
+	fscanf(fp, "%s", study);
 	int dayy = atoi(one);
 	int randnum = atoi(two);
 	int randday = atoi(three);
@@ -80,7 +58,7 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[randnum]);
 	}
-	printf("Study subject: %s %s %s %s\n", study1, study2, study3, study4);
+	printf("Study subject: %s\n", study);
 	fclose(fp);
 	if ((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) {
 		char* essentActivity[] = {"PP", "PA", "D ", "MT", "ST", "PA"};
