@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
 	printf("|____________________________________________________________________________________________________________________________________________________________|____________________|\n");
 	printf("|         2         |         4         |       MUS2       |       SAT2       |      SUN2      |      PDBR2      |      SWIM2      |                         |                    |\n");
 	printf("|___________________|___________________|__________________|__________________|________________|_________________|_________________|                         |        %s          |\n", fail2list3);
-	printf("|5:40|   C/C++      |5:40|     PA       |5:40|     D       |5:40|  D+MT       |5:40|  HW+FT    |5:10|    PA      |5:40|    PA      |                         |        %s           |\n", fail2list4);
+	printf("|5:40|   C/C++      |5:40|     PA       |5:40|     D       |5:40|  D+MT       |5:40|  HW+FT    |5:10|    PA      |5:40|    PA      |                         |        %s          |\n", fail2list4);
 	printf("|6:15|    PA        |6:20|    Study     |6:10|    Study    |6:20|   Study     |7:30| Breakfast |5:40| Breakfast  |6:10| C/C++/Java |                         |OP  Go/JS/Bash      |\n");
 	printf("|6:45|  Study       |6:40|     D        |6:30|    PA       |6:50|    FT       |8:00|   FT      |6:05| OA/PP/PR   |6:40| Breakfast  |                         |        %s          |\n", fail2list1);
 	printf("|7:00| Breakfast    |7:00|  Breakfast   |7:00|  Breakfast  |7:30| Breakfast   |8:30| Exercise  |9:00|    MT      |7:12|  School    |                         |        %s          |\n", fail2list5);
