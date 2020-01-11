@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
 	char *months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	char *timea = __TIME__;
 	if ((timea[0] == '0') && (timea[1]-'0' == '5' && (timea[3] == '4' || timea[3] == '3'))) {
+		printf("hhjnhjhjnhj\n");
 		FILE *fpointer = fopen("schedfile", "r");
 		char a[1];
 		char b[1];
