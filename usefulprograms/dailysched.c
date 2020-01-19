@@ -6,11 +6,7 @@
 int main(int argc, char *argv[]) {
 	char defaultType[5] = "free";
 	char breaktype[9];
-	if (argc == 2) {
-		strcpy(breaktype, argv[1]);
-	}else {
-		strcpy(breaktype, defaultType);
-	}
+	strcpy(breaktype, argc >= 2 ? argv[1] : defaultType);
 	printf("%s\n", breaktype);
 	system("clear");
 	system("./dayTracker.py");
@@ -79,7 +75,7 @@ int main(int argc, char *argv[]) {
 	}
 	printf("Study subject: %s\n", study);
 	fclose(fp);
-	if ((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) {
+	if (((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) || (argc == 3)) {
 		char* essentActivity[] = {"PP", "PA", "D ", "MT", "ST", "PA"};
 		char* fail2list[6];
 		int isUsed[] = {0, 0, 0, 0, 0, 0};
