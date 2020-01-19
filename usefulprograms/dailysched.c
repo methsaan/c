@@ -6,12 +6,12 @@
 int main(int argc, char *argv[]) {
 	char defaultType[5] = "free";
 	char breaktype[9];
-	printf("Oo	uihoiwh\n");
 	if (argc == 2) {
 		strcpy(breaktype, argv[1]);
 	}else {
 		strcpy(breaktype, defaultType);
 	}
+	printf("%s\n", breaktype);
 	system("clear");
 	system("./dayTracker.py");
 	system("clear");
