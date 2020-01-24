@@ -29,6 +29,36 @@ int main(int argc, char *argv[]) {
 		fprintf(fpw, "%s\n", studytypes[rand()%11]);
 		fclose(fpw);
 	}	
+	if (((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) || (argc == 3)) {
+		char* essentActivity[] = {"PP", "PA", "D ", "MT", "ST", "PA"};
+		char* fail2list[6];
+		int isUsed[] = {0, 0, 0, 0, 0, 0};
+		int cnt = 0;
+		for (int x = 0;; x++) {
+			int randNum = rand()%6;
+			if (!isUsed[randNum]) {
+				fail2list[cnt++] = essentActivity[randNum];
+			}
+			isUsed[randNum] = 1;
+			int exitCondition = 1;
+			for (int y = 0; y < 6; y++) {
+				if (isUsed[y] == 0) {
+					exitCondition = 0;
+				}
+			}
+			if (exitCondition) {
+				break;
+			}
+		}
+		FILE *fpw = fopen("schedfile2", "w");
+		fprintf(fpw, "%s\n", fail2list[0]);
+		fprintf(fpw, "%s\n", fail2list[1]);
+		fprintf(fpw, "%s\n", fail2list[2]);
+		fprintf(fpw, "%s\n", fail2list[3]);
+		fprintf(fpw, "%s\n", fail2list[4]);
+		fprintf(fpw, "%s\n", fail2list[5]);
+		fclose(fpw);
+	}
 	FILE *fp = fopen("schedfile", "r");
 	char one[1];
 	char two[1];
@@ -75,36 +105,6 @@ int main(int argc, char *argv[]) {
 	}
 	printf("Study subject: %s\n", study);
 	fclose(fp);
-	if (((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) || (argc == 3)) {
-		char* essentActivity[] = {"PP", "PA", "D ", "MT", "ST", "PA"};
-		char* fail2list[6];
-		int isUsed[] = {0, 0, 0, 0, 0, 0};
-		int cnt = 0;
-		for (int x = 0;; x++) {
-			int randNum = rand()%6;
-			if (!isUsed[randNum]) {
-				fail2list[cnt++] = essentActivity[randNum];
-			}
-			isUsed[randNum] = 1;
-			int exitCondition = 1;
-			for (int y = 0; y < 6; y++) {
-				if (isUsed[y] == 0) {
-					exitCondition = 0;
-				}
-			}
-			if (exitCondition) {
-				break;
-			}
-		}
-		FILE *fpw = fopen("schedfile2", "w");
-		fprintf(fpw, "%s\n", fail2list[0]);
-		fprintf(fpw, "%s\n", fail2list[1]);
-		fprintf(fpw, "%s\n", fail2list[2]);
-		fprintf(fpw, "%s\n", fail2list[3]);
-		fprintf(fpw, "%s\n", fail2list[4]);
-		fprintf(fpw, "%s\n", fail2list[5]);
-		fclose(fpw);
-	}
 	FILE *fp2 = fopen("schedfile2", "r");
 	char fail2list1[3];
 	char fail2list2[3];
