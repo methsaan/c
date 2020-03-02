@@ -19,8 +19,16 @@ int main(int argc, char *argv) {
 	scanf("%d", &repeating);
 	int repeatingLength = numOfDigits(repeating);
 	double x_X_100 = x * 100;
-	for (int x = 4+repeatingLength; x < 7+(repeatingLength*3); x += repeatingLength) {
-		x_X_100 += repeating * pow(10, -x);
+	//
+	// 
+	//
+	//
+	//
+	//
+	//
+	//
+	for (int y = 4+repeatingLength; y < 7+(repeatingLength*3); y += repeatingLength) {
+		x_X_100 += repeating * pow(10, -y);
 	}
 	printf("  __\n");
 	printf("%d.%d  =  %d / %d\n", (int)x, repeating, (int)round(x_X_100-x), 99);
