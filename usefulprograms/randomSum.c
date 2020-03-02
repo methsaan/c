@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	int numOfOperands;
 	printf("Enter a number: ");
 	scanf("%d", &number);
-	printf("Enter number of operands: ");
+	printf("Enter number of operands (can't be more than %d): ", number/2);
 	scanf("%d", &numOfOperands);
 	int operands[numOfOperands];
 	int numRemainder = number;
