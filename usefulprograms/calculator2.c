@@ -4,8 +4,7 @@
 #include <string.h>
 
 // +, -, x, /, ^, r, hyp, circc, circa
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
 	const double PI = 3.141592653589793238;
 	double x = atof(argv[1]);
 	double y = argc == 4 ? atof(argv[3]) : 0;
@@ -31,14 +30,14 @@ int main(int argc, char* argv[])
 		printf("%g ^ %g = %g\n", x, y, pow(x, y));
 	}
 	if (op[0] == 'r') {
-		//printf("          _____\n");
+		printf("     _____\n");
 		char buffer[20];
 		sprintf(buffer, "%g", y);
-		printf("%s\n", buffer);
-		//printf("        V %g \t= \t%g\n", x, pow(x, 1/y));
+		printf("%s", buffer);
+		printf("   V %g \t= \t%g\n", x, pow(x, 1/y));
 	}
 	if (strcmp(op, "hyp") == 0) {
-		printf("c = %f\n", sqrt(pow(x, 2)+pow(y, 2)));
+		printf("h = %f\n", sqrt(pow(x, 2)+pow(y, 2)));
 	}
 	if (strcmp(op, "circc") == 0) {
 		printf("c = %f\n", 2*PI*x);
