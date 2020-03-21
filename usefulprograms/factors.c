@@ -15,7 +15,7 @@ int main(int argc, char *argv){
 		}
 		factors[cnt] = 1;
 		numOfFactors++;
-		printf("%u    Number of factors: %u\n", num, numOfFactors);
+		printf("%u    Number of factors: %u     Number-factor count ratio: %f \n", num, numOfFactors, (double)num/numOfFactors);
 	}
 	return 0;
 }
