@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 struct date {
 	int year;
@@ -13,8 +15,11 @@ int main(int argc, char *argv) {
 	double age;
 	printf("When were you born (yyyy-mm-dd): ");
 	scanf("%d-%d-%d", &birth.year, &birth.month, &birth.date);
-	printf("What is the current date (yyyy-mm-dd): ");
-	scanf("%d-%d-%d", &current.year, &current.month, &current.date);
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	current.year = tm.tm_year+1900;
+	current.month = tm.tm_mon+1;
+	current.date = tm.tm_mday;
 	int days;
 	int dayCarryover = 0;
 	int months;
