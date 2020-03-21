@@ -17,7 +17,6 @@ int main(int argc, char *argv[]) {
 	int armstrongTest = 0;
 	for (int x = 0; x < length; x++) {
 		armstrongTest += pow(charToInt(num[x]), length);
-		printf("%d\n", armstrongTest);
 	}
 	if (atoi(num) == armstrongTest) {
 		printf("Armstrong number\n");
