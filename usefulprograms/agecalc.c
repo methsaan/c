@@ -13,7 +13,7 @@ int main(int argc, char *argv) {
 	struct date birth;
 	struct date current;
 	double age;
-	printf("When were you born (yyyy-mm-dd): ");
+	printf("Enter birth age (yyyy-mm-dd): ");
 	scanf("%d-%d-%d", &birth.year, &birth.month, &birth.date);
 	time_t t = time(NULL);
 	struct tm tm = *localtime(&t);
