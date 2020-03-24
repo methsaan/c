@@ -28,7 +28,6 @@ int main(int argc, char *argv){
 	for (int x = 0; x < numOfFactors; x++) {
 		printf("%d ", factors[x]);
 	}
-	int randfactor = factors[rand()%numOfFactors];
-	printf("\n%d / %d = %d\n", num, randfactor, num/randfactor);
+	printf("\n");
 	return 0;
 }
