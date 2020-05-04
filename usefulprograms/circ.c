@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <string.h>
 
 int main(int argc, char *argv){
@@ -33,21 +34,21 @@ int main(int argc, char *argv){
 		scanf("%lf", &radius);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		printf("Surface area: %.50f\n", PI*radius*(height+radius));
+		printf("Surface area: %.50f\n", PI*radius*(radius+sqrt(pow(radius, 2) + pow(height, 2))));
 	}else if (strcmp(option, "cone_vol\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
 		printf("Enter height: ");
 		scanf("%lf", &height);
-		printf("Surface area: %.50fu\n", (PI*radius*radius*height)/3);
+		printf("Surface area: %.50fu\n", (PI*pow(radius, 2)*height)/3);
 	}else if (strcmp(option, "sphere_area\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
-		printf("Surface area: %.50f\n", 4*PI*radius*radius);
+		printf("Surface area: %.50f\n", 4*PI*pow(radius, 2));
 	}else if (strcmp(option, "sphere_vol\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
-		printf("Volume: %.50f\n", (4/3)*PI*radius*radius*radius);
+		printf("Volume: %.50f\n", (4/3)*PI*pow(radius, 3));
 	}else{
 		printf("%s: %.50f\n", option, 0.0);
 	}
