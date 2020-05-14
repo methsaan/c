@@ -13,24 +13,30 @@ int main(int argc, char *argv[]) {
 	char *reqTime2[numOfReq];
 	char *schedTime[2];
 	printf("Enter wake up time: ");
-	scanf("%s", schedTime[0]);
+	schedTime[0] = malloc(100 * sizeof(char));
+	schedTime[1] = malloc(100 * sizeof(char));
+	scanf("%99s", schedTime[0]);
 	printf("Enter sleep time: ");
-	scanf("%s", schedTime[1]);
+	scanf("%99s", schedTime[1]);
 	char *activitiesOp[numOfOp];
 	for (int x = 0; x < numOfOp; x++) {
+		activitiesOp[x] = malloc(100 * sizeof(char));
 		printf("Enter optional activity %d: ", x+1);
-		scanf("%s", activitiesOp[x]);
+		scanf("%99s", activitiesOp[x]);
 	}
 	for (int x = 0; x < numOfReq; x++) {
+		activitiesReq[x] = malloc(100 * sizeof(char));
+		reqTime1[x] = malloc(100 * sizeof(char));
+		reqTime2[x] = malloc(100 * sizeof(char));
 		printf("Enter required activity %d beginning and end time: ", x+1);
-		scanf("%s %s %s", activitiesReq[x], reqTime1[x], reqTime2[x]);
+		scanf("%99s %99s %99s", activitiesReq[x], reqTime1[x], reqTime2[x]);
 	}
 	int reqTimeLen[numOfReq];
 	for (int x = 0; x < numOfReq; x++) {
-		int beginHour = reqTime1[x][0]-'0';
-		int beginMin = (reqTime1[x][2]-'0')*10 + (reqTime1[x][3]-'0');
-		int endHour = reqTime2[x][0]-'0';
-		int endMin = (reqTime2[x][2]-'0')*10 + (reqTime2[x][3]-'0');
+		int beginHour = (reqTime1[x][0]-'0')*10 + (reqTime1[x][1]-'0');
+		int beginMin = (reqTime1[x][3]-'0')*10 + (reqTime1[x][4]-'0');
+		int endHour = (reqTime2[x][0]-'0')*10 + (reqTime2[x][1]-'0');
+		int endMin = (reqTime2[x][3]-'0')*10 + (reqTime2[x][4]-'0');
 		int lenHour = endHour - beginHour;
 		int lenMin = endMin - beginMin;
 		if (lenMin < 0) {
