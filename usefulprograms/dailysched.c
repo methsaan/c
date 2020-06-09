@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
 	printf("                                                           |    |            |    |            |                 |                |              |                 |_______________________|___________________|_____________________|\n");
 	printf("                                                           |    |            |____|____________|_________________|________________|______________|_________________|\n");
 	printf("PA = Physical activity          B = Breakfast              |    |            |\n");
-	printf("OA = Outdoor activity           PP = Piano practical       |____|____________| %d\n", (rand()%75)+1);
+	printf("OA = Outdoor activity           PP = Piano practical       |____|____________| %d\n", (rand()%13)+1);
 	printf("PR = program\t\t\tST = Study\t\t\tOP = Optional\t\tI = if possible\n");
 	printf("MT = Music theory\t\t");
 	printf("HW = Homework\n");
