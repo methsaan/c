@@ -48,7 +48,7 @@ int main(int argc, char *argv){
 	}else if (strcmp(option, "sphere_vol\n") == 0){
 		printf("Enter radius: ");
 		scanf("%lf", &radius);
-		printf("Volume: %.50fu\u00B3\n", (4/3)*PI*pow(radius, 3));
+		printf("Volume: %.50fu\u00B3\n", (4/3)*(PI*pow(radius, 3)));
 	}else{
 		printf("%s: %.50f\n", option, 0.0);
 	}

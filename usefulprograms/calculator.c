@@ -26,7 +26,7 @@ int main(int argc, char* argv) {
 	} else if (strcmp(op, "div") == 0){
 		printf("%d \u00F7 %d = %f\n", x, y, (double)x/y);
 	} else if (strcmp(op, "sqrt") == 0) {
-		printf("%f\n", sqrt(x) + y);
+		printf("%f\n", sqrt(x));
 	} else {
 		printf("Invalid operator\n");
 	}
