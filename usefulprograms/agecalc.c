@@ -26,13 +26,13 @@ int main(int argc, char *argv) {
 	int monthCarryover = 0;
 	int years;
 	int yearCarryover = 0;
-	if (birth.date < current.date) {
+	if (birth.date <= current.date) {
 		days = current.date - birth.date;
 	}else {
 		days = (current.date+30) - birth.date;
 		dayCarryover = 1;
 	}
-	if (birth.month < current.month) {
+	if (birth.month <= current.month) {
 		if (dayCarryover) {
 			months = (current.month-1) - birth.month;
 		}else {
