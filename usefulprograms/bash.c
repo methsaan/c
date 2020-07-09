@@ -8,7 +8,7 @@ int main(int argc, char *argv){
 	while (1) {
 		printf("Enter a bash command: ");
 		fgets(command, 100, stdin);
-		if (strcmp(command, "quit\n") == 0) {
+		if (strcmp(command, "exit\n") == 0) {
 			break;
 		}
 		system(command);
