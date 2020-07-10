@@ -7,6 +7,8 @@
 #include <ctype.h>
 
 int main(int argc, char *argv) {
-int y = 0;
+int x = 23;
+char x = 'a';
+char y = '4';
 return 0;
 }
