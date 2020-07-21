@@ -25,8 +25,6 @@ int main(int argc, char *argv[]) {
 		fprintf(fpw, "%d\n", rand()%2);
 		fprintf(fpw, "%d\n", rand()%12);
 		fprintf(fpw, "%d\n", rand()%2);
-		const char *studytypes[11] = {"Math\n", "French\n", "Programming\n", "Science\n", "Geography\n", "History\n", "English\n", "Sinhala\n", "Buddhism\n", "Government\n", "Economics\n"};
-		fprintf(fpw, "%s\n", studytypes[rand()%11]);
 		fclose(fpw);
 	}	
 	if (((timea[0] == '0') && (timea[1] == '5' && (timea[3] == '3' || timea[3] == '4'))) || (argc == 3)) {
@@ -105,7 +103,6 @@ int main(int argc, char *argv[]) {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
 		printf("Today you are following schedule %d, FAIL%d or %s\n", day_array[randday], randnum2+1, pdbr[breakidx][randnum]);
 	}
-	printf("Study subject: %s\n", study);
 	fclose(fp);
 	FILE *fp2 = fopen("schedfile2", "r");
 	char fail2list1[3];
