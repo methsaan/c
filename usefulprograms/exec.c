@@ -66,6 +66,7 @@ int main(int argc, char *argv) {
 		fclose(fp);
 		system("gcc execfile.c -lm -o a.out");
 		system("./a.out");
+		// store system as string
 	}
 	system("gcc exec.c");
 }
