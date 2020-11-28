@@ -64,7 +64,12 @@ int main(int argc, char *argv) {
 		fprintf(fp, "%s", code);
 		fprintf(fp, "}\n");
 		fclose(fp);
-		system("gcc execfile.c -lm -o a.out");
+		system("gcc execfile.c -lm -o a.out >> error.txt");
+		//fp = fopen("error.txt", "r");
+		//if (fp != NULL) {
+		//	printf("Error: cannot execute\n");
+		//	break;
+		//}
 		system("./a.out");
 		// store system as string
 	}
