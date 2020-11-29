@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv) {
 	FILE *fp;
@@ -64,14 +64,24 @@ int main(int argc, char *argv) {
 		fprintf(fp, "%s", code);
 		fprintf(fp, "}\n");
 		fclose(fp);
-		system("gcc execfile.c -lm -o a.out >> error.txt");
-		//fp = fopen("error.txt", "r");
-		//if (fp != NULL) {
-		//	printf("Error: cannot execute\n");
-		//	break;
-		//}
-		system("./a.out");
-		// store system as string
+		char execute[800];
+		strcpy(execute, "");
+		char tempExecute[50];
+		fp = popen("./execrun.sh", "r");
+		while (fgets(tempExecute, sizeof(tempExecute), fp) != NULL) {
+			strcat(execute, tempExecute);
+			printf("%s", tempExecute);
+		}
+		printf("%s\n", execute);
+		printf("%s\n", execute);
+		printf("%s\n", execute);
+		if (execute[0] != '\0') {
+			printf("ERROR\n");
+		}else {
+			printf("NO ERROR\n");
+		}
+		pclose(fp);
 	}
 	system("gcc exec.c");
 }
+
