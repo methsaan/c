@@ -67,20 +67,8 @@ int main(int argc, char *argv) {
 		char execute[800];
 		strcpy(execute, "");
 		char tempExecute[50];
-		fp = popen("./execrun.sh", "r");
-		while (fgets(tempExecute, sizeof(tempExecute), fp) != NULL) {
-			strcat(execute, tempExecute);
-			printf("%s", tempExecute);
-		}
-		printf("%s\n", execute);
-		printf("%s\n", execute);
-		printf("%s\n", execute);
-		if (execute[0] != '\0') {
-			printf("ERROR\n");
-		}else {
-			printf("NO ERROR\n");
-		}
-		pclose(fp);
+		system("./execrun.sh");
+		system("./a.out");
 	}
 	system("gcc exec.c");
 }
