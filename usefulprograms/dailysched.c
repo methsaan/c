@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 		printf("Today you are following schedule FAIL%d or %s\n", randnum2+1, pdbr[breakidx][randnum]);
 	} else if (dayy == 1) {
 		printf("Today you are following schedule %s, FAIL%d or %s\n", (randnum2==0 ? "SWIM1" : "SWIM2"), randnum2+1, pdbr[breakidx][randnum]);
-	} else if (breaktype[0] == 'e') {
+	} else if (breaktype[0] == 'i' /*inner*/) {
 		printf("Today you are following inner schedule IS\n");
 	} else {
 		int day_array[] = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4};
