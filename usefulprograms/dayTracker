@@ -5,4 +5,6 @@ Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
 ['January']		['2nd']		['Fwor']				['0/5']			['N/A']
 ['January']		['3rd']		['Fwor']				['0/5']			['N/A']
 ['January']		['4th']		['Fwor']				['2/5']			['N/A']
-['January']		['6th']	['Fwor']				['2/5']			['N/A']
+['January']		['5th']		['Fwor']				['2/5']			['N/A']
+['January']		['6th']		['perfect']				['5/5']			['homework']
+['January']		['7th']	['Fwr']				['3/5']			['homework']
