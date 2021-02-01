@@ -4,12 +4,12 @@ set -o pipefail
 set -o nounset
 set -o errexit
 
-errors=$(gcc execfile.c)
-destdir=/home/test/programming/c/usefulprograms/errors.txt
 echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
 
-printf "%s" "$errors" >> "$destdir"
-printf "%s" "$errors" >> "$destdir"
-printf "%s" "$errors" >> "$destdir"
-printf "%s" "$errors" >> "$destdir"
-printf "%s" "$errors" >> "$destdir"
+gcc execfile.c> errors.txt
+echo "haho"
+cat errors.txt
+cat errors.txt
+cat errors.txt
+cat errors.txt
+cat errors.txt
