@@ -32,3 +32,4 @@ Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
 ['January']		['29th']	['fwor']				['1/5']			['N/A']
 ['January']		['30th']	['PERFECT']				['2/5']			['N/A']
 ['January']		['31th']	['fwor']				['1/5']			['N/A']
+['February']		['1st']		['perfect']				['5/5']			['N/A']
