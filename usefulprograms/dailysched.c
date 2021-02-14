@@ -89,9 +89,7 @@ int main(int argc, char *argv[]) {
 		breakidx = 0;
 	}
 	char *pdbr[5][2] = {{"PDBR1", "PDBR2"}, {"PDBR3", "PDBR4"}, {"PDBR5", "PDBR6"}, {"PDBR7", "PDBR8"}, {"PDBR9", "PDBR10"}};
-	if (dayy == 0) {
-		printf("Today you are following schedule FAIL%d or %s\n", randnum2+1, pdbr[breakidx][randnum]);
-	} else if (breaktype[0] == 'i' /*inner*/) {
+	if (breaktype[0] == 'i' /*inner*/) {
 		printf("Today you are following inner schedule IS\n");
 	} else if (dayy == 4) {
 		printf("Today you are following schedule %s, FAIL%d or %s\n", (randnum2==0 ? "MUS1" : "MUS2"), randnum2+1, pdbr[breakidx][randnum]);
