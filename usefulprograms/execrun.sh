@@ -6,10 +6,4 @@ set -o errexit
 
 echo "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
 
-gcc execfile.c> errors.txt
-echo "haho"
-cat errors.txt
-cat errors.txt
-cat errors.txt
-cat errors.txt
-cat errors.txt
+gcc execfile.c 2>&1 | grep error
