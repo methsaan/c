@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
 	fscanf(fp2, "%s", fail2list5);
 	fscanf(fp2, "%s", fail2list6);
 	printf("____________________________________________________________________________________________Daily_Schedule_______________________________________________________________________________________________________\n");
-	printf("|            REGULAR SCHEDULE            Wake up 5:10 AM           Sleep 8:40-9:30 PM             Workout:  Push ups: 3 sets of 12, Squats: 3 sets of 25, Plank: 1:15 min                   |     FAIL1  (timed)|\n");
+	printf("|            REGULAR SCHEDULE            Wake up 5:10 AM           Sleep 8:40-9:30 PM             Workout:  Push ups: 3 sets of 15, Squats: 3 sets of 28, Plank: 1:20 min                   |     FAIL1  (timed)|\n");
 	printf("|___________________________________________________________________________________________________________________________________________________________________________________________|___________________|\n");
 	printf("|_________1_________|_________3_________|_______MUS1_______|______PDBR1______|_____SWIM1_______|____TENNIS1_______|______PDBR3_____|____PDBR5_____|_____PDBR7_______|_________PDBR9_________|5-7:00| PA, PP, C  |\n");
 	printf("|        PA         |     JS/Go/Java    |        PA        |       PA        |       PA        |                  |                |              |                 |        Study          |7-9:00| D, MT, B   |\n");
