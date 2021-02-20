@@ -67,10 +67,9 @@ int main(int argc, char *argv) {
 		char execute[800];
 		strcpy(execute, "");
 		char tempExecute[50];
-		system("./execrun.sh");
+		system("gcc execrun.c");
 		system("./a.out");
 		system("cat errors.txt");
 	}
 	system("gcc exec.c");
 }
-
