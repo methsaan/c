@@ -55,7 +55,7 @@ int main(int argc, char *argv) {
 		fprintf(fp, "#include <stdlib.h>\n");
 		fprintf(fp, "#include <math.h>\n");
 		fprintf(fp, "#include <string.h>\n");
-		fprintf(fp, "#include <stdbool.h>\n\n");
+		fprintf(fp, "#include <stdbool.h>\n");
 		fprintf(fp, "#include <ctype.h>\n\n");
 		fprintf(fp, "int main(int argc, char *argv) {\n");
 		for (int x = 0; x < declareCodeIdx; x++) {
@@ -67,6 +67,7 @@ int main(int argc, char *argv) {
 		char execute[800];
 		strcpy(execute, "");
 		char tempExecute[50];
+		// go to execrun.c
 		system("gcc execrun.c");
 		system("./a.out");
 		system("cat errors.txt");
