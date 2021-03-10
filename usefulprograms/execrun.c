@@ -1,24 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <linux/limits.h>
+#include <string.h>
 
 int main(int argc, char *argv) {
-	// fix looping issue
-	FILE *fp;
-	int status;
-	char path[PATH_MAX];
-	fp = popen("gcc execfile.c -lm -o a.out", "r");
-	if (fp == NULL) {
-		printf("fp is NULL\n");
+	// program works so far
+	// store compilation results in errors.txt
+	//
+	FILE *fpipe;
+	char *command = "gcc execfile.c";
+	char c = 0;
+	if (0 == (fpipe = (FILE*)popen(command, "r"))) {
+		perror("popen() failed.");
+		exit(EXIT_FAILURE);
 	}
-	while (fgets(path, PATH_MAX, fp) != NULL) {
-		printf("%s", path);
-	}
-	status = pclose(fp);
-	if (status == -1) {
-		printf("Error\n");
-		// ...
-	}else {
-		system("./a.out");
+	while (fread(&c, sizeof(c), 1, fpipe)) {
+		printf("%c", c);
 	}
 }
