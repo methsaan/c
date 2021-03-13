@@ -1,19 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define BUFSIZE 128
 
 int main(int argc, char *argv) {
-	// program works so far
-	// store compilation results in errors.txt
-	//
-	FILE *fpipe;
-	char *command = "gcc execfile.c";
-	char c = 0;
-	if (0 == (fpipe = (FILE*)popen(command, "r"))) {
-		perror("popen() failed.");
-		exit(EXIT_FAILURE);
+	FILE *errorFile = fopen("errors.txt", "w");
+	fprintf(errorFile, "qweqweqwew");
+	fclose(errorFile);
+
+	char *cmd = "dqmpog";
+
+	char buf[BUFSIZE];
+	FILE *fp;
+
+	if ((fp = popen(cmd, "r")) == NULL) {
+		return -1;
 	}
-	while (fread(&c, sizeof(c), 1, fpipe)) {
-		printf("%c", c);
+
+	while (fgets(buf, BUFSIZE, fp) != NULL) {
+		printf("%s", buf);
+	}
+
+	if (pclose(fp)) {
+		// error
+		printf("Command not found or exited with error status\n");
+		return -1;
 	}
 }
