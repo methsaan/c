@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
 	char defaultType[5] = "free";
 	char breaktype[9];
 	strcpy(breaktype, argc >= 2 ? argv[1] : defaultType);
-	printf("%s\n", breaktype);
 	system("clear");
 	system("./dayTracker.py");
 	system("clear");
