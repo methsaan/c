@@ -37,7 +37,7 @@ int main(int argc, char *argv) {
 		}
 		int hasDeclaration = 0;
 		for (int x = 0; x < codeLen; x++) {
-			if (code[x] == '=' ) {
+			if (code[x] == '=') {
 				hasDeclaration++;
 				break;
 			}
@@ -70,6 +70,14 @@ int main(int argc, char *argv) {
 		system("gcc execrun.c");
 		system("./a.out");
 		system("cat errors.txt");
+		FILE fp2 = fopen("errors.txt", "r");
+		if (fp != FULL) {
+			fseek(fp, 0, SEEK_END);
+			size = ftell(fp);
+			if (0 == size) {
+				// remove second last line
+			}
+		}
 	}
 	system("gcc exec.c");
 }

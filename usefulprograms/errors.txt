@@ -1,1 +1,5 @@
-qweqasdasweqwew
+execfile.c: In function ‘main’:
+execfile.c:4:19: error: expected ‘;’ before ‘wd’
+  printf("haho!\n")wd;
+                   ^~
+                   ;
