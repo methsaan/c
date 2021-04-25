@@ -113,3 +113,5 @@ Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
 ['April']		['20th']	['Fwor']				['2/5']			['N/A']
 ['April']		['21st']	['Fwor']				['1/5']			['N/A']
 ['April']		['22nd']	['Fwor']				['1/5']			['N/A']
+['April']		['23th']	['PERFECT']				['5/5']			['N/A']
+['April']		['24th']	['Fwr']					['2/5']			['Connection issue']
