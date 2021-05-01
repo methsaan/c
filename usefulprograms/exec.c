@@ -70,14 +70,17 @@ int main(int argc, char *argv) {
 		system("gcc execrun.c");
 		system("./a.out");
 		system("cat errors.txt");
-		FILE fp2 = fopen("errors.txt", "r");
-		if (fp != FULL) {
-			fseek(fp, 0, SEEK_END);
-			size = ftell(fp);
-			if (0 == size) {
-				// remove second last line
+		int size;
+		FILE *fp2 = fopen("errors.txt", "r");
+		if (fp2 != NULL) {
+			fseek(fp2, 0, SEEK_END);
+			size = ftell(fp2);
+			if (size == 0) {
+				system("head -n -2 execfile.c > tmp.txt && mv tmp.txt execfile.c");
 			}
 		}
+		// doesn't work, delete line from code array
+		fclose(fp2);
 	}
 	system("gcc exec.c");
 }
