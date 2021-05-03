@@ -72,6 +72,7 @@ int main(int argc, char *argv) {
 		system("cat errors.txt");
 		int size;
 		FILE *fp2 = fopen("errors.txt", "r");
+		printf("%s\n", declareCode);
 		if (fp2 != NULL) {
 			fseek(fp2, 0, SEEK_END);
 			size = ftell(fp2);

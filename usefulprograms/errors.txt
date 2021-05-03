@@ -1,52 +1,9 @@
+ERROR:
 execfile.c: In function ‘main’:
-execfile.c:4:19: error: expected ‘;’ before ‘wd’
-  printf("haho!\n")wd;
-                   ^~
-                   ;
-execfile.c: In function ‘main’:
-execfile.c:9:1: error: ‘nunuh’ undeclared (first use in this function)
- nunuh
- ^~~~~
-execfile.c:9:1: note: each undeclared identifier is reported only once for each function it appears in
-execfile.c:9:6: error: expected ‘;’ before ‘}’ token
- nunuh
-      ^
-      ;
- }
- ~     
-execfile.c: In function ‘main’:
-execfile.c:9:1: error: ‘uhuhuhu’ undeclared (first use in this function)
- uhuhuhu
- ^~~~~~~
-execfile.c:9:1: note: each undeclared identifier is reported only once for each function it appears in
-execfile.c:9:8: error: expected ‘;’ before ‘}’ token
- uhuhuhu
-        ^
-        ;
- }
- ~       
-execfile.c: In function ‘main’:
-execfile.c:9:1: error: ‘uyugy’ undeclared (first use in this function)
- uyugy
- ^~~~~
-execfile.c:9:1: note: each undeclared identifier is reported only once for each function it appears in
-execfile.c:9:6: error: expected ‘;’ before ‘}’ token
- uyugy
-      ^
-      ;
- }
- ~     
-execfile.c: In function ‘main’:
-execfile.c:9:1: error: ‘joijoijjmi’ undeclared (first use in this function)
- joijoijjmi
- ^~~~~~~~~~
-execfile.c:9:1: note: each undeclared identifier is reported only once for each function it appears in
-execfile.c:9:11: error: expected ‘;’ before ‘}’ token
- joijoijjmi
-           ^
-           ;
- }
- ~          
-/usr/bin/ld: /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o: in function `_start':
-(.text+0x34): undefined reference to `main'
-collect2: error: ld returned 1 exit status
+execfile.c:5:10: warning: initialization of ‘int’ from ‘char *’ makes integer from pointer without a cast [-Wint-conversion]
+  int x = "dasdas";
+          ^~~~~~~~
+execfile.c:7:9: error: ‘s’ undeclared (first use in this function)
+  printf(s);
+         ^
+execfile.c:7:9: note: each undeclared identifier is reported only once for each function it appears in
