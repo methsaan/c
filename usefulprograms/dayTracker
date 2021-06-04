@@ -152,3 +152,6 @@ Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
 ['May']			['29th']	['Fwor']				['3/5']			['N/A']
 ['May']			['30th']	['PERFECT']				['5/5']			['N/A']
 ['May']			['31th']	['perfect']				['5/5']			['N/A']
+['June']		['1th']		['perfect']				['3/5']			['N/A']
+['June']		['2nd']		['Fwor']				['1/5']			['N/A']
+['May']			['3rd']		['Fwor']				['1/5']			['N/A']
