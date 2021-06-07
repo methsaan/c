@@ -1,12 +1,17 @@
 ERROR:
 execfile.c: In function ‘main’:
-execfile.c:9:1: error: ‘iuyiuy’ undeclared (first use in this function)
- iuyiuy
- ^~~~~~
-execfile.c:9:1: note: each undeclared identifier is reported only once for each function it appears in
-execfile.c:9:7: error: expected ‘;’ before ‘}’ token
- iuyiuy
-       ^
-       ;
+execfile.c:10:8: warning: missing terminating " character
+ printf("dqwqwf
+        ^
+execfile.c:10:8: error: missing terminating " character
+ printf("dqwqwf
+        ^~~~~~~
+execfile.c:11:1: error: expected expression before ‘}’ token
  }
- ~      
+ ^
+execfile.c:10:8: error: expected ‘;’ before ‘}’ token
+ printf("dqwqwf
+        ^
+        ;
+ }
+ ~       
