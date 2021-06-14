@@ -162,5 +162,6 @@ Month			Date		Fwr/Fwor/perfect/PERFECT	Requirements		Reason
 ['June']		['8th']		['Fwor']				['2/5']			['N/A']
 ['June']		['9th']		['Fwor']				['1/5']			['N/A']
 ['June']		['10th']	['Fwor']				['1/5']			['N/A']
-['June']		['11th']	['Fwor']				['1/5']			['N/A']
-['June']		['12th']	['Fwor']				['1/5']			['N/A']
+['June']		['11th']	['Fwor']				['0/5']			['N/A']
+['June']		['12th']	['Fwor']				['0/5']			['N/A']
+['June']		['13th']	['Fwor']				['0/5']			['N/A']
