@@ -19,7 +19,7 @@ int main(int *argc, char *argv[]) {
 	int fixedItemMinutes[20];
 	char *customActivities[30];
 	for (int x = 0; x < 30; x++) {
-		fixedItems[x] = malloc(malloc_size3 * sizeof(char));
+		customActivities[x] = malloc(malloc_size3 * sizeof(char));
 	}
 	int customActivityMinutes[20];
 	
@@ -30,16 +30,22 @@ int main(int *argc, char *argv[]) {
 	while (fscanf(fp, "%14s", requiredItems[riCnt]) != EOF) {
 		riCnt++;
 	}
+	fclose(fp);
 
 	int fiCnt = 0;
-	printf("Enter fixed items (enter q when done):\n");
-	do {
-		scanf("%29s", fixedItems[fiCnt]);
+	printf("Enter fixed items and start times (enter '- -' when done):\n");
+	while (1) {
+		char startTime[6];
+		scanf("%s %s", fixedItems[fiCnt], startTime);
+		if (startTime[0] == '-') {
+			break;
+		}
+		int hoursTot = (startTime[0]-'0')*10 + (startTime[1]-'0');
+		int minutesTot = hoursTot*60 + (startTime[3]-'0')*10 + (startTime[4]-'0');
+		fixedItemMinutes[fiCnt] = minutesTot;
 		fiCnt++;
-	} while (fixedItems[fiCnt-1][0] != 'q');
-	for (int x = 0; x < fiCnt; x++) {
-		printf("%s\n", fixedItems[x]);
 	}
-
-	fclose(fp);
+	for (int x = 0; x < fiCnt; x++) {
+		printf("%s %d\n", fixedItems[x], fixedItemMinutes[x]);
+	}
 }
