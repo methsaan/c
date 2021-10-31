@@ -50,8 +50,8 @@ int main(int *argc, char *argv[]) {
 
 		// calculate length of activity (minutesTot2-minutesTot) doesn't work
 
-		int minutesTot2 = hoursTot*60 + (endTime[3]-'0')*10 + (endTime[4]-'0');
-		fixedItemLengthMinutes[fiCnt] = minutesTot2;
+		int minutesTot2 = hoursTot2*60 + (endTime[3]-'0')*10 + (endTime[4]-'0');
+		fixedItemLengthMinutes[fiCnt] = minutesTot2 - minutesTot;
 		fiCnt++;
 	}
 	//PA 030-050
