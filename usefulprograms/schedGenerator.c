@@ -2,37 +2,54 @@
 #include <string.h>
 #include <stdlib.h>
 
+int getWords(char *base, char *target[20]) {
+	int n = 0, i, j = 0;
+
+	for (i = 0; 1; i++) {
+		if (base[i] != ' ') {
+			target[n][j++] = base[i];
+		}
+		if (base[i] != ' ') {
+			target[n][j++] = '\0';
+			n++;
+			j = 0;
+		}
+		if (base[i] == '\n') {
+			break;
+		}
+	}
+	return n;
+}
+
 int main(int *argc, char *argv[]) {
 	size_t malloc_size = 15;
 	size_t malloc_size2 = 30;
 	size_t malloc_size3 = 30;
 
+	int requiredItemStartMinutes[20];
+	int requiredItemEndMinutes[20];
+	int requiredItemLengthMinutes[20];
 	char *requiredItems[10];
+	char requiredItemsStr[30];
 	for (int x = 0; x < 10; x++) {
 		requiredItems[x] = malloc(malloc_size * sizeof(char));
 	}
-	int requiredItemStartMinutes[20];
-	int requiredItemEndMinutes[20];
+
+	int fixedItemStartMinutes[20];
+	int fixedItemEndMinutes[20];
+	int fixedItemLengthMinutes[20];
 	char *fixedItems[20];
 	for (int x = 0; x < 20; x++) {
 		fixedItems[x] = malloc(malloc_size2 * sizeof(char));
 	}
-	int fixedItemStartMinutes[20];
-	int fixedItemLengthMinutes[20];
+
+	int customActivityStartMinutes[20];
+	int customActivityEndMinutes[20];
+	int customActivityLengthMinutes[20];
 	char *customActivities[30];
 	for (int x = 0; x < 30; x++) {
 		customActivities[x] = malloc(malloc_size3 * sizeof(char));
 	}
-	int customActivityStartMinutes[20];
-	int customActivityLengthMinutes[20];
-
-	FILE *fp = fopen("requiredItems", "r");
-
-	int riCnt = 0;
-	while (fscanf(fp, "%14s", requiredItems[riCnt]) != EOF) {
-		riCnt++;
-	}
-	fclose(fp);
 
 	int fiCnt = 0;
 	printf("Enter fixed items, start time and end time separated by a space (enter '- - -' when done):\n");
@@ -47,13 +64,21 @@ int main(int *argc, char *argv[]) {
 		int minutesTot = hoursTot*60 + (startTime[3]-'0')*10 + (startTime[4]-'0');
 		fixedItemStartMinutes[fiCnt] = minutesTot;
 		int hoursTot2 = (endTime[0]-'0')*10 + (endTime[1]-'0');
-
-		// calculate length of activity (minutesTot2-minutesTot) doesn't work
-
 		int minutesTot2 = hoursTot2*60 + (endTime[3]-'0')*10 + (endTime[4]-'0');
+		fixedItemEndMinutes[fiCnt] = minutesTot2;
 		fixedItemLengthMinutes[fiCnt] = minutesTot2 - minutesTot;
 		fiCnt++;
 	}
+
+	FILE *fp = fopen("requiredItems", "r");
+
+	int riCnt = 0;
+	while (fgets(requiredItemsStr, 30, fp)) {
+		int n = getWords(requiredItemsStr, requiredItems);
+		riCnt++;
+	}
+	fclose(fp);
+
 	//PA 030-050
 	//PA 030-050
 	//PP 050-080
@@ -61,6 +86,9 @@ int main(int *argc, char *argv[]) {
 	//MT 025-45
 	//ST 035-060
 	for (int x = 0; x < fiCnt; x++) {
-		printf("%s %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemLengthMinutes[x]);
+		printf("%s %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x]);
+	}
+	for (int x = 0; x < riCnt; x++) {
+		printf("%s\n", requiredItems[x]);
 	}
 }
