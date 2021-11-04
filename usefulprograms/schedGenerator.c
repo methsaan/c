@@ -2,14 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-int getWords(char *base, char *target[20]) {
+void getWords(char *base, char target[6][20]) {
 	int n = 0, i, j = 0;
 
 	for (i = 0; 1; i++) {
 		if (base[i] != ' ') {
 			target[n][j++] = base[i];
-		}
-		if (base[i] != ' ') {
+		} else {
 			target[n][j++] = '\0';
 			n++;
 			j = 0;
@@ -18,7 +17,6 @@ int getWords(char *base, char *target[20]) {
 			break;
 		}
 	}
-	return n;
 }
 
 int main(int *argc, char *argv[]) {
@@ -74,7 +72,12 @@ int main(int *argc, char *argv[]) {
 
 	int riCnt = 0;
 	while (fgets(requiredItemsStr, 30, fp)) {
-		int n = getWords(requiredItemsStr, requiredItems);
+		printf("line %d: %s\n", riCnt+1, requiredItemsStr);
+		char requiredItemsInfo[6][20];
+		getWords(requiredItemsStr, requiredItemsInfo);
+		requiredItems[riCnt] = requiredItemsInfo[0];
+		// only printing last line
+		printf("%s %s %s\n", requiredItemsInfo[0], requiredItemsInfo[1], requiredItemsInfo[2]);
 		riCnt++;
 	}
 	fclose(fp);
