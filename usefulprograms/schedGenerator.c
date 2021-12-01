@@ -71,15 +71,15 @@ int main(int *argc, char *argv[]) {
 	FILE *fp = fopen("requiredItems", "r");
 
 	int riCnt = 0;
-	while (fgets(requiredItemsStr, 30, fp)) {
-		printf("line %d: %s\n", riCnt+1, requiredItemsStr);
-		char requiredItemsInfo[6][20];
-		getWords(requiredItemsStr, requiredItemsInfo);
-		requiredItems[riCnt] = requiredItemsInfo[0];
-		// only printing last line
-		printf("%s %s %s\n", requiredItemsInfo[0], requiredItemsInfo[1], requiredItemsInfo[2]);
-		riCnt++;
+
+	char *line;
+
+	while (fgets(line, sizeof(line), fp)) {
+		printf("%s", line);
+		//char haho
+		//getWords(
 	}
+
 	fclose(fp);
 
 	//PA 030-050
