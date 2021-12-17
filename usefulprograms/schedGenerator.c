@@ -4,7 +4,6 @@
 
 void getWords(char *base, char target[6][20]) {
 	int n = 0, i, j = 0;
-
 	for (i = 0; 1; i++) {
 		if (base[i] != ' ') {
 			target[n][j++] = base[i];
@@ -68,30 +67,7 @@ int main(int *argc, char *argv[]) {
 		fiCnt++;
 	}
 
-	FILE *fp = fopen("requiredItems", "r");
-
-	int riCnt = 0;
-
-	char *line;
-
-	while (fgets(line, sizeof(line), fp)) {
-		printf("%s", line);
-		//char haho
-		//getWords(
-	}
-
-	fclose(fp);
-
-	//PA 030-050
-	//PA 030-050
-	//PP 050-080
-	//D 025-045
-	//MT 025-45
-	//ST 035-060
 	for (int x = 0; x < fiCnt; x++) {
-		printf("%s %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x]);
-	}
-	for (int x = 0; x < riCnt; x++) {
-		printf("%s\n", requiredItems[x]);
+		printf("%s %d %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x], fixedItemLengthMinutes[x]);
 	}
 }
