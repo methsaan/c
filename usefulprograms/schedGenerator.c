@@ -67,6 +67,14 @@ int main(int *argc, char *argv[]) {
 		fiCnt++;
 	}
 
+	FILE *reqItemsReader = fopen("requiredItems", "r");
+
+	char *tempString[30];
+	while (fgets(tempString, 30, reqItemsReader) != NULL) {
+		printf("hahahahaha %s\n", tempString);
+	}
+
+	printf("hahoo\n");
 	for (int x = 0; x < fiCnt; x++) {
 		printf("%s %d %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x], fixedItemLengthMinutes[x]);
 	}
