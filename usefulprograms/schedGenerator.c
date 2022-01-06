@@ -18,10 +18,23 @@ void getWords(char *base, char target[6][20]) {
 	}
 }
 
+char *copyString(char s[]) {
+	char* s2;
+	s2 = (char*)malloc(3);
+	strcpy(s2, s);
+	return (char*)s2;
+}
+
 int main(int *argc, char *argv[]) {
 	size_t malloc_size = 15;
 	size_t malloc_size2 = 30;
 	size_t malloc_size3 = 30;
+
+	int minutesOccupied[1440];
+	int minOccCnt = 0;
+	int timeGapStart[120];
+	int timeGapLen[120];
+	int timeGapCnt = 0;
 
 	int requiredItemStartMinutes[20];
 	int requiredItemEndMinutes[20];
@@ -66,16 +79,53 @@ int main(int *argc, char *argv[]) {
 		fixedItemLengthMinutes[fiCnt] = minutesTot2 - minutesTot;
 		fiCnt++;
 	}
-
+	for (int x = 0; x < fiCnt; x++) {
+		for (int i = fixedItemStartMinutes[x]; i < fixedItemEndMinutes[x]; i++) {
+			minutesOccupied[minOccCnt] = i;
+			minOccCnt++;
+		}
+	}
 	FILE *reqItemsReader = fopen("requiredItems", "r");
 
-	char *tempString[30];
+	char tempString[30];
+	int riCnt = 0;
+	char *reqItemMinLen[20];
+	char *reqItemMaxLen[20];
 	while (fgets(tempString, 30, reqItemsReader) != NULL) {
-		printf("hahahahaha %s\n", tempString);
+		requiredItems[riCnt] = copyString(strtok(tempString, " "));
+		reqItemMinLen[riCnt] = copyString(strtok(NULL, " "));
+		reqItemMaxLen[riCnt] = copyString(strtok(NULL, " "));
+		riCnt++;
 	}
 
-	printf("hahoo\n");
+	int caCnt = 0;
+	char *customActivityMinLen[20];
+	char *customActivityMaxLen[20];
+	while (1) {
+		customActivities[caCnt] = copyString(strtok(tempString, " "));
+		customActivityMinLen[caCnt] = copyString(strtok(NULL, " "));
+		customActivityMaxLen[caCnt] = copyString(strtok(NULL, " "));
+		caCnt++;
+		if (*customActivityMinLen[0] == '-' || *customActivityMaxLen[0] == '-') {
+			break;
+		}
+	}
+
+	for (int x = 1; x < minOccCnt; x++) {
+		if ((minutesOccupied[x]-minutesOccupied[x-1]) > 1) {
+			timeGapStart[timeGapCnt] = minutesOccupied[x-1];
+			timeGapLen[timeGapCnt] = minutesOccupied[x]-minutesOccupied[x-1];
+			timeGapCnt++;
+		}
+	}
+
 	for (int x = 0; x < fiCnt; x++) {
 		printf("%s %d %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x], fixedItemLengthMinutes[x]);
+	}
+	for (int x = 0; x < riCnt; x++) {
+		printf("%s %s %s\n", requiredItems[x], reqItemMinLen[x], reqItemMaxLen[x]);
+	}
+	for (int x = 0; x < caCnt; x++) {
+		printf("%s %s %s\n", customActivities[x], customActivityMinLen[x], customActivityMaxLen[x]);
 	}
 }
