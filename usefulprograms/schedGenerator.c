@@ -98,18 +98,18 @@ int main(int *argc, char *argv[]) {
 		riCnt++;
 	}
 
-	int caCnt = 0;
-	char *customActivityMinLen[20];
-	char *customActivityMaxLen[20];
-	while (1) {
-		customActivities[caCnt] = copyString(strtok(tempString, " "));
-		customActivityMinLen[caCnt] = copyString(strtok(NULL, " "));
-		customActivityMaxLen[caCnt] = copyString(strtok(NULL, " "));
-		caCnt++;
-		if (*customActivityMinLen[0] == '-' || *customActivityMaxLen[0] == '-') {
-			break;
-		}
-	}
+	//int caCnt = 0;
+	//char *customActivityMinLen[20];
+	//char *customActivityMaxLen[20];
+	//while (1) {
+	//	customActivities[caCnt] = copyString(strtok(tempString, " "));
+	//	customActivityMinLen[caCnt] = copyString(strtok(NULL, " "));
+	//	customActivityMaxLen[caCnt] = copyString(strtok(NULL, " "));
+	//	caCnt++;
+	//	if (*customActivityMinLen[0] == '-' || *customActivityMaxLen[0] == '-') {
+	//		break;
+	//	}
+	//}
 
 	for (int x = 1; x < minOccCnt; x++) {
 		if ((minutesOccupied[x]-minutesOccupied[x-1]) > 1) {
@@ -125,7 +125,7 @@ int main(int *argc, char *argv[]) {
 	for (int x = 0; x < riCnt; x++) {
 		printf("%s %s %s\n", requiredItems[x], reqItemMinLen[x], reqItemMaxLen[x]);
 	}
-	for (int x = 0; x < caCnt; x++) {
-		printf("%s %s %s\n", customActivities[x], customActivityMinLen[x], customActivityMaxLen[x]);
-	}
+	//for (int x = 0; x < caCnt; x++) {
+	//	printf("%s %s %s\n", customActivities[x], customActivityMinLen[x], customActivityMaxLen[x]);
+	//}
 }
