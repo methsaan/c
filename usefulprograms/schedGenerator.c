@@ -5,24 +5,18 @@
 
 void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int timeSlotSize[], int lenSize, int timeSlotLen, int outputLens[][lenSize]) {
 	srand(time(0));
-
-	for (int x = 0; x < lenSize; x++) { // randomize item[], minLen[] and len[]
-		int randIdx = rand()%lenSize;
-		int temp = len[x];
-		len[x] = len[randIdx];
-		len[randIdx] = temp;
-		temp = minLen[x];
-		minLen[x] = minLen[randIdx];
-		minLen[randIdx] = temp;
-		char *temp2 = item[x];
-		item[x] = item[randIdx];
-		item[randIdx] = temp2;
-	}
-
-	outputLens = malloc(timeSlotLen*sizeof(int *)); // initialize outputLens
-	for (int x = 0; x < timeSlotLen; x++) {
-		outputLens[x] = malloc(lenSize*sizeof(int));
-	}
+	//for (int x = 0; x < lenSize; x++) { // randomize item[], minLen[] and len[]
+	//	int randIdx = rand()%lenSize;
+	//	int temp = len[x];
+	//	len[x] = len[randIdx];
+	//	len[randIdx] = temp;
+	//	temp = minLen[x];
+	//	minLen[x] = minLen[randIdx];
+	//	minLen[randIdx] = temp;
+	//	char *temp2 = item[x];
+	//	item[x] = item[randIdx];
+	//	item[randIdx] = temp2;
+	//}
 
 	int freeTime[timeSlotLen]; // space left in time slot
 	for (int x = 0; x < timeSlotLen; x++) {
@@ -37,14 +31,23 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 		itemsPerSlot[x] = 0;
 	}
 	int remainderItems[lenSize]; // items that couldn't fit
+	int remainderLenIdx[lenSize];
+	for (int x = 0; x < lenSize; x++) {
+		remainderLenIdx[x] = -1;
+	}
 
 	int cnt = 0; // count of items added to slots (doesn't reset)
 	int cnt2 = 0; // count of remainder items
+	int added[lenSize];
+	for (int x = 0; x < lenSize; x++) {
+		added[x] = 0;
+	}
 	for (int x = 0; x < timeSlotLen; x++) {
 		for (int y = cnt; y < lenSize; y++) { // looping through items (no repitition outside current loop)
 			if (spaceTaken[x]+len[y] <= timeSlotSize[x]) { // if item fits in the gap
 				outputLens[x][itemsPerSlot[x]] = len[y]; // add item to the end of time slot row
 				itemsPerSlot[x]++;
+				added[y] = 1;
 				spaceTaken[x] += len[y];
 				freeTime[x] = timeSlotSize[x]-spaceTaken[x];
 				cnt++;
@@ -53,81 +56,169 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 			}
 		}
 	}
-	int added[lenSize];
-	for (int x = 0; x < lenSize; x++) {
-		added[x] = 0;
-	}
-	for (int x = 0; x < lenSize; x++) {
-		for (int y = 0; y < timeSlotLen; y++) {
-			for (int z = 0; z < itemsPerSlot[x]; z++) {
-				if (len[x] == outputLens[y][z]) {
-					added[x] = 1;
-				}
-			}
-		}
-	}
 	for (int x = 0; x < lenSize; x++) {
 		if (added[x] == 0) {
 			remainderItems[cnt2] = len[x];
+			remainderLenIdx[cnt2] = x;
 			cnt2++;
 		}
 	}
-	// continue here .....................................................................
-	while (1) {
-		int tempCnt2 = cnt2;
-		for (int x = 0; x < timeSlotLen; x++) {
-			for (int y = 0; y < itemsPerSlot[x]; y++) { // x and y loop through items in outputLens
-				for (int a = 0; a < timeSlotLen; a++) {
-					if (a != x) { // time slots need to be different in order for space to increase
-						for (int b = 0; b < itemsPerSlot[x]; b++) {
-							if (spaceTaken[x]-outputLens[x][y]+outputLens[a][b] <= spaceTaken[x]) {
-								int temp = outputLens[x][y];
-								outputLens[x][y] = outputLens[a][b];
-								outputLens[a][b] = temp;
-								spaceTaken[x] = spaceTaken[x]-outputLens[x][y]+outputLens[a][b];
-								spaceTaken[a] = spaceTaken[a]-outputLens[a][b]+outputLens[x][y];
-								freeTime[x] = timeSlotSize[x]-spaceTaken[x];
-								freeTime[a] = timeSlotSize[a]-spaceTaken[a];
-							}
-						}
-					}
-				}
-			}
-			for (int x2 = 0; x2 < timeSlotLen; x2++) {
-				for (int y2 = 0; y2 < cnt2; y2++) {
-					if (freeTime[x2] > remainderItems[y2]) {
-						outputLens[x2][itemsPerSlot[x2]] = remainderItems[y2];
-						itemsPerSlot[x2]++;
-						int tempCnt2 = 0;
-						for (int i = 0; i < cnt2; i++) {
-							if (i != y2) {
-								remainderItems[tempCnt2] = remainderItems[i];
-								tempCnt2++;
-							}
-						}
-						cnt2 = tempCnt2;
-					}
-				}
-			}
-		}
-		if (cnt2 == 0 || tempCnt2 == cnt2) {
-			break;
-		}
-	}
-}
-
-void waaaa(int i, int j, int wa[][j]) {
-	for (int x = 0; x < i; x++) {
-		for (int y = 0; y < j; y++) {
-			wa[x][y] = y;
-			printf("%d ", wa[x][y]);
+	for (int x = 0; x < timeSlotLen; x++) {
+		printf("%d: ", timeSlotSize[x]);
+		for (int y = 0; y < itemsPerSlot[x]; y++) {
+			printf("%d ", outputLens[x][y]);
 		}
 		printf("\n");
 	}
-	int **tempItemMinLens = malloc(12*sizeof(int *));
+	for (int x = 0; x < cnt2; x++) {
+		printf("%d ", remainderItems[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < timeSlotLen; x++) {
+		for (int y = 0; y < cnt2; y++) {
+			if (spaceTaken[x]+remainderItems[y] <= timeSlotSize[x]) {
+				outputLens[x][itemsPerSlot[x]] = remainderItems[y];
+				itemsPerSlot[x]++;
+				spaceTaken[x] += remainderItems[y];
+				freeTime[x] = timeSlotSize[x]-spaceTaken[x];
+				added[remainderLenIdx[y]] = 1;
+				remainderLenIdx[y] = 0;
+				int tempCnt2 = 0;
+				for (int a = 0; a < cnt2; a++) {
+					if (a != y) {
+						remainderItems[tempCnt2] = remainderItems[a];
+						tempCnt2++;
+					}
+				}
+				cnt2 = tempCnt2;
+				y--;
+			}
+		}
+	}
+	cnt2 = 0;
+	for (int x = 0; x < lenSize; x++) {
+		if (added[x] == 0) {
+			remainderItems[cnt2] = len[x];
+			remainderLenIdx[cnt2] = x;
+			cnt2++;
+		}
+	}
+	printf("Before space-making 2:\n");
+	for (int x = 0; x < lenSize; x++) {
+		printf("%d ", len[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < timeSlotLen; x++) {
+		printf("%d: ", timeSlotSize[x]);
+		for (int y = 0; y < itemsPerSlot[x]; y++) {
+			printf("%d ", outputLens[x][y]);
+		}
+		printf("\n");
+	}
+	for (int x = 0; x < lenSize; x++) {
+		printf("%d: %d\n", len[x], added[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < timeSlotLen; x++) {
+		printf("%d: %d\n", timeSlotSize[x], itemsPerSlot[x]);
+	}
+	for (int x = 0; x < timeSlotLen; x++) {
+		printf("%d free %d\n", x, freeTime[x]);
+		printf("%d used %d\n", x, spaceTaken[x]);
+	}
+	printf("\n\n");
+	for (int x = 0; x < cnt2; x++) {
+		int exit = 0;
+		for (int y = 0; y < timeSlotLen; y++) {
+			int spaceToGain = remainderItems[x]-freeTime[y];
+			for (int a = 0; a < itemsPerSlot[y]; a++) {
+				printf("\toutputLens[y][a]: %d\n", outputLens[y][a]);
+				for (int b = 0; b < timeSlotLen; b++) {
+					if (b != y) {
+						for (int c = 0; c < itemsPerSlot[b]; c++) {
+							printf("\t\toutputLens[b][c]: %d\n\n", outputLens[b][c]);
+							printf("\t\tspaceTaken[y]: %d\n", spaceTaken[y]);
+							printf("\t\toutputLens[y][a]: %d\n", outputLens[y][a]);
+							printf("\t\toutputLens[b][c]: %d\n", outputLens[b][c]);
+							printf("\t\tspaceTaken[y]-outputLens[y][a]+outputLens[b][c]: %d\n", spaceTaken[y]-outputLens[y][a]+outputLens[b][c]);
+							printf("\t\tspaceTaken[b]: %d\n", spaceTaken[b]);
+							printf("\t\tspaceTaken[b]-outputLens[b][c]+outputLens[y][a]: %d\n", spaceTaken[b]-outputLens[b][c]+outputLens[y][a]);
+							if ((spaceTaken[y]-outputLens[y][a]+outputLens[b][c] < timeSlotSize[y]) && (spaceTaken[b]-outputLens[b][c]+outputLens[y][a] < timeSlotSize[b])) {
+								printf("YES\n");
+								int temp = outputLens[y][a];
+								outputLens[y][a] = outputLens[b][c];
+								outputLens[b][c] = temp;
+								spaceTaken[y] = spaceTaken[y]-outputLens[b][c]+outputLens[y][a];
+								spaceTaken[b] = spaceTaken[b]-outputLens[y][a]+outputLens[b][c];
+								freeTime[y] = timeSlotSize[y]-spaceTaken[y];
+								freeTime[b] = timeSlotSize[b]-spaceTaken[b];
+							}
+							for (int i = 0; i < timeSlotLen; i++) {
+								printf("%d: ", timeSlotSize[i]);
+								for (int j = 0; j < itemsPerSlot[i]; j++) {
+									printf("%d ", outputLens[i][j]);
+								}
+								printf("\n");
+							}
+							for (int i = 0; i < timeSlotLen; i++) {
+								if (timeSlotSize[i]-spaceTaken[i] > remainderItems[x]) {
+									outputLens[i][itemsPerSlot[i]] = remainderItems[x];
+									itemsPerSlot[i]++;
+									int tempCnt2 = 0;
+									for (int a = 0; a < cnt2; a++) {
+										if (a != x) {
+											remainderItems[tempCnt2] = remainderItems[a];
+											tempCnt2++;
+										}
+									}
+									cnt2 = tempCnt2;
+									x--;
+									exit = 1;
+									break;
+								}
+							}
+							if (exit) {
+								break;
+							}
+						}
+						if (exit) {
+							break;
+						}
+					}
+					if (exit) {
+						break;
+					}
+				}
+				if (exit) {
+					break;
+				}
+			}
+			if (exit) {
+				break;
+			}
+		}
+	}
 
-	for (int x = 0; x < 12; x++) {
-		tempItemMinLens[x] = malloc(7*sizeof(int));
+	printf("After space-making:\n");
+	for (int x = 0; x < lenSize; x++) {
+		printf("%d ", len[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < timeSlotLen; x++) {
+		printf("%d: ", timeSlotSize[x]);
+		for (int y = 0; y < itemsPerSlot[x]; y++) {
+			printf("%d ", outputLens[x][y]);
+		}
+		printf("\n");
+	}
+	printf("cnt2: %d\n", cnt2);
+}
+
+void waaaa(int i, int j, char *aaa[], char *wa[][j]) {
+	for (int x = 0; x < i; x++) {
+		for (int y = 0; y < j; y++) {
+			wa[x][y] = aaa[y];
+		}
 	}
 }
 
@@ -155,33 +246,38 @@ char *copyString(char s[]) {
 }
 
 int main(int *argc, char *argv[]) {
-	//char *a[] = {"PA", "PP", "MT", "ST", "D", "Volunteer", "x"};
-	//int b[] = {30, 40, 50, 30, 40, 60, 75};
-	//int c[] = {20, 30, 30, 15, 20, 45, 35};
-	//int d[] = {310, 540, 880};
-	//int e[] = {80, 200, 100};
-	//int f[][] = (int*)malloc(7*sizeof(int));
-	//char *g[] = (char**)malloc(7*sizeof(char**));
-	//fitItems(a, b, c, 7, d, e, 3, f, g);
+	char *a[] = {"PA", "PP", "MT", "ST", "D", "Volunteer", "x"};
+	int b[] = {35, 50, 70, 35, 30, 20, 25};
+	int c[] = {20, 30, 60, 35, 20, 15, 15};
+	int d[] = {310, 540, 880};
+	int e[] = {95, 40, 145};
+	int f[3][7];
+	char *g[3][7];
+	fitItems(a, c, b, d, e, 7, 3, f);
+
 	//printf("\n");
 
-
 	//int d[] = {310, 540, 880};
 	//int c[] = {20, 30, 30, 15, 20, 45, 35};
 	//int d[] = {310, 540, 880};
 	//int c[] = {20, 30, 30, 15, 20, 45, 35};
 
+	int m = 14;
+	int n = 5;
+	char *ouih[5];
+	ouih[0] = "igyuiugiug";
+	ouih[1] = "iugiubgi";
+	ouih[2] = "mjbiuv";
+	ouih[3] = "uvfuhjybkjnmmm";
+	ouih[4] = "trcd";
+	char *h[m][n];
+	waaaa(m, n, ouih, h);
+	char *(*h2)[n];
+	h2 = h;
 
-	//int f = 14;
-	//int g = 5;
-	//int h[f][g];
-	//waaaa(f, g, h);
-	//int (*h2)[g];
-	//h2 = h;
-
-	//for (int d = 0; d < f; d++) {
-	//	for (int e = 0; e < g; e++) {
-	//		printf("%d.0 ", *(*(h2 + d) + e));
+	//for (int d = 0; d < m; d++) {
+	//	for (int e = 0; e < n; e++) {
+	//		printf("%s ", *(*(h2 + d) + e));
 	//	}
 	//	printf("\n");
 	//}
