@@ -3,20 +3,23 @@
 #include <stdlib.h>
 #include <time.h>
 
-void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int timeSlotSize[], int lenSize, int timeSlotLen, int outputLens[][lenSize]) {
+void fitItems(char *item[], int minLen[], int len[], int timeSlotSize[], int lenSize, int timeSlotLen, int outputLens[][lenSize], char *outputItems[][lenSize], int itemsPerSlot[]) {
 	srand(time(0));
-	//for (int x = 0; x < lenSize; x++) { // randomize item[], minLen[] and len[]
-	//	int randIdx = rand()%lenSize;
-	//	int temp = len[x];
-	//	len[x] = len[randIdx];
-	//	len[randIdx] = temp;
-	//	temp = minLen[x];
-	//	minLen[x] = minLen[randIdx];
-	//	minLen[randIdx] = temp;
-	//	char *temp2 = item[x];
-	//	item[x] = item[randIdx];
-	//	item[randIdx] = temp2;
-	//}
+	for (int x = 0; x < lenSize; x++) {
+		len[x] = (int)(((double)(len[x]-minLen[x])/RAND_MAX)*rand()+minLen[x]);
+	}
+	for (int x = 0; x < lenSize; x++) { // randomize item[], minLen[] and len[]
+		int randIdx = rand()%lenSize;
+		int temp = len[x];
+		len[x] = len[randIdx];
+		len[randIdx] = temp;
+		temp = minLen[x];
+		minLen[x] = minLen[randIdx];
+		minLen[randIdx] = temp;
+		char *temp2 = item[x];
+		item[x] = item[randIdx];
+		item[randIdx] = temp2;
+	}
 
 	int freeTime[timeSlotLen]; // space left in time slot
 	for (int x = 0; x < timeSlotLen; x++) {
@@ -26,11 +29,11 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 	for (int x = 0; x < timeSlotLen; x++) {
 		spaceTaken[x] = 0;
 	}
-	int itemsPerSlot[timeSlotLen]; // num of items in time slot
 	for (int x = 0; x < timeSlotLen; x++) {
 		itemsPerSlot[x] = 0;
 	}
 	int remainderItems[lenSize]; // items that couldn't fit
+	char *remainderItemNames[lenSize]; // items that couldn't fit
 	int remainderLenIdx[lenSize];
 	for (int x = 0; x < lenSize; x++) {
 		remainderLenIdx[x] = -1;
@@ -46,6 +49,7 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 		for (int y = cnt; y < lenSize; y++) { // looping through items (no repitition outside current loop)
 			if (spaceTaken[x]+len[y] <= timeSlotSize[x]) { // if item fits in the gap
 				outputLens[x][itemsPerSlot[x]] = len[y]; // add item to the end of time slot row
+				outputItems[x][itemsPerSlot[x]] = item[y]; // add item to the end of time slot row
 				itemsPerSlot[x]++;
 				added[y] = 1;
 				spaceTaken[x] += len[y];
@@ -59,25 +63,16 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 	for (int x = 0; x < lenSize; x++) {
 		if (added[x] == 0) {
 			remainderItems[cnt2] = len[x];
+			remainderItemNames[cnt2] = item[x];
 			remainderLenIdx[cnt2] = x;
 			cnt2++;
 		}
 	}
 	for (int x = 0; x < timeSlotLen; x++) {
-		printf("%d: ", timeSlotSize[x]);
-		for (int y = 0; y < itemsPerSlot[x]; y++) {
-			printf("%d ", outputLens[x][y]);
-		}
-		printf("\n");
-	}
-	for (int x = 0; x < cnt2; x++) {
-		printf("%d ", remainderItems[x]);
-	}
-	printf("\n");
-	for (int x = 0; x < timeSlotLen; x++) {
 		for (int y = 0; y < cnt2; y++) {
 			if (spaceTaken[x]+remainderItems[y] <= timeSlotSize[x]) {
 				outputLens[x][itemsPerSlot[x]] = remainderItems[y];
+				outputItems[x][itemsPerSlot[x]] = remainderItemNames[y];
 				itemsPerSlot[x]++;
 				spaceTaken[x] += remainderItems[y];
 				freeTime[x] = timeSlotSize[x]-spaceTaken[x];
@@ -87,6 +82,7 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 				for (int a = 0; a < cnt2; a++) {
 					if (a != y) {
 						remainderItems[tempCnt2] = remainderItems[a];
+						remainderItemNames[tempCnt2] = remainderItemNames[a];
 						tempCnt2++;
 					}
 				}
@@ -99,18 +95,22 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotStart[], int ti
 	for (int x = 0; x < lenSize; x++) {
 		if (added[x] == 0) {
 			remainderItems[cnt2] = len[x];
+			remainderItemNames[cnt2] = item[x];
 			remainderLenIdx[cnt2] = x;
 			cnt2++;
 		}
 	}
-	printf("Before space-making 2:\n");
-	for (int x = 0; x < lenSize; x++) {
-		printf("%d ", len[x]);
-	}
-	printf("\n");
-	for (int x = 0; x < timeSlotLen; x++) {
-		printf("%d: ", timeSlotSize[x]);
-		for (int y = 0; y < itemsPerSlot[x]; y++) {
+	for (int x = 0; x < cnt2; x++) {
+		int exit = 0;
+		for (int y = 0; y < timeSlotLen; y++) {
+			int spaceToGain = remainderItems[x]-freeTime[y];
+			for (int a = 0; a < itemsPerSlot[y]; a++) {
+				for (int b = 0; b < timeSlotLen; b++) {
+					if (b != y) {
+						for (int c = 0; c < itemsPerSlot[b]; c++) {
+							if ((spaceTaken[y]-outputLens[y][a]+outputLens[b][c] < timeSlotSize[y]) && (spaceTaken[b]-outputLens[b][c]+outputLens[y][a] < timeSlotSize[b])) {
+								int temp = outputLens[y][a];
+								outputLens[y][a] = outputLens[b][c];
 			printf("%d ", outputLens[x][y]);
 		}
 		printf("\n");
@@ -363,46 +363,75 @@ int main(int *argc, char *argv[]) {
 		scanf("%s %d %d", customActivities[caCnt], &customActivityMinLen[caCnt], &customActivityMaxLen[caCnt]);
 		if (customActivityMinLen[caCnt] == -1 && customActivityMaxLen[caCnt] == -1) {
 			break;
-		}
-		caCnt++;
-	}
-	timeGapStart[0] = 280;
-	timeGapLen[0] = minutesOccupied[0]-timeGapStart[0];
-	timeGapCnt++;
-	for (int x = 1; x < minOccCnt; x++) {
-		if ((minutesOccupied[x]-minutesOccupied[x-1]) > 1) {
-			timeGapStart[timeGapCnt] = minutesOccupied[x-1]+1;
-			timeGapLen[timeGapCnt] = minutesOccupied[x]-minutesOccupied[x-1]-1;
-			timeGapCnt++;
-		}
+		printf("%s ", flexibleItems[x]);
 	}
 	printf("\n");
-	timeGapStart[timeGapCnt] = minutesOccupied[minOccCnt-1]+1;
-	timeGapLen[timeGapCnt] = 1169-minutesOccupied[minOccCnt-1];
-	timeGapCnt++;
+
+	int timeGapFillLen[timeGapCnt][caCnt+riCnt];
+	char *timeGapFillItemsFunc[timeGapCnt][caCnt+riCnt];
+	int itemCntPerSlot[timeGapCnt];
+	fitItems(flexibleItems, flexibleItemMinLen, flexibleItemLen, timeGapLen, caCnt+riCnt, timeGapCnt, timeGapFillLen, timeGapFillItemsFunc, itemCntPerSlot);
+	char *(*timeGapFillItems)[caCnt+riCnt];
+	timeGapFillItems = timeGapFillItemsFunc;
+	
+	printf("----------- TEST ----------------\n");
 	for (int x = 0; x < timeGapCnt; x++) {
-		printf("%d + %d, ", timeGapStart[x], timeGapLen[x]);
+		printf("%d: ", timeGapStart[x]);
+		for (int y = 0; y < itemCntPerSlot[x]; y++) {
+			printf("%s (%d) ", timeGapFillItems[x][y], timeGapFillLen[x][y]);
+		}
+		printf("\n");
 	}
-	printf("\n");
-	int flexibleItemLen[caCnt+riCnt];
-	for (int x = 0; x < caCnt; x++) {
-		flexibleItemLen[x] = customActivityMaxLen[x];
+	printf("----------- TEST ----------------\n");
+	int schedItemStart[caCnt+riCnt+fiCnt];
+	char *schedItem[caCnt+riCnt+fiCnt];
+	int schedItemLen[caCnt+riCnt+fiCnt];
+	
+	int schedItemCnt = 0;
+	for (int x = 0; x < timeGapCnt; x++) {
+		int timeGapMinutesAdded = timeGapStart[x];
+		for (int y = 0; y < itemCntPerSlot[x]; y++) {
+			schedItemStart[schedItemCnt] = timeGapMinutesAdded;
+			timeGapMinutesAdded += timeGapFillLen[x][y];
+			schedItem[schedItemCnt] = timeGapFillItems[x][y];
+			printf("- %s\n", schedItem[schedItemCnt]);
+			schedItemLen[schedItemCnt] = timeGapFillLen[x][y];
+			schedItemCnt++;
+		}
 	}
-	for (int x = caCnt; x < caCnt+riCnt; x++) {
-		flexibleItemLen[x] = reqItemMaxLen[x];
+	printf("---------waaa`BEFORE-------\n");
+	for (int x = 0; x < schedItemCnt; x++) {
+		printf("%02d:%02d - %s\n", (int)schedItemStart[x]/60%24, (int)schedItemStart[x]%60, schedItem[x]);
 	}
-
-	for (int x = 0; x < caCnt+riCnt; x++) {
-		
-	}
-
 	for (int x = 0; x < fiCnt; x++) {
-		printf("%s %d %d %d\n", fixedItems[x], fixedItemStartMinutes[x], fixedItemEndMinutes[x], fixedItemLengthMinutes[x]);
+		schedItemStart[schedItemCnt] = fixedItemStartMinutes[x];
+		schedItem[schedItemCnt] = fixedItems[x];
+		schedItemLen[schedItemCnt] = fixedItemLengthMinutes[x];
+		schedItemCnt++;
 	}
-	for (int x = 0; x < riCnt; x++) {
-		printf("%s %d %d\n", requiredItems[x], reqItemMinLen[x], reqItemMaxLen[x]);
+	printf("---------BEFORE-------\n");
+	for (int x = 0; x < schedItemCnt; x++) {
+		//printf("%02d:%02d - %s\n", (int)schedItemStart[x]/60%24, (int)schedItemStart[x]%60, schedItem[x]);
+		printf("%02d:%02d\n", (int)schedItemStart[x]/60%24, (int)schedItemStart[x]%60);
 	}
-	for (int x = 0; x < caCnt; x++) {
-		printf("%s %d %d\n", customActivities[x], customActivityMinLen[x], customActivityMaxLen[x]);
+	for (int x = 0; x < schedItemCnt; x++) {
+		for (int y = x + 1; y < schedItemCnt; y++) {
+			if (schedItemStart[x] > schedItemStart[y]) {
+				int temp = schedItemStart[x];
+				schedItemStart[x] = schedItemStart[y];
+				schedItemStart[y] = temp;
+				char *temp2 = schedItem[x];
+				schedItem[x] = schedItem[y];
+				schedItem[y] = temp2;
+				temp = schedItemLen[x];
+				schedItemLen[x] = schedItemLen[y];
+				schedItemLen[y] = temp;
+			}
+		}
+	}
+
+	printf("---------AFTER--------\n");
+	for (int x = 0; x < schedItemCnt; x++) {
+		printf("%02d:%02d - %s\n", (int)schedItemStart[x]/60%24, (int)schedItemStart[x]%60, schedItem[x]);
 	}
 }
