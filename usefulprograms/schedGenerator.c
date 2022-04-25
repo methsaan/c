@@ -425,11 +425,16 @@ int main(int *argc, char *argv[]) {
 	strcat(dateStr, ". ");
 	strcat(dateStr, monthDay);
 
-	FILE *reqTracker = fopen("reqTracker", "w");
-
 	for (int x = 0; x < schedItemCnt; x++) {
-		printf("%02d:%02d (%s) - on time (2), late (1), or unfinished (0)? ", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x]);
+		printf("%02d:%02d (%s) - already tracked (-1), on time (2), late (1), or unfinished (0)? ", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x]);
 		scanf("%d", &onTime[x]);
+		if (onTime[x] == -1) {
+			continue;
+		}
+		FILE *schedTracker = fopen("schedTracker", "a");
+		fprintf(schedTracker, "%d\n", onTime[x]);
+		fclose(schedTracker);
+
 		time_t s, val = 1;
 		struct tm* currentTime;
 		s = time(NULL);
@@ -441,23 +446,23 @@ int main(int *argc, char *argv[]) {
 		strcat(tempDateStr, months[currentTime->tm_mon]);
 		strcat(tempDateStr, ". ");
 		strcat(tempDateStr, monthDay);
+		FILE *reqTracker = fopen("reqTracker", "a");
+		fprintf(reqTracker, "%s\n", tempDateStr);
+		fclose(reqTracker);
+		
 
 		for (int y = 0; y < 7; y++) {
-			printf("%s > ", dateStr);
+			printf("> ");
 			scanf("%s", reqMet[x][y]);
 			if (strcmp(reqMet[x][y], "-") == 0) {
 				break;
 			}
-			if (strcmp(tempDateStr, dateStr) != 0) {
-				fprintf(reqTracker, "%s\n", tempDateStr);
-				memset(dateStr, '\0', 256);
-				strcat(dateStr, tempDateStr);
-			}
+			FILE *reqTracker = fopen("reqTracker", "a");
 			fprintf(reqTracker, "%s\n", reqMet[x][y]);
+			fclose(reqTracker);
 			reqMetCntPerItem[x]++;
 		}
 	}
-	fclose(reqTracker);
 	for (int x = 0; x < schedItemCnt; x++) {
 		printf("%02d:%02d: %d\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, onTime[x]);
 	}
