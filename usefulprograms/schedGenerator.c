@@ -206,140 +206,265 @@ int main(int *argc, char *argv[]) {
 	size_t malloc_size3 = 30;
 	size_t malloc_size4 = 20;
 
-	int minutesOccupied[2880];
-	int minOccCnt = 0;
-	int timeGapStart[120];
-	int timeGapLen[120];
-	int timeGapCnt = 0;
+	int schedItemStart[100];
+	int schedItemLength[100];
+	char *schedItem[100];
+	int schedItemCnt = 0;
 
-	int requiredItemStartMinutes[20];
-	int requiredItemEndMinutes[20];
-	int requiredItemLengthMinutes[20];
-	char *requiredItems[10];
-	char requiredItemsStr[30];
-	for (int x = 0; x < 10; x++) {
-		requiredItems[x] = malloc(malloc_size * sizeof(char));
-	}
-
-	int fixedItemStartMinutes[20];
-	int fixedItemEndMinutes[20];
-	int fixedItemLengthMinutes[20];
-	char *fixedItems[20];
-	for (int x = 0; x < 20; x++) {
-		fixedItems[x] = malloc(malloc_size2 * sizeof(char));
-	}
-
-	int customActivityStartMinutes[20];
-	int customActivityEndMinutes[20];
-	int customActivityLengthMinutes[20];
-	char *customActivities[30];
-	for (int x = 0; x < 30; x++) {
-		customActivities[x] = malloc(malloc_size3 * sizeof(char));
-	}
-
-	int fiCnt = 0;
-	printf("Enter fixed items, start time and end time separated by a space (enter '- - -' when done):\n");
-	while (1) {
-		char startTime[6];
-		char endTime[6];
-		scanf("%s %s %s", fixedItems[fiCnt], startTime, endTime);
-		if (startTime[0] == '-' || endTime[0] == '-') {
-			break;
+	char sched[2];
+	printf("Follow recent schedule (f) or create new schedule (n)? ");
+	scanf("%s", sched);
+	if (strcmp(sched, "f") == 0) {
+		printf("Previously opened schedule:\n");
+		char tempLine[40];
+		FILE *scheduleRead = fopen("schedule", "r");
+		while (fgets(tempLine, 40, scheduleRead)) {
+			printf("%s", tempLine);
 		}
-		int hoursTot = (startTime[0]-'0')*10 + (startTime[1]-'0');
-		int minutesTot = hoursTot*60 + (startTime[3]-'0')*10 + (startTime[4]-'0');
-		fixedItemStartMinutes[fiCnt] = minutesTot;
-		int hoursTot2 = (endTime[0]-'0')*10 + (endTime[1]-'0');
-		int minutesTot2 = hoursTot2*60 + (endTime[3]-'0')*10 + (endTime[4]-'0');
-		fixedItemEndMinutes[fiCnt] = minutesTot2;
-		fixedItemLengthMinutes[fiCnt] = minutesTot2 - minutesTot;
-		fiCnt++;
-	}
-	for (int x = 0; x < fiCnt; x++) {
-		for (int i = fixedItemStartMinutes[x]; i < fixedItemEndMinutes[x]; i++) {
-			minutesOccupied[minOccCnt] = i;
-			minOccCnt++;
-		}
-	}
-	FILE *reqItemsReader = fopen("requiredItems", "r");
-
-	char tempString[30];
-	int riCnt = 0;
-	int reqItemMinLen[20];
-	int reqItemMaxLen[20];
-	while (fgets(tempString, 30, reqItemsReader) != NULL) {
-		requiredItems[riCnt] = copyString(strtok(tempString, " "));
-		reqItemMinLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
-		reqItemMaxLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
-		riCnt++;
+		fclose(scheduleRead);
 	}
 
-	int caCnt = 0;
-	int customActivityMinLen[20];
-	int customActivityMaxLen[20];
-	printf("Enter custom activities, minimum time and maximum time separated by a space (enter '-1 -1 -1' when done):\n");
-	while (1) {
-		scanf("%s %d %d", customActivities[caCnt], &customActivityMinLen[caCnt], &customActivityMaxLen[caCnt]);
-		if (customActivityMinLen[caCnt] == -1 && customActivityMaxLen[caCnt] == -1) {
-			break;
-		}
-		caCnt++;
-	}
-	timeGapStart[0] = 280;
-	timeGapLen[0] = minutesOccupied[0]-timeGapStart[0];
-	timeGapCnt++;
-	for (int x = 1; x < minOccCnt; x++) {
-		if ((minutesOccupied[x]-minutesOccupied[x-1]) > 1) {
-			timeGapStart[timeGapCnt] = minutesOccupied[x-1]+1;
-			timeGapLen[timeGapCnt] = minutesOccupied[x]-minutesOccupied[x-1]-1;
-			timeGapCnt++;
-		}
-	}
-	timeGapStart[timeGapCnt] = minutesOccupied[minOccCnt-1]+1;
-	timeGapLen[timeGapCnt] = 3119-minutesOccupied[minOccCnt-1];
-	timeGapCnt++;
-	int flexibleItemLen[caCnt+riCnt];
-	int flexibleItemMinLen[caCnt+riCnt];
-	char *flexibleItems[caCnt+riCnt];
-	for (int x = 0; x < riCnt; x++) {
-		flexibleItemLen[x] = reqItemMaxLen[x];
-		flexibleItemMinLen[x] = reqItemMinLen[x];
-		flexibleItems[x] = requiredItems[x];
-	}
-	for (int x = riCnt; x < caCnt+riCnt; x++) {
-		flexibleItemLen[x] = customActivityMaxLen[x-riCnt];
-		flexibleItemMinLen[x] = customActivityMinLen[x-riCnt];
-		flexibleItems[x] = customActivities[x-riCnt];
-	}
-	int activitiesPerSlot[timeGapCnt];
-	int fitItemLens[timeGapCnt][caCnt+riCnt];
-	char *fitItemFunction[timeGapCnt][caCnt+riCnt];
-	fitItems(flexibleItems, flexibleItemMinLen, flexibleItemLen, timeGapLen, caCnt+riCnt, timeGapCnt, activitiesPerSlot, fitItemLens, fitItemFunction);
-	char *(*fitItem)[caCnt+riCnt];
-	fitItem = fitItemFunction;
+	if (strcmp(sched, "n") == 0) {
+		int schedLength;
+		printf("Enter length of schedule in hours: ");
+		scanf("%d", &schedLength);
+		char schedStart[6];
+		printf("Enter schedule start time: ");
+		scanf("%s", schedStart);
+		int schedStartInt = ((schedStart[0]-'0')*10+(schedStart[1]-'0'))*60+((schedStart[3]-'0')*10+(schedStart[4]-'0'));
 
-	int tempSchedItemStart[riCnt+caCnt+fiCnt+1000];
-	int tempSchedItemLength[riCnt+caCnt+fiCnt+1000];
-	char *tempSchedItem[riCnt+caCnt+fiCnt+1000];
-	int tempSchedItemCnt = 0;
-	int tempFiCnt = 0;
-	for (int x = 0; x < timeGapCnt; x++) {
-		int tempFlexStart = timeGapStart[x];
-		for (int y = 0; y < activitiesPerSlot[x]; y++) {
-			tempSchedItemStart[tempSchedItemCnt] = tempFlexStart;
-			tempSchedItem[tempSchedItemCnt] = fitItem[x][y];
-			tempSchedItemLength[tempSchedItemCnt] = fitItemLens[x][y];
-			tempSchedItemCnt++;
-			tempFlexStart += fitItemLens[x][y];
+		printf("%d\n", schedStartInt);
+
+		int minutesOccupied[schedLength*60];
+		int minOccCnt = 0;
+		int timeGapStart[120];
+		int timeGapLen[120];
+		int timeGapCnt = 0;
+
+		int requiredItemStartMinutes[20];
+		int requiredItemEndMinutes[20];
+		int requiredItemLengthMinutes[20];
+		char *requiredItems[10];
+		char requiredItemsStr[30];
+		for (int x = 0; x < 10; x++) {
+			requiredItems[x] = malloc(malloc_size * sizeof(char));
 		}
-		tempSchedItemStart[tempSchedItemCnt] = tempFlexStart;
-		tempSchedItem[tempSchedItemCnt] = fixedItems[tempFiCnt];
-		tempSchedItemLength[tempSchedItemCnt] = fixedItemLengthMinutes[tempFiCnt];
-		tempSchedItemCnt++;
-		tempFlexStart += fixedItemLengthMinutes[tempFiCnt];
-		tempFiCnt++;
+
+		int fixedItemStartMinutes[20];
+		int fixedItemEndMinutes[20];
+		int fixedItemLengthMinutes[20];
+		char *fixedItems[20];
+		for (int x = 0; x < 20; x++) {
+			fixedItems[x] = malloc(malloc_size2 * sizeof(char));
+		}
+
+		int customActivityStartMinutes[20];
+		int customActivityEndMinutes[20];
+		int customActivityLengthMinutes[20];
+		char *customActivities[30];
+		for (int x = 0; x < 30; x++) {
+			customActivities[x] = malloc(malloc_size3 * sizeof(char));
+		}
+	
+		int fiCnt = 0;
+		printf("Enter fixed items, start time and end time separated by a space (enter '- - -' when done):\n");
+		while (1) {
+			char startTime[6];
+			char endTime[6];
+			scanf("%s %s %s", fixedItems[fiCnt], startTime, endTime);
+			if (startTime[0] == '-' || endTime[0] == '-') {
+				break;
+			}
+			int hoursTot = (startTime[0]-'0')*10 + (startTime[1]-'0');
+			int minutesTot = hoursTot*60 + (startTime[3]-'0')*10 + (startTime[4]-'0');
+			fixedItemStartMinutes[fiCnt] = minutesTot;
+			int hoursTot2 = (endTime[0]-'0')*10 + (endTime[1]-'0');
+			int minutesTot2 = hoursTot2*60 + (endTime[3]-'0')*10 + (endTime[4]-'0');
+			fixedItemEndMinutes[fiCnt] = minutesTot2;
+			fixedItemLengthMinutes[fiCnt] = minutesTot2 - minutesTot;
+			fiCnt++;
+		}
+		for (int x = 0; x < fiCnt; x++) {
+			for (int i = fixedItemStartMinutes[x]; i < fixedItemEndMinutes[x]; i++) {
+				minutesOccupied[minOccCnt] = i;
+				minOccCnt++;
+			}
+		}
+		FILE *reqItemsReader = fopen("requiredItems", "r");
+
+		char tempString[30];
+		int riCnt = 0;
+		int reqItemMinLen[20];
+		int reqItemMaxLen[20];
+		while (fgets(tempString, 30, reqItemsReader) != NULL) {
+			requiredItems[riCnt] = copyString(strtok(tempString, " "));
+			reqItemMinLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
+			reqItemMaxLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
+			riCnt++;
+		}
+
+		int caCnt = 0;
+		int customActivityMinLen[20];
+		int customActivityMaxLen[20];
+		printf("Enter custom activities, minimum time and maximum time separated by a space (enter '-1 -1 -1' when done):\n");
+		while (1) {
+			scanf("%s %d %d", customActivities[caCnt], &customActivityMinLen[caCnt], &customActivityMaxLen[caCnt]);
+			if (customActivityMinLen[caCnt] == -1 && customActivityMaxLen[caCnt] == -1) {
+				break;
+			}
+			caCnt++;
+		}
+		timeGapStart[0] = schedStartInt;
+		timeGapLen[0] = minutesOccupied[0]-timeGapStart[0];
+		timeGapCnt++;
+		for (int x = 1; x < minOccCnt; x++) {
+			if ((minutesOccupied[x]-minutesOccupied[x-1]) > 1) {
+				timeGapStart[timeGapCnt] = minutesOccupied[x-1]+1;
+				timeGapLen[timeGapCnt] = minutesOccupied[x]-minutesOccupied[x-1]-1;
+				timeGapCnt++;
+			}
+		}
+		timeGapStart[timeGapCnt] = minutesOccupied[minOccCnt-1]+1;
+		timeGapLen[timeGapCnt] = (schedStartInt+schedLength*60-1)-minutesOccupied[minOccCnt-1];
+		timeGapCnt++;
+		int flexibleItemLen[caCnt+riCnt];
+		int flexibleItemMinLen[caCnt+riCnt];
+		char *flexibleItems[caCnt+riCnt];
+		for (int x = 0; x < riCnt; x++) {
+			flexibleItemLen[x] = reqItemMaxLen[x];
+			flexibleItemMinLen[x] = reqItemMinLen[x];
+			flexibleItems[x] = requiredItems[x];
+		}
+		for (int x = riCnt; x < caCnt+riCnt; x++) {
+			flexibleItemLen[x] = customActivityMaxLen[x-riCnt];
+			flexibleItemMinLen[x] = customActivityMinLen[x-riCnt];
+			flexibleItems[x] = customActivities[x-riCnt];
+		}
+		int activitiesPerSlot[timeGapCnt];
+		int fitItemLens[timeGapCnt][caCnt+riCnt];
+		char *fitItemFunction[timeGapCnt][caCnt+riCnt];
+		fitItems(flexibleItems, flexibleItemMinLen, flexibleItemLen, timeGapLen, caCnt+riCnt, timeGapCnt, activitiesPerSlot, fitItemLens, fitItemFunction);
+		char *(*fitItem)[caCnt+riCnt];
+		fitItem = fitItemFunction;
+
+		int tempFiCnt = 0;
+		for (int x = 0; x < timeGapCnt; x++) {
+			int tempFlexStart = timeGapStart[x];
+			for (int y = 0; y < activitiesPerSlot[x]; y++) {
+				schedItemStart[schedItemCnt] = tempFlexStart;
+				schedItem[schedItemCnt] = fitItem[x][y];
+				schedItemLength[schedItemCnt] = fitItemLens[x][y];
+				schedItemCnt++;
+				tempFlexStart += fitItemLens[x][y];
+			}
+			schedItemStart[schedItemCnt] = tempFlexStart;
+			schedItem[schedItemCnt] = fixedItems[tempFiCnt];
+			schedItemLength[schedItemCnt] = fixedItemLengthMinutes[tempFiCnt];
+			schedItemCnt++;
+			tempFlexStart += fixedItemLengthMinutes[tempFiCnt];
+			tempFiCnt++;
+		}
+		FILE *schedule = fopen("schedule", "w");
+		fprintf(schedule, "_________________\n");
+		fprintf(schedule, "| Time| Activity|\n");
+		fprintf(schedule, "|_____|_________|\n");
+		for (int x = 0; x < schedItemCnt; x++) {
+			fprintf(schedule, "|%02d:%02d| %s \t|\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x], schedItemLength[x]);
+		}
+		fclose(schedule);
+
+		FILE *schedReader = fopen("schedReader", "w");
+		for (int x = 0; x < schedItemCnt; x++) {
+			fprintf(schedReader, "%d %d %s %d\n", schedItemCnt, schedItemStart[x], schedItem[x], schedItemLength[x]);
+		}
+		fclose(schedReader);
+
+		FILE *schedReader2 = fopen("schedReader2", "w");
+		fprintf(schedReader2, "%d\n", schedLength);
+		fprintf(schedReader2, "%s\n", schedStart);
+		fclose(schedReader);
 	}
-	for (int x = 0; x < tempSchedItemCnt-1; x++) {
-		printf("%02d:%02d %s %d\n", (int)(tempSchedItemStart[x]/60)%24, tempSchedItemStart[x]%60, tempSchedItem[x], tempSchedItemLength[x]);
+
+	if (strcmp(sched, "f") == 0) {
+		char tempLine[40];
+		int tempCnt = 0;
+		FILE *schedReaderRead = fopen("schedReader", "r");
+		while (fgets(tempLine, 40, schedReaderRead)) {
+			char *tempStr = strtok(tempLine, " ");
+			schedItemCnt = atoi(tempStr);
+			tempStr = strtok(NULL, " ");
+			schedItemStart[tempCnt] = atoi(tempStr);
+			tempStr = strtok(NULL, " ");
+			schedItem[tempCnt] = (char *) malloc(100);
+			memset(schedItem[tempCnt], '\0', 100);
+			strcpy(schedItem[tempCnt], tempStr);
+			tempStr = strtok(NULL, " ");
+			schedItemLength[tempCnt] = atoi(tempStr);
+			tempCnt++;
+		}
+	}
+
+	printf("Requirement check:\n");
+
+	int onTime[schedItemCnt];
+	char reqMet[schedItemCnt][7][15];
+	int reqMetCntPerItem[schedItemCnt];
+	for (int x = 0; x < schedItemCnt; x++) {
+		reqMetCntPerItem[x] = 0;
+	}
+	time_t s, val = 1;
+	struct tm* currentTime;
+	s = time(NULL);
+	currentTime = localtime(&s);
+
+	char monthDay[3];
+	sprintf(monthDay, "%02d", currentTime->tm_mday);
+	char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+	char *dateStr = malloc(256);
+	strcat(dateStr, months[currentTime->tm_mon]);
+	strcat(dateStr, ". ");
+	strcat(dateStr, monthDay);
+
+	FILE *reqTracker = fopen("reqTracker", "w");
+
+	for (int x = 0; x < schedItemCnt; x++) {
+		printf("%02d:%02d (%s) - on time (2), late (1), or unfinished (0)? ", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x]);
+		scanf("%d", &onTime[x]);
+		time_t s, val = 1;
+		struct tm* currentTime;
+		s = time(NULL);
+		currentTime = localtime(&s);
+
+		char tempMonthDay[3];
+		sprintf(tempMonthDay, "%02d", currentTime->tm_mday);
+		char *tempDateStr = malloc(256);
+		strcat(tempDateStr, months[currentTime->tm_mon]);
+		strcat(tempDateStr, ". ");
+		strcat(tempDateStr, monthDay);
+
+		for (int y = 0; y < 7; y++) {
+			printf("%s > ", dateStr);
+			scanf("%s", reqMet[x][y]);
+			if (strcmp(reqMet[x][y], "-") == 0) {
+				break;
+			}
+			if (strcmp(tempDateStr, dateStr) != 0) {
+				fprintf(reqTracker, "%s\n", tempDateStr);
+				memset(dateStr, '\0', 256);
+				strcat(dateStr, tempDateStr);
+			}
+			fprintf(reqTracker, "%s\n", reqMet[x][y]);
+			reqMetCntPerItem[x]++;
+		}
+	}
+	fclose(reqTracker);
+	for (int x = 0; x < schedItemCnt; x++) {
+		printf("%02d:%02d: %d\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, onTime[x]);
+	}
+	for (int x = 0; x < schedItemCnt; x++) {
+		for (int y = 0; y < reqMetCntPerItem[x]; y++) {
+			printf("%s ", reqMet[x][y]);
+		}
+		printf("\n");
 	}
 }
