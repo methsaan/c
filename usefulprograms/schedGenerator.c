@@ -383,6 +383,13 @@ int main(int *argc, char *argv[]) {
 		fprintf(schedReader2, "%d\n", schedLength);
 		fprintf(schedReader2, "%s\n", schedStart);
 		fclose(schedReader);
+
+		printf("_________________\n");
+		printf("| Time| Activity|\n");
+		printf("|_____|_________|\n");
+		for (int x = 0; x < schedItemCnt; x++) {
+			printf("|%02d:%02d| %s \t|\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x], schedItemLength[x]);
+		}
 	}
 
 	if (strcmp(sched, "f") == 0) {
@@ -420,7 +427,9 @@ int main(int *argc, char *argv[]) {
 	char monthDay[3];
 	sprintf(monthDay, "%02d", currentTime->tm_mday);
 	char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-	char *dateStr = malloc(256);
+	char *dateStr;
+	dateStr = malloc(256);
+	memset(dateStr, '\0', 256);
 	strcat(dateStr, months[currentTime->tm_mon]);
 	strcat(dateStr, ". ");
 	strcat(dateStr, monthDay);
@@ -435,22 +444,6 @@ int main(int *argc, char *argv[]) {
 		fprintf(schedTracker, "%d\n", onTime[x]);
 		fclose(schedTracker);
 
-		time_t s, val = 1;
-		struct tm* currentTime;
-		s = time(NULL);
-		currentTime = localtime(&s);
-
-		char tempMonthDay[3];
-		sprintf(tempMonthDay, "%02d", currentTime->tm_mday);
-		char *tempDateStr = malloc(256);
-		strcat(tempDateStr, months[currentTime->tm_mon]);
-		strcat(tempDateStr, ". ");
-		strcat(tempDateStr, monthDay);
-		FILE *reqTracker = fopen("reqTracker", "a");
-		fprintf(reqTracker, "%s\n", tempDateStr);
-		fclose(reqTracker);
-		
-
 		for (int y = 0; y < 7; y++) {
 			printf("> ");
 			scanf("%s", reqMet[x][y]);
@@ -458,6 +451,8 @@ int main(int *argc, char *argv[]) {
 				break;
 			}
 			FILE *reqTracker = fopen("reqTracker", "a");
+			fprintf(reqTracker, "---------------\n");
+			fprintf(reqTracker, "%s\n", dateStr);
 			fprintf(reqTracker, "%s\n", reqMet[x][y]);
 			fclose(reqTracker);
 			reqMetCntPerItem[x]++;
