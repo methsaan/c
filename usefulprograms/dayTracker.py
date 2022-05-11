@@ -3,10 +3,17 @@
 import math
 import random
 
+from datetime import timedelta, date
+
 from tkinter import *
 tk = Tk()
 canvas = Canvas(tk, width=1000, height=800, bg="aqua")
 canvas.pack()
+
+
+def daterange(date1, date2):
+    for n in range(int((date2-date1).days)+1):
+        yield date1 + timedelta(n)
 
 reqReader = open("reqTracker", "r")
 
@@ -37,9 +44,6 @@ for x in range(1, len(lines)):
         tempDayActivities.append(lines[x])
 
 activities.append(tempDayActivities)
-print("dates:", dates)
-for x in activities:
-    print(x)
 
 for x in range(len(dates)):
     activitiesPerDay.append(dict(tempReqMet))
@@ -67,8 +71,6 @@ for x in range(len(dates)):
 
 verticalDistPerPoint = 600/verticalDistPerPoint
 
-print(horizontalDistPerPoint, verticalDistPerPoint)
-
 reqOccurences = dict(tempReqMet)
 for x in range(len(reqActivities)):
     reqOccurences[reqActivities[x]] = [0]
@@ -76,8 +78,6 @@ for x in range(len(reqActivities)):
 for x in range(len(reqActivities)):
     for y in range(len(dates)):
         reqOccurences[reqActivities[x]].append(activitiesPerDay[y][reqActivities[x]])
-
-print(reqOccurences)
 
 reqWeeklyOccurences = dict(reqOccurences)
 for x in range(len(reqActivities)):
@@ -94,10 +94,7 @@ for x in range(len(reqActivities)):
             cnt2 = 0
             reqWeeklyOccurences[reqActivities[x]].append(0)
 
-print(reqWeeklyOccurences)
-
 horizontalDistPerPoint2 = 600/int(math.ceil(len(dates)/7))
-print(horizontalDistPerPoint2)
 verticalDistPerPoint2 = 0
 maxActPerDay2 = 0
 
@@ -107,13 +104,12 @@ for x in range(len(reqActivities)):
         maxActPerDay2 = max(reqWeeklyOccurences[reqActivities[x]])
 
 verticalDistPerPoint2 = 600/verticalDistPerPoint2
-print(verticalDistPerPoint2)
 
 colors = ["red", "orange", "blue", "green", "white", "purple", "pink", "grey", "yellow", "violet", "dark blue", "light green", "dark grey"]
+colors2 = ["red", "orange", "blue", "green", "white", "purple", "pink", "grey", "yellow", "violet", "dark blue", "light green", "dark grey"]
 random.shuffle(colors)
+random.shuffle(colors2)
 colors = colors[:len(reqActivities)]
-
-print(colors)
 
 option = int(input("Enter data to display (weekly all (1), weekly individual (2), daily all (3), daily individual (4)): "))
 
@@ -158,4 +154,56 @@ elif option == 4:
         cnt += 1
         x = input("Enter requirement ('cl' to clear): ")
 
+schedReader = open("schedTracker", "r")
+
+lines2 = schedReader.readlines()
+
+earliestDateRead = lines2[0][:-3]
+latestDate = date.today()
+
+months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
+
+startDate = date(int(earliestDateRead.split(" ")[2]), months.index(earliestDateRead.split(" ")[0])+1, int(earliestDateRead.split(" ")[1]))
+endDate = date(latestDate.year, latestDate.month, latestDate.day)
+dateRangeList = []
+
+for x in daterange(startDate, endDate):
+    dateRangeList.append(months[int(x.strftime("%m"))-1] + " " + x.strftime("%d") + " " + x.strftime("%Y"))
+
+performanceAvgPerDay = dict.fromkeys(dateRangeList, 0)
+
+tempPerformance = []
+
+for x in range(len(dateRangeList)):
+    for y in range(len(lines2)):
+        if dateRangeList[x] == lines2[y][:-3]:
+            tempPerformance.append(int(lines2[y][-2:-1]))
+    performanceAvgPerDay[dateRangeList[x]] = sum(tempPerformance)/len(tempPerformance) if tempPerformance != [] else 0
+    tempPerformance = []
+
+performanceAvgPerDay = {**{"-" : 0}, **performanceAvgPerDay}
+dateRangeList = ["-"] + dateRangeList
+ 
+print(performanceAvgPerDay)
+
+print(dateRangeList)
+
+horizontalDistPerPoint3 = 600/int(math.ceil(len(dateRangeList)))
+verticalDistPerPoint3 = 300
+
+tk2 = Tk()
+canvas2 = Canvas(tk2, width=800, height=800, bg="aqua")
+canvas2.pack()
+
+canvas2.create_line(100, 700, 700, 700, width=6)
+canvas2.create_line(100, 100, 100, 700, width=6)
+
+for x in range(9):
+    canvas2.create_text(80, 700-75*x, text=str(x/4), font=("tahoma", 12))
+
+for x in range(1, len(dateRangeList)):
+    canvas2.create_line(100+horizontalDistPerPoint3*(x-1), 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x-1]], 100+horizontalDistPerPoint3*x, 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], width=3, fill=colors2[-1])
+    canvas2.create_oval(96+horizontalDistPerPoint3*x, 696-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], 104+horizontalDistPerPoint3*x, 704-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], fill=colors2[-1], outline=colors2[-1])
+
 canvas.mainloop()
+canvas2.mainloop()

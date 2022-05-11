@@ -441,7 +441,7 @@ int main(int *argc, char *argv[]) {
 			continue;
 		}
 		FILE *schedTracker = fopen("schedTracker", "a");
-		fprintf(schedTracker, "%d\n", onTime[x]);
+		fprintf(schedTracker, "%s %d %d\n", dateStr, (currentTime->tm_year+1900), onTime[x]);
 		fclose(schedTracker);
 
 		for (int y = 0; y < 7; y++) {
