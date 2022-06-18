@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 
+int wd(int y, int m, int d) {
+	int wday = 0;
+	wday = (d + ((153 * (m + 12 * ((14 - m) / 12) - 3) + 2) / 5) + (365 * (y + 4800 - ((14 - m) / 12))) + ((y + 4800 - ((14 - m) / 12)) / 4) - ((y + 4800 - ((14 - m) / 12)) / 100) + ((y + 4800 - ((14 - m) / 12)) / 400) - 32045) % 7;
+	return wday;
+}
+
 void fitItems(char *item[], int minLen[], int len[], int timeSlotSize[], int lenSize, int timeSlotLen, int itemsPerSlot[timeSlotLen], int outputLens[][lenSize], char *outputItems[][lenSize]) {
 	srand(time(0));
 	for (int x = 0; x < lenSize; x++) { // randomize item[], minLen[] and len[]
@@ -201,6 +207,8 @@ char *copyString(char s[]) {
 }
 
 int main(int *argc, char *argv[]) {
+	srand(time(0));
+
 	size_t malloc_size = 10;
 	size_t malloc_size2 = 20;
 	size_t malloc_size3 = 30;
@@ -210,6 +218,46 @@ int main(int *argc, char *argv[]) {
 	int schedItemLength[100];
 	char *schedItem[100];
 	int schedItemCnt = 0;
+
+	char *pp[3] = {"PPSR", "PPS", "PPTR"};
+	for (int x = 0; x < 3; x++) {
+		int randIdx = rand()%3;
+		char *temp = pp[x];
+		pp[x] = pp[randIdx];
+		pp[randIdx] = temp;
+	}
+	char *ppWeekDist[7];
+	int wdCnt = 0;
+	for (int x = wdCnt; x < 3; x = wdCnt = x+1) {
+		ppWeekDist[x] = pp[0];
+	}
+	for (int x = wdCnt; x < 5; x = wdCnt = x+1) {
+		ppWeekDist[x] = pp[1];
+	}
+	for (int x = wdCnt; x < 7; x = wdCnt = x+1) {
+		ppWeekDist[x] = pp[2];
+	}
+	time_t tempS, tempVal = 1;
+	for (int x = 0; x < 7; x++) {
+		int randIdx = rand()%7;
+		char *temp = ppWeekDist[x];
+		ppWeekDist[x] = ppWeekDist[randIdx];
+		ppWeekDist[randIdx] = temp;
+	}
+	struct tm* tempCurTime;
+	tempS = time(NULL);
+	tempCurTime = localtime(&tempS);
+	int tempD = tempCurTime->tm_mday;
+	int tempM = tempCurTime->tm_mon;
+	int tempY = tempCurTime->tm_year;
+	int weekday = wd(tempY, tempM, tempD);
+	if (weekday == 6) {
+		FILE *pTracker = fopen("pTracker", "w");
+		for (int x = 0; x < 7; x++) {
+			fprintf(pTracker, "%s\n", ppWeekDist[x]);
+		}
+		fclose(pTracker);
+	}
 
 	char sched[2];
 	printf("Follow recent schedule (f) or create new schedule (n)? ");
@@ -378,12 +426,10 @@ int main(int *argc, char *argv[]) {
 			fprintf(schedReader, "%d %d %s %d\n", schedItemCnt, schedItemStart[x], schedItem[x], schedItemLength[x]);
 		}
 		fclose(schedReader);
-
 		FILE *schedReader2 = fopen("schedReader2", "w");
 		fprintf(schedReader2, "%d\n", schedLength);
 		fprintf(schedReader2, "%s\n", schedStart);
 		fclose(schedReader);
-
 		printf("_________________\n");
 		printf("| Time| Activity|\n");
 		printf("|_____|_________|\n");
@@ -391,6 +437,17 @@ int main(int *argc, char *argv[]) {
 			printf("|%02d:%02d| %s \t|\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x], schedItemLength[x]);
 		}
 	}
+	FILE *readpTracker = fopen("pTracker", "r");
+	int pLineCnt = 0;
+	char pLine[256];
+	while (fgets(pLine, sizeof(pLine), readpTracker) != NULL) {
+		if (pLineCnt == weekday) {
+			printf("PP = %s\n", pLine);
+		} else {
+			pLineCnt++;
+		}
+	}
+	fclose(readpTracker);
 
 	if (strcmp(sched, "f") == 0) {
 		char tempLine[40];
@@ -467,4 +524,5 @@ int main(int *argc, char *argv[]) {
 		}
 		printf("\n");
 	}
+	system("./dayTracker.py");
 }
