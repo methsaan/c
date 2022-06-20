@@ -251,7 +251,7 @@ int main(int *argc, char *argv[]) {
 	int tempM = tempCurTime->tm_mon;
 	int tempY = tempCurTime->tm_year;
 	int weekday = wd(tempY, tempM, tempD);
-	if (weekday == 6) {
+	if (weekday == 0) {
 		FILE *pTracker = fopen("pTracker", "w");
 		for (int x = 0; x < 7; x++) {
 			fprintf(pTracker, "%s\n", ppWeekDist[x]);
@@ -443,9 +443,8 @@ int main(int *argc, char *argv[]) {
 	while (fgets(pLine, sizeof(pLine), readpTracker) != NULL) {
 		if (pLineCnt == weekday) {
 			printf("PP = %s\n", pLine);
-		} else {
-			pLineCnt++;
 		}
+		pLineCnt++;
 	}
 	fclose(readpTracker);
 
