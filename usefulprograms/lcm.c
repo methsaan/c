@@ -5,7 +5,7 @@ int main(int argc, char *argv){
 	int num1;
 	int num2;
 	char arr[100];
-	printf("Enter two numbers: ");
+	printf("Enter two numbers separated by a space: ");
 	scanf("%d %d", &num1, &num2);
 	int lcm;
 	int multiples1[55];

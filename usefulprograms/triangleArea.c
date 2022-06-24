@@ -32,6 +32,6 @@ int main(int argc, char *argv[]) {
 		printf("Scalene triangle\n");
 	}
 	area = sqrt(semiperimeter*(semiperimeter-side1)*(semiperimeter-side2)*(semiperimeter-side3));
-	printf("Area: %g\n", area);
+	printf("Area: %gu\u00B3\n", area);
 
 }

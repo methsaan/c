@@ -10,7 +10,7 @@ int main(int argc, char *argv) {
 	scanf("%lf", &a);
 	printf("Enter b: ");
 	scanf("%lf", &b);
-	printf("Enter b: ");
+	printf("Enter b2: ");
 	scanf("%lf", &b2);
 	c = sqrt(pow(a, 2) + pow(b, 2));
 	c = sqrt(pow(c, 2) + pow(b2, 2));
