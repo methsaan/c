@@ -260,8 +260,41 @@ int main(int *argc, char *argv[]) {
 	}
 
 	char sched[2];
-	printf("Follow recent schedule (f) or create new schedule (n)? ");
+	printf("Follow recent schedule (f), submit requirement (s), show progress tracker (p) or create new schedule (n)? ");
 	scanf("%s", sched);
+
+	if (strcmp(sched, "p") == 0) {
+		system("./dayTracker.py");
+		return 0;
+	}
+
+	if (strcmp(sched, "s") == 0) {
+		time_t s, val = 1;
+		struct tm* currentTime;
+		s = time(NULL);
+		currentTime = localtime(&s);
+
+		char monthDay[3];
+		sprintf(monthDay, "%02d", currentTime->tm_mday);
+		char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		char *dateStr;
+		dateStr = malloc(256);
+		memset(dateStr, '\0', 256);
+		strcat(dateStr, months[currentTime->tm_mon]);
+		strcat(dateStr, ". ");
+		strcat(dateStr, monthDay);
+
+		char reqMet[10];
+		printf("> ");
+		scanf("%s", reqMet);
+		FILE *reqTracker = fopen("reqTracker", "a");
+		fprintf(reqTracker, "---------------\n");
+		fprintf(reqTracker, "%s\n", dateStr);
+		fprintf(reqTracker, "%s\n", reqMet);
+		fclose(reqTracker);
+		return 0;
+	}
+
 	if (strcmp(sched, "f") == 0) {
 		printf("Previously opened schedule:\n");
 		char tempLine[40];
@@ -523,5 +556,4 @@ int main(int *argc, char *argv[]) {
 		}
 		printf("\n");
 	}
-	system("./dayTracker.py");
 }
