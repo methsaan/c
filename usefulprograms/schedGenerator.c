@@ -314,8 +314,6 @@ int main(int *argc, char *argv[]) {
 		scanf("%s", schedStart);
 		int schedStartInt = ((schedStart[0]-'0')*10+(schedStart[1]-'0'))*60+((schedStart[3]-'0')*10+(schedStart[4]-'0'));
 
-		printf("%d\n", schedStartInt);
-
 		int minutesOccupied[schedLength*60];
 		int minOccCnt = 0;
 		int timeGapStart[120];
@@ -346,7 +344,11 @@ int main(int *argc, char *argv[]) {
 		for (int x = 0; x < 30; x++) {
 			customActivities[x] = malloc(malloc_size3 * sizeof(char));
 		}
-	
+
+		char reqAdd[2];
+		printf("Add required items? (y/n) ");
+		scanf("%s", reqAdd);
+
 		int fiCnt = 0;
 		printf("Enter fixed items, start time and end time separated by a space (enter '- - -' when done):\n");
 		while (1) {
@@ -382,6 +384,10 @@ int main(int *argc, char *argv[]) {
 			reqItemMinLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
 			reqItemMaxLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
 			riCnt++;
+		}
+
+		if (strcmp(reqAdd, "n") == 0) {
+			riCnt = 0;
 		}
 
 		int caCnt = 0;
