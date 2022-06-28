@@ -10,7 +10,6 @@ tk = Tk()
 canvas = Canvas(tk, width=1000, height=800, bg="aqua")
 canvas.pack()
 
-
 def daterange(date1, date2):
     for n in range(int((date2-date1).days)+1):
         yield date1 + timedelta(n)
@@ -53,9 +52,6 @@ reqActivities = list(tempReqMet.keys())
 for x in reqActivities:
     for y in range(len(dates)):
         activitiesPerDay[y][x] = activities[y].count(x+"\n")
-
-for x in activitiesPerDay:
-    print(x)
 
 canvas.create_line(100, 700, 700, 700, width=6)
 canvas.create_line(100, 100, 100, 700, width=6)
@@ -132,7 +128,7 @@ elif option == 2:
             canvas.create_line(100+horizontalDistPerPoint2*(y-1), 700-verticalDistPerPoint2*reqWeeklyOccurences[x][y-1], 100+horizontalDistPerPoint2*y, 700-verticalDistPerPoint2*reqWeeklyOccurences[x][y], fill=colors[reqActivities.index(x)], width=3)
             canvas.create_oval(96+horizontalDistPerPoint2*y, 696-verticalDistPerPoint2*reqWeeklyOccurences[x][y], 104+horizontalDistPerPoint2*y, 704-verticalDistPerPoint2*reqWeeklyOccurences[x][y], fill=colors[reqActivities.index(x)], outline=colors[reqActivities.index(x)])
         cnt += 1
-        x = input("Enter requirement ('cl' to clear): ")
+        x = input("Enter requirement ('cl' to clear, '-' to quit): ")
 elif option == 3:
     for a in range(maxActPerDay+1):
         canvas.create_text(90, 700-verticalDistPerPoint*a, text=str(a), font=("tahoma", 16))
@@ -152,7 +148,7 @@ elif option == 4:
             canvas.create_line(100+horizontalDistPerPoint*(y-1), 700-verticalDistPerPoint*reqOccurences[x][y-1], 100+horizontalDistPerPoint*y, 700-verticalDistPerPoint*reqOccurences[x][y], fill=colors[reqActivities.index(x)], width=3)
             canvas.create_oval(96+horizontalDistPerPoint*y, 696-verticalDistPerPoint*reqOccurences[x][y], 104+horizontalDistPerPoint*y, 704-verticalDistPerPoint*reqOccurences[x][y], fill=colors[reqActivities.index(x)], outline=colors[reqActivities.index(x)])
         cnt += 1
-        x = input("Enter requirement ('cl' to clear): ")
+        x = input("Enter requirement ('cl' to clear, '-' to quit): ")
 
 schedReader = open("schedTracker", "r")
 
@@ -184,10 +180,6 @@ for x in range(len(dateRangeList)):
 performanceAvgPerDay = {**{"-" : 0}, **performanceAvgPerDay}
 dateRangeList = ["-"] + dateRangeList
  
-print(performanceAvgPerDay)
-
-print(dateRangeList)
-
 horizontalDistPerPoint3 = 600/int(math.ceil(len(dateRangeList)))
 verticalDistPerPoint3 = 300
 
@@ -204,6 +196,9 @@ for x in range(9):
 for x in range(1, len(dateRangeList)):
     canvas2.create_line(100+horizontalDistPerPoint3*(x-1), 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x-1]], 100+horizontalDistPerPoint3*x, 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], width=3, fill=colors2[-1])
     canvas2.create_oval(96+horizontalDistPerPoint3*x, 696-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], 104+horizontalDistPerPoint3*x, 704-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], fill=colors2[-1], outline=colors2[-1])
+
+tk.lift()
+tk2.lift()
 
 canvas.mainloop()
 canvas2.mainloop()
