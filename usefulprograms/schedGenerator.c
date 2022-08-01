@@ -183,6 +183,15 @@ void fitItems(char *item[], int minLen[], int len[], int timeSlotSize[], int len
 	}
 }
 
+int isInArray(int num, int arr[], int len) {
+	for (int x = 0; x < len; x++) {
+		if (arr[x] == num) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 void getWords(char *base, char target[6][20]) {
 	int n = 0, i, j = 0;
 	for (i = 0; 1; i++) {
@@ -345,9 +354,19 @@ int main(int *argc, char *argv[]) {
 			customActivities[x] = malloc(malloc_size3 * sizeof(char));
 		}
 
-		char reqAdd[2];
-		printf("Add required items? (y/n) ");
-		scanf("%s", reqAdd);
+		int reqAdd[10];
+		printf("Enter requirements to include line by line - PP (0), D (1), MT (2), ST-1 (3), ST-2 (4), ST-3 (5), BL (6), -1 to finish: \n");
+		int riCnt = 0;
+		for (int x = 0; x < 10; x++) {
+			int tempReqAdd;
+			scanf("%d", &tempReqAdd);
+			if (tempReqAdd == -1) {
+				break;
+			} else {
+				reqAdd[x] = tempReqAdd;
+				riCnt++;
+			}
+		}
 
 		int fiCnt = 0;
 		printf("Enter fixed items, start time and end time separated by a space (enter '- - -' when done):\n");
@@ -376,20 +395,23 @@ int main(int *argc, char *argv[]) {
 		FILE *reqItemsReader = fopen("requiredItems", "r");
 
 		char tempString[30];
-		int riCnt = 0;
+		int tempRiCnt = 0;
+		int tempRiCnt2 = 0;
 		int reqItemMinLen[20];
 		int reqItemMaxLen[20];
 		while (fgets(tempString, 30, reqItemsReader) != NULL) {
-			requiredItems[riCnt] = copyString(strtok(tempString, " "));
-			reqItemMinLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
-			reqItemMaxLen[riCnt] = atoi(copyString(strtok(NULL, " ")));
-			riCnt++;
+			requiredItems[tempRiCnt] = copyString(strtok(tempString, " "));
+			reqItemMinLen[tempRiCnt] = atoi(copyString(strtok(NULL, " ")));
+			reqItemMaxLen[tempRiCnt] = atoi(copyString(strtok(NULL, " ")));
+			tempRiCnt++;
+			tempRiCnt2++;
+			if (!isInArray(tempRiCnt2-1, reqAdd, riCnt)) {
+				tempRiCnt--;
+			}
 		}
-
-		if (strcmp(reqAdd, "n") == 0) {
-			riCnt = 0;
+		for (int x = 0; x < riCnt; x++) {
+			printf("%s %d %d\n", requiredItems[x], reqItemMinLen[x], reqItemMaxLen[x]);
 		}
-
 		int caCnt = 0;
 		int customActivityMinLen[20];
 		int customActivityMaxLen[20];
