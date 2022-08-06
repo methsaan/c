@@ -487,7 +487,25 @@ int main(int *argc, char *argv[]) {
 			fprintf(schedReader, "%d %d %s %d\n", schedItemCnt, schedItemStart[x], schedItem[x], schedItemLength[x]);
 		}
 		fclose(schedReader);
+
+		time_t s, val = 1;
+		struct tm* currentTime;
+		s = time(NULL);
+		currentTime = localtime(&s);
+
+		char monthDay[3];
+		sprintf(monthDay, "%02d", currentTime->tm_mday);
+
+		char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+		char *dateStr;
+		dateStr = malloc(256);
+		memset(dateStr, '\0', 256);
+		strcat(dateStr, months[currentTime->tm_mon]);
+		strcat(dateStr, ". ");
+		strcat(dateStr, monthDay);
+
 		FILE *schedReader2 = fopen("schedReader2", "w");
+		fprintf(schedReader2, "%s\n", dateStr);
 		fprintf(schedReader2, "%d\n", schedLength);
 		fprintf(schedReader2, "%s\n", schedStart);
 		fclose(schedReader);
@@ -550,17 +568,26 @@ int main(int *argc, char *argv[]) {
 	strcat(dateStr, months[currentTime->tm_mon]);
 	strcat(dateStr, ". ");
 	strcat(dateStr, monthDay);
+	system("touch tempSchedTracker");
 
-	for (int x = 0; x < schedItemCnt; x++) {
-		printf("%02d:%02d (%s) - already tracked (-1), on time (2), late (1), or unfinished (0)? ", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x]);
+	for (int x = 0; x < schedItemCnt-1; x++) {
+		printf("%02d:%02d (%s) - already tracked (-1), on time (3), late (1), or unfinished (0)? ", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, schedItem[x]);
 		scanf("%d", &onTime[x]);
 		if (onTime[x] == -1) {
+			char tempSchedTrackerStr[3];
+			FILE *tempSchedTrackerRead = fopen("tempSchedTracker", "r");
+			for (int y = 0; y < x+1; y++) {
+				fgets(tempSchedTrackerStr, 3, tempSchedTrackerRead);
+				tempSchedTrackerStr[strlen(tempSchedTrackerStr)-1] = '\0';
+			}
+			fclose(tempSchedTrackerRead);
+			onTime[x] = atoi(tempSchedTrackerStr);
 			continue;
+		}else {
+			FILE *tempSchedTracker = fopen("tempSchedTracker", "a");
+			fprintf(tempSchedTracker, "%d\n", onTime[x]);
+			fclose(tempSchedTracker);
 		}
-		FILE *schedTracker = fopen("schedTracker", "a");
-		fprintf(schedTracker, "%s %d %d\n", dateStr, (currentTime->tm_year+1900), onTime[x]);
-		fclose(schedTracker);
-
 		for (int y = 0; y < 7; y++) {
 			printf("> ");
 			scanf("%s", reqMet[x][y]);
@@ -575,13 +602,32 @@ int main(int *argc, char *argv[]) {
 			reqMetCntPerItem[x]++;
 		}
 	}
+
+	double onTimeAvg = 0;
 	for (int x = 0; x < schedItemCnt; x++) {
-		printf("%02d:%02d: %d\n", (int)(schedItemStart[x]/60)%24, schedItemStart[x]%60, onTime[x]);
+		onTimeAvg += onTime[x];
 	}
-	for (int x = 0; x < schedItemCnt; x++) {
-		for (int y = 0; y < reqMetCntPerItem[x]; y++) {
-			printf("%s ", reqMet[x][y]);
-		}
-		printf("\n");
-	}
+	onTimeAvg /= schedItemCnt-1;
+	char startDateStr[15];
+	char schedLengthRead[15];
+	char schedStartRead[15];
+	FILE *schedReaderRead2 = fopen("schedReader2", "r");
+	fgets(startDateStr, 15, schedReaderRead2);
+	startDateStr[strlen(startDateStr)-1] = '\0';
+	fgets(schedLengthRead, 15, schedReaderRead2);
+	fgets(schedStartRead, 15, schedReaderRead2);
+	schedStartRead[strlen(schedStartRead)-1] = '\0';
+	fclose(schedReaderRead2);
+	FILE *schedTracker = fopen("schedTracker", "a");
+	char schedEnd[6] = "";
+	int schedEndInt = (((schedStartRead[0]-'0')*10+(schedStartRead[1]-'0'))*60+((schedStartRead[3]-'0')*10+(schedStartRead[4]-'0')) + atoi(schedLengthRead)*60) % 1440;
+	char tempSchedEndAdd[3];
+	sprintf(tempSchedEndAdd, "%02d", schedEndInt/60);
+	strcat(schedEnd, tempSchedEndAdd);
+	strcat(schedEnd, ":");
+	sprintf(tempSchedEndAdd, "%02d", schedEndInt%60);
+	strcat(schedEnd, tempSchedEndAdd);
+	fprintf(schedTracker, "%s %s - %s %s %f\n", startDateStr, schedStartRead, dateStr, schedEnd, onTimeAvg);
+	fclose(schedTracker);
+	system("rm schedTracker");
 }
