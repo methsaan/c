@@ -629,5 +629,5 @@ int main(int *argc, char *argv[]) {
 	strcat(schedEnd, tempSchedEndAdd);
 	fprintf(schedTracker, "%s %s - %s %s %f\n", startDateStr, schedStartRead, dateStr, schedEnd, onTimeAvg);
 	fclose(schedTracker);
-	system("rm schedTracker");
+	system("rm tempSchedTracker");
 }
