@@ -271,6 +271,7 @@ int main(int *argc, char *argv[]) {
 	char sched[2];
 	printf("Follow recent schedule (f), submit requirement (s), show progress tracker (p) or create new schedule (n)? ");
 	scanf("%s", sched);
+	char scheduleStartDate[20];
 
 	if (strcmp(sched, "p") == 0) {
 		system("./dayTracker.py");
@@ -292,6 +293,10 @@ int main(int *argc, char *argv[]) {
 		strcat(dateStr, months[currentTime->tm_mon]);
 		strcat(dateStr, ". ");
 		strcat(dateStr, monthDay);
+		strcat(dateStr, ", ");
+		char tempYear[5];
+		sprintf(tempYear, "%d", currentTime->tm_year + 1900);
+		strcat(dateStr, tempYear);
 
 		char reqMet[10];
 		printf("> ");
@@ -321,6 +326,9 @@ int main(int *argc, char *argv[]) {
 		char schedStart[6];
 		printf("Enter schedule start time: ");
 		scanf("%s", schedStart);
+		printf("Enter schedule start date (mmm. dd yyyy): ");
+		scanf(" %[^\n]", scheduleStartDate);
+		printf("%s\n", scheduleStartDate);
 		int schedStartInt = ((schedStart[0]-'0')*10+(schedStart[1]-'0'))*60+((schedStart[3]-'0')*10+(schedStart[4]-'0'));
 
 		int minutesOccupied[schedLength*60];
@@ -488,24 +496,8 @@ int main(int *argc, char *argv[]) {
 		}
 		fclose(schedReader);
 
-		time_t s, val = 1;
-		struct tm* currentTime;
-		s = time(NULL);
-		currentTime = localtime(&s);
-
-		char monthDay[3];
-		sprintf(monthDay, "%02d", currentTime->tm_mday);
-
-		char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		char *dateStr;
-		dateStr = malloc(256);
-		memset(dateStr, '\0', 256);
-		strcat(dateStr, months[currentTime->tm_mon]);
-		strcat(dateStr, ". ");
-		strcat(dateStr, monthDay);
-
 		FILE *schedReader2 = fopen("schedReader2", "w");
-		fprintf(schedReader2, "%s\n", dateStr);
+		fprintf(schedReader2, "%s\n", scheduleStartDate);
 		fprintf(schedReader2, "%d\n", schedLength);
 		fprintf(schedReader2, "%s\n", schedStart);
 		fclose(schedReader);
@@ -561,6 +553,8 @@ int main(int *argc, char *argv[]) {
 
 	char monthDay[3];
 	sprintf(monthDay, "%02d", currentTime->tm_mday);
+	char year[5];
+	sprintf(year, "%d", currentTime->tm_year + 1900);
 	char *months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 	char *dateStr;
 	dateStr = malloc(256);
@@ -568,6 +562,8 @@ int main(int *argc, char *argv[]) {
 	strcat(dateStr, months[currentTime->tm_mon]);
 	strcat(dateStr, ". ");
 	strcat(dateStr, monthDay);
+	strcat(dateStr, " ");
+	strcat(dateStr, year);
 	system("touch tempSchedTracker");
 
 	for (int x = 0; x < schedItemCnt-1; x++) {
