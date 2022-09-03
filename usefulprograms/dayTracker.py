@@ -1,204 +1,174 @@
 #! /usr/bin/python3
 
-import math
+import time
 import random
-
-from datetime import timedelta, date
 
 from tkinter import *
 tk = Tk()
-canvas = Canvas(tk, width=1000, height=800, bg="aqua")
+canvas = Canvas(tk, width=1500, height=900, bg="#%02x%02x%02x" % (0, 100, 160))
 canvas.pack()
 
-def daterange(date1, date2):
-    for n in range(int((date2-date1).days)+1):
-        yield date1 + timedelta(n)
+class timeBlockBar:
+    def __init__(self, arg, arg2):
+        self.arg = arg
+        self.arg2 = arg2
+    def callBack(self, event):
+        canvas.itemconfig(performText, text=self.arg, fill=self.arg2)
+        tk.update()
+    def getText(self):
+        temp = self.arg.replace(" ", "")
+        temp = temp.replace("\n", "")
+        return temp
+    def getColor(self):
+        return self.arg2
 
-reqReader = open("reqTracker", "r")
+class timeBlock:
+    def __init__(self, mon1, date1, year1, hr1, min1, mon2, date2, year2, hr2, min2, activity):
+        self.startMonth = mon1
+        self.startDate = date1
+        self.startYear = year1
+        self.startHr = hr1
+        self.startMin = min1
+        self.endMonth = mon2
+        self.endDate = date2
+        self.endYear = year2
+        self.endHr = hr2
+        self.endMin = min2
+        self.activity = activity
+    def __minutesFromZero(self, mon, date, year, hr, minutes):
+        daysInMons = [31, (29 if year % 4 == 0 else 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        daysInMon = sum(daysInMons[:mon-1]) if mon != 0 else 0
+        return minutes + hr*60 + (date-1)*1440 + daysInMon*1440 + (year*527040 if year % 4 == 0 else year*525600)
+    def length(self):
+        return self.__minutesFromZero(self.endMonth, self.endDate, self.endYear, self.endHr, self.endMin)-self.__minutesFromZero(self.startMonth, self.startDate, self.startYear, self.startHr, self.startMin)
+    def getActivity(self):
+        return self.activity
+    def getStartDate(self):
+        return "%02d/%02d/%d %02d:%02d" % (self.startMonth, self.startDate, self.startYear, self.startHr, self.startMin)
+    def getEndDate(self):
+        return "%02d/%02d/%d %02d:%02d" % (self.endMonth, self.endDate, self.endYear, self.endHr, self.endMin)
 
-lines = reqReader.readlines()
-activities = []
-tempDayActivities = []
-tempDates = []
-dates = []
-addedFirst = False
-
-tempReqMet = {"PA" : 0, "ST" : 0, "PP" : 0, "MT" : 0, "D" : 0, "BL" : 0}
-activitiesPerDay = []
-reqPerDay = []
-
-for x in range(1, len(lines)):
-    if lines[x][0] == '-':
-        continue
-    elif lines[x-1][0] == '-':
-        tempDates.append(lines[x])
-        if not addedFirst:
-            dates.append(lines[x])
-            addedFirst = True
-        if tempDates[len(tempDates)-1] != tempDates[len(tempDates)-2]:
-            activities.append(tempDayActivities)
-            tempDayActivities = []
-            dates.append(lines[x])
-    else:
-        tempDayActivities.append(lines[x])
-
-activities.append(tempDayActivities)
-
-for x in range(len(dates)):
-    activitiesPerDay.append(dict(tempReqMet))
-
-reqActivities = list(tempReqMet.keys())
-
-for x in reqActivities:
-    for y in range(len(dates)):
-        activitiesPerDay[y][x] = activities[y].count(x+"\n")
-
-canvas.create_line(100, 700, 700, 700, width=6)
-canvas.create_line(100, 100, 100, 700, width=6)
-
-horizontalDistPerPoint = 600/len(dates)
-verticalDistPerPoint = 0
-maxActPerDay = 0
-
-for x in range(len(dates)):
-    if max(activitiesPerDay[x].values()) > verticalDistPerPoint:
-        verticalDistPerPoint = max(activitiesPerDay[x].values())
-        maxActPerDay = max(activitiesPerDay[x].values())
-
-verticalDistPerPoint = 600/verticalDistPerPoint
-
-reqOccurences = dict(tempReqMet)
-for x in range(len(reqActivities)):
-    reqOccurences[reqActivities[x]] = [0]
-
-for x in range(len(reqActivities)):
-    for y in range(len(dates)):
-        reqOccurences[reqActivities[x]].append(activitiesPerDay[y][reqActivities[x]])
-
-reqWeeklyOccurences = dict(reqOccurences)
-for x in range(len(reqActivities)):
-    reqWeeklyOccurences[reqActivities[x]] = [0, 0]
-
-for x in range(len(reqActivities)):
-    cnt = 1
-    cnt2 = 0
-    for y in range(len(reqOccurences[reqActivities[x]])):
-        reqWeeklyOccurences[reqActivities[x]][cnt] += reqOccurences[reqActivities[x]][y]
-        cnt2 += 1
-        if cnt2 == 7:
+def varieties(l):
+    cnt = 0
+    unique = []
+    for x in l:
+        if x not in unique:
+            unique.append(x)
             cnt += 1
-            cnt2 = 0
-            reqWeeklyOccurences[reqActivities[x]].append(0)
+    return cnt
 
-horizontalDistPerPoint2 = 600/int(math.ceil(len(dates)/7))
-verticalDistPerPoint2 = 0
-maxActPerDay2 = 0
+schedTrackReader = open("schedTracker", "r")
 
-for x in range(len(reqActivities)):
-    if max(reqWeeklyOccurences[reqActivities[x]]) > verticalDistPerPoint2:
-        verticalDistPerPoint2 = max(reqWeeklyOccurences[reqActivities[x]])
-        maxActPerDay2 = max(reqWeeklyOccurences[reqActivities[x]])
+lines = schedTrackReader.readlines()
 
-verticalDistPerPoint2 = 600/verticalDistPerPoint2
+timeBlocks = []
 
-colors = ["red", "orange", "blue", "green", "white", "purple", "pink", "grey", "yellow", "violet", "dark blue", "light green", "dark grey"]
-colors2 = ["red", "orange", "blue", "green", "white", "purple", "pink", "grey", "yellow", "violet", "dark blue", "light green", "dark grey"]
-random.shuffle(colors)
-random.shuffle(colors2)
-colors = colors[:len(reqActivities)]
+for x in range(len(lines)-1):
+    temp = lines[x].split()
+    temp2 = lines[x+1].split()
+    months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
+    timeBlocks.append(timeBlock(months.index(temp[0])+1, int(temp[1]), int(temp[2]), int(temp[3].split(":")[0]), int(temp[3].split(":")[1]), months.index(temp[5])+1, int(temp[6]), int(temp[7]), int(temp[8].split(":")[0]), int(temp[8].split(":")[1]), float(temp[9])))
+    timeBlocks.append(timeBlock(months.index(temp[5])+1, int(temp[6]), int(temp[7]), int(temp[8].split(":")[0]), int(temp[8].split(":")[1]), months.index(temp2[0])+1, int(temp2[1]), int(temp2[2]), int(temp2[3].split(":")[0]), int(temp2[3].split(":")[1]), None))
+    if x == len(lines)-2:
+        timeBlocks.append(timeBlock(months.index(temp2[0])+1, int(temp2[1]), int(temp2[2]), int(temp2[3].split(":")[0]), int(temp2[3].split(":")[1]), months.index(temp2[5])+1, int(temp2[6]), int(temp2[7]), int(temp2[8].split(":")[0]), int(temp2[8].split(":")[1]), float(temp2[9])))
 
-option = int(input("Enter data to display (weekly all (1), weekly individual (2), daily all (3), daily individual (4)): "))
-
-if option == 1:
-    for a in range(maxActPerDay2+1):
-        canvas.create_text(85, 700-verticalDistPerPoint2*a, text=str(a), font=("tahoma", 14))
-    for x in range(len(reqActivities)):
-        canvas.create_text(850, 100+x*30, text="\u2588\u2588 = %s" % reqActivities[x], fill=colors[x], font=("tahoma", 15))
-        for y in range(1, len(reqWeeklyOccurences[reqActivities[x]])-1):
-            canvas.create_line(100+horizontalDistPerPoint2*(y-1), 700-verticalDistPerPoint2*reqWeeklyOccurences[reqActivities[x]][y-1], 100+horizontalDistPerPoint2*y, 700-verticalDistPerPoint2*reqWeeklyOccurences[reqActivities[x]][y], fill=colors[x], width=3)
-            canvas.create_oval(96+horizontalDistPerPoint2*y, 696-verticalDistPerPoint2*reqWeeklyOccurences[reqActivities[x]][y], 104+horizontalDistPerPoint2*y, 704-verticalDistPerPoint2*reqWeeklyOccurences[reqActivities[x]][y], fill=colors[x], outline=colors[x])
-elif option == 2:
-    x = input("Enter requirement: ")
-    cnt = 0
-    for a in range(maxActPerDay2+1):
-        canvas.create_text(85, 700-verticalDistPerPoint2*a, text=str(a), font=("tahoma", 14))
-    while x != "-":
-        canvas.create_text(850, 100+cnt*30, text="\u2588\u2588 = %s" % x, fill=colors[reqActivities.index(x)], font=("tahoma", 15))
-        for y in range(1, len(reqWeeklyOccurences[x])-1):
-            canvas.create_line(100+horizontalDistPerPoint2*(y-1), 700-verticalDistPerPoint2*reqWeeklyOccurences[x][y-1], 100+horizontalDistPerPoint2*y, 700-verticalDistPerPoint2*reqWeeklyOccurences[x][y], fill=colors[reqActivities.index(x)], width=3)
-            canvas.create_oval(96+horizontalDistPerPoint2*y, 696-verticalDistPerPoint2*reqWeeklyOccurences[x][y], 104+horizontalDistPerPoint2*y, 704-verticalDistPerPoint2*reqWeeklyOccurences[x][y], fill=colors[reqActivities.index(x)], outline=colors[reqActivities.index(x)])
-        cnt += 1
-        x = input("Enter requirement ('cl' to clear, '-' to quit): ")
-elif option == 3:
-    for a in range(maxActPerDay+1):
-        canvas.create_text(90, 700-verticalDistPerPoint*a, text=str(a), font=("tahoma", 16))
-    for x in range(len(reqActivities)):
-        canvas.create_text(850, 100+x*30, text="\u2588\u2588 = %s" % reqActivities[x], fill=colors[x], font=("tahoma", 15))
-        for y in range(1, len(reqOccurences[reqActivities[x]])):
-            canvas.create_line(100+horizontalDistPerPoint*(y-1), 700-verticalDistPerPoint*reqOccurences[reqActivities[x]][y-1], 100+horizontalDistPerPoint*y, 700-verticalDistPerPoint*reqOccurences[reqActivities[x]][y], fill=colors[x], width=3)
-            canvas.create_oval(96+horizontalDistPerPoint*y, 696-verticalDistPerPoint*reqOccurences[reqActivities[x]][y], 104+horizontalDistPerPoint*y, 704-verticalDistPerPoint*reqOccurences[reqActivities[x]][y], fill=colors[x], outline=colors[x])
-elif option == 4:
-    x = input("Enter requirement: ")
-    cnt = 0
-    for a in range(maxActPerDay+1):
-        canvas.create_text(90, 700-verticalDistPerPoint*a, text=str(a), font=("tahoma", 16))
-    while x != "-":
-        canvas.create_text(850, 100+cnt*30, text="\u2588\u2588 = %s" % x, fill=colors[reqActivities.index(x)], font=("tahoma", 15))
-        for y in range(1, len(reqOccurences[x])):
-            canvas.create_line(100+horizontalDistPerPoint*(y-1), 700-verticalDistPerPoint*reqOccurences[x][y-1], 100+horizontalDistPerPoint*y, 700-verticalDistPerPoint*reqOccurences[x][y], fill=colors[reqActivities.index(x)], width=3)
-            canvas.create_oval(96+horizontalDistPerPoint*y, 696-verticalDistPerPoint*reqOccurences[x][y], 104+horizontalDistPerPoint*y, 704-verticalDistPerPoint*reqOccurences[x][y], fill=colors[reqActivities.index(x)], outline=colors[reqActivities.index(x)])
-        cnt += 1
-        x = input("Enter requirement ('cl' to clear, '-' to quit): ")
-
-schedReader = open("schedTracker", "r")
-
-lines2 = schedReader.readlines()
-
-earliestDateRead = lines2[0][:-3]
-latestDate = date.today()
-
+firstLineData = lines[0].split()
+lastLineData = lines[len(lines)-1].split()
 months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
+totalLengthMin = timeBlock(months.index(firstLineData[0])+1, int(firstLineData[1]), int(firstLineData[2]), int(firstLineData[3].split(":")[0]), int(firstLineData[3].split(":")[1]), months.index(lastLineData[5])+1, int(lastLineData[6]), int(lastLineData[7]), int(lastLineData[8].split(":")[0]), int(temp[8].split(":")[1]), None).length()
 
-startDate = date(int(earliestDateRead.split(" ")[2]), months.index(earliestDateRead.split(" ")[0])+1, int(earliestDateRead.split(" ")[1]))
-endDate = date(latestDate.year, latestDate.month, latestDate.day)
-dateRangeList = []
+unit = 1300/totalLengthMin
 
-for x in daterange(startDate, endDate):
-    dateRangeList.append(months[int(x.strftime("%m"))-1] + " " + x.strftime("%d") + " " + x.strftime("%Y"))
+barLen = 0
 
-performanceAvgPerDay = dict.fromkeys(dateRangeList, 0)
+performText = canvas.create_text(200, 230, text="Click area to see schedule performance", font=("helvetica", 12, "bold"))
 
-tempPerformance = []
+for x in range(len(timeBlocks)):
+    dateRange = timeBlocks[x].getStartDate() + " - " + timeBlocks[x].getEndDate()
+    activity = timeBlockBar((str(timeBlocks[x].getActivity()/3)[:4]+"%" if timeBlocks[x].getActivity() != None else "No Activity") + "\n" + dateRange, (("#%02x%02x%02x" % (255, int(timeBlocks[x].getActivity()*85), 0)) if timeBlocks[x].getActivity() != None else "gray"))
+    r = canvas.create_rectangle(barLen+100, 100, barLen+100+unit*timeBlocks[x].length(), 200, fill=activity.getColor(), tags=" ".join(activity.getText().split()))
+    canvas.tag_bind(" ".join(activity.getText().split()), "<Button-1>", activity.callBack)
+    tk.update()
+    if timeBlocks[x].getActivity() != None:
+        if unit*timeBlocks[x].length() > 50:
+            canvas.create_text(barLen+100+(unit*timeBlocks[x].length())/2, 150, text=str(timeBlocks[x].getActivity()/3)[:4]+"%", font=("courier", 12))
+    barLen += unit*timeBlocks[x].length()
+tk.update()
 
-for x in range(len(dateRangeList)):
-    for y in range(len(lines2)):
-        if dateRangeList[x] == lines2[y][:-3]:
-            tempPerformance.append(int(lines2[y][-2:-1]))
-    performanceAvgPerDay[dateRangeList[x]] = sum(tempPerformance)/len(tempPerformance) if tempPerformance != [] else 0
-    tempPerformance = []
+reqTrackReader = open("reqTracker", "r")
 
-performanceAvgPerDay = {**{"-" : 0}, **performanceAvgPerDay}
-dateRangeList = ["-"] + dateRangeList
- 
-horizontalDistPerPoint3 = 600/int(math.ceil(len(dateRangeList)))
-verticalDistPerPoint3 = 300
+lines = reqTrackReader.readlines()
+temp = None
+tempReqTrackArr = []
 
-tk2 = Tk()
-canvas2 = Canvas(tk2, width=800, height=800, bg="aqua")
-canvas2.pack()
+for x in range(len(lines)):
+    if x%3 == 1:
+        temp = lines[x]
+    elif x%3 == 2:
+        tempReqTrackArr.append([temp, lines[x]])
+        temp = None
 
-canvas2.create_line(100, 700, 700, 700, width=6)
-canvas2.create_line(100, 100, 100, 700, width=6)
+requirements = []
+reqTrackArr = []
 
-for x in range(9):
-    canvas2.create_text(80, 700-75*x, text=str(x/4), font=("tahoma", 12))
+for x in range(len(tempReqTrackArr)):
+    if tempReqTrackArr[x][0] != temp:
+        reqTrackArr.append([tempReqTrackArr[x][0], [tempReqTrackArr[x][1]]])
+        temp = tempReqTrackArr[x][0]
+    else:
+        reqTrackArr[-1][1].append(tempReqTrackArr[x][1])
 
-for x in range(1, len(dateRangeList)):
-    canvas2.create_line(100+horizontalDistPerPoint3*(x-1), 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x-1]], 100+horizontalDistPerPoint3*x, 700-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], width=3, fill=colors2[-1])
-    canvas2.create_oval(96+horizontalDistPerPoint3*x, 696-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], 104+horizontalDistPerPoint3*x, 704-verticalDistPerPoint3*performanceAvgPerDay[dateRangeList[x]], fill=colors2[-1], outline=colors2[-1])
+for x in range(len(reqTrackArr)):
+    reqTrackArr[x][0] = reqTrackArr[x][0].split()
+    reqTrackArr[x][0][0] = months.index(reqTrackArr[x][0][0])+1
+    reqTrackArr[x][0][1] = int(reqTrackArr[x][0][1])
+    reqTrackArr[x][0][2] = int(reqTrackArr[x][0][2])
 
-tk.lift()
-tk2.lift()
+for x in range(len(reqTrackArr)+2):
+    if reqTrackArr[x][1] != None:
+        dayDist = timeBlock(int(reqTrackArr[x][0][0]), reqTrackArr[x][0][1], reqTrackArr[x][0][2], 0, 0, int(reqTrackArr[x+1][0][0]), reqTrackArr[x+1][0][1], reqTrackArr[x+1][0][2], 0, 0, None)
+        if dayDist.length()/1440 == 1:
+            continue
+        else:
+            reqTrackArr.insert(x+1, [dayDist.length()/1440, None])
+    else:
+        continue
+
+allReq = []
+
+for x in range(len(reqTrackArr)):
+    if reqTrackArr[x][1] != None:
+        allReq.extend(reqTrackArr[x][1])
+
+boxHeight = (400-varieties(allReq)*10)/varieties(allReq)
+boxWidth = (1100-len(reqTrackArr)*10)/len(reqTrackArr)
+
+canvas.create_line(300, 300, 300, 700, width=2)
+canvas.create_line(300, 700, 1400, 700, width=2)
+
+reqUnique = []
+for x in allReq:
+    if x not in reqUnique:
+        reqUnique.append(x)
+
+colors = ["red", "orange", "green", "aqua", "light green", "turquoise", "pink", "purple", "brown", "gray", "dark orange", "maroon", "yellow", "light yellow", "navy"]
+random.shuffle(colors)
+colors = colors[:varieties(allReq)]
+
+for x in range(len(reqTrackArr)):
+    if reqTrackArr[x][1] != None:
+        for y in range(len(reqTrackArr[x][1])):
+            canvas.create_rectangle(310+x*boxWidth+x*10, 700-(y+1)*boxHeight-(y+1)*10, 310+(x+1)*boxWidth+x*10, 700-y*boxHeight-(y+1)*10, fill=colors[reqUnique.index(reqTrackArr[x][1][y])])
+            canvas.create_text(310+(x+0.5)*boxWidth+x*10, 700-(y+0.5)*boxHeight-y*10, text=reqTrackArr[x][1][y], font=("helvetica", 10, "bold"))
+        canvas.create_text(310+(x+0.5)*boxWidth+x*10, 745, text=("%02d-%02d-%04d" % (reqTrackArr[x][0][0], reqTrackArr[x][0][1], reqTrackArr[x][0][2])), font=("helvetica", 8, "bold"), angle=90)
+    else:
+        canvas.create_text(310+(x+0.5)*boxWidth+x*10, 730, text=str(int(reqTrackArr[x][0]))+"d", font=("helvetica", 8, "bold"))
+        canvas.create_line(310+x*boxWidth+x*10, 715, 310+(x+1)*boxWidth+x*10, 715, width=2)
+        canvas.create_polygon(300+x*boxWidth+x*10, 715, 310+x*boxWidth+x*10, 710, 310+x*boxWidth+x*10, 720)
+        canvas.create_polygon(320+(x+1)*boxWidth+x*10, 715, 310+(x+1)*boxWidth+x*10, 710, 310+(x+1)*boxWidth+x*10, 720)
+
+for x in range(len(reqUnique)):
+    canvas.create_oval(85, 385+(x*40), 115, 415+(x*40), fill=colors[x])
+    canvas.create_text(160, 415+(x*40), text="= "+reqUnique[x], font=("helvetica", 20))
 
 canvas.mainloop()
-canvas2.mainloop()
