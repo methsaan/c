@@ -228,23 +228,26 @@ int main(int *argc, char *argv[]) {
 	char *schedItem[100];
 	int schedItemCnt = 0;
 
-	char *pp[3] = {"PPSR", "PPS", "PPTR"};
-	for (int x = 0; x < 3; x++) {
-		int randIdx = rand()%3;
+	char *pp[4] = {"PPSR", "PPS", "PPTR1", "PPTR2"};
+	for (int x = 0; x < 4; x++) {
+		int randIdx = rand()%4;
 		char *temp = pp[x];
 		pp[x] = pp[randIdx];
 		pp[randIdx] = temp;
 	}
 	char *ppWeekDist[7];
 	int wdCnt = 0;
-	for (int x = wdCnt; x < 3; x = wdCnt = x+1) {
+	for (int x = wdCnt; x < 2; x = wdCnt = x+1) {
 		ppWeekDist[x] = pp[0];
 	}
-	for (int x = wdCnt; x < 5; x = wdCnt = x+1) {
+	for (int x = wdCnt; x < 4; x = wdCnt = x+1) {
 		ppWeekDist[x] = pp[1];
 	}
-	for (int x = wdCnt; x < 7; x = wdCnt = x+1) {
+	for (int x = wdCnt; x < 6; x = wdCnt = x+1) {
 		ppWeekDist[x] = pp[2];
+	}
+	for (int x = wdCnt; x < 7; x = wdCnt = x+1) {
+		ppWeekDist[x] = pp[3];
 	}
 	time_t tempS, tempVal = 1;
 	for (int x = 0; x < 7; x++) {
@@ -293,7 +296,7 @@ int main(int *argc, char *argv[]) {
 		strcat(dateStr, months[currentTime->tm_mon]);
 		strcat(dateStr, ". ");
 		strcat(dateStr, monthDay);
-		strcat(dateStr, ", ");
+		strcat(dateStr, " ");
 		char tempYear[5];
 		sprintf(tempYear, "%d", currentTime->tm_year + 1900);
 		strcat(dateStr, tempYear);

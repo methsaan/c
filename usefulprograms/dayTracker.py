@@ -75,7 +75,7 @@ for x in range(len(lines)-1):
 firstLineData = lines[0].split()
 lastLineData = lines[len(lines)-1].split()
 months = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."]
-totalLengthMin = timeBlock(months.index(firstLineData[0])+1, int(firstLineData[1]), int(firstLineData[2]), int(firstLineData[3].split(":")[0]), int(firstLineData[3].split(":")[1]), months.index(lastLineData[5])+1, int(lastLineData[6]), int(lastLineData[7]), int(lastLineData[8].split(":")[0]), int(temp[8].split(":")[1]), None).length()
+totalLengthMin = timeBlock(months.index(firstLineData[0])+1, int(firstLineData[1]), int(firstLineData[2]), int(firstLineData[3].split(":")[0]), int(firstLineData[3].split(":")[1]), months.index(lastLineData[5])+1, int(lastLineData[6]), int(lastLineData[7]), int(lastLineData[8].split(":")[0]), int(lastLineData[8].split(":")[1]), None).length()
 
 unit = 1300/totalLengthMin
 
@@ -85,13 +85,13 @@ performText = canvas.create_text(200, 230, text="Click area to see schedule perf
 
 for x in range(len(timeBlocks)):
     dateRange = timeBlocks[x].getStartDate() + " - " + timeBlocks[x].getEndDate()
-    activity = timeBlockBar((str(timeBlocks[x].getActivity()/3)[:4]+"%" if timeBlocks[x].getActivity() != None else "No Activity") + "\n" + dateRange, (("#%02x%02x%02x" % (255, int(timeBlocks[x].getActivity()*85), 0)) if timeBlocks[x].getActivity() != None else "gray"))
+    activity = timeBlockBar((str(timeBlocks[x].getActivity()/3*100)[:4]+"%" if timeBlocks[x].getActivity() != None else "No Activity") + "\n" + dateRange, (("#%02x%02x%02x" % (255, int(timeBlocks[x].getActivity()*85), 0)) if timeBlocks[x].getActivity() != None else "gray"))
     r = canvas.create_rectangle(barLen+100, 100, barLen+100+unit*timeBlocks[x].length(), 200, fill=activity.getColor(), tags=" ".join(activity.getText().split()))
     canvas.tag_bind(" ".join(activity.getText().split()), "<Button-1>", activity.callBack)
     tk.update()
     if timeBlocks[x].getActivity() != None:
         if unit*timeBlocks[x].length() > 50:
-            canvas.create_text(barLen+100+(unit*timeBlocks[x].length())/2, 150, text=str(timeBlocks[x].getActivity()/3)[:4]+"%", font=("courier", 12))
+            canvas.create_text(barLen+100+(unit*timeBlocks[x].length())/2, 150, text=str(timeBlocks[x].getActivity()/3*100)[:4]+"%", font=("courier", 12))
     barLen += unit*timeBlocks[x].length()
 tk.update()
 
@@ -124,12 +124,11 @@ for x in range(len(reqTrackArr)):
     reqTrackArr[x][0][1] = int(reqTrackArr[x][0][1])
     reqTrackArr[x][0][2] = int(reqTrackArr[x][0][2])
 
-for x in range(len(reqTrackArr)+2):
-    if reqTrackArr[x][1] != None:
+for x in range(len(reqTrackArr)):
+    if reqTrackArr[x][0] != None and type(reqTrackArr[x][0]) is not float:
         dayDist = timeBlock(int(reqTrackArr[x][0][0]), reqTrackArr[x][0][1], reqTrackArr[x][0][2], 0, 0, int(reqTrackArr[x+1][0][0]), reqTrackArr[x+1][0][1], reqTrackArr[x+1][0][2], 0, 0, None)
-        if dayDist.length()/1440 == 1:
-            continue
-        else:
+        print(reqTrackArr[x], dayDist)
+        if dayDist.length()/1440 != 1:
             reqTrackArr.insert(x+1, [dayDist.length()/1440, None])
     else:
         continue
@@ -154,6 +153,9 @@ for x in allReq:
 colors = ["red", "orange", "green", "aqua", "light green", "turquoise", "pink", "purple", "brown", "gray", "dark orange", "maroon", "yellow", "light yellow", "navy"]
 random.shuffle(colors)
 colors = colors[:varieties(allReq)]
+
+for x in reqTrackArr:
+    print(x)
 
 for x in range(len(reqTrackArr)):
     if reqTrackArr[x][1] != None:
