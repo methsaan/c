@@ -127,7 +127,6 @@ for x in range(len(reqTrackArr)):
 for x in range(len(reqTrackArr)):
     if reqTrackArr[x][0] != None and type(reqTrackArr[x][0]) is not float:
         dayDist = timeBlock(int(reqTrackArr[x][0][0]), reqTrackArr[x][0][1], reqTrackArr[x][0][2], 0, 0, int(reqTrackArr[x+1][0][0]), reqTrackArr[x+1][0][1], reqTrackArr[x+1][0][2], 0, 0, None)
-        print(reqTrackArr[x], dayDist)
         if dayDist.length()/1440 != 1:
             reqTrackArr.insert(x+1, [dayDist.length()/1440, None])
     else:
@@ -153,9 +152,6 @@ for x in allReq:
 colors = ["red", "orange", "green", "aqua", "light green", "turquoise", "pink", "purple", "brown", "gray", "dark orange", "maroon", "yellow", "light yellow", "navy"]
 random.shuffle(colors)
 colors = colors[:varieties(allReq)]
-
-for x in reqTrackArr:
-    print(x)
 
 for x in range(len(reqTrackArr)):
     if reqTrackArr[x][1] != None:
