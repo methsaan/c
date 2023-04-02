@@ -124,7 +124,7 @@ for x in range(len(reqTrackArr)):
     reqTrackArr[x][0][1] = int(reqTrackArr[x][0][1])
     reqTrackArr[x][0][2] = int(reqTrackArr[x][0][2])
 
-for x in range(len(reqTrackArr)):
+for x in range(len(reqTrackArr)-1):
     if reqTrackArr[x][0] != None and type(reqTrackArr[x][0]) is not float:
         dayDist = timeBlock(int(reqTrackArr[x][0][0]), reqTrackArr[x][0][1], reqTrackArr[x][0][2], 0, 0, int(reqTrackArr[x+1][0][0]), reqTrackArr[x+1][0][1], reqTrackArr[x+1][0][2], 0, 0, None)
         if dayDist.length()/1440 != 1:
