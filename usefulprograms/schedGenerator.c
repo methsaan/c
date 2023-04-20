@@ -495,7 +495,7 @@ int main(int *argc, char *argv[]) {
 
 		FILE *schedReader = fopen("schedReader", "w");
 		for (int x = 0; x < schedItemCnt; x++) {
-			fprintf(schedReader, "%d %d %s %d\n", schedItemCnt, schedItemStart[x], schedItem[x], schedItemLength[x]);
+			fprintf(schedReader, "%d %d %s %d\n", x, schedItemStart[x], schedItem[x], schedItemLength[x]);
 		}
 		fclose(schedReader);
 
