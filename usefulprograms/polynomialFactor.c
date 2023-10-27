@@ -32,6 +32,22 @@ int factors(int num, int *f) {
 	return numOfFactors;
 }
 
+int simplified(int num, int den) {
+	int numFactors[100];
+	int denFactors[100];
+	int numOfNumFactors = factors(num, numFactors);
+	int numOfDenFactors = factors(den, denFactors);
+	for (int x = 0; x < numOfNumFactors; x++) {
+		for (int y = 0; y < numOfDenFactors; y++) {
+			if (numFactors[x] == denFactors[y] && numFactors[x] != 1 && numFactors[x] != -1) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+
 int max(int *coeff, int numOfTerms) {
 	int max = coeff[0];
 	for (int x = 0; x < numOfTerms; x++) {
@@ -44,10 +60,10 @@ int max(int *coeff, int numOfTerms) {
 
 double evalPolynomial(int *polynomial, double x, int numOfTerms) {
 	double eval = 0;
-	for (int i = numOfTerms; i > 0; i--) {
-		eval += polynomial[numOfTerms-i]*pow(x, i-1);
+	for (int i = numOfTerms; i >= 0; i--) {
+		eval += polynomial[numOfTerms-i]*pow(x, (double)i);
 	}
-	return eval;
+	return (float)(((int)(eval * 100 + 0.5)) / 100);
 }
 
 
@@ -131,20 +147,28 @@ int coefficients(char *polynomialStr, int *allCoeff) {
 // Find factor of polynomial
 // Input: {1, -7, -12, 68, 112}
 // Output: -2
-int rationalRoots(int *polynomial, int numOfTerms) {
+int rationalRoots(int *polynomial, int numOfTerms, int showWork) {
 	int constantFactors[200];
-	int numOfConstFactors = factors(polynomial[numOfTerms-1], constantFactors);
-	printf("%d\n", polynomial[numOfTerms-1]);
+	int numOfConstFactors = factors(abs(polynomial[numOfTerms-1]), constantFactors);
 	int leadCoeffFactors[200];
 	int numOfLeadFactors = factors(polynomial[0], leadCoeffFactors);
-	for (int x = 0; x < numOfLeadFactors; x++) {
-		printf("%d ", leadCoeffFactors[x]);
+	if (showWork) {
+		printf("Possible zeros: ");
+		for (int x = 0; x < numOfConstFactors; x++) {
+			for (int y = 0; y < numOfLeadFactors; y++) {
+				if (*(constantFactors + x) > 0 && *(leadCoeffFactors + y) > 0) {
+					if (simplified(*(constantFactors + x), *(leadCoeffFactors + y))) {
+						if (*(constantFactors + x) % *(leadCoeffFactors + y) == 0) {
+							printf("\u00B1%d ", *(constantFactors + x) / *(leadCoeffFactors + y));
+						} else {
+							printf("\u00B1%d/%d ", *(constantFactors + x), *(leadCoeffFactors + y));
+						}
+					}
+				}
+			}
+		}
+		printf("\n");
 	}
-	printf("\n");
-	for (int x = 0; x < numOfConstFactors; x++) {
-		printf("%d ", constantFactors[x]);
-	}
-	printf("\n");
 	for (int x = 0; x < numOfConstFactors; x++) {
 		for (int y = 0; y < numOfLeadFactors; y++) {
 			if (evalPolynomial(polynomial, *(constantFactors + x) / *(leadCoeffFactors + y), numOfTerms-1) == 0) {
@@ -152,10 +176,20 @@ int rationalRoots(int *polynomial, int numOfTerms) {
 			}
 		}
 	}
-	return polynomial[numOfTerms];
+	return polynomial[numOfTerms-1];
+}
+
+
+int synthDiv(int *polynomial, int divisor, int dividendLen, int *quotient) {
+	*(quotient++) = polynomial[0];
+	for (int x = 1; x < dividendLen; x++) {
+		*(quotient++) = -divisor * *(quotient-1) + polynomial[x];
+	}
+	return divisor;
 }
 
 int main() {
+	printf("Enter f(x):\n");
 	char *polyStr = "x^8 + 9x^7 - 9x^6 - 271x^5 - 970x^4 - 1608x^3 - 1632x^2 - 1328x - 672";
 	int coeff[30];
 	int numOfTermsTot = coefficients(polyStr, coeff);
@@ -164,5 +198,15 @@ int main() {
 	}
 	printf("\n");
 	char factoredForm[70];
-	printf("%d\n", rationalRoots(coeff, numOfTermsTot));
+	int root = rationalRoots(coeff, numOfTermsTot, 0);
+	if (root != 0) {
+		printf("f(%d) = 0\n", rationalRoots(coeff, numOfTermsTot, 1));
+		printf("(x %s %d) is a factor\n", root > 0 ? "-" : "+", abs(root));
+	}
+	int q[numOfTermsTot-1];
+	printf("%d\n", synthDiv(coeff, root, numOfTermsTot, q));
+	for (int x = 0; x < numOfTermsTot-1; x++) {
+		printf("%d ", q[x]);
+	}
+	printf("\n");
 }
