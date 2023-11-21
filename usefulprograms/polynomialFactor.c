@@ -144,10 +144,40 @@ int coefficients(char *polynomialStr, int *allCoeff) {
 	return totalTerms;
 }
 
+char *polynomialStr(int *polynomialCoeff, int polyDegree) {
+	char *str = malloc(100 * sizeof(char));
+	for (int x = 0; x < polyDegree; x++) {
+		if (polynomialCoeff[x] != 0) {
+			char termStr[15];
+			if (polynomialCoeff[x] != 1 || x == polyDegree - 1) {
+				sprintf(termStr, "%d", x == 0 ? polynomialCoeff[x] : abs(polynomialCoeff[x]));
+				strcat(str, termStr);
+			}
+			if (x < polyDegree - 2) {
+				int nextTerm;
+				for (int y = x+1; y < polyDegree; y++) {
+					if (polynomialCoeff[y] != 0) {
+						nextTerm = polynomialCoeff[y];
+						break;
+					}
+				}
+				sprintf(termStr, "x^%d%s", polyDegree-x-1, nextTerm < 0 ? " - " : " + ");
+				strcat(str, termStr);
+			} else if (x == polyDegree - 2) {
+				sprintf(termStr, "x%s", polynomialCoeff[x+1] < 0 ? " - " : " + ");
+				strcat(str, termStr);
+			} else {
+				;
+			}
+		}
+	}
+	return str;
+}
+
 // Find factor of polynomial
 // Input: {1, -7, -12, 68, 112}
 // Output: -2
-int rationalRoots(int *polynomial, int numOfTerms, int showWork) {
+double rationalRoots(int *polynomial, int numOfTerms, int showWork) {
 	int constantFactors[200];
 	int numOfConstFactors = factors(abs(polynomial[numOfTerms-1]), constantFactors);
 	int leadCoeffFactors[200];
@@ -171,42 +201,249 @@ int rationalRoots(int *polynomial, int numOfTerms, int showWork) {
 	}
 	for (int x = 0; x < numOfConstFactors; x++) {
 		for (int y = 0; y < numOfLeadFactors; y++) {
-			if (evalPolynomial(polynomial, *(constantFactors + x) / *(leadCoeffFactors + y), numOfTerms-1) == 0) {
-				return *(constantFactors + x) / *(leadCoeffFactors + y);
+			if (evalPolynomial(polynomial, (double)(*(constantFactors + x)) / *(leadCoeffFactors + y), numOfTerms-1) == 0) {
+				return (double)(*(constantFactors + x)) / *(leadCoeffFactors + y);
 			}
 		}
 	}
 	return polynomial[numOfTerms-1];
 }
 
-
 int synthDiv(int *polynomial, int divisor, int dividendLen, int *quotient) {
+	printf("%d | ", divisor);
+	for (int x = 0; x < dividendLen; x++) {
+		printf("%d\t ", polynomial[x]);
+	}
+	printf("\n  |\n  |\t ");
 	*(quotient++) = polynomial[0];
 	for (int x = 1; x < dividendLen; x++) {
+		printf("%d\t ", divisor * *(quotient-1));
 		*(quotient++) = -divisor * *(quotient-1) + polynomial[x];
 	}
-	return divisor;
+	printf("\n  |");
+	for (int x = 0; x < dividendLen; x++) {
+		printf("________");
+	}
+	printf("\n    ");
+	for (int x = 0; x < dividendLen; x++) {
+		printf("%d\t ", *(quotient-(dividendLen-x)));
+	}
+	printf("\n");
+	return dividendLen-1;
 }
+
+int quadraticFactor(int a, int b, int c, double *zeros) {
+	if (a == 1) {
+		// integer solutions -> simple trinomial
+		int constantFactors[200];
+		int numOfConstFactors = factors(abs(c), constantFactors);
+		for (int x = 0; x < numOfConstFactors; x++) {
+			if (constantFactors[x] + c/constantFactors[x] == b) {
+				*(zeros++) = -c/constantFactors[x];
+				*(zeros++) = -constantFactors[x];
+				return 0;
+			}
+		}
+	} else {
+		// no integer solutions -> complex trinomial
+		int acFactors[200];
+		int numOfacFactors = factors(abs(a*c), acFactors);
+		for (int x = 0; x < numOfacFactors; x++) {
+			if (acFactors[x] + a*c/acFactors[x] == b) {
+				*(zeros++) = -(a*c/acFactors[x])/(double)a;
+				*(zeros++) = -acFactors[x]/(double)a;
+				return 1;
+			}
+		}
+	}
+	// no rational solutions -> quadratic formula
+	int discriminant = pow(b, 2.0) - 4*a*c;
+	if (discriminant >= 0) {
+		*(zeros++) = (-b + sqrt(discriminant)) / (2*a);
+		*(zeros++) = (-b - sqrt(discriminant)) / (2*a);
+		return 2;
+	} else {
+		// no real solutions -> complex solutions
+		*(zeros++) = discriminant;
+		return 3;
+	}
+}
+
+int isIn(double *arr, double num, int len) {
+	for (int x = 0; x < len; x++) {
+		if (arr[x] == num) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 
 int main() {
 	printf("Enter f(x):\n");
-	char *polyStr = "x^8 + 9x^7 - 9x^6 - 271x^5 - 970x^4 - 1608x^3 - 1632x^2 - 1328x - 672";
+	//char *polyStr = "x^8 + 9x^7 - 9x^6 - 271x^5 - 970x^4 - 1608x^3 - 1632x^2 - 1328x - 672";
+	//char *polyStr = "x^6 + 18x^5 + 60x^4 - 774x^3 - 7485x^2 - 24300x - 28000";
+	//char *polyStr = "2x^5 + 5x^4 - 76x^3 - 46x^2 + 290x - 175";
+	//char *polyStr = "6x^5 + 37x^4 - 63x^3 - 149x^2 + 309x - 140";
+	char *polyStr = "36x^6 + 228x^5 - 341x^4 - 957x^3 + 1705x^2 - 531x - 140";
+	//char *polyStr = "72x^4 - 372x^3 - 1294x^2 + 2765x - 1225";
+	printf("%s\n", polyStr);
 	int coeff[30];
-	int numOfTermsTot = coefficients(polyStr, coeff);
-	for (int x = 0; x < numOfTermsTot; x++) {
-		printf("%d ", coeff[x]);
+	int numOfTermsLeft = coefficients(polyStr, coeff);
+	int numOfTermsInit = numOfTermsLeft;
+	double zeros[15];
+	int zerosCnt = 0;
+	char *factoredForm = malloc(130 * sizeof(char));
+
+	double root = rationalRoots(coeff, numOfTermsLeft, 1);
+	if (root != 0) {
+		char tempFactor[20];
+		if ((int)rationalRoots(coeff, numOfTermsLeft, 0) == rationalRoots(coeff, numOfTermsLeft, 0)) {
+			printf("f(%d) = 0\n", (int)rationalRoots(coeff, numOfTermsLeft, 0));
+			printf("(x %s %d)\n", rationalRoots(coeff, numOfTermsLeft, 0) > 0 ? "-" : "+", abs(rationalRoots(coeff, numOfTermsLeft, 0)));
+		} else {
+			int num;
+			int den = 1;
+			double decimal = rationalRoots(coeff, numOfTermsLeft, 0);
+			double temp = decimal;
+			while ((int)(decimal*den) - temp >= 0.000001 || (int)(decimal*den) - temp <= -0.000001) {
+				temp += decimal;
+				den++;
+			}
+			num = (int)round(temp);
+			printf("f(%d/%d) = 0\n", num, den);
+			printf("(%dx %s %d)\n", den, num < 0 ? "+" : "-", abs(num));
+		}
+		zeros[zerosCnt++] = root;
+		//sprintf(tempFactor, "(x %s %d)", root > 0 ? "-" : "+", abs(root));
+		//strcat(factoredForm, tempFactor);
+	}
+
+	for (int x = 0; x < numOfTermsInit-3; x++) {
+		numOfTermsLeft = synthDiv(coeff, -root, numOfTermsLeft, coeff);
+		root = rationalRoots(coeff, numOfTermsLeft, 1);
+		if (root != 0) {
+			char tempFactor[20];
+			if ((int)rationalRoots(coeff, numOfTermsLeft, 0) == rationalRoots(coeff, numOfTermsLeft, 0)) {
+				printf("f(%d) = 0\n", (int)rationalRoots(coeff, numOfTermsLeft, 0));
+				printf("(x %s %d)\n", rationalRoots(coeff, numOfTermsLeft, 0) > 0 ? "-" : "+", abs(rationalRoots(coeff, numOfTermsLeft, 0)));
+			} else {
+				int num;
+				int den = 1;
+				double decimal = rationalRoots(coeff, numOfTermsLeft, 0);
+				double temp = decimal;
+				while ((int)(decimal*den) - temp >= 0.000001 || (int)(decimal*den) - temp <= -0.000001) {
+					temp += decimal;
+					den++;
+				}
+				num = (int)round(temp);
+				printf("f(%d/%d) = 0\n", num, den);
+				printf("(%dx %s %d)\n", den, num < 0 ? "+" : "-", abs(num));
+			}
+
+			if (x != numOfTermsInit-4) {
+				zeros[zerosCnt++] = root;
+			}
+			//sprintf(tempFactor, "(x %s %d)", root > 0 ? "-" : "+", abs(root));
+			//strcat(factoredForm, tempFactor);
+		} // else - x is a factor
+	}
+	double solutions[2];
+	int type = quadraticFactor(coeff[0], coeff[1], coeff[2], solutions);
+	if (type == 0) {
+		char tempFactor[20];
+		printf("(x %s %d)(x %s %d)\n", solutions[0] > 0 ? "-" : "+", abs(solutions[0]), solutions[1] > 0 ? "-" : "+", abs(solutions[1]));
+		zeros[zerosCnt++] = solutions[0];
+		zeros[zerosCnt++] = solutions[1];
+		//sprintf(tempFactor, "(x %s %d)(x %s %d)", solutions[0] > 0 ? "-" : "+", abs(solutions[0]), solutions[1] > 0 ? "-" : "+", abs(solutions[1]));
+		//strcat(factoredForm, tempFactor);
+	} else if (type == 1) {
+		zeros[zerosCnt++] = solutions[0];
+		zeros[zerosCnt++] = solutions[1];
+		int num[2];
+		int den[] = {1, 1};
+		for (int x = 0; x < 2; x++) {
+			double temp = solutions[x];
+			while ((int)(solutions[x]*den[x]) - temp >= 0.000001 || (int)(solutions[x]*den[x]) - temp <= -0.000001) {
+				temp += solutions[x];
+				den[x]++;
+			}
+			num[x] = temp;
+		}
+		for (int x = 0; x < 2; x++) {
+			char tempFactor[20];
+			if (den[x] == 1) {
+				printf("(x %s %d)", num[x] < 0 ? "+" : "-", abs(num[x]));
+				//sprintf(tempFactor, "(x %s %d)", num[x] < 0 ? "+" : "-", abs(num[x]));
+				//strcat(factoredForm, tempFactor);
+			} else {
+				printf("(%dx %s %d)", den[x], num[x] < 0 ? "+" : "-", abs(num[x]));
+				//sprintf(tempFactor, "(%dx %s %d)", den[x], num[x] < 0 ? "+" : "-", abs(num[x]));
+				//strcat(factoredForm, tempFactor);
+			}
+		}
+		printf("\n");
+	} else if (type == 2) {
+		char tempFactor[20];
+		printf("%s\n", polynomialStr(coeff, numOfTermsLeft));
+		sprintf(tempFactor, "(%s)", polynomialStr(coeff, numOfTermsLeft));
+		strcat(factoredForm, tempFactor);
+	} else {
+		char tempFactor[20];
+		printf("%s\n", polynomialStr(coeff, numOfTermsLeft));
+		sprintf(tempFactor, "(%s)", polynomialStr(coeff, numOfTermsLeft));
+		strcat(factoredForm, tempFactor);
+	}
+	printf("%s\n", factoredForm);
+	for (int x = 0; x < zerosCnt; x++) {
+		printf("%f ", zeros[x]);
 	}
 	printf("\n");
-	char factoredForm[70];
-	int root = rationalRoots(coeff, numOfTermsTot, 0);
-	if (root != 0) {
-		printf("f(%d) = 0\n", rationalRoots(coeff, numOfTermsTot, 1));
-		printf("(x %s %d) is a factor\n", root > 0 ? "-" : "+", abs(root));
+	double zerosRemRepeat[zerosCnt];
+	int zerosFreq[zerosCnt];
+	int uniqueZeroCnt = 0;
+	for (int x = 0; x < zerosCnt; x++) {
+		if (!isIn(zerosRemRepeat, zeros[x], uniqueZeroCnt)) {
+			zerosRemRepeat[uniqueZeroCnt++] = zeros[x];
+		}
 	}
-	int q[numOfTermsTot-1];
-	printf("%d\n", synthDiv(coeff, root, numOfTermsTot, q));
-	for (int x = 0; x < numOfTermsTot-1; x++) {
-		printf("%d ", q[x]);
+	for (int x = 0; x < uniqueZeroCnt; x++) {
+		zerosFreq[x] = 0;
+		for (int y = 0; y < zerosCnt; y++) {
+			if (zerosRemRepeat[x] == zeros[y]) {
+				zerosFreq[x]++;
+			}
+		}
+	}
+	for (int x = 0; x < uniqueZeroCnt; x++) {
+		printf("%f ", zerosRemRepeat[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < uniqueZeroCnt; x++) {
+		printf("%d ", zerosFreq[x]);
+	}
+	printf("\n");
+	for (int x = 0; x < uniqueZeroCnt; x++) {
+		if (zerosFreq[x] > 1) {
+			printf("(");
+		}
+		if ((int)zerosRemRepeat[x] == zerosRemRepeat[x]) {
+			printf("(x %s %d)", zerosRemRepeat[x] > 0 ? "-" : "+", abs(zerosRemRepeat[x]));
+		} else {
+			int num;
+			int den = 1;
+			double decimal = rationalRoots(coeff, numOfTermsLeft, 0);
+			double temp = decimal;
+			while ((int)(decimal*den) - temp >= 0.000001 || (int)(decimal*den) - temp <= -0.000001) {
+				temp += decimal;
+				den++;
+			}
+			num = (int)round(temp);
+			printf("(%dx %s %d)", den, num < 0 ? "+" : "-", abs(num));
+		}
+		if (zerosFreq[x] > 1) {
+			printf("^%d)", zerosFreq[x]);
+		}
 	}
 	printf("\n");
 }
