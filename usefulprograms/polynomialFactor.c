@@ -282,9 +282,14 @@ int isIn(double *arr, double num, int len) {
 int main() {
 	printf("Enter f(x):\n");
 	//char *polyStr = "x^8 + 9x^7 - 9x^6 - 271x^5 - 970x^4 - 1608x^3 - 1632x^2 - 1328x - 672";
+	// PASS
 	//char *polyStr = "x^6 + 18x^5 + 60x^4 - 774x^3 - 7485x^2 - 24300x - 28000";
+	// PASS
 	//char *polyStr = "2x^5 + 5x^4 - 76x^3 - 46x^2 + 290x - 175";
+	// PASS
 	//char *polyStr = "6x^5 + 37x^4 - 63x^3 - 149x^2 + 309x - 140";
+	// FAIL
+	// Polynomial long division
 	char *polyStr = "36x^6 + 228x^5 - 341x^4 - 957x^3 + 1705x^2 - 531x - 140";
 	//char *polyStr = "72x^4 - 372x^3 - 1294x^2 + 2765x - 1225";
 	printf("%s\n", polyStr);
