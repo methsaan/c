@@ -4,7 +4,7 @@
 #include <math.h>
 
 // polynomialFactor.py
-// Oct. 10 - Nov. 25
+// Oct. 10 - Nov. 28
 // Factor polynomial given standard form
 // Input: x^4 - 7x^3 - 12x^2 + 68x + 112
 // Output: (x - 4)(x + 2)^2(x - 7)
@@ -314,31 +314,44 @@ int synthDiv(int *polynomial, int divisor, int dividendLen, int *quotient) {
 // Input: {2, 5, -76, -46, 290, -175}, num=-5, den=2
 // Output: {1, -38, 72, -35}
 int polyLongDiv(int *polynomial, int num, int den, int dividendLen, int *quotient) {
-	printf(" \t\t__________________________________\n");
-	printf("%d\t %d \t| ", den, -num);
-	for (int x = 0; x < dividendLen; x++) {
-		printf("%d\t ", polynomial[x]);
-	}
 	// Duplicate dividend polynomial to modify values
 	int polynomial2[dividendLen];
 	for (int x = 0; x < dividendLen; x++) {
 		polynomial2[x] = polynomial[x];
 	}
-	printf("\n");
+	// Duplicate to preserve original dividend
+	int polynomial3[dividendLen];
+	for (int x = 0; x < dividendLen; x++) {
+		polynomial3[x] = polynomial[x];
+	}
 	// Calculate quotient terms
+	for (int x = 0; x < dividendLen-1; x++) {
+		*(quotient++) = polynomial2[x]/den;
+		polynomial2[x+1] += num * *(quotient-1);
+	}
+	printf("\n");
+	printf("\t\t\t ");
+	for (int x = 0; x < dividendLen-1; x++) {
+		printf(" %d\t", *(quotient-dividendLen+x+1));
+	}
+	printf("\n");
+	printf(" \t\t__________________________________\n");
+	printf("%d\t %d \t| ", den, -num);
+	for (int x = 0; x < dividendLen; x++) {
+		printf("%d\t ", polynomial3[x]);
+	}
+	printf("\n");
 	for (int x = 0; x < dividendLen-1; x++) {
 		if (x > 0) {
 			for (int y = 0; y < x+1; y++) {
 				printf("\t");
 			}
-			printf(" %d\t %d\n", polynomial2[x-1], -num * *(quotient-1));
+			printf(" %d\t %d\n", polynomial2[x-1], -num * *(quotient-dividendLen+x));
 			for (int y = 0; y < x+1; y++) {
 				printf("\t");
 			}
 			printf("_____________\n");
 		}
-		*(quotient++) = polynomial2[x]/den;
-		polynomial2[x+1] += num * *(quotient-1);
 	}
 	for (int y = 0; y < dividendLen; y++) {
 		printf("\t");
@@ -352,6 +365,7 @@ int polyLongDiv(int *polynomial, int num, int den, int dividendLen, int *quotien
 		printf(" \t");
 	}
 	printf("0\n");
+	return dividendLen-1;
 	return dividendLen-1;
 }
 
@@ -430,7 +444,8 @@ int isIn(double *arr, double num, int len) {
 int main() {
 	// Ask user for f(x) - polynomial to factor
 	printf("Enter f(x):\n");
-	char *polyStr = "36x^6 + 228x^5 - 341x^4 - 957x^3 + 1705x^2 - 531x - 140";
+	char polyStr[150];
+	fgets(polyStr, 150, stdin);
 	// Store number of terms and string as coefficients
 	int coeff[30];
 	int numOfTermsLeft = coefficients(polyStr, coeff);
@@ -445,6 +460,8 @@ int main() {
 	// Temporary factor to add to tempFactored after division
 	char tempFactorDiv[20];
 
+	// Wait for return key before printing step
+	getchar();
 	// Print function
 	printf("f(x) = %s\n", polynomialStr(coeff, numOfTermsLeft));
 	printf("Let P(x) = %s\n", polyStr);
@@ -489,6 +506,8 @@ int main() {
 	}
 	// While number of unfactored terms left is greater than 3
 	for (int x = 0; x < numOfTermsInit-3; x++) {
+		// Wait for return key before printing step
+		getchar();
 		// if 0 is not a zero
 		if (root != 0) {
 			// Divide polynomial by root
@@ -500,6 +519,8 @@ int main() {
 				numOfTermsLeft = synthDiv(coeff, -root, numOfTermsLeft, coeff);
 			}
 		}
+		// Wait for return key before printing step
+		getchar();
 		// Display f(x)
 		printf("f(x) = %s(%s)\n", tempFactored, polynomialStr(coeff, numOfTermsLeft));
 		// Initialize P(x) (unfactored portion of f(x))
