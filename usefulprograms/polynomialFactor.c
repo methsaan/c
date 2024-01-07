@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-// polynomialFactor.py
+// polynomialFactor.c
 // Oct. 10 - Nov. 28
 // Factor polynomial given standard form
 // Input: x^4 - 7x^3 - 12x^2 + 68x + 112
