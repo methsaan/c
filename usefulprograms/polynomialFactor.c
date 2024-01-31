@@ -461,6 +461,7 @@ int main() {
 	char tempFactorDiv[20];
 
 	// Wait for return key before printing step
+	printf("Press enter for next step:\n");
 	getchar();
 	// Print function
 	printf("f(x) = %s\n", polynomialStr(coeff, numOfTermsLeft));
@@ -507,6 +508,7 @@ int main() {
 	// While number of unfactored terms left is greater than 3
 	for (int x = 0; x < numOfTermsInit-3; x++) {
 		// Wait for return key before printing step
+		printf("Press enter for next step:\n");
 		getchar();
 		// if 0 is not a zero
 		if (root != 0) {
@@ -520,6 +522,7 @@ int main() {
 			}
 		}
 		// Wait for return key before printing step
+		printf("Press enter for next step:\n");
 		getchar();
 		// Display f(x)
 		printf("f(x) = %s(%s)\n", tempFactored, polynomialStr(coeff, numOfTermsLeft));
