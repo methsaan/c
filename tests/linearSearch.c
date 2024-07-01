@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// Linear search - search for element in unsorted array
+// Check if each element is equal to the target one by one until target is reached
 int linearSearch(int *arr, int target, int len, int tshow) {
 	int numOfOperations = 0;
 	for (int x = 0; x < len; x++) {
@@ -28,4 +30,7 @@ int main(int argc, char* argv[]) {
 	}
 	num = 44;
 	idx = linearSearch(array, num, sizeof(array)/sizeof(*array), 1);
+	// Size of data: 9, num of operations (worst-case): 9.
+	// 9 = 9
+	// Time complexity: O(n) = n
 }
