@@ -44,5 +44,5 @@ int main(int argc, char* argv[]) {
 	idx = binarySearch(array, num, sizeof(array)/sizeof(*array), 1);
 	// Size of data: 22, num of operations (worst-case): 5. 
 	// log2(22) = 4.45
-	// Time complexity: O(n) = log2(n)
+	// Time complexity: O(log2(n))
 }

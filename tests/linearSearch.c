@@ -32,5 +32,5 @@ int main(int argc, char* argv[]) {
 	idx = linearSearch(array, num, sizeof(array)/sizeof(*array), 1);
 	// Size of data: 9, num of operations (worst-case): 9.
 	// 9 = 9
-	// Time complexity: O(n) = n
+	// Time complexity: O(n)
 }
