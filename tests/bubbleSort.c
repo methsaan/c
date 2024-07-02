@@ -20,6 +20,11 @@ int bubbleSort(int *arr, int len) {
 
 int main(int argc, char* argv[]) {
 	int array[] = {83, 24, 95, 42, 47, 17, 65, 38, 99, 35, 37, 86, 15, 23, 3, 26, 34, 96, 25, 34, 58, 53, 43, 94, 91, 85, 29, 36, 41, 73, 67, 54, 59, 74, 76};
+	printf("Unsorted: ");
+	for (int x = 0; x < sizeof(array)/sizeof(*array); x++) {
+		printf("%d ", array[x]);
+	}
+	printf("\n");
 	int numOfOperations = bubbleSort(array, sizeof(array)/sizeof(*array));
 	printf("Sorted: ");
 	for (int x = 0; x < sizeof(array)/sizeof(*array); x++) {
