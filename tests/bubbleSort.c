@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 // Bubble sort - sort array
-// Swap first element with rest until smallest element is at the front
-// repeat for all positions until array is fully sorted
+// Swap adjacent elements until largest element is at the end
+// repeat for remaining unsorted positions until array is sorted
 int bubbleSort(int *arr, int len) {
 	int numOfOp = 0;
 	for (int x = 0; x < len; x++) {
-		for (int y = x; y < len; y++) {
-			if (arr[x] > arr[y]) {
-				int a = arr[x];
-				*(arr+x) = arr[y];
-				*(arr+y) = a;
+		for (int y = 0; y < len-1-x; y++) {
+			if (arr[y+1] < arr[y]) {
+				int a = arr[y];
+				*(arr+y) = arr[y+1];
+				*(arr+y+1) = a;
 			}
 			numOfOp++;
 		}
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 	}
 	printf("\n");
 	printf("Size of data: %d, num of operations (worst-case): %d.\n", sizeof(array)/sizeof(*array), numOfOperations);
-	// Size of data: 35, num of operations (worst-case): 630.
+	// Size of data: 35, num of operations (worst-case): 595.
 	// 35^2 / 2 = 612
 	// Time complexity: O(n^2)
 }
