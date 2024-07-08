@@ -24,6 +24,22 @@ void linkedListAddEnd(struct LinkedList* l, int val) {
 	current->nextNodeSet = 1;
 }
 
+void linkedListAddBetween(struct LinkedList* l, int val, int idx) {
+	struct Node* current = l->head;
+	int cnt = 0;
+	while (cnt < idx-1) {
+		current = current->nextNode;
+		cnt++;
+	}
+	struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+	newNode->value = val;
+	newNode->nextNodeSet = 0;
+	newNode->nextNode = (struct Node*)malloc(sizeof(struct Node));
+	newNode->nextNode = current->nextNode;
+	current->nextNode = newNode;
+	(current->nextNode)->nextNodeSet = 1;
+}
+
 void printLinkedList(struct LinkedList* l) {
 	struct Node* current = l->head;
 	while (current != NULL) {
@@ -40,5 +56,8 @@ int main(int argc, char *argv) {
 	linkedListAddEnd(&list, 84);
 	linkedListAddEnd(&list, 27);
 	linkedListAddEnd(&list, 97);
+	printLinkedList(&list);
+	linkedListAddBetween(&list, 78, 3);
+	linkedListAddBetween(&list, 35, 3);
 	printLinkedList(&list);
 }
