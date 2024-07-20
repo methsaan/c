@@ -7,9 +7,9 @@ struct Node;
 struct Node {
 	int value; // Value of node
 	int nextNodeSet; // 1 = nextNode is initialized, 0 = nextNode is not initialized
-	int prevNodeSet; // 1 = nextNode is initialized, 0 = nextNode is not initialized
+	int prevNodeSet; // 1 = prevNode is initialized, 0 = prevNode is not initialized
 	struct Node* nextNode; // Address of next node
-	struct Node* prevNode; // Address of next node
+	struct Node* prevNode; // Address of prev node
 };
 
 // Set of nodes connected by addresses
