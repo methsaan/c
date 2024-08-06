@@ -43,81 +43,38 @@ void binaryInsertionSort(int *fullArr, int start, int end, int lenSorted, int di
 }
 
 void merge(int *fullArr, int runSize, int len) {
-	//printf("\n\nNEW MERGE\n------------------------------------------------------\n");
-	//printf("len/runSize + 1: %d\n", len/runSize + 1);
-	//printf("runSize: %d\n", runSize);
 	for (int x = 0; x < len/runSize + 1; x += 2) {
-		printf("x: %d\n", x);
-		printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
 		int cnt1 = x*runSize;
 		int cnt2 = (x+1)*runSize;
 		int tempArr[2*runSize];
-		//printf("cnt1 - x*runSize: %d\n", x*runSize);
-		//printf("cnt2 - (x+1)*runSize: %d\n", (x+1)*runSize);
-		//printf("Size of tempArr - 2*runSize: %d\n", 2*runSize);
 		int i;
-		//printf("ITERATING %d-%d\n", x*runSize, (x+2)*runSize-1);
-		//printf("ELEMENTS: ");
-		//for (int y = x*runSize; y < (x+2)*runSize; y++) {
-		//	printf("%d ", fullArr[y]);
-		//}
-		//printf("\n");
 		for (i = x*runSize; i < (x+2)*runSize; i++) {
 			if (fullArr[cnt1] <= fullArr[cnt2] && cnt1 < (x+1)*runSize && cnt2 < (x+2)*runSize && cnt2 < len) {
-				//printf("TRUE: fullArr[cnt1] (%d) <= fullArr[cnt2] (%d) && cnt2 (%d) < (x+2)*runSize (%d) && cnt2 (%d) < len (%d)\n", fullArr[cnt1], fullArr[cnt2], cnt2, (x+2)*runSize, cnt2, len);
-				//printf("%d, cnt1: %d\n", fullArr[cnt1], cnt1+1);
 				tempArr[i-x*runSize] = fullArr[cnt1++];
 			} else if (fullArr[cnt1] > fullArr[cnt2] && cnt1 < (x+1)*runSize && cnt2 < (x+2)*runSize && cnt2 < len) {
-				//printf("%d, cnt2: %d\n", fullArr[cnt2], cnt2+1-(x+1)*runSize);
 				tempArr[i-x*runSize] = fullArr[cnt2++];
 			} else {
 				break;
 			}
 		}
-		//printf("STARTING AT ARRAY INDEX %d: ", x*runSize);
-		//for (int j = 0; j < (x+2)*runSize; j++) {
-		//	printf("%d ", tempArr[j]);
-		//}
-		//printf("\n\n");
-		//printf("cnt1-x*runSize (%d) + cnt2-(x+1)*runSize (%d): %d\n", cnt1-x*runSize, cnt2-(x+1)*runSize, cnt1-x*runSize + cnt2-(x+1)*runSize);
-		//printf("i: %d\n", i);
-		//printf("tempArr[i-x*runSize-1]: %d\n", tempArr[i-x*runSize-1]);
-		printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-		printf("len: %d, runSize: %d\n", len, runSize);
 		if (cnt1 < (x+1)*runSize) {
 			while (i < (x+2)*runSize && i < len) {
 				tempArr[i-x*runSize] = fullArr[i];
 				i++;
 			}
-			tempArr[i-x*runSize] = fullArr[i++];
-			//printf("ADDING REST OF FIRST HALF...\n\n");
+			tempArr[i-x*runSize] = fullArr[i];
+			i++;
 		} else {
-			printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-			printf("len: %d, runSize: %d\n", len, runSize);
 			while (i < (x+2)*runSize && i < len) {
 				tempArr[i-x*runSize] = fullArr[i];
 				i++;
 			}
-			printf("---x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-			printf("---len: %d, runSize: %d\n", len, runSize);
-			tempArr[i-x*runSize] = fullArr[i++];
-			len = 130;
-			printf("---x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-			printf("---len: %d, runSize: %d\n", len, runSize);
-			//printf("ADDING REST OF SECOND HALF...\n\n");
+			tempArr[i-x*runSize] = fullArr[i];
+			i++;
 		}
-		printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-		printf("len: %d, runSize: %d\n", len, runSize);
-		for (int j = x*runSize; j < (x+2)*runSize; j++) {
+		for (int j = x*runSize; j < (x+2)*runSize && j < len; j++) {
 			fullArr[j] = tempArr[j-x*runSize];
 		}
-		printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
-		//printf("STARTING AT ARRAY INDEX %d: ", x*runSize);
-		//for (int j = 0; j < (x+2)*runSize; j++) {
-		//	printf("%d ", tempArr[j]);
-		//}
-		//printf("\n\n");
-		printf("x: %d, len/runSize + 1: %d\n", x, len/runSize + 1);
 	}
 	if (runSize*2 < len) {
 		runSize *= 2;
@@ -137,10 +94,14 @@ void timSort(int *arr, int len) {
 			} else if (direction == -1) {
 				runLen++;
 			} else if (direction == 1) {
-				if (runLen < minRun) {
+				if (runLen < minRun && (cnt+1)*minRun <= len) {
 					binaryInsertionSort(arr, cnt*minRun, (cnt+1)*minRun, runLen, direction);
 					cnt++;
 					x = cnt*minRun;
+				} else if ((cnt+1)*minRun > len) {
+					binaryInsertionSort(arr, cnt*minRun, len, runLen, direction);
+					cnt++;
+					x = len;
 				}
 				runLen = 1;
 				direction = 0;
@@ -152,11 +113,16 @@ void timSort(int *arr, int len) {
 			} else if (direction == 1) {
 				runLen++;
 			} else if (direction == -1) {
-				if (runLen < minRun) {
+				if (runLen < minRun && (cnt+1)*minRun <= len) {
 					binaryInsertionSort(arr, cnt*minRun, (cnt+1)*minRun, runLen, direction);
 					reverse(arr, cnt*minRun, (cnt+1)*minRun);
 					cnt++;
 					x = cnt*minRun;
+				} else if ((cnt+1)*minRun > len) {
+					binaryInsertionSort(arr, cnt*minRun, len, runLen, direction);
+					reverse(arr, cnt*minRun, len);
+					cnt++;
+					x = len;
 				}
 				runLen = 1;
 				direction = 0;
@@ -172,11 +138,8 @@ int main() {
 	for (int x = 0; x < sizeof(array)/sizeof(*array); x++) {
 		printf("%d ", array[x]);
 	}
-	printf("\n");
-	timSort(array, sizeof(array)/sizeof(*array));
-        //reverse(array, 8, 17);
-	//timSort(array, sizeof(array)/sizeof(*array));
 	printf("\n\n");
+	timSort(array, sizeof(array)/sizeof(*array));
 	printf("Sorted: ");
 	for (int x = 0; x < sizeof(array)/sizeof(*array); x++) {
 		printf("%d ", array[x]);
