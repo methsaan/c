@@ -82,6 +82,16 @@ void merge(int *fullArr, int runSize, int len) {
 	}
 }
 
+// Tim Sort - sort large array
+// Set a number, minRun, as length of divisions array is cut into such that length/minRun is just under a
+// power of 2
+// Loop through elements, identify run - consecutive elements with increasing or decreasing values
+// If the length of the run is less than minRun, sort the next elements using binary insertion sort until
+// minRun elements are in ascending/descending order
+// Continue identifying runs and adding elements using binary insertion sort until array is fully divided into
+// sorted runs of length minRun (the last run can be shorter if there is no space in the array)
+// Merge sorted runs two by two until all runs are double the length using merge() from merge sort
+// Continue merging until array is fully sorted
 void timSort(int *arr, int len) {
 	int cnt = 0;
 	int direction = 0;
