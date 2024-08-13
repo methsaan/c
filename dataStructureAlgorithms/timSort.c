@@ -59,15 +59,17 @@ void merge(int *fullArr, int runSize, int len) {
 		}
 		if (cnt1 < (x+1)*runSize) {
 			while (i < (x+2)*runSize && i < len) {
-				tempArr[i-x*runSize] = fullArr[i];
+				tempArr[i-x*runSize] = fullArr[cnt1];
 				i++;
+				cnt1++;
 			}
 			tempArr[i-x*runSize] = fullArr[i];
 			i++;
 		} else {
 			while (i < (x+2)*runSize && i < len) {
-				tempArr[i-x*runSize] = fullArr[i];
+				tempArr[i-x*runSize] = fullArr[cnt2];
 				i++;
+				cnt2++;
 			}
 			tempArr[i-x*runSize] = fullArr[i];
 			i++;
