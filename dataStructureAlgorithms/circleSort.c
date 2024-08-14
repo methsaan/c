@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 
+// Circle Sort - sort array
+// Swap elements that are the same distance from the middle index if they are
+// out of order
+// Split array and repeat recursively until subarrays have length 2
+// Repeat algorithm starting from full array until no swaps are made in a full round
 void circleSort(int *arr, int start, int end, int *swapCnt, int startFull, int endFull, int arrLen) {
 	for (int x = start; x < (start+end+1)/2; x++) {
 		if (arr[x] > arr[end-x+start] && end-x+start < arrLen) {
