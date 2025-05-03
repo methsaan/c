@@ -51,18 +51,30 @@ int *sortedDatesStartPos(char **datesLines, int numOfLines, char timeUnit[], int
 	for (int i = 0; i < numOfLines; i++) {
 		char timeUnitStr[5];
 		if (strcmp(timeUnit, "year") == 0) {
-			strncpy(timeUnitStr, datesLines[i] + 6, 4);
+			for (int x = 0; x < 4; x++) {
+				timeUnitStr[x] = datesLines[i][6 + x];
+			}
 			timeUnitStr[4] = '\0';
 		} else if (strcmp(timeUnit, "month") == 0) {
-			strncpy(timeUnitStr, datesLines[i] + 3, 2);
+			for (int x = 0; x < 2; x++) {
+				timeUnitStr[x] = datesLines[i][3 + x];
+			}
 			timeUnitStr[2] = '\0';
 		} else {
-			strncpy(timeUnitStr, datesLines[i], 2);
+			for (int x = 0; x < 2; x++) {
+				timeUnitStr[x] = datesLines[i][x];
+			}
 			timeUnitStr[2] = '\0';
 		}
 		if (strcmp(timeUnit, "year") == 0) {
-			startPositions[atoi(timeUnitStr) - 1970] += 1;
+			int idx = (timeUnitStr[0] - '0') * 1000 +
+				(timeUnitStr[1] - '0') * 100 +
+				(timeUnitStr[2] - '0') * 10 +
+				(timeUnitStr[3] - '0') - 1970;
+			startPositions[idx] += 1;
 		} else {
+			int idx = (timeUnitStr[0] - '0') * 10 +
+				(timeUnitStr[1] - '0') - 1;
 			startPositions[atoi(timeUnitStr) - 1] += 1;
 		}
 	}
@@ -91,20 +103,33 @@ char **sortByTimeUnit(char **unsortedDates, int numOfLines, char timeUnit[]) {
 	for (int i = 0; i < numOfLines; i++) {
 		char timeUnitStr[5];
 		if (strcmp(timeUnit, "date") == 0) {
-			strncpy(timeUnitStr, unsortedDates[i], 2);
+			for (int x = 0; x < 2; x++) {
+				timeUnitStr[x] = unsortedDates[i][x];
+			}
 			timeUnitStr[2] = '\0';
 		} else if (strcmp(timeUnit, "month") == 0) {
-			strncpy(timeUnitStr, unsortedDates[i] + 3, 2);
+			for (int x = 0; x < 2; x++) {
+				timeUnitStr[x] = unsortedDates[i][3 + x];
+			}
 			timeUnitStr[2] = '\0';
 		} else {
-			strncpy(timeUnitStr, unsortedDates[i] + 6, 4);
+			for (int x = 0; x < 4; x++) {
+				timeUnitStr[x] = unsortedDates[i][6 + x];
+			}
 			timeUnitStr[4] = '\0';
 		}
 		int idx;
+		int pos;
 		if (strcmp(timeUnit, "year") == 0) {
-			idx = startPos[atoi(timeUnitStr) - 1970];
+			pos = (timeUnitStr[0] - '0') * 1000 +
+				(timeUnitStr[1] - '0') * 100 +
+				(timeUnitStr[2] - '0') * 10 +
+				(timeUnitStr[3] - '0') - 1970;
+			idx = startPos[pos];
 		} else {
-			idx = startPos[atoi(timeUnitStr) - 1];
+			pos = (timeUnitStr[0] - '0') * 10 +
+				(timeUnitStr[1] - '0') - 1;
+			idx = startPos[pos];
 		}
 		sortedByTimeUnit[idx] = malloc(dateLen * sizeof(char));
 		if (!sortedByTimeUnit[idx]) {
@@ -112,11 +137,7 @@ char **sortByTimeUnit(char **unsortedDates, int numOfLines, char timeUnit[]) {
 			return NULL;
 		}
 		memcpy(sortedByTimeUnit[idx], unsortedDates[i], dateLen * sizeof(char));
-		if (strcmp(timeUnit, "year") == 0) {
-			*(startPos + atoi(timeUnitStr) - 1970) = idx + 1;
-		} else {
-			*(startPos + atoi(timeUnitStr) - 1) = idx + 1;
-		}
+		*(startPos + pos) = idx + 1;
 		free(unsortedDates[i]);
 	}
 	free(unsortedDates);
@@ -196,16 +217,17 @@ void generateDates(char fileName[], int numOfLines) {
 int main(int argc, char *argv[]) {
 	struct timeval startTime;
 	struct timeval endTime;
-	for (int i = 0; i < 8; i++) {
-		generateDates("dates.txt", pow(10, i));
+	int n = 1;
+	for (int i = 0; i < 8; i++, n *= 10) {
+		generateDates("dates.txt", n);
 		gettimeofday(&startTime, NULL);
-		sortDates("dates.txt", pow(10, i));
+		sortDates("dates.txt", n);
 		gettimeofday(&endTime, NULL);
 		unsigned long long startTimeUs =
 			(unsigned long long)startTime.tv_sec * 1000000 + startTime.tv_usec;
 		unsigned long long endTimeUs =
 			(unsigned long long)endTime.tv_sec * 1000000 + endTime.tv_usec;
-		printf("Number of dates: %d\n", (int)pow(10, i));
+		printf("Number of dates: %d\n", n);
 		printf("Time taken: %fs.\n", (endTimeUs - startTimeUs) / 1000000.0);
 	}
 }
