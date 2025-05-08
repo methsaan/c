@@ -11,20 +11,28 @@ typedef struct Tree {
 	struct Tree** subtrees;
 } Tree;
 
-struct Tree* initTree(int rootVal, int hasRootVal, int rootNumSubtrees) {
-	struct Tree* tree = malloc(sizeof(Tree));
+Tree* initTree(int rootVal, int hasRootVal, int rootNumSubtrees) {
+	Tree* tree = malloc(sizeof(Tree *));
+	if (!tree) {
+		perror("Malloc");
+		return NULL;
+	}
 	tree->val = rootVal;
 	tree->hasVal = hasRootVal;
 	tree->numOfSubtrees = rootNumSubtrees;
 	if (rootNumSubtrees > 0) {
 		tree->subtrees = malloc(rootNumSubtrees * sizeof(Tree *));
+		if (!tree->subtrees) {
+			perror("Malloc");
+			return NULL;
+		}
 	} else {
 		tree->subtrees = NULL;
 	}
 	return tree;
 }
 
-void treeAddSubtree(struct Tree* root, int idx, struct Tree* subtree) {
+void treeAddSubtree(Tree* root, int idx, Tree* subtree) {
 	if (root->subtrees == NULL) {
 		return;
 	}
@@ -34,76 +42,58 @@ void treeAddSubtree(struct Tree* root, int idx, struct Tree* subtree) {
 	root->subtrees[idx] = subtree;
 }
 
-struct Tree* treeGetSubtree(struct Tree* root, int idx) {
-	if (root->subtrees == NULL) {
-		return NULL;
-	}
-	if (idx >= root->numOfSubtrees || idx < 0) {
-		return NULL;
-	}
-	return root->subtrees[idx];
-}
-
-struct Tree* createJaggedArr(int currentLevel, int idx) {
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	unsigned long long seed = (unsigned long long)(tv.tv_sec) * 1000000 + tv.tv_usec;
-	srand(seed);
+Tree* createTree(int currentLevel) {
 	int randNum;
-	struct Tree* jaggedArr = malloc(sizeof(Tree));
+	struct Tree* tree;
 	int len, value = 0;
-	char arrOrInt[2] = "A";
+	int isArr = currentLevel > 1 && currentLevel < 6;
 	if (currentLevel == 1) {
-		randNum = rand() % 2;
-		if (randNum == 1 || currentLevel == 6) {
-			arrOrInt[0] = 'I';
-		}
+		isArr = rand() % 2;
 	}
-	if (strcmp(arrOrInt, "A") == 0) {
+	if (isArr) {
 		len = currentLevel < 3 ? rand() % 7 : rand() % (rand() % 2 + 2);
 		len += currentLevel < 3 ? rand() % 7 : rand() % (rand() % 2 + 2);
 		len /= 2;
 	} else {
 		value = (rand() % 1000 + rand() % 500) * 3 / 2;
 	}
-	if (strcmp(arrOrInt, "A") == 0 && len == 0) {
-		jaggedArr = initTree(0, 0, len); // val = 0, hasVal = 0, numOfSubtrees = len = 0
-		return jaggedArr; // {}
-	} else if (strcmp(arrOrInt, "I") == 0) {
-		jaggedArr = initTree(value, 1, 0); // val = value, hasVal = 1, numOfSubtrees = 0
-		return jaggedArr; // value
-	} else if (strcmp(arrOrInt, "A") == 0 && len > 0) {
-		jaggedArr = initTree(0, 0, len); // val = 0, hasVal = 0, numOfSubtrees = len
+	if (isArr && len == 0) {
+		tree = initTree(0, 0, len); // val = 0, hasVal = 0, numOfSubtrees = len = 0
+		return tree; // {}
+	} else if (!isArr) {
+		tree = initTree(value, 1, 0); // val = value, hasVal = 1, numOfSubtrees = 0
+		return tree; // value
+	} else if (isArr && len > 0) {
+		tree = initTree(0, 0, len); // val = 0, hasVal = 0, numOfSubtrees = len
 		for (int i = 0; i < len; i++) {
-			struct Tree* element = malloc(sizeof(Tree));
-			char* elementValStr = malloc(sizeof(char));
+			Tree* element;
 			randNum = rand() % 2;
 			
 			if (randNum == 0) {
 				int elementVal = rand() % 1000;
 				element = initTree(elementVal, 1, 0); // {..., n, ...}
 			} else {
-				element = createJaggedArr(currentLevel + 1, i); // {..., {...}, ...}
+				element = createTree(currentLevel + 1); // {..., {...}, ...}
 			}
-			treeAddSubtree(jaggedArr, i, element);
+			treeAddSubtree(tree, i, element);
 		}
-		return jaggedArr;
+		return tree;
 	} else {
 		return NULL;
 	}
 }
 
-void printJaggedArr(struct Tree* jaggedArr) {
-	if (jaggedArr == NULL) {
+void printTree(Tree* tree) {
+	if (tree == NULL) {
 		return;
 	}
-	if (jaggedArr->hasVal == 1) {
-		printf("%d", jaggedArr->val);
+	if (tree->hasVal == 1) {
+		printf("%d", tree->val);
 	} else {
 		printf("{");
-		for (int i = 0; i < jaggedArr->numOfSubtrees; i++) {
-			printJaggedArr(jaggedArr->subtrees[i]);
-			if (i < jaggedArr->numOfSubtrees - 1) {
+		for (int i = 0; i < tree->numOfSubtrees; i++) {
+			printTree(tree->subtrees[i]);
+			if (i < tree->numOfSubtrees - 1) {
 				printf(", ");
 			}
 		}
@@ -111,7 +101,7 @@ void printJaggedArr(struct Tree* jaggedArr) {
 	}
 }
 
-int sumLeaves(struct Tree* tree) {
+int sumLeaves(Tree* tree) {
 	if (tree->subtrees == NULL && tree->hasVal == 0) {
 		return 0;
 	} else if (tree->hasVal == 1) {
@@ -126,16 +116,24 @@ int sumLeaves(struct Tree* tree) {
 }
 
 void freeTree(struct Tree* tree) {
+	if (!tree) {
+		return;
+	}
 	for (int i = 0; i < tree->numOfSubtrees; i++) {
 		freeTree(tree->subtrees[i]);
 	}
 	free(tree->subtrees);
+	free(tree);
 }
 
 int main(int argc, char* argv[]) {
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	unsigned long long seed = (unsigned long long)(tv.tv_sec) * 1000000 + tv.tv_usec;
+	srand(seed);
 	for (int x = 0; x < 10; x++) {
-		struct Tree* jaggedArr = createJaggedArr(1, 0);
-		printJaggedArr(jaggedArr);
+		Tree* jaggedArr = createTree(1);
+		printTree(jaggedArr);
 		printf(" - Sum: %d\n", sumLeaves(jaggedArr));
 		freeTree(jaggedArr);
 	}
