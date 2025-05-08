@@ -12,7 +12,7 @@ typedef struct Tree {
 } Tree;
 
 Tree* initTree(int rootVal, int hasRootVal, int rootNumSubtrees) {
-	Tree* tree = malloc(sizeof(Tree *));
+	Tree* tree = malloc(sizeof(Tree));
 	if (!tree) {
 		perror("Malloc");
 		return NULL;
@@ -21,9 +21,10 @@ Tree* initTree(int rootVal, int hasRootVal, int rootNumSubtrees) {
 	tree->hasVal = hasRootVal;
 	tree->numOfSubtrees = rootNumSubtrees;
 	if (rootNumSubtrees > 0) {
-		tree->subtrees = malloc(rootNumSubtrees * sizeof(Tree *));
+		tree->subtrees = malloc(rootNumSubtrees * sizeof(Tree));
 		if (!tree->subtrees) {
 			perror("Malloc");
+			free(tree);
 			return NULL;
 		}
 	} else {
