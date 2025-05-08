@@ -68,7 +68,7 @@ struct Tree* createJaggedArr(int currentLevel, int idx) {
 	}
 	if (strcmp(arrOrInt, "A") == 0 && len == 0) {
 		jaggedArr = initTree(0, 0, len); // val = 0, hasVal = 0, numOfSubtrees = len = 0
-		return jaggedArr; // []
+		return jaggedArr; // {}
 	} else if (strcmp(arrOrInt, "I") == 0) {
 		jaggedArr = initTree(value, 1, 0); // val = value, hasVal = 1, numOfSubtrees = 0
 		return jaggedArr; // value
@@ -81,9 +81,9 @@ struct Tree* createJaggedArr(int currentLevel, int idx) {
 			
 			if (randNum == 0) {
 				int elementVal = rand() % 1000;
-				element = initTree(elementVal, 1, 0); // [..., n, ...]
+				element = initTree(elementVal, 1, 0); // {..., n, ...}
 			} else {
-				element = createJaggedArr(currentLevel + 1, i);;;;;;;;;;;; // [..., [...], ...]
+				element = createJaggedArr(currentLevel + 1, i); // {..., {...}, ...}
 			}
 			treeAddSubtree(jaggedArr, i, element);
 		}
@@ -93,7 +93,7 @@ struct Tree* createJaggedArr(int currentLevel, int idx) {
 	}
 }
 
-void printJaggedArr(struct Tree* jaggedArr, int level) {
+void printJaggedArr(struct Tree* jaggedArr) {
 	if (jaggedArr == NULL) {
 		return;
 	}
@@ -102,7 +102,7 @@ void printJaggedArr(struct Tree* jaggedArr, int level) {
 	} else {
 		printf("{");
 		for (int i = 0; i < jaggedArr->numOfSubtrees; i++) {
-			printJaggedArr(jaggedArr->subtrees[i], level + 1);
+			printJaggedArr(jaggedArr->subtrees[i]);
 			if (i < jaggedArr->numOfSubtrees - 1) {
 				printf(", ");
 			}
@@ -125,12 +125,18 @@ int sumLeaves(struct Tree* tree) {
 	}
 }
 
+void freeTree(struct Tree* tree) {
+	for (int i = 0; i < tree->numOfSubtrees; i++) {
+		freeTree(tree->subtrees[i]);
+	}
+	free(tree->subtrees);
+}
+
 int main(int argc, char* argv[]) {
 	for (int x = 0; x < 10; x++) {
 		struct Tree* jaggedArr = createJaggedArr(1, 0);
-		printJaggedArr(jaggedArr, 1);
-                printf(" - Sum: %d\n", sumLeaves(jaggedArr));
-		free(jaggedArr->subtrees);
-		free(jaggedArr);
+		printJaggedArr(jaggedArr);
+		printf(" - Sum: %d\n", sumLeaves(jaggedArr));
+		freeTree(jaggedArr);
 	}
 }
